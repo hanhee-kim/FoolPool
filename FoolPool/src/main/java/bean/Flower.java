@@ -346,8 +346,8 @@ public class Flower {
 
 	}
 
-	public static void main(String args[]) {
-		xml_parsing();
-	}
+//	public static void main(String args[]) {
+//		xml_parsing();
+//	}
 
 }
