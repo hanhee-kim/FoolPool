@@ -11,6 +11,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+import dao.FlowerDAO;
+import dao.FlowerDAOImpl;
+
 public class Flower {
 
 	private String dataNo; // 꽃번호
@@ -272,6 +275,9 @@ public class Flower {
 
 				// Flower 객체를 리스트에 추가
 				flowers.add(flower);
+				//db에 저장
+				FlowerDAOImpl fDAO = new FlowerDAOImpl();
+				fDAO.insertFlower(flower);
 
 //	   			 for(Flower f : flowers) {
 //					 System.out.println(f);
@@ -346,8 +352,5 @@ public class Flower {
 
 	}
 
-//	public static void main(String args[]) {
-//		xml_parsing();
-//	}
 
 }

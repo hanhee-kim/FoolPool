@@ -1,5 +1,7 @@
 package dao;
 
-public interface FlowerDAO {
+import bean.Flower;
 
+public interface FlowerDAO {
+	void insertFlower(Flower flower) throws Exception;
 }
