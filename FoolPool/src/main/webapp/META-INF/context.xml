@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context>
-	<Resource name="jdbc/kosta"
+	<Resource name="jdbc/foolpool"
 			  auth="Container"
 			  type="javax.sql.DataSource"
 			  username="root"
-			  password=""
+			  password="sweet720!!"
 			  driverClassName="org.mariadb.jdbc.Driver"
 			  factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
-			  url="jdbc:mariadb://localhost:3306/"
+			  url="jdbc:mariadb://121.140.155.166:3306/foolpool"
 			  maxActive="500"/>
 </Context>
