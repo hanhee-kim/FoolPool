@@ -180,9 +180,10 @@ public class Flower {
 	public static void xml_parsing() {
 		try {
 			File xmlFile = new File(
-					"C:\\Users\\914gk\\git\\FoolPool\\FoolPool\\src\\main\\webapp\\WEB-INF\\flower.xml"); // XML 파일 경로
-																											// 지정
-
+					"src/main/webapp/static/flower.xml"
+					);
+//					"C:\\Users\\914gk\\git\\FoolPool\\FoolPool\\src\\main\\webapp\\WEB-INF\\flower.xml"		// XML 파일 경로
+//																											// 지정
 			// DocumentBuilderFactory 생성
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
@@ -196,7 +197,8 @@ public class Flower {
 
 			List<Flower> flowers = new ArrayList<>();
 
-			for (int i = 0; i < resultList.getLength(); i++) {
+//			for (int i = 0; i < 3; i++) {	//테스트용으로 3개만 찍어봄
+				for (int i = 0; i < resultList.getLength(); i++) {
 				Element resultElement = (Element) resultList.item(i);
 
 				// Flower 객체 생성
@@ -207,6 +209,7 @@ public class Flower {
 //	                -----------------------------------------------
 
 				for (int j = 0; j < childNodes.getLength(); j++) {
+					
 					org.w3c.dom.Node node = childNodes.item(j);
 					if (node.getNodeType() == org.w3c.dom.Node.ELEMENT_NODE) {
 						Element element = (Element) node;
@@ -272,85 +275,30 @@ public class Flower {
 						}
 					}
 				}
-
 				// Flower 객체를 리스트에 추가
 				flowers.add(flower);
 				//db에 저장
-				FlowerDAOImpl fDAO = new FlowerDAOImpl();
-				fDAO.insertFlower(flower);
-
-//	   			 for(Flower f : flowers) {
-//					 System.out.println(f);
-//				 }
+//				FlowerDAOImpl fDAO = new FlowerDAOImpl();
+//				fDAO.insertFlower(flower);
+				
+				// 특정 요소 찾기
+//				for (Flower flowerQ : flowers) {
+//				    String dataNoQ = flowerQ.getDataNo();
+//				    System.out.println("dataNo: " + dataNoQ);
+//				}
 //	                --------------------------------
 
-//			
-//			
-//			 for (int i = 0; i < nodeList.getLength(); i++) {
-//				 
-//	                Element fTypeElement = (Element) nodeList.item(i);
-
-//	                String dataNo = fTypeElement.getElementsByTagName("dataNo").item(0).getTextContent();
-//	                String fMonth = fTypeElement.getElementsByTagName("fMonth").item(0).getTextContent();
-//	                String fDay = fTypeElement.getElementsByTagName("fDay").item(0).getTextContent();
-//	                String flowNm = fTypeElement.getElementsByTagName("flowNm").item(0).getTextContent();
-//	                String fSctNm = fTypeElement.getElementsByTagName("fSctNm").item(0).getTextContent();
-//	                String fEngNm = fTypeElement.getElementsByTagName("fEngNm").item(0).getTextContent();
-//	                String flowLang = fTypeElement.getElementsByTagName("flowLang").item(0).getTextContent();
-//	                String fContent = fTypeElement.getElementsByTagName("fContent").item(0).getTextContent();
-//	                String fUse = fTypeElement.getElementsByTagName("fUse").item(0).getTextContent();
-//	                String fGrow = fTypeElement.getElementsByTagName("fGrow").item(0).getTextContent();
-//	                String fType = fTypeElement.getElementsByTagName("fType").item(0).getTextContent();
-//	                String fileName1 = fTypeElement.getElementsByTagName("fileName1").item(0).getTextContent();
-//	                String fileName2 = fTypeElement.getElementsByTagName("fileName2").item(0).getTextContent();
-//	                String fileName3 = fTypeElement.getElementsByTagName("fileName3").item(0).getTextContent();
-//	                String imgUrl1 = fTypeElement.getElementsByTagName("imgUrl1").item(0).getTextContent();
-//	                String imgUrl2 = fTypeElement.getElementsByTagName("imgUrl2").item(0).getTextContent();
-//	                String imgUrl3 = fTypeElement.getElementsByTagName("imgUrl3").item(0).getTextContent();	                
-//
-//	                Flower flower = new Flower();
-//	                flower.setDataNo(dataNo);
-//	                flower.setfMonth(fMonth);
-//	                flower.setfDay(fDay);
-//	                flower.setFlowNm(flowNm);
-//	                flower.setfSctNm(fSctNm);
-//	                flower.setfEngNm(fEngNm);
-//	                flower.setFlowLang(flowLang);
-//	                flower.setfContent(fContent);
-//	                flower.setfUse(fUse);
-//	                flower.setfGrow(fGrow);
-//	                flower.setfType(fType);
-//	                flower.setFileName1(fileName1);
-//	                flower.setFileName2(fileName2);
-//	                flower.setFileName3(fileName3);
-//	                flower.setImgUrl1(imgUrl1);
-//	                flower.setImgUrl2(imgUrl2);
-//	                flower.setImgUrl3(imgUrl3);
-//
-//	                flowers.add(flower);
-//	            }//for문 끝
-//			for(Flower flower : flowers) {
-//				System.out.println(flower);
-//			}
-
-//	    			if (nodeList.getLength() > 0) {
-//	    				Element fTypeElement = (Element) nodeList.item(0); // 첫 번째 <result> 요소 가져오기
-//	    				String fTypeValue = fTypeElement.getTextContent();
-//	    				System.out.println("result: " + fTypeValue);
-//	    				NodeList fTypeValue2 = rootElement.getElementsByTagName("fType");
-//	    				Element fTypeValue22 = (Element) fTypeValue2.item(0);
-//	    				String fTypeValue23 = fTypeValue22.getTextContent();
-//	    				System.out.println("fTypeValue23: "+fTypeValue23);
-//	    			} else {
-//	    				System.out.println("<result> 요소를 찾을 수 없습니다.");
-//	    			}
-
 			}
+				for(Flower f : flowers) {
+					System.out.println("[" + f.dataNo + "] : [ " + f + " ]");
+				}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
 
-
+//	public static void main(String[] args) {
+//		xml_parsing();
+//	}
 }

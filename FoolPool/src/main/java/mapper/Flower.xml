@@ -4,7 +4,7 @@
  <mapper namespace="mapper.flower">
  	<insert id="insertFlower" parameterType="Flower">
  	<![CDATA[
-		insert into flower(dataNo,fMonth,fDay,flowNm,fSctNm,fEngNm,flowLang,fContent,fUse,fGrow,fType,fileName1,fileName2,fileName3,imgUrl1,imgUrl2,imgUrl3) values (#{dataNo},#{fMonth},#{fDay},#{flowNm},#{fSctNm},#{fEngNm},#{flowLang},#{fContent},#{fUse},#{fGrow},#{fType},#{fileName1},#{fileName2},#{fileName3},#{imgUrl1},#{imgUrl2},#{imgUrl3})
+		insert into flower(data_No,f_Month,f_Day,flow_Nm,f_SctNm,f_EngNm,flow_Lang,f_Content,f_Use,f_Grow,f_Type,fileName1,fileName2,fileName3,imgUrl1,imgUrl2,imgUrl3) values (#{dataNo},#{fMonth},#{fDay},#{flowNm},#{fSctNm},#{fEngNm},#{flowLang},#{fContent},#{fUse},#{fGrow},#{fType},#{fileName1},#{fileName2},#{fileName3},#{imgUrl1},#{imgUrl2},#{imgUrl3})
 		]]>
  	</insert>
  	
