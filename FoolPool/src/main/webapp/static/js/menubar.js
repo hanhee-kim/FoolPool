@@ -1,0 +1,3 @@
+function foolPool() {
+            this.login = "";
+        }
