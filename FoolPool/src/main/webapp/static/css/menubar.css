@@ -1,4 +1,3 @@
-@charset "UTF-8";
 @font-face {
     font-family: 'Cafe24SsurroundAir';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2105_2@1.0/Cafe24SsurroundAir.woff') format('woff');
@@ -10,16 +9,30 @@ body {
     margin: 0;
     font-family: 'Cafe24SsurroundAir';
 }
-
+.container {
+  background-color: #466b55;
+  width: 100%;
+  height: 1024px;
+  overflow: hidden;
+}
+.containerChild {
+  border-radius: 30px;
+  background-color: #ffffff;
+  width: 1360px;
+  height: 942px;
+  margin: 0 auto;
+  margin-top:35px;
+}
 .menuBar {
     margin: 0 auto;
+    height: 80px;
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     align-items: center;
     background-color: #fff;
     padding: 0 30px;
-    width: 1380px;
-    min-width: 1380px;
+    width: 1300px;
+    min-width: 1300px;
     border-radius: 20px;
 }
 
@@ -45,6 +58,7 @@ body {
     align-items: center;
     justify-content: center;
     transition: all .9s, color .3s;
+    font-size:18px;
 }
 .loginDiv {
     transition: ease-in-out .2s;
@@ -138,4 +152,5 @@ body {
     margin-right: 30px;
     color: rgba(70, 107, 85, 1);
     font-weight: bold;
+    font-size: 15px;
 }

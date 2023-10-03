@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class MenuBar
  */
-@WebServlet("/menubar")
+@WebServlet("/main")
 public class MenuBar extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,7 +27,7 @@ public class MenuBar extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		request.getRequestDispatcher("WEB-INF/views/include/menubar.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/views/main.jsp").forward(request, response);
 	}
 
 	/**

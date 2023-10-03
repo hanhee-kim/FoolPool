@@ -19,12 +19,16 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cherry Swash:wght@700&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Malgun Gothic:wght@400&display=swap" />
     <link rel="stylesheet" href="${path }/static/css/menubar.css">
+    <link rel="stylesheet" href="${path }/static/css/main.css" />
     <script src="${path }/static/js/menubar.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <title>FoolPool</title>
 </head>
 <body>
+    <div class="container">
+        <div class="containerChild">
+
     <div class="menuBar">
 
         <div class="menuBox menuBarItem">
@@ -44,7 +48,7 @@
 
         <div class="logoBox menuBarItem">
             <div class="logoText logo" onclick="btnClick('main')">풀풀</div>
-            <img class="logoIcon logo" alt="" src="./public/undefined4.png" onclick="btnClick('main')" />
+            <img class="logoIcon logo" alt="" src="${path }/static/img/leef.png" onclick="btnClick('main')" />
         </div>
 
         <div class="loginBox menuBarItem">
@@ -128,5 +132,3 @@
             }
         }
     </script>
-</body>
-</html>
