@@ -44,16 +44,19 @@
   margin-top: 20px;
   margin-left: 10px;
   width: 210px;
+  color: #466b55;
 }
 .showFlowerName{
   font-size: 40px;
   text-align: center;
   margin-top: 25px;
   width: 450px;
+  color: #466b55;
 }
 .showrFlowerLang{
   font-size: 25px;
   text-align: center;
+  color: #466b55;
 }
 
 .showFlowerDetail{
@@ -78,8 +81,12 @@
 }
 .randomIcon{
   width: 80px;
-    height: 80px;
-    margin-left: 320px;
-    margin-top: 150px;
+  height: 80px;
+  margin-left: 320px;
+  margin-top: 150px;
+  transition: ease-in-out .4s;
+}
+img.randomIcon:hover {
+    transform: rotate(360deg);
 }
 

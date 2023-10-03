@@ -23,7 +23,7 @@
                 </div>
                 <div class="showFlowerDetail" onclick="btnClick('flowerDetail')">자세히 알아보기</div>
                 <div class="randomBoxIcon">
-                    <img class="randomIcon" alt="" src="./public/vector-4.svg" onclick="btnClick('main')" value=""/>
+                    <img class="randomIcon" alt="" src="./static/img/randomDiceIcon.png" onclick="btnClick('main')" value=""/>
                 </div>
             </div>
         </div>
