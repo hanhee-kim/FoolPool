@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+.showFlowerImg1{
+  height: 570px;
+  width: 770px;
+}
+.showFlowerImg2,
+.showFlowerImg3{
+  width: 570px;
+  height: 285px;
+} 
+.flowerImgWrap {
+  width: 1350px;
+  /* height: 575px; */
+  display: grid;
+  grid-template-columns: 770px 570px;
+  gap: 7px;
+  margin: 0 5px;
+  margin-top: 20px;
+  justify-content: center;
+}
+.flowerImgDiv2{
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+.mainFlowerContentWrap{
+  display: flex;
+  flex-direction: row;
+  height: 250px;
+  width: 1350px;
+  margin: 0 5px;
+}
+.flowerContentWrap{
+  display: grid;
+  grid-template-rows: 1.5fr 1fr;
+  width: 450px;
+}
+.showFlowerWrap{
+  display: flex;
+  gap: 30px;
+}
+.showFlowerMonthDay{
+  font-size: 50px;
+  margin-top: 20px;
+  margin-left: 10px;
+  width: 210px;
+}
+.showFlowerName{
+  font-size: 40px;
+  text-align: center;
+  margin-top: 25px;
+  width: 450px;
+}
+.showrFlowerLang{
+  font-size: 25px;
+  text-align: center;
+}
+
+.showFlowerDetail{
+  width: 450px;
+  text-align: center;
+  margin-top: 220px;
+  font-size: 20px;
+  transition: ease-in-out .2s;
+}
+.showFlowerDetail:hover,
+.randomIcon:hover{
+  cursor: pointer;
+}
+.showFlowerDetail:hover{
+  transform: translateY(-7px);
+}
+.randomBoxIcon{
+  width: 450px;
+}
+.randomBoxIcon{
+  width: 450px;
+}
+.randomIcon{
+  width: 80px;
+    height: 80px;
+    margin-left: 320px;
+    margin-top: 150px;
+}
+
