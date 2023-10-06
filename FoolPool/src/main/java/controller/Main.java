@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Join
+ * Servlet implementation class MenuBar
  */
-@WebServlet("/join")
-public class Join extends HttpServlet {
+@WebServlet("/main")
+public class Main extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Join() {
+    public Main() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +27,7 @@ public class Join extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		request.getRequestDispatcher("WEB-INF/views/login/join.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/views/main.jsp").forward(request, response);
 	}
 
 	/**
