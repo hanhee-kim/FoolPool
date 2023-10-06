@@ -1,0 +1,113 @@
+@charset "UTF-8";
+.joinBox,
+.loginFormBox{
+    border-radius: 20px;
+    color: #ffffff;
+    background-color: #466b55;
+    display: flex;
+}
+.joinBox{
+    width: 550px;
+    height: 525px;
+    margin: 140px auto 0;
+}
+.loginFormBox{
+    width: 450px;
+    height: 375px;
+    margin: 200px auto 0;
+}
+.joinForm{
+    width: 650px;
+}
+.loginForm{
+    width: 450px;
+}
+.joinForm,
+.loginForm{
+    display: flex;
+    flex-direction: column;
+    margin-top: 45px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+.joinTitle,
+.loginTitle{
+    font-size: 30px;
+    margin-left: 15px;
+    margin-bottom: 35px;
+    letter-spacing: 2px;
+}
+.joinLabelText,
+.loginLabelText{
+    display: grid;
+    margin: 25px;
+    font-size: 16px;
+    border-bottom: 1px solid white;
+}
+.joinLabelText{
+    grid-template-columns: 120px 170px 150px;
+}
+.loginLabelText{
+    grid-template-columns: 120px 170px;
+}
+.joinText,
+.loginText{
+    border: none;
+    background: transparent;
+    /* 배경 투명하게 */
+    color: white;
+    font-size: 14px;
+    outline: none;
+    /* input pocus시 테두리 없애기 */
+    letter-spacing: 2px;
+    /* 글자사이간격 */
+}
+.joinPasswordCheck{
+    font-size: 11px;
+    color: rgb(255, 147, 147);
+    /* color: rgb(172, 172, 255); */
+}
+.joinDuplicateBtn{
+    text-align: right;
+}
+.joinBtnDiv,
+.loginBtnDiv{
+    margin-top: 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-right: 20px;
+}
+.boxBtn,
+.joinDuplicateBtn{
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    color: white;
+    font-family: "Cafe24 Ssurround air";
+    font-size: 18px;
+}
+.joinDuplicateBtn{
+    float: right;
+}
+.joinLabel,
+.loginLabel{
+    margin-left: 5px;
+}
+.joinMemberIdCheckBtn,
+.joinMemberNicknameCheckBtn
+.joinPasswordCheck{
+    margin-right: 5px;
+}
+.boxBtn:hover{
+    transform: translateY(-7px);
+}
+.boxBtn{
+    transition: ease-in-out .2s;
+}
+
+
+
+
+

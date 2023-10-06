@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Malgun Gothic:wght@400&display=swap" />
     <link rel="stylesheet" href="${path }/static/css/menubar.css">
     <link rel="stylesheet" href="${path }/static/css/main.css" />
+    <link rel="stylesheet" href="${path }/static/css/join.css" />
     <script src="${path }/static/js/menubar.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
