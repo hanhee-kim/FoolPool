@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="${path }/static/css/menubar.css">
     <link rel="stylesheet" href="${path }/static/css/main.css" />
     <link rel="stylesheet" href="${path }/static/css/join.css" />
+    <link rel="stylesheet" href="${path }/static/css/searchflower.css" />
     <script src="${path }/static/js/menubar.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -105,13 +106,13 @@
         function btnClick(btnName) {
             switch (btnName) {
                 case 'searchFlower':
-                    location.href = 'searchFlower'
+                    location.href = 'searchflower'
                     break;
                 case 'poolentarier':
                     location.href = 'poolentarier'
                     break;
                 case 'drFoolPool':
-                    location.href = 'drFoolPool'
+                    location.href = 'drfoolㅔool'
                     break;
                 case 'notice':
                     location.href = 'notice'

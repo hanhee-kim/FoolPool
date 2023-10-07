@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:include page="/WEB-INF/views/include/menubar.jsp"></jsp:include>
+<%@include file="/WEB-INF/views/include/menubar.jsp" %>
 <div class="joinBox">
                 <form action="join" method="post" class="joinForm">
                     <div class="joinTitle">회원가입</div>
