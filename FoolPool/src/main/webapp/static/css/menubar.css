@@ -4,10 +4,16 @@
     font-weight: normal;
     font-style: normal;
 }
-
+@font-face {
+    font-family: 'Cafe24Ohsquareair';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2202@1.0/Cafe24Ohsquareair.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 body {
     margin: 0;
     font-family: 'Cafe24SsurroundAir';
+    background-color: #466b55;
 }
 .container {
   background-color: #466b55;
@@ -125,10 +131,10 @@ body {
 }
 
 .logoBox {
-
     display: flex;
     justify-content: center;
     align-items: center;
+	margin-left: -85px;
 }
 
 .logoText {
