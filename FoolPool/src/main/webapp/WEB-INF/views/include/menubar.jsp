@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="${path }/static/css/main.css" />
     <link rel="stylesheet" href="${path }/static/css/join.css" />
     <link rel="stylesheet" href="${path }/static/css/searchflower.css" />
+    <link rel="stylesheet" href="${path }/static/css/detailflower.css" />
     <script src="${path }/static/js/menubar.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -112,7 +113,7 @@
                     location.href = 'poolentarier'
                     break;
                 case 'drFoolPool':
-                    location.href = 'drfoolㅔool'
+                    location.href = 'drfoolpool'
                     break;
                 case 'notice':
                     location.href = 'notice'
@@ -128,7 +129,13 @@
                     break;
                 case 'logout':
                     location.href = 'logout'
-                    break;
+                    break;                 
+                case 'detailFlower':
+                    location.href = 'detailflower'
+                    break;                 
+                case 'randomMain':
+                    location.href = 'randommain'
+                    break;                 
                 default:
                     break;
             }
