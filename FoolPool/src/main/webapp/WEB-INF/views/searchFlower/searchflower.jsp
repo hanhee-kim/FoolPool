@@ -3,7 +3,7 @@
 <%@include file="/WEB-INF/views/include/menubar.jsp" %>
 
             <div class="searchFlowerLabel">꽃 검색</div>
-            <div class="searchFlowerDicLine">
+            <div class="searchFlowerDivLine">
             	<div class="searchFlowerTopBorder"></div>
                 <div class="searchFlowerSelectOptionDiv">
                     <select class="searchFlowerOptionBox searchFlower_pd_r_22">
@@ -43,7 +43,7 @@
                 </div>
                 <div class="flowerCardsection">
 					<div class="flowerCardsection_line">                
-	                    <div class="flowerCard">
+	                    <div class="flowerCard" onclick="btnClick('detailFlower')">
 	                        <div class="flowerCardImgSection">
 	                            <img class="flowerCardImg" src="">
 	                        </div>
@@ -99,7 +99,9 @@
 	                    </div>
 	               </div>
                 </div>
-                <button class="searchFlowerSeeMore">더보기</button>
+                <div class="searchFlowerSeeMoreDiv">               
+                	<button class="searchFlowerSeeMore">더보기</button>
+                </div>
                 <div class="searchFlowerBottomBorder"></div>
             </div>
         </div>

@@ -20,9 +20,9 @@
                     </div>
                         <div class="showrFlowerLang" id="showrFlowerLang" name="showrFlowerLang">" 영원한 향기말고 더 길다면 "</div>
                 </div>
-                <div class="showFlowerDetail" onclick="btnClick('flowerDetail')">자세히 알아보기</div>
+                <div class="showFlowerDetail" onclick="btnClick('detailFlower')">자세히 알아보기</div>
                 <div class="randomBoxIcon">
-                    <img class="randomIcon" alt="" src="./static/img/randomDiceIcon.png" onclick="btnClick('main')" value=""/>
+                    <img class="randomIcon" alt="" src="./static/img/randomDiceIcon.png" onclick="btnClick('randomMain')"/>
                 </div>
             </div>
         </div>

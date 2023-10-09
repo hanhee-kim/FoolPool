@@ -11,10 +11,10 @@
 	font-weight: bold;
 }
 
-.searchFlowerDicLine {
+.searchFlowerDivLine {
 	margin: 0 auto;
 	width: 1240px;
-	height: 720px;
+	height: 740px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -59,7 +59,7 @@
 	height: 40px;
 	width: 120px;
 	border: 0;
-	background-color: #d9d9d9;
+	background-color: #e0f4de;
 	padding: 3px 6px 0;
 	text-align: center;
 	background-position-x: 100px;
@@ -97,16 +97,21 @@
 
 .flowerCardsection_line {
 	display: flex;
-	justify-content: center;
-	gap: 60px;
-	margin-bottom: 30px;
+    justify-content: center;
+    gap: 60px;
+    margin-bottom: 13px;
+    padding: 12px;
 }
-
 .flowerCard {
-	border: 1px solid;
-	width: 330px;
-	background-color: #F2F9EF;
-	border-radius: 10px 50px;
+	border: 3px solid #466b55;
+    width: 330px;
+    background-color: #F2F9EF;
+    border-radius: 10px 50px;
+    transition: ease-in-out .3s;
+}
+.flowerCard:hover{
+	cursor: pointer;
+	transform: scale(1.1);
 }
 
 .flowerCardImgSection {
@@ -159,7 +164,7 @@
 	height: 40px;
 	width: 100px;
 	border: 0;
-	background-color: #d9d9d9;
+	background-color: #e0f4de;
 	padding: 3px 6px 0;
 	text-align: center;
 	font-family: 'Cafe24SsurroundAir';
@@ -168,11 +173,22 @@
 	margin-left: 20px;
 	border-radius: 12px;
 }
+.searchFlower_searchBtn:hover,
+.searchFlowerSeeMore:hover{
+	cursor: pointer;
+}
+.searchFlowerSeeMoreDiv{
+    display: flex;
+    width: 100px;
+    height: 40px;
+    margin-bottom: -25px;
+}
 .searchFlowerSeeMore{
+	position: relative;
 	height: 40px;
 	width: 100px;
 	border: 0;
-	background-color: #d9d9d9;
+	background-color: #e0f4de;
 	padding: 3px 6px 0;
 	text-align: center;
 	font-family: 'Cafe24SsurroundAir';
@@ -180,5 +196,4 @@
 	font-weight: bold;
 	margin-left: 20px;
 	border-radius: 12px;
-	margin-bottom: -24px;
 }
