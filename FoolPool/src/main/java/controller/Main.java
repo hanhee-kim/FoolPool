@@ -31,12 +31,12 @@ public class Main extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		FlowerService f_service = new FlowerServiceImpl();
-		try {
-			f_service.xml_parsing_insert();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		FlowerService f_service = new FlowerServiceImpl();
+//		try {
+//			f_service.xml_parsing_insert();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		request.getRequestDispatcher("WEB-INF/views/main.jsp").forward(request, response);
 	}
 
