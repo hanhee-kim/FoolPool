@@ -23,7 +23,9 @@
     <link rel="stylesheet" href="${path }/static/css/join.css" />
     <link rel="stylesheet" href="${path }/static/css/searchflower.css" />
     <link rel="stylesheet" href="${path }/static/css/detailflower.css" />
+    <link rel="stylesheet" href="${path }/static/css/drfoolpool.css" />
     <script src="${path }/static/js/menubar.js"></script>
+    <script src="${path }/static/js/drfoolpool.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <title>FoolPool</title>
@@ -113,7 +115,7 @@
                     location.href = 'poolentarier'
                     break;
                 case 'drFoolPool':
-                    location.href = 'drfoolpool'
+                    location.href = 'goDrFoolPool'
                     break;
                 case 'notice':
                     location.href = 'notice'
