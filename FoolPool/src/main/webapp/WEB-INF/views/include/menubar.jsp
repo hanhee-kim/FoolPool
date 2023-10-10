@@ -14,7 +14,6 @@
 <meta charset="UTF-8">
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
-
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cafe24 Ssurround air:wght@300&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cherry Swash:wght@700&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Malgun Gothic:wght@400&display=swap" />
@@ -23,6 +22,7 @@
     <link rel="stylesheet" href="${path }/static/css/join.css" />
     <link rel="stylesheet" href="${path }/static/css/searchflower.css" />
     <link rel="stylesheet" href="${path }/static/css/detailflower.css" />
+    <link rel="icon" href="static/img/icon.ico" type="image/x-icon">
     <script src="${path }/static/js/menubar.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
