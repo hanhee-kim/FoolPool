@@ -183,6 +183,12 @@
 	border: 3px solid #466B55;
 }
 
+.drFP-CardTitleArea>img {
+	width: 38px;
+	height: 34px;
+}
+
+
 
 /* 2. 풀풀박사 게시글 상세 */
 .drFP-detailArea {
