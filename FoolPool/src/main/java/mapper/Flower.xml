@@ -4,16 +4,16 @@
  <mapper namespace="mapper.flower">
  	<insert id="insertFlower" parameterType="Flower">
  	<![CDATA[
-		insert into flower(data_No,f_Month,f_Day,flow_Nm,f_SctNm,f_EngNm,flow_Lang,f_Content,f_Use,f_Grow,f_Type,fileName1,fileName2,fileName3,imgUrl1,imgUrl2,imgUrl3) values (#{dataNo},#{fMonth},#{fDay},#{flowNm},#{fSctNm},#{fEngNm},#{flowLang},#{fContent},#{fUse},#{fGrow},#{fType},#{fileName1},#{fileName2},#{fileName3},#{imgUrl1},#{imgUrl2},#{imgUrl3})
+		insert into flower(data_No,f_Month,f_Day,flow_Nm,f_Sct_Nm,f_Eng_Nm,flow_Lang,f_Content,f_Use,f_Grow,f_Type,file_Name1,file_Name2,file_Name3,img_Url1,img_Url2,img_Url3) values (#{dataNo},#{fMonth},#{fDay},#{flowNm},#{fSctNm},#{fEngNm},#{flowLang},#{fContent},#{fUse},#{fGrow},#{fType},#{fileName1},#{fileName2},#{fileName3},#{imgUrl1},#{imgUrl2},#{imgUrl3})
 		]]>
  	</insert>
  	
 	
 	
 	<select id="selectFlowerForNo" parameterType="String"
-		resultType="Account">
+		resultType="Flower">
 		<![CDATA[
-		select * from flower where dataNo = #{dataNo}
+		select * from flower where data_No = #{dataNo}
 		]]>
 	</select>
 	

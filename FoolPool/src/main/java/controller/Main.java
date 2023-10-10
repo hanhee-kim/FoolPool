@@ -1,11 +1,15 @@
 package controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import service.FlowerService;
+import service.FlowerServiceImpl;
 
 /**
  * Servlet implementation class MenuBar
@@ -27,6 +31,12 @@ public class Main extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+//		FlowerService f_service = new FlowerServiceImpl();
+//		try {
+//			f_service.xml_parsing_insert();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 		request.getRequestDispatcher("WEB-INF/views/main.jsp").forward(request, response);
 	}
 
