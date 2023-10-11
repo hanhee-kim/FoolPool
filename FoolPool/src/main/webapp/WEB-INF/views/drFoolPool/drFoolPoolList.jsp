@@ -94,13 +94,13 @@
                 
                 <%-- 검색바 --%>
                 <h5 class="drFP-searchBar">
-                	<select name="type">
-                		<option value="unselected">선택</option>
-                		<option value="writer">작성자</option>
-                		<option value="all">제목+내용</option>
+                	<select name="type" class="drFP-searchSelect">
+                		<option value="unselected" class="drFP-searchOption">선택</option>
+                		<option value="writer" class="drFP-searchOption">작성자</option>
+                		<option value="all" class="drFP-searchOption">제목+내용</option>
                 	</select>
-                	<input type="text" name="keyword" id="keyword" value="${res.keyword }"/>
-					<input type="submit" value="검색"/>
+                	<input type="text" name="keyword" id="keyword" class="drFP-searchInput" value="${res.keyword }"/>
+					<input type="submit" class="drFP-searchInput drFP-searchSubmit" value="검색"/>
                 </h5>
                 
                 <%-- 페이징 영역 --%>
