@@ -7,6 +7,7 @@
 	<typeAliases>
 		<!-- 특정 파일에 대한 임포트 역할 -->
 		<typeAlias type="bean.Flower" alias="Flower" />
+		<typeAlias type="bean.Notice" alias="Notice" />
 	</typeAliases>
 
 	<environments default="development">
@@ -21,5 +22,6 @@
 
 	<mappers>
 		<mapper resource="mapper/Flower.xml" />
+		<mapper resource="mapper/Notice.xml" />
 	</mappers>
 </configuration>

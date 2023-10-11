@@ -20,10 +20,12 @@
     <link rel="stylesheet" href="${path }/static/css/searchflower.css" />
     <link rel="stylesheet" href="${path }/static/css/detailflower.css" />
     <link rel="stylesheet" href="${path }/static/css/drfoolpool.css" />
+    <link rel="stylesheet" href="${path }/static/css/notice.css" />
     <link rel="stylesheet" href="${path }/static/css/poolentarierList.css" />
 	<link rel="stylesheet" href="${path }/static/css/poolentarierForm.css" />
     <link rel="icon" href="static/img/icon.ico" type="image/x-icon">
     <script src="${path }/static/js/menubar.js"></script>
+    <script src="${path }/static/js/notice.js"></script>
     <script src="${path }/static/js/drfoolpool.js"></script>
     <script type="text/javascript" src="${path }/static/js/poolentarierList.js"></script>
     <script type="text/javascript" src="${path }/static/js/poolentarierForm.js"></script>

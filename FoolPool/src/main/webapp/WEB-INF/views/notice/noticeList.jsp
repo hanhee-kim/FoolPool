@@ -15,7 +15,8 @@
 	
 	
 	<div class="noticeOuter">
-		<div class="noticeListwrap">
+	
+		
 			<div class="notice_area">
 				<div class="notice_title">
 					<h1>공지사항</h1>
@@ -28,69 +29,24 @@
 						<li class="count">조회수</li>
 					</ul>
 				
-				<c:forEach var="list" items="${noticeList}">
-				<ul class="notice_ul" onclick="noticeDetail(${list.num})">
-					<li class="num">${list.num }</li>
-					<li class="title">${list.title }</li>
-					<li class="count">${list.count }</li>
-					<li class="date">${list.createDate }</li>
+				<c:forEach var="list" items="${res.noticeList}">
+				<ul class="notice_ul" onclick="noticeDetail(${list.no})">
+					<li class="no">${list.no }</li>	
+					<li class="title"><a href="noticedetail?no=${list.no}">${list.title }</a></li>					
+					<li class="date">${list.date }</li>
+					<li class="count">${list.view }</li>
 				</ul>
 				</c:forEach>
 			</div>
 			
-			<c:if test="${param.searchCondition != null && param.searchValue != null }">
-				<c:set var="searchStatus" value="&searchCondition=${param.searchCondition}&searchValue=${param.searchValue}"/>
-			</c:if>
-			<ul class="notice_paging">
+               
+
 			
-				<!-- 첫페이지로  -->
-				<li>
-					<a href="${contextPath}/notice/list?page=1${searchStatus}">&lt;&lt;</a>
-				</li>
-				
-				<!-- 이전 페이지로 -->
-				<li>
-				<c:choose>
-					<c:when test="${pi.page == 1}">
-						<a href="javascript:;">&lt;</a>
-					</c:when>
-					<c:otherwise>
-						<a href="${ contextPath }/notice/list?page=${pi.page - 1}${searchStatus}">&lt;</a>
-					</c:otherwise>				
-				</c:choose>
-				</li>
-				
-				<c:forEach var="p" begin="${pi.startPage}" end="${pi.endPage}">
-					<li>
-						<a href="${contextPath}/notice/list?page=${p}${searchStatus}" <c:if test="${p == pi.page }">
-						 class = 'current_page'
-					</c:if>>${p}</a>
-					</li>
-				</c:forEach>
-				
-				<!-- 다음페이지로 -->
-				<li>
-				<c:choose>
-					<c:when test="${pi.page == pi.maxPage}">
-						<a href="javascript:;">&gt;</a>
-					</c:when>
-					<c:otherwise>
-						<a href="${ contextPath }/notice/list?page=${pi.page + 1}${searchStatus}">&gt;</a>
-					</c:otherwise>				
-				</c:choose>
-				</li>
-				
-				<!-- 끝페이지로  -->
-				<li>
-					<a href="${contextPath}/notice/list?page=${pi.maxPage}${searchStatus}">&gt;&gt;</a>
-				</li>
-			</ul>
 			<div class="noticesearch_area">
 				<form method="get">
 					<select id="searchCondition" name="searchCondition">
 						<option value="title" <c:if test="${ param.searchCondition == 'title'}">selected</c:if>>제목</option>
 						<option value="content" <c:if test="${ param.searchCondition == 'content'}">selected</c:if>>내용</option>
-						<option value="writer" <c:if test="${ param.searchCondition == 'writer'}">selected</c:if>>작성자</option>
 					</select> 
 					<span class="noticeinput_area"> 
 						<input type="search" name="searchValue" value="${ param.searchValue }">
@@ -101,7 +57,45 @@
 					</c:if>
 				</form>
 			</div>
-		</div>
+			
+			
+			 <%-- 페이징 영역 --%>
+                <div class="drFP-paging">
+			      <c:choose>
+			         <c:when test="${res.pageInfo.curPage>1 }">
+			            <a href="drfoolpoollist?page=${res.pageInfo.curPage-1}">&lt;</a>
+			         </c:when>
+			         <c:otherwise>
+			            <a>&lt;</a>
+			         </c:otherwise>
+			      </c:choose>
+			      <%--
+			      <c:forEach begin="${res.pageInfo.startPage}" end="${res.pageInfo.endPage}" var="i">
+			         <c:choose>
+			            <c:when test="${res.pageInfo.curPage==i}">
+			               <a href="drfoolpoollist?page=${i}" class="select" onclick="callBtn(${i});return ${res.keyword==null};">${i}</a>&nbsp;
+			               </c:when>
+			            <c:otherwise>
+			               <a href="drfoolpoollist?page=${i}" class="btn" onclick="callBtn(${i});return ${res.keyword==null};">${i}</a>&nbsp;
+			               </c:otherwise>
+			         </c:choose>
+			      </c:forEach>
+			      --%>
+			      <div class="drFP-pagingnumbs">
+			      	<a href="1page" id="drFP-pagingnumbs-selected">1</a><a href="2page">2</a><a>3</a><a>4</a><a>5</a><a>6</a><a>7</a><a>8</a><a>9</a><a>10</a>
+			      </div>
+			      <c:choose>
+			         <c:when test="${res.pageInfo.curPage<res.pageInfo.allPage }">
+			            <a href="drfoolpoollist?page=${res.pageInfo.curPage+1}">&gt;</a>
+			         </c:when>
+			         <c:otherwise>
+			            <a>&gt;</a>
+			         </c:otherwise>
+			      </c:choose>
+			   </div> <%-- drFP-paging --%>
+			
+			
+		
 	</div>
 	
 	<script>
