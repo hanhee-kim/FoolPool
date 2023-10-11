@@ -216,7 +216,7 @@
 .drFP-detail-2row>:not(:last-child) {
 	margin-right: 22px;
 } 
-.dfFP-detail-writer {
+.drFP-detail-writer {
 	text-align: right;
 	
 	/* 작성자만 오른쪽 끝에 정렬하기위해 부모에 display:flex를 줌 */

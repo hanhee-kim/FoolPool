@@ -20,7 +20,7 @@
                 
                 <%-- 카드그리드 3x2 --%>
 			    <div class="drFP-CardGrid">
-			        <!-- 첫 번째 행 -->
+			        <%-- 첫 번째 행 --%>
 			        <a href="drFoolpoolDetail?num=${drfoolpool.num}"> <%-- 카드 자체를 클릭가능하도록 카드가 a태그 안에 위치 --%>
 				        <div class="drFP-Card drFP-CardHover">
 				        	<div class="drFP-CardTitleArea">
@@ -55,7 +55,7 @@
 				        </div>
 					</a>
 					
-			        <!-- 두 번째 행 -->
+			        <%-- 두 번째 행 --%>
 			        <a href="drFoolpoolDetail?num=${drfoolpool.num}"> <%-- 카드 자체를 클릭가능하도록 카드가 a태그 안에 위치 --%>
 				        <div class="drFP-Card">
 				        	<div class="drFP-CardTitleArea">
@@ -145,6 +145,7 @@
             </div>
             <%-- drFP-DivLine --%>
             
+            <%-- 1011 dev pull 하기 전 --%>
             
         </div>
         <%-- containerChild --%>
