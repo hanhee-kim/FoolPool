@@ -64,6 +64,7 @@
     <script>
         
         var foolPool = new foolPool();
+        
         $(document).ready(function () {
             foolPool.jspName = "${jspName}";
 
@@ -130,7 +131,7 @@
                     location.href = 'logout'
                     break;                 
                 case 'detailFlower':
-                    location.href = 'detailflower'
+                    location.href = 'detailflower?flowerNumber=${flower.dataNo}'
                     break;                 
                 case 'randomMain':
                     location.href = 'randommain'

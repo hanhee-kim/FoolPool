@@ -20,7 +20,7 @@
                     </div>
                         <div class="showrFlowerLang" id="showrFlowerLang" name="showrFlowerLang">" ${flower.flowLang} "</div>
                 </div>
-                <div class="showFlowerDetail" onclick="btnClick('detailFlower')" value="${flower.dataNo }">자세히 알아보기</div>
+                <div class="showFlowerDetail" onclick="btnClick('detailFlower')" name="showFlowerDetail" value="${flower.dataNo }">자세히 알아보기</div>
                 <div class="randomBoxIcon">
                     <img class="randomIcon" alt="" src="./static/img/randomDiceIcon.png" onclick="btnClick('randomMain')"/>
                 </div>

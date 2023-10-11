@@ -7,14 +7,11 @@ public class Member {
 	private String password;
 	private String role;
 	
-	public Member() {
-		this.role = "user";
-	}
+	public Member() {}
 	public Member(String id,String nickname,String password) {
 		this.id = id;
 		this.nickname = nickname;
 		this.password = password;
-		this.role = "user";
 	}
 	
 	public String getId() {

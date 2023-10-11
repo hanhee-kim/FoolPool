@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Member;
+import service.MemberService;
+import service.MemberServiceImpl;
 
 /**
  * Servlet implementation class Join
@@ -43,7 +45,14 @@ public class Join extends HttpServlet {
 		String Nickname = request.getParameter("joinMemberNickname");
 		String password = request.getParameter("joinMemberPassword");
 		Member member = new Member(Id, Nickname, password);
-		
+		MemberService m_service = new MemberServiceImpl();
+		try {
+			m_service.joinMember(member);
+			request.getRequestDispatcher("WEB-INF/views/login/login.jsp").forward(request, response);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
