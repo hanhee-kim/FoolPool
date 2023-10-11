@@ -14,18 +14,19 @@
 <meta charset="UTF-8">
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cafe24 Ssurround air:wght@300&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cherry Swash:wght@700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Malgun Gothic:wght@400&display=swap" />
     <link rel="stylesheet" href="${path }/static/css/menubar.css">
     <link rel="stylesheet" href="${path }/static/css/main.css" />
     <link rel="stylesheet" href="${path }/static/css/join.css" />
     <link rel="stylesheet" href="${path }/static/css/searchflower.css" />
     <link rel="stylesheet" href="${path }/static/css/detailflower.css" />
     <link rel="stylesheet" href="${path }/static/css/drfoolpool.css" />
+    <link rel="stylesheet" href="${path }/static/css/poolentarierList.css" />
+	<link rel="stylesheet" href="${path }/static/css/poolentarierForm.css" />
     <link rel="icon" href="static/img/icon.ico" type="image/x-icon">
     <script src="${path }/static/js/menubar.js"></script>
     <script src="${path }/static/js/drfoolpool.js"></script>
+    <script type="text/javascript" src="${path }/static/js/poolentarierList.js"></script>
+    <script type="text/javascript" src="${path }/static/js/poolentarierForm.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <title>FoolPool</title>
@@ -40,8 +41,8 @@
             <div class="searchFlowerDiv menu" onclick="btnClick('searchFlower')">
                 <div class="menuContent">꽃 검색</div>
             </div>
-            <div class="poolentarierDiv menu" onclick="btnClick('poolentarier')">
-                <div class="menuContent">풀렌테리어</div>
+            <div class="poolentarierListDiv menu" onclick="btnClick('poolentarierList')">
+                <div class="menuContent">풀랜테리어</div>
             </div>
             <div class="drFoolPoolDiv menu" onclick="btnClick('drFoolPool')">
                 <div class="menuContent">풀풀박사</div>
@@ -76,9 +77,9 @@
                     $(".searchFlowerDiv > div").addClass("currentPageTxt");
                     break;
 
-                case 'poolentarier':
-                    $(".poolentarierDiv").addClass("currentPage").removeClass("menu");
-                    $(".poolentarierDiv > div").addClass("currentPageTxt");
+                case 'poolentarierList':
+                    $(".poolentarierListDiv").addClass("currentPage").removeClass("menu");
+                    $(".poolentarierListDiv > div").addClass("currentPageTxt");
                     break;
 
                 case 'drFoolPool':
@@ -111,8 +112,8 @@
                 case 'searchFlower':
                     location.href = 'searchflower'
                     break;
-                case 'poolentarier':
-                    location.href = 'poolentarier'
+                case 'poolentarierList':
+                    location.href = 'poolentarierList'
                     break;
                 case 'drFoolPool':
                     location.href = 'goDrFoolPool'
