@@ -20,7 +20,12 @@
  	]]>
  	</select>
  
- 
+ 	<!-- 게시글 상세  -->
+ 	<select id="selectNotice" parameterType="Integer" resultType="Notice">
+ 		<![CDATA[
+ 			select * from notice where no=#{no}
+ 		]]>
+ 	</select>
  
  
  

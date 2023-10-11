@@ -49,4 +49,12 @@ public class NoticeServiceImpl implements NoticeService {
 		return map;
 	}
 
+	@Override
+	public Notice noticeDetail(Integer num) throws Exception {
+		//noticeDao.updateNoticeViewCount(num); 조회수 올라가는거
+		return noticeDao.selectNotice(num);
+		
+		
+	}
+
 }
