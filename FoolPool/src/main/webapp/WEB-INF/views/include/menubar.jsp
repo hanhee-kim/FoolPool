@@ -14,9 +14,6 @@
 <meta charset="UTF-8">
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cafe24 Ssurround air:wght@300&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cherry Swash:wght@700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Malgun Gothic:wght@400&display=swap" />
     <link rel="stylesheet" href="${path }/static/css/menubar.css">
     <link rel="stylesheet" href="${path }/static/css/main.css" />
     <link rel="stylesheet" href="${path }/static/css/join.css" />

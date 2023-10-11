@@ -1,5 +1,8 @@
 package dao;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 
 import bean.Flower;
@@ -14,4 +17,21 @@ public class FlowerDAOImpl implements FlowerDAO{
 		sqlSession.insert("mapper.flower.insertFlower", flower);
 		sqlSession.commit();
 	}
+
+	@Override
+	public Flower selectFlowerByDate(Map<String, Integer> param) throws Exception {  
+		Flower f = sqlSession.selectOne("mapper.flower.selectFlowerByDate", param);
+		return f;
+	}
+
+
+	@Override
+	public Flower selectFlowerByNo(Integer dataNo) throws Exception {
+		Flower f = sqlSession.selectOne("mapper.flower.selectFlowerByNo", dataNo);
+		return f;
+	}
+	
+	
+	
+	
 }

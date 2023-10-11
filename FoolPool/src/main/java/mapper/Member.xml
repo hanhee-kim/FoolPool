@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="mapper.member">
+ 	<!-- 이렇게 맞춰 놓으면 밑에서 AS 안 써도 됨 -->
+	<resultMap type="Member" id="MemberRM">
+		<result property="dataNo" column="data_No"/>
+		<result property="fMonth" column="f_Month"/>
+		<result property="fDay" column="f_Day"/>
+		<result property="flowNm" column="flow_Nm"/>
+	</resultMap>
+ 
+ 
+ 
+ 	<insert id="insertMember" parameterType="Member">
+ 	<![CDATA[
+		insert into Member(id,nickname,password) values(#{id},#{nickname},#{password})
+		]]>
+ 	</insert>
+ 	
+	
+	
+<!-- 	<select id="" parameterType="String"
+		resultType="Member" resultMap="MemberRM">
+		<![CDATA[
+		]]>
+	</select>
+	
+	
+	<select id="" parameterType="" resultType="Member" resultMap="MemberRM">
+		<![CDATA[
+		
+		]]>
+	</select> -->
+	
+	
+ </mapper>
