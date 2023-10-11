@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.Flower;
+import service.FlowerService;
+import service.FlowerServiceImpl;
 
 /**
  * Servlet implementation class RandomMain
@@ -31,10 +33,15 @@ public class RandomMain extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		Integer randomNum = (int)(Math.random()*365)+1;
-		HttpSession session = request.getSession();
 		Flower flower = new Flower();
 		//randomNum보내서 flower객체 가져오기
-		session.setAttribute("flower", flower);
+		FlowerService f_service = new FlowerServiceImpl();
+		try {
+			flower = f_service.searchFlowerByNo(randomNum);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		request.setAttribute("flower", flower);
 		request.getRequestDispatcher("WEB-INF/views/main.jsp").forward(request, response);
 	}
 
