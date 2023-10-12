@@ -3,7 +3,9 @@ package service;
 import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -17,13 +19,14 @@ import dao.FlowerDAO;
 import dao.FlowerDAOImpl;
 
 public class FlowerServiceImpl implements FlowerService{
+	FlowerDAO flowerDao = new FlowerDAOImpl();
 	public void xml_parsing_insert()throws Exception{
-		FlowerDAO flowerDao = new FlowerDAOImpl();
 //		ClassLoader classLoader = getClass().getClassLoader();
 //		File xmlFile = new File(classLoader.getResource("flower.xml").getFile());
 			File xmlFile = new File(
-					"C:\\Users\\914gk\\git\\FoolPool\\FoolPool\\src\\main\\java\\resource\\flower.xml"		// XML 파일 경로
-//					"/FoolPool/src/main/java/resource/flower.xml"
+//					"C:\\Users\\914gk\\git\\FoolPool\\FoolPool\\src\\main\\java\\resource\\flower_api.xml"		// XML 파일 경로
+					"C:\\Users\\11027\\Git\\khh-git\\FoolPool\\FoolPool\\src\\main\\java\\resource\\flower_api.xml"
+//					"/FoolPool/src/main/java/resource/flower_api.xml"
 					);
 //																											// 지정
 			// DocumentBuilderFactory 생성
@@ -61,13 +64,14 @@ public class FlowerServiceImpl implements FlowerService{
 						// 태그 이름에 따라 데이터를 Flower 객체에 설정
 						switch (tagName) {
 						case "dataNo":
-							flower.setDataNo(textContent);
+							flower.setDataNo(Integer.parseInt(textContent));
 							break;
 						case "fMonth":
-							flower.setfMonth(textContent);
+							
+							flower.setfMonth(Integer.parseInt(textContent));
 							break;
 						case "fDay":
-							flower.setfDay(textContent);
+							flower.setfDay(Integer.parseInt(textContent));
 							break;
 						case "flowNm":
 							flower.setFlowNm(textContent);
@@ -118,6 +122,10 @@ public class FlowerServiceImpl implements FlowerService{
 					}
 				}
 				flowerDao.insertFlower(flower);
+//				System.out.println("insert");
+//				for(Flower f : flowers) {
+//					System.out.println(f.getFlowNm());
+//				}
 				// Flower 객체를 리스트에 추가
 				flowers.add(flower);
 				//db에 저장
@@ -133,5 +141,21 @@ public class FlowerServiceImpl implements FlowerService{
 
 			}
 	}
+
+	@Override
+	public Flower searchFlowerByDate(Integer fMonth, Integer fDay) throws Exception {
+		Map<String, Integer> param = new HashMap<>();
+		param.put("fMonth", fMonth);
+		param.put("fDay", fDay);
+		return flowerDao.selectFlowerByDate(param);
+		
+	}
+
+	@Override
+	public Flower searchFlowerByNo(Integer dataNo) throws Exception {
+		return flowerDao.selectFlowerByNo(dataNo);
+	}
+
+	
 
 }

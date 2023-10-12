@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ListTest
+ * Servlet implementation class Poolentarier
  */
-@WebServlet("/listtest")
-public class ListTest extends HttpServlet {
+@WebServlet("/poolentarierList")
+public class PoolentarierList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ListTest() {
+    public PoolentarierList() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +27,7 @@ public class ListTest extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		request.getRequestDispatcher("WEB-INF/views/notice/list.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/views/poolentarier/poolentarierList.jsp").forward(request, response);
 	}
 
 	/**

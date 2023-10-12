@@ -4,10 +4,15 @@
    "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+<!-- 	<settings>
+		 <setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings> -->
 	<typeAliases>
 		<!-- 특정 파일에 대한 임포트 역할 -->
 		<typeAlias type="bean.Flower" alias="Flower" />
 		<typeAlias type="bean.DrFoolPool" alias="DrFoolPool" />
+		<typeAlias type="bean.Notice" alias="Notice" />
+		<typeAlias type="bean.Member" alias="Member" />
 	</typeAliases>
 
 	<environments default="development">
@@ -23,5 +28,7 @@
 	<mappers>
 		<mapper resource="mapper/Flower.xml" />
 		<mapper resource="mapper/DrFoolPool.xml" />
+		<mapper resource="mapper/Member.xml"/>
+		<mapper resource="mapper/Notice.xml" />
 	</mappers>
 </configuration>
