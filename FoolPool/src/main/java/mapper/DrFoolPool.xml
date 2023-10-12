@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="mapper.drfoolpool">
+ 
+ 
+ 	<!-- 쿼리문 작성하기 -->
+ 
+ 
+ 	<!-- 
+ 	INSERT INTO drfoolpool 
+	(title, DATE, content, file_name, writer_id, writer_nickname)
+	VALUES
+	('제목2', CURDATE(), '내용2', 'img_01', 'user01', '닉네임01');
+ 	 -->
+ 
+ 
+ 
+ 
+ 
+ 
+ 	
+ </mapper>

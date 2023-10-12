@@ -21,7 +21,7 @@
 				                </li>
 				                <li>
 				                    <label for="drFP-formContent">내용 <em>*</em></label><br>
-				                    <textarea id="drFP-formContent" name="content" rows="20" cols="42" placeholder="질문방법 안내"></textarea>
+				                    <textarea id="drFP-formContent" name="content" rows="20" cols="42" placeholder="질문방법 안내, 답변이 달린 질문글 삭제자제 권고"></textarea>
 				                </li>
 				                <li>
 				                    <label for="drFP-formImg">이미지 업로드 <em>*</em></label><br>
