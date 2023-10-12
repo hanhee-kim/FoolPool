@@ -24,7 +24,7 @@
 			        <a href="drFoolpoolDetail?num=${drfoolpool.num}"> <%-- 카드 자체를 클릭가능하도록 카드가 a태그 안에 위치 --%>
 				        <div class="drFP-Card drFP-CardHover">
 				        	<div class="drFP-CardTitleArea">
-						        <img alt="미해결이파리" src="./static/img/drFP-leaf-unsolved.png" class="drFP-leaf">
+						        <img alt="미해결이파리" src="./static/img/drFP-leaf-unsolved.png">
 						        <label class="drFP-CardTitle">제목1 이 꽃 이름 알려주세요</label>
 					        </div>
 					        <div class="drFP-thumbnailArea">
@@ -94,13 +94,13 @@
                 
                 <%-- 검색바 --%>
                 <h5 class="drFP-searchBar">
-                	<select name="type" class="drFP-searchSelect">
-                		<option value="unselected" class="drFP-searchOption">선택</option>
-                		<option value="writer" class="drFP-searchOption">작성자</option>
-                		<option value="all" class="drFP-searchOption">제목+내용</option>
+                	<select name="type">
+                		<option value="unselected">선택</option>
+                		<option value="writer">작성자</option>
+                		<option value="all">제목+내용</option>
                 	</select>
-                	<input type="text" name="keyword" id="keyword" class="drFP-searchInput" value="${res.keyword }"/>
-					<input type="submit" class="drFP-searchInput drFP-searchSubmit" value="검색"/>
+                	<input type="text" name="keyword" id="keyword" value="${res.keyword }"/>
+					<input type="submit" value="검색"/>
                 </h5>
                 
                 <%-- 페이징 영역 --%>

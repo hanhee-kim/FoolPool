@@ -6,6 +6,20 @@
  
  	<!-- 쿼리문 작성하기 -->
  
+ 	<!-- 1-1. 게시글목록 조회 -->
+ 	<select id="selectDrFoolPoolList" parameterType="Integer" resultType="DrFoolPool">
+ 		<![CDATA[
+ 			select * from drfoolpool order by num desc
+ 			limit #{row},10
+ 		]]>
+ 	</select>
+ 	
+ 	<!-- 1-2. 전체 페이지수 계산을 위한 전체 행 수 조회 -->
+ 	<select id="selectDrFoolPoolCount" resultType="Integer">
+ 		<![CDATA[
+ 			select count(no) from drfoolpool
+ 		]]>
+ 	</select>
  
  	<!-- 
  	INSERT INTO drfoolpool 
@@ -14,7 +28,7 @@
 	('제목2', CURDATE(), '내용2', 'img_01', 'user01', '닉네임01');
  	 -->
  
- 
+ 	
  
  
  

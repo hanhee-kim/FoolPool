@@ -32,7 +32,7 @@
 	border-top: 0;
 	border-radius: 0px 0px 20px 20px;
 	
-	/* background: pink; */
+	margin-top: -30px;
 }
 
 .drFP-searchBar {
@@ -44,19 +44,8 @@
 	z-index: 9;
 }
 
-/* 충돌로 인해 클래스명 삽입하기 전1 */
-/*
-.drFP-searchBar select,option,input {
-	font-family: 'Cafe24SsurroundAir';
-	font-size: 20px;
-	font-weight: bold;
-	padding: 5px;
-	border-radius: 5px;
-	border: 0.5px solid gray;
-}
-*/
-/* 충돌로 인해 클래스명 삽입한 후1 */
-.drFP-searchSelect, .drFP-searchOption, .drFP-searchInput {
+/* 후손선택자 작성시 주의할것 */
+.drFP-searchBar select, .drFP-searchBar option, .drFP-searchBar input {
 	font-family: 'Cafe24SsurroundAir';
 	font-size: 20px;
 	font-weight: bold;
@@ -65,16 +54,7 @@
 	border: 0.5px solid gray;
 }
 
-/* 충돌로 인해 클래스명 삽입하기 전2 */
-/*
 .drFP-searchBar>:last-child {
-	background: #D9D9D9;
-	border: #D9D9D9 1px solid;
-	padding: 5px 20px;
-}
-*/
-/* 충돌로 인해 클래스명 삽입한 후2 */
-.drFP-searchSubmit {
 	background: #D9D9D9;
 	border: #D9D9D9 1px solid;
 	padding: 5px 20px;
@@ -206,16 +186,7 @@
 	border: 3px solid #466B55;
 }
 
-
-/* 충돌방지차 클래스명 삽입하기 전3 */
-/*
 .drFP-CardTitleArea>img {
-	width: 38px;
-	height: 34px;
-}
-*/
-/* 충돌방지차 클래스명 삽입한 후3 */
-.drFP-leaf {
 	width: 38px;
 	height: 34px;
 }
@@ -224,10 +195,13 @@
 /* 2. 풀풀박사 게시글 상세 */
 .drFP-detailArea {
     width: 1200px;
-    height: 600px;
 	margin-top: -30px;
-	
 	overflow-y: scroll;
+	
+	/* 1012 변경 */
+    height: 660px;
+	margin-bottom: -30px;
+
 }
 .drFP-detail-1row {
 	font-size: 25px;
