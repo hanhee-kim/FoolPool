@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Poolentarier
+ * Servlet implementation class PoolentarierCommentDel
  */
-@WebServlet("/goPoolentarier")
-public class PoolentarierList extends HttpServlet {
+@WebServlet("/delPoolentarierComment")
+public class PoolentarierCommentDel extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PoolentarierList() {
+    public PoolentarierCommentDel() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,15 +27,7 @@ public class PoolentarierList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		request.getRequestDispatcher("WEB-INF/views/poolentarier/poolentarierList.jsp").forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.getRequestDispatcher("poolentarierDetail.jsp").forward(request, response);
 	}
 
 }

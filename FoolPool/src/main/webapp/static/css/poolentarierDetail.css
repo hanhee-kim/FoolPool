@@ -1,31 +1,62 @@
-@charset "UTF-8";
+.pdLabel {
+	font-size: 35px;
+	color: #466b55;
+	margin: 30px 0 15px 100px;
+	font-weight: bold;
+}
 
-.drFP-detailArea {
+.pdDivLine {
+	margin: 0 auto;
+	width: 1240px;
+	height: 720px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.pdTopBorder {
+	border: 4px solid #466B55;
+	width: 100%;
+	height: 60px;
+	border-bottom: 0;
+	border-radius: 20px 20px 0px 0px;
+}
+
+.pdBottomBorder {
+	border: 4px solid #466B55;
+	width: 100%;
+	height: 60px;
+	border-top: 0;
+	border-radius: 0px 0px 20px 20px;
+	margin-top: -30px
+}
+
+.pdDetailArea {
     width: 1200px;
-    height: 600px;
+    height: 660px;
 	margin-top: -30px;
-	
 	overflow-y: scroll;
 }
-.drFP-detail-1row {
+
+.pdDetail-1row {
 	font-size: 25px;
 	font-weight: bolder;
 	margin-left: 60px;
 }
-.drFP-detail-2row {
+.pdDetail-2row {
 	margin-top: 12px;
 	font-size: 20px;
 	margin-left: 60px;
 	
 	display: flex;
 }
-.drFP-detail-2row>:first-child {
+.pdDetail-2row>:first-child {
 	margin-left: 10px;
 }
-.drFP-detail-2row>:not(:last-child) {
+.pdDetail-2row>:not(:last-child) {
 	margin-right: 22px;
 } 
-.drFP-detail-writer {
+.pdDetail-writer {
 	text-align: right;
 	
 	/* 작성자만 오른쪽 끝에 정렬하기위해 부모에 display:flex를 줌 */
@@ -33,7 +64,7 @@
 	margin-right: 65px;
 }
 
-.drFP-detail-3row { 
+.pdDetail-3row { 
 	border: 1px red solid; 
 	width: 500px;
 	height: 300px;
@@ -41,21 +72,39 @@
 	margin: 20px;
 	margin-left: 70px;
 }
-.drFP-detail-4row {
+
+.pdDetail-4row {
+	width: 90%;
+	margin-top: -20px;
+	margin-bottom: 20px;
+	margin-left: 70px;
+	line-height: 210%; /* 줄간격 조정 */
+}
+
+.pdDetail-5row {
 	width: 90%;
 	margin-left: 60px;
 	line-height: 210%; /* 줄간격 조정 */
 }
-.drFP-detail-5row {
+
+.pdDetail-6row {
+	width: 90%;
+	margin-left: 60px;
+}
+
+.pdDetail-6row span {
+	color: #c2dcb8;
+}
+
+.pdDetail-7row {
 	width: 90%;
 	text-align: right;
 	margin-top: 10px;
 	margin-left: 40px;
 	/* background: skyblue; */
 }
-.drFP-detail-5row button{
+.pdDetail-7row button{
 	margin-left: 8px; 
-	
 	text-align: center;
 	background: #D9D9D9;
 	font-family: 'Cafe24SsurroundAir';
@@ -64,21 +113,22 @@
 	border: 0;
 	border-radius: 5px;
 	padding: 5px 15px;
+	cursor: pointer;
 }
-.drFP-commentArea {
+.pdCommentArea {
 	margin: 45px 20px 10px 60px; /* 위 오른 아래 왼 */
 }
-.drFP-commentArea table {
+.pdCommentArea table {
 	width: 95%;
 	table-layout: fixed; /* 테이블 너비 고정 */
 	
 	border-top: 1px solid #444444;
     border-collapse: collapse;
 }
-.drFP-commentArea table tr{
+.pdCommentArea table tr{
 	padding: 5px;
 }
-.drFP-commentArea table td{
+.pdCommentArea table td{
 	padding: 5px;
 	margin-right: 10px;
 	
@@ -87,14 +137,14 @@
 }
 
 /* tr의 첫번째, 마지막 td의 너비 고정하고 중간 td는 남는 영역 전부 차지하게함 */
-.drFP-commentArea table tr td:first-child {
+.pdCommentArea table tr td:first-child {
     width: 110px;
     
     /* 긴댓글줄바꿈으로 인해 댓글영역의 높이가 커졌을때 자식요소인 (텍스트)닉네임은 수직중앙정렬이 아닌 위쪽 정렬하게 함 */
     vertical-align : top;
     padding-top: 15px;
 }
-.drFP-commentArea table tr td:last-child {
+.pdCommentArea table tr td:last-child {
     width: 100px;
     text-align: right;
     margin-right: 40px;
@@ -103,7 +153,7 @@
     vertical-align : top;
     padding-top: 15px;
 }
-.drFP-commentArea table tr td:nth-child(2) {
+.pdCommentArea table tr td:nth-child(2) {
 	line-height: 180%;
     width: auto; /* 너비를 자동으로 설정 */
     white-space: normal; /* 텍스트 내용이 넘칠 때 줄바꿈 허용 */
@@ -111,86 +161,23 @@
     text-overflow: clip; /* 내용이 넘칠 때 생략 기호 표시하지 않음 */
 }
 
-.drFP-commentArea table tr td button{
+.pdCommentArea table tr td button{
 	/* padding: 6px 10px 4px 10px; */
 	font-family: 'Cafe24SsurroundAir';
 	font-size: 16px;
 	border-radius: 5px;
 	border: none;
 }
-.drFP-commentPickBtn {
+.pdCommentPickBtn {
 	background: #F2F9EF !important;
 	border: 0.5px solid #466B55 !important;
 	padding: 4px 5px 3px 5px;
 }
-.drFP-commentDelBtn {
+.pdCommentDelBtn {
 	font-size: 30px;
     border: 0 !important; /* 강제 우선적용 */
     outline: none; 
     background: none; 
     cursor: pointer; 
     margin-right: 20px;
-}
-
-
-/* 3. 풀풀박사 게시글 작성 */
-
-#drFP-formSection {
-	/* background: pink; */
-	width: 70%;
-	/* height: 600px; */
-	height: 575px;
-	margin-top: -45px;
-}
-#drFP-formSection>h2 {
-	margin-left: 40px;
-}
-#drFP-inputArea {
-	/* background: lightgreen; */
-	margin-top: -15px;
-	width: 100%;
-	height: 530px;
-	/* height: 200px; */
-	font-size: 18px;
-	overflow-y: scroll;
-}
-#drFP-inputArea input[type="text"],
-#drFP-inputArea textarea {
-    background: #F2F9EF;
-    border: 0.5px dashed #466b55;
-}
-#drFP-inputArea input[type="text"] {
-	width: 89.5%;
-}
-
-#drFP-inputArea li {
-	list-style: none;
-	margin-bottom: 10px;
-}
-#drFP-inputArea li>label {
-	margin-right: 10px;
-}
-#drFP-formTitle {
-	width: 90%;
-}
-#drFP-formContent {
-	width: 90%;
-}
-#drFP-formImg {
-	width: 90%;
-	border: none;
-	cursor: pointer;
-}
-
-
-#drFP-formBtn {
-	text-align: center;
-	/* background: pink; */
-}
-#drFP-formBtn input {
-	/* z값을 주기 위해 position:relative로 지정 */
-    position: relative; 
-    z-index: 1; 
-    background: transparent; /* 배경을 투명하게 */
-    cursor: pointer;
 }

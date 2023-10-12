@@ -23,12 +23,15 @@
     <link rel="stylesheet" href="${path }/static/css/notice.css" />
     <link rel="stylesheet" href="${path }/static/css/poolentarierList.css" />
 	<link rel="stylesheet" href="${path }/static/css/poolentarierForm.css" />
+	<link rel="stylesheet" href="${path }/static/css/poolentarierDetail.css" />
+	<link rel="stylesheet" href="${path }/static/css/poolentarierEdit.css" />
     <link rel="icon" href="static/img/icon.ico" type="image/x-icon">
     <script src="${path }/static/js/menubar.js"></script>
     <script src="${path }/static/js/notice.js"></script>
     <script src="${path }/static/js/drfoolpool.js"></script>
     <script type="text/javascript" src="${path }/static/js/poolentarierList.js"></script>
     <script type="text/javascript" src="${path }/static/js/poolentarierForm.js"></script>
+    <script type="text/javascript" src="${path }/static/js/poolentarierEdit.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 <title>FoolPool</title>
@@ -116,7 +119,7 @@
                     location.href = 'searchflower'
                     break;
                 case 'poolentarierList':
-                    location.href = 'poolentarierList'
+                    location.href = 'goPoolentarier'
                     break;
                 case 'drFoolPool':
                     location.href = 'goDrFoolPool'
