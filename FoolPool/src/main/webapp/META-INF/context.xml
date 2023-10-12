@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context>
+<Context>			  <!-- password="sweet720!!" -->
 	<Resource name="jdbc/foolpool"
 			  auth="Container"
 			  type="javax.sql.DataSource"
 			  username="root"
-			  password="sweet720!!"
+			  password="1234"
 			  driverClassName="org.mariadb.jdbc.Driver"
 			  factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
 			  url="jdbc:mariadb://localhost:3306/foolpool"

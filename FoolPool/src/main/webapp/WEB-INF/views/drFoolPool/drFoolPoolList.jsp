@@ -2,54 +2,54 @@
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/include/menubar.jsp" %>
 
-            <div class="drFP-Label">풀풀박사</div>
+            <div class="plLabel">풀풀박사</div>
             
-            <div class="drFP-DivLine">
+            <div class="plDivLine">
             
-            	<div class="drFP-TopBorder"></div>
+            	<div class="plTopBorder"></div>
             	
             	<%-- 필터링 버튼 3개 + 글쓰기 버튼 --%>
-            	<div class="drFP-FilteringAndWriteBtn">
-	                <div class="drFP-Filtering">
-	                    <span class="drFP-FilterBtn drFP-FilterBtnSelected">전체</span>
-	                    <span class="drFP-FilterBtn">미해결</span>
-	                    <span class="drFP-FilterBtn">해결</span>
+            	<div class="plFilteringAndWriteBtn">
+	                <div class="plFiltering">
+	                    <span class="plFilterBtn plFilterBtnSelected">전체</span>
+	                    <span class="plFilterBtn">미해결</span>
+	                    <span class="plFilterBtn">해결</span>
 	                </div>
-                	<a href="drFoolpoolForm?num"><button class="drFP-writeBtn">질문하기</button></a>
+                	<a href="drFoolpoolForm?num"><button class="plwriteBtn">질문하기</button></a>
                 </div>
                 
                 <%-- 카드그리드 3x2 --%>
-			    <div class="drFP-CardGrid">
+			    <div class="plCardGrid">
 			        <%-- 첫 번째 행 --%>
 			        <a href="drFoolpoolDetail?num=${drfoolpool.num}"> <%-- 카드 자체를 클릭가능하도록 카드가 a태그 안에 위치 --%>
-				        <div class="drFP-Card drFP-CardHover">
-				        	<div class="drFP-CardTitleArea">
-						        <img alt="미해결이파리" src="./static/img/drFP-leaf-unsolved.png" class="drFP-leaf">
-						        <label class="drFP-CardTitle">제목1 이 꽃 이름 알려주세요</label>
+				        <div class="plCard plCardHover">
+				        	<div class="plCardTitleArea">
+						        <img alt="미해결이파리" src="./static/img/plleaf-unsolved.png" class="plleaf">
+						        <label class="plCardTitle">제목1 이 꽃 이름 알려주세요</label>
 					        </div>
-					        <div class="drFP-thumbnailArea">
+					        <div class="plthumbnailArea">
 								<img alt="풀풀박사게시글이미지썸네일" src="image?file=${drfoolpool.filename}"/>
 					        </div>
 				        </div>
 					</a>
 			        <a href="drFoolpoolDetail?num=${drfoolpool.num}"> <%-- 카드 자체를 클릭가능하도록 카드가 a태그 안에 위치 --%>
-				        <div class="drFP-Card">
-				        	<div class="drFP-CardTitleArea">
-						        <img alt="해결이파리" src="./static/img/drFP-leaf-solved.png" class="drFP-leaf">
-						        <label class="drFP-CardTitle">제목2</label>
+				        <div class="plCard">
+				        	<div class="plCardTitleArea">
+						        <img alt="해결이파리" src="./static/img/plleaf-solved.png" class="plleaf">
+						        <label class="plCardTitle">제목2</label>
 					        </div>
-					        <div class="drFP-thumbnailArea">
+					        <div class="plthumbnailArea">
 								<img alt="풀풀박사게시글이미지" src="image?file=${drfoolpool.filename}"/>
 					        </div>
 				        </div>
 					</a>
 			        <a href="drFoolpoolDetail?num=${drfoolpool.num}"> <%-- 카드 자체를 클릭가능하도록 카드가 a태그 안에 위치 --%>
-				        <div class="drFP-Card">
-				        	<div class="drFP-CardTitleArea">
-						        <img alt="미해결이파리" src="./static/img/drFP-leaf-unsolved.png" class="drFP-leaf">
-						        <label class="drFP-CardTitle">제목3생략되는긴제목생략되는긴제목긴제목긴제목긴제목긴제목긴제목긴제목</label>
+				        <div class="plCard">
+				        	<div class="plCardTitleArea">
+						        <img alt="미해결이파리" src="./static/img/plleaf-unsolved.png" class="plleaf">
+						        <label class="plCardTitle">제목3생략되는긴제목생략되는긴제목긴제목긴제목긴제목긴제목긴제목긴제목</label>
 					        </div>
-					        <div class="drFP-thumbnailArea">
+					        <div class="plthumbnailArea">
 								<img alt="풀풀박사게시글이미지" src="image?file=${drfoolpool.filename}"/>
 					        </div>
 				        </div>
@@ -57,43 +57,43 @@
 					
 			        <%-- 두 번째 행 --%>
 			        <a href="drFoolpoolDetail?num=${drfoolpool.num}"> <%-- 카드 자체를 클릭가능하도록 카드가 a태그 안에 위치 --%>
-				        <div class="drFP-Card">
-				        	<div class="drFP-CardTitleArea">
-						        <img alt="미해결이파리" src="./static/img/drFP-leaf-unsolved.png" class="drFP-leaf">
-						        <label class="drFP-CardTitle">제목1 이 꽃 이름 알려주세요</label>
+				        <div class="plCard">
+				        	<div class="plCardTitleArea">
+						        <img alt="미해결이파리" src="./static/img/plleaf-unsolved.png" class="plleaf">
+						        <label class="plCardTitle">제목1 이 꽃 이름 알려주세요</label>
 					        </div>
-					        <div class="drFP-thumbnailArea">
+					        <div class="plthumbnailArea">
 								<img alt="풀풀박사게시글이미지" src="image?file=${drfoolpool.filename}"/>
 					        </div>
 				        </div>
 					</a>
 			        <a href="drFoolpoolDetail?num=${drfoolpool.num}"> <%-- 카드 자체를 클릭가능하도록 카드가 a태그 안에 위치 --%>
-				        <div class="drFP-Card">
-				        	<div class="drFP-CardTitleArea">
-						        <img alt="해결이파리" src="./static/img/drFP-leaf-solved.png" class="drFP-leaf">
-						        <label class="drFP-CardTitle">제목2</label>
+				        <div class="plCard">
+				        	<div class="plCardTitleArea">
+						        <img alt="해결이파리" src="./static/img/plleaf-solved.png" class="plleaf">
+						        <label class="plCardTitle">제목2</label>
 					        </div>
-					        <div class="drFP-thumbnailArea">
+					        <div class="plthumbnailArea">
 								<img alt="풀풀박사게시글이미지" src="image?file=${drfoolpool.filename}"/>
 					        </div>
 				        </div>
 					</a>
 			        <a href="drFoolpoolDetail?num=${drfoolpool.num}"> <%-- 카드 자체를 클릭가능하도록 카드가 a태그 안에 위치 --%>
-				        <div class="drFP-Card">
-				        	<div class="drFP-CardTitleArea">
-						        <img alt="미해결이파리" src="./static/img/drFP-leaf-unsolved.png" class="drFP-leaf">
-						        <label class="drFP-CardTitle">제목3생략되는긴제목생략되는긴제목긴제목긴제목긴제목긴제목긴제목긴제목</label>
+				        <div class="plCard">
+				        	<div class="plCardTitleArea">
+						        <img alt="미해결이파리" src="./static/img/plleaf-unsolved.png" class="plleaf">
+						        <label class="plCardTitle">제목3생략되는긴제목생략되는긴제목긴제목긴제목긴제목긴제목긴제목긴제목</label>
 					        </div>
-					        <div class="drFP-thumbnailArea">
+					        <div class="plthumbnailArea">
 								<img alt="풀풀박사게시글이미지" src="image?file=${drfoolpool.filename}"/>
 					        </div>
 				        </div>
 					</a>
-			    </div> <%-- drFP-CardGrid --%>
+			    </div> <%-- plCardGrid --%>
                 
                 
                 <%-- 검색바 --%>
-                <h5 class="drFP-searchBar">
+                <h5 class="plsearchBar">
                 	<select name="type">
                 		<option value="unselected">선택</option>
                 		<option value="writer">작성자</option>
@@ -104,7 +104,7 @@
                 </h5>
                 
                 <%-- 페이징 영역 --%>
-                <div class="drFP-paging">
+                <div class="plpaging">
 			      <c:choose>
 			         <c:when test="${res.pageInfo.curPage>1 }">
 			            <a href="drfoolpoollist?page=${res.pageInfo.curPage-1}">&lt;</a>
@@ -125,8 +125,8 @@
 			         </c:choose>
 			      </c:forEach>
 			      --%>
-			      <div class="drFP-pagingnumbs">
-			      	<a href="1page" id="drFP-pagingnumbs-selected">1</a><a href="2page">2</a><a>3</a><a>4</a><a>5</a><a>6</a><a>7</a><a>8</a><a>9</a><a>10</a>
+			      <div class="plpagingnumbs">
+			      	<a href="1page" id="plpagingnumbs-selected">1</a><a href="2page">2</a><a>3</a><a>4</a><a>5</a><a>6</a><a>7</a><a>8</a><a>9</a><a>10</a>
 			      </div>
 			      <c:choose>
 			         <c:when test="${res.pageInfo.curPage<res.pageInfo.allPage }">
@@ -136,14 +136,14 @@
 			            <a>&gt;</a>
 			         </c:otherwise>
 			      </c:choose>
-			   </div> <%-- drFP-paging --%>
+			   </div> <%-- plpaging --%>
                
                
                
-               <div class="drFP-BottomBorder"></div> 
+               <div class="plBottomBorder"></div> 
                 
             </div>
-            <%-- drFP-DivLine --%>
+            <%-- plDivLine --%>
             
             <%-- 1011 dev pull 하기 전 --%>
             

@@ -3,7 +3,7 @@
 <%@include file="/WEB-INF/views/include/menubar.jsp" %>
 
 			<div class="pfLabel">풀랜테리어</div>
-			<div class="pfDicLine">
+			<div class="pfDivLine">
             	<div class="pfTopBorder"></div>
 				<div class="row">
 					<table class="pfTable pfTable-striped">

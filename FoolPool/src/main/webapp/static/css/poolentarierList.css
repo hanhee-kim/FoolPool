@@ -5,7 +5,7 @@
 	font-weight: bold;
 }
 
-.plDicLine {
+.plDivLine {
 	margin: 0 auto;
 	width: 1240px;
 	height: 720px;
@@ -28,14 +28,36 @@
 	border-radius: 0px 0px 20px 20px;
 }
 
-.plSortBox {
-    width: 100%;
+.plTopMenuDiv {
+	display: inline-block;
+}
+
+.plWriteFormDiv {
+/* 	width: 50%; */
+	width: 80px;
+	height: 30px;
+	display: flex;
+}
+
+.plWriteFormDivFotBtn {
+	display: flex;
+}
+
+.plWriteBtn {
+    color: #466b55;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.plSortDiv {
     height: 30px;
     display: flex;
     gap: 20px;
     flex-direction: row-reverse;
-    margin-top: 20px;
-    margin-right: 40px;
 }
 
 .plSortNewDiv {
@@ -119,7 +141,7 @@
         0 -80px 0 0 #466b55 inset;
 }
 
-.plOption:hover .plBtn {
+.plOption:hover .plBtn .plWriteBtn {
     color: #fff;
     transition: all .9s, color .3s;
 }
@@ -140,7 +162,7 @@
 	border-radius: 50px 10px;
     border: 1px solid;
 	position: absolute;
-	background: red;
+	background: blue;
 	z-index: 2;
 	opacity: 1;
 	transform: rotateY(0deg);
@@ -160,7 +182,7 @@
 	margin: auto;
 	width: 800px;
 	text-align: center;
-	margin-top: 20px;
+	margin-top: 10px;
 }
 
 #plPagingArea a {
@@ -198,7 +220,6 @@
 	height: 40px;
 	width: 120px;
 	border: 0;
-	background-color: #d9d9d9;
 	padding: 3px 6px 0;
 	text-align: center;
 	background-position-x: 100px;
@@ -207,6 +228,7 @@
 	font-size: larger;
 	font-weight: bold;
 	border-radius: 12px;
+	border: 1px solid;
     cursor: pointer;
 }
 
@@ -232,13 +254,5 @@
     font-weight: bold;
     margin-left: 20px;
     border-radius: 12px;
-    cursor: pointer;
-}
-
-.plWriteFormDiv {
-	width: 80px;
-	position: absolute;
-	right: 20px;
-	top: 25px;
     cursor: pointer;
 }
