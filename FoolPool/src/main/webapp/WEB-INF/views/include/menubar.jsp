@@ -34,6 +34,8 @@
     <script src="${path }/static/js/drfoolpool.js"></script>
     <script type="text/javascript" src="${path }/static/js/poolentarierList.js"></script>
     <script type="text/javascript" src="${path }/static/js/poolentarierForm.js"></script>
+    <script type="text/javascript" src="${path }/static/js/join.js"></script>
+    <script type="text/javascript" src="${path }/static/js/login.js"></script>
 <title>FoolPool</title>
 </head>
 <body>
@@ -63,21 +65,26 @@
         </div>
 
         <div class="loginBox menuBarItem">
-            <div class="joinBtn loginDiv" data-login="logout" onclick="btnClick('join')">회원가입</div>
-            <div class="loginBtn loginDiv" data-login="logout" onclick="btnClick('login')">로그인</div>
-            <div class="nickname" data-login="login" value="${nickname}"> 님</div>
-            <div class="logoutBtn loginDiv" data-login="login" onclick="btnClick('logout')">로그아웃</div>
+        <c:choose>
+			<c:when test="${member eq Empty }">
+	            <div class="joinBtn loginDiv" data-login="logout" onclick="btnClick('join')">회원가입</div>
+	            <div class="loginBtn loginDiv" data-login="logout" onclick="btnClick('login')">로그인</div>
+			</c:when>
+			<c:otherwise>
+	            <div class="nickname" data-login="login">${member.nickname} 님</div>
+	            <div class="logoutBtn loginDiv" data-login="login" onclick="btnClick('logout')">로그아웃</div>
+			</c:otherwise>
+		</c:choose>
         </div>
 
     </div>
     <script>
         
-        var foolPool = new foolPool();
-        
+        var fool = new foolPool();
         $(document).ready(function () {
-            foolPool.jspName = "${jspName}";
+            fool.jspName = "${jspName}";
 
-            switch (foolPool.jspName) {
+            switch (fool.jspName) {
                 case 'searchFlower':
                     $(".searchFlowerDiv").addClass("currentPage").removeClass("menu");
                     $(".searchFlowerDiv > div").addClass("currentPageTxt");
@@ -100,17 +107,6 @@
 
                 default:
                     break;
-            }
-            if (foolPool.login == 'login') {
-                $(".joinBtn").hide();
-                $(".loginBtn").hide();
-                $(".nickname").show();
-                $(".logoutBtn").show();
-            } else {
-                $(".joinBtn").show();
-                $(".loginBtn").show();
-                $(".nickname").hide();
-                $(".logoutBtn").hide();
             }
         })
         function btnClick(btnName) {

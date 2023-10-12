@@ -107,7 +107,10 @@
         </div>
     </div>
     <!--  -->
-
+<script type="text/javascript">
+var fool = new foolPool();
+fool.jspName = "searchflower";
+</script>
 </body>
 
 </html>
