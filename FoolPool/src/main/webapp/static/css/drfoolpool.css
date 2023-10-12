@@ -37,7 +37,8 @@
 
 .drFP-searchBar {
 	text-align: center;
-	margin-bottom: -30px;
+/*	margin-bottom: -30px; */
+	margin-bottom: 15px;
 	
 	/* bottomBorder에 덮이지 않도록함 */
 	position: relative;
@@ -128,7 +129,8 @@
 .drFP-CardGrid {
     width: 1200px;
     height: 575px;
-    margin-top: 40px;
+/*    margin-top: 40px; */
+    margin-top: 20px;
     display: grid;
     grid-template-rows: repeat(2, 1fr); /* 2행 */
     grid-template-columns: repeat(3, 1fr); /* 3열 */

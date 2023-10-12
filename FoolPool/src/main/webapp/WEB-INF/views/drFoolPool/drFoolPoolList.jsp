@@ -48,7 +48,7 @@ System.out.println("리스트의 0번째 게시글 번호: " + list.get(0).getNo
 						        <label class="drFP-CardTitle">${drfoolpool.title}</label>
 					        </div>
 					        <div class="drFP-thumbnailArea">
-								<img alt="풀풀박사게시글이미지" src="image?file=${drfoolpool.fileName}"/>
+								<img alt="풀풀박사게시글이미지" src="image?file=${drfoolpool.fileName}" width="290" height="160"/>
 					        </div>
 				        </div>
 					</a>
