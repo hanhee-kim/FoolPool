@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import service.MemberService;
+import service.MemberServiceImpl;
+
 /**
  * Servlet implementation class NicknameCheck
  */
@@ -26,7 +29,17 @@ public class JoinNicknameCheck extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		request.setCharacterEncoding("utf-8");
+		String nickname = request.getParameter("nickname");
+		MemberService m_service = new MemberServiceImpl();
+		String res;
+		try {
+			res = m_service.nicknameCheck(nickname);
+			response.getWriter().print(res);
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.getWriter().print("nickname duplicate check ajax response  error!!");
+		}
 	}
 
 }

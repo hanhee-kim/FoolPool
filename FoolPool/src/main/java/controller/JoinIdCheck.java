@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Member;
+import service.MemberService;
+import service.MemberServiceImpl;
+
 /**
  * Servlet implementation class IdCheck
  */
@@ -27,7 +31,14 @@ public class JoinIdCheck extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		String id = request.getParameter("joinMemberId");
+		String id = request.getParameter("id");
+		MemberService m_service = new MemberServiceImpl();
+		try {
+			String res = m_service.idCheck(id);
+			response.getWriter().print(res);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

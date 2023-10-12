@@ -12,5 +12,16 @@ SqlSession sqlSession = MybatisSqlSessionFactory.getSqlSessionFactory().openSess
 		sqlSession.insert("mapper.member.insertMember", member);
 		sqlSession.commit();
 	}
+	@Override
+	public Member selectMemberById(String id) throws Exception {
+		Member member = sqlSession.selectOne("mapper.member.selectMemberById", id);
+//		System.out.println(member.getId());
+		return member;
+	}
+	@Override
+	public Member selectMemberByNickname(String nickname) throws Exception {
+		Member member = sqlSession.selectOne("mapper.member.selectMemberByNickname", nickname);
+		return member;
+	}
 
 }

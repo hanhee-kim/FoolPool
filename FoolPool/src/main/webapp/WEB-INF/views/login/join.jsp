@@ -41,15 +41,15 @@ var isNicknameCheck = false;
 $(function(){
 	//id 중복버튼 클릭시
 	$("#idDuplicateCheck").click(function(){
+		console.log(($('#joinMemberId').val()));
 		$.ajax({
 			url:"idcheck",
 			type:"post",
-			dataType:'json',
 			data:{id:$("#joinMemberId").val()},
 			success:function(res) {
 				console.log("res값: " + res + "\ntypeof res: " + typeof res);
 				
-				if(res==="notexist") { 
+				if(res=="notexist") { 
 					isIdCheck = true;
 					Swal.fire({
 						title:'사용가능한 아이디입니다.',
@@ -84,11 +84,10 @@ $(function(){
 		$.ajax({
 			url:"nicknamecheck",
 			type:"post",
-			dataType:'json',
 			data:{nickname:$("#joinMemberNickname").val()},
 			success:function(res) {
 				console.log("res값: " + res + "\ntypeof res: " + typeof res);
-				// res는 서블릿에서 이 ajax요청에 대해 response.getWriter().print(memberService.idCheck(id));로 응답한 값이다
+				// res는 서블릿에서 이 ajax요청에 대해 response.getWriter().print(memberService.nicknameCheck(id));로 응답한 값이다
 				
 				if(res==="notexist") { 
 					isNicknameCheck = true;
@@ -136,12 +135,14 @@ $(function(){
 					title:'닉네임 중복체크를 해주세요.',
 					icon:'warning'
 				});
+				e.preventDefault();
 			}
 			else{
 			Swal.fire({
 				title:'회원가입 완료!',
 				text:'회원가입이 완료되었습니다.',
-				icon:'success'
+				icon:'success',
+				closeOnClickOutside:false
 			});
 			}
 		}
