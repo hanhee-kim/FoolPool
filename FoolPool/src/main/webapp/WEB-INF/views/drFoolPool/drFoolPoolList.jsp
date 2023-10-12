@@ -2,6 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/include/menubar.jsp" %>
 
+<%@ page import="bean.DrFoolPool" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.List" %>
+<% 
+System.out.println("------drFoolPoolList.jsp-------");
+Map<String,Object> resMap = (Map)request.getAttribute("resMap");
+List<DrFoolPool> list = (List)resMap.get("drFoolPoolList");
+System.out.println("리스트의 0번째 게시글 번호: " + list.get(0).getNo()); 
+%>
+
+
             <div class="drFP-Label">풀풀박사</div>
             
             <div class="drFP-DivLine">

@@ -4,8 +4,6 @@ import java.sql.Date;
 
 public class DrFoolPool {
 	
-	//1011 19:56 작성
-	
 	// 필드
 	// 필드명 카멜케이스로 작성 후 매퍼xml에서 resultMap사용할것
 	private Integer no;
@@ -91,7 +89,10 @@ public class DrFoolPool {
 	
 	
 	
-	
+	@Override
+	public String toString() {
+		return String.format("글번호:%d, 글제목:%s, 조회수:%d, 파일명: %s, 작성자아이디: %s", no, title, view, fileName, writerId);
+	}
 	
 
 }

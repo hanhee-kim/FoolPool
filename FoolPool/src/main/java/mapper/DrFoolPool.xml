@@ -2,15 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="mapper.drfoolpool">
- 
+ 	<!-- DB컬럼명과 DTO필드명 매핑 -->
+ 	<resultMap type="DrFoolPool" id="DrFoolPoolResultMap">
+		<result property="no" column="NO"/>
+		<result property="title" column="TITLE"/>
+		<result property="date" column="DATE"/>
+		<result property="view" column="VIEW"/>
+		<result property="content" column="CONTENT"/>
+		<result property="fileName" column="FILE_NAME"/>
+		<result property="isSolved" column="IS_SOLVED"/>
+		<result property="writerId" column="WRITER_ID"/>
+		<result property="writerNickname" column="WRITER_NICKNAME"/>
+	</resultMap>
  
  	<!-- 쿼리문 작성하기 -->
  
  	<!-- 1-1. 게시글목록 조회 -->
- 	<select id="selectDrFoolPoolList" parameterType="Integer" resultType="DrFoolPool">
+ 	<select id="selectDrFoolPoolList" parameterType="Integer" resultType="DrFoolPool" resultMap="DrFoolPoolResultMap">
  		<![CDATA[
- 			select * from drfoolpool order by num desc
- 			limit #{row},10
+ 			select * from drfoolpool order by date desc
+ 			limit #{row},6
  		]]>
  	</select>
  	
@@ -20,6 +31,10 @@
  			select count(no) from drfoolpool
  		]]>
  	</select>
+ 
+ 
+ 
+ 
  
  	<!-- 
  	INSERT INTO drfoolpool 
