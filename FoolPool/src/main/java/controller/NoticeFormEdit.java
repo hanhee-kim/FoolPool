@@ -39,18 +39,49 @@ public class NoticeFormEdit extends HttpServlet {
 			request.setAttribute("notice", notice);
 			request.getRequestDispatcher("WEB-INF/views/notice/noticeFormEdit.jsp").forward(request, response);
 		} catch (Exception e) {
-			e.printStackTrace();
-			request.setAttribute("err", "게시글 수정 실패");
-			request.getRequestDispatcher("error.jsp").forward(request, response);
-	}
-	}
+			request.setAttribute("err", "notice 상세페이지 조회 실패 ");
+			request.getRequestDispatcher("WEB-INF/views/notice/noticeError.jsp").forward(request, response);
+		}
+		
+	}	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("utf-8");
+		//edit에서 form이 제출되었을때 post 요청 
+		Integer num = Integer.parseInt(request.getParameter("no"));
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+			
+		Notice notice = new Notice();
+		notice.setNo(num);
+		notice.setTitle(title);
+		notice.setContent(content);
+		
+		try {
+			NoticeService noticeService = new NoticeServiceImpl();
+			noticeService.noticeModify(notice);
+			response.sendRedirect("noticedetail?num="+notice.getNo());
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("err", "게시글 수정 오류");
+			request.getRequestDispatcher("WEB-INF/views/notice/noticeError.jsp").forward(request, response);
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	}
 
 }
