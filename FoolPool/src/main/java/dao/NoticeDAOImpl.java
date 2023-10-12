@@ -26,4 +26,10 @@ public class NoticeDAOImpl implements NoticeDAO{
 		return sqlSession.selectOne("mapper.notice.selectNotice",num);
 	}
 
+	@Override //게시글 수정 
+	public void updateNotice(Notice notice) throws Exception {
+		sqlSession.update("mapper.notice.updateNotice",notice);
+		sqlSession.commit();		
+	}
+
 }

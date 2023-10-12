@@ -34,28 +34,15 @@ public class NoticeDetail extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		Integer num = Integer.parseInt(request.getParameter("num"));
+		Integer no = Integer.parseInt(request.getParameter("no"));
 		
-//		try {
-//			NoticeService noticeService = new NoticeServiceImpl();
-//			Notice notice = noticeService.noticeDetail(num);
-//			request.setAttribute("notice", notice);
-//			HttpSession session = request.getSession();
-//			Member member = (Member)session.getAttribute("user");
-//			if(member !=null) {
-//				
-//			}
-//		}
-		
-		
-		
+		request.setCharacterEncoding("utf-8");
 		request.getRequestDispatcher("WEB-INF/views/notice/noticeDetail.jsp").forward(request, response);
-		
-		
+	}
 		
 	}
 
 	
 	
 
-}
+
