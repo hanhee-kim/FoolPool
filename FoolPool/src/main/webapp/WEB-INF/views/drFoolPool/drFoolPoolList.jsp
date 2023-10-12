@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/include/menubar.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page import="bean.DrFoolPool" %>
 <%@ page import="java.util.Map" %>
@@ -31,79 +32,32 @@ System.out.println("리스트의 0번째 게시글 번호: " + list.get(0).getNo
                 
                 <%-- 카드그리드 3x2 --%>
 			    <div class="drFP-CardGrid">
-			        <%-- 첫 번째 행 --%>
-			        <a href="drFoolpoolDetail?num=${drfoolpool.num}"> <%-- 카드 자체를 클릭가능하도록 카드가 a태그 안에 위치 --%>
-				        <div class="drFP-Card drFP-CardHover">
-				        	<div class="drFP-CardTitleArea">
-						        <img alt="미해결이파리" src="./static/img/drFP-leaf-unsolved.png">
-						        <label class="drFP-CardTitle">제목1 이 꽃 이름 알려주세요</label>
-					        </div>
-					        <div class="drFP-thumbnailArea">
-								<img alt="풀풀박사게시글이미지썸네일" src="image?file=${drfoolpool.filename}"/>
-					        </div>
-				        </div>
-					</a>
-			        <a href="drFoolpoolDetail?num=${drfoolpool.num}"> <%-- 카드 자체를 클릭가능하도록 카드가 a태그 안에 위치 --%>
+			    
+			        <c:forEach items="${resMap.drFoolPoolList}" var="drfoolpool">
+			        <a href="drFoolpoolDetail?no=${drfoolpool.no}"> 
 				        <div class="drFP-Card">
 				        	<div class="drFP-CardTitleArea">
-						        <img alt="해결이파리" src="./static/img/drFP-leaf-solved.png" class="drFP-leaf">
-						        <label class="drFP-CardTitle">제목2</label>
+				        		<c:choose>
+					        		<c:when test="${drfoolpool.isSolved==false}">
+							        <img alt="미해결이파리" src="./static/img/drFP-leaf-unsolved.png" class="drFP-leaf">
+					        		</c:when>
+					        		<c:otherwise>
+							        <img alt="해결이파리" src="./static/img/drFP-leaf-solved.png" class="drFP-leaf">
+					        		</c:otherwise>
+				        		</c:choose>
+						        <label class="drFP-CardTitle">${drfoolpool.title}</label>
 					        </div>
 					        <div class="drFP-thumbnailArea">
-								<img alt="풀풀박사게시글이미지" src="image?file=${drfoolpool.filename}"/>
+								<img alt="풀풀박사게시글이미지" src="image?file=${drfoolpool.fileName}"/>
 					        </div>
 				        </div>
 					</a>
-			        <a href="drFoolpoolDetail?num=${drfoolpool.num}"> <%-- 카드 자체를 클릭가능하도록 카드가 a태그 안에 위치 --%>
-				        <div class="drFP-Card">
-				        	<div class="drFP-CardTitleArea">
-						        <img alt="미해결이파리" src="./static/img/drFP-leaf-unsolved.png" class="drFP-leaf">
-						        <label class="drFP-CardTitle">제목3생략되는긴제목생략되는긴제목긴제목긴제목긴제목긴제목긴제목긴제목</label>
-					        </div>
-					        <div class="drFP-thumbnailArea">
-								<img alt="풀풀박사게시글이미지" src="image?file=${drfoolpool.filename}"/>
-					        </div>
-				        </div>
-					</a>
+			        </c:forEach>
 					
-			        <%-- 두 번째 행 --%>
-			        <a href="drFoolpoolDetail?num=${drfoolpool.num}"> <%-- 카드 자체를 클릭가능하도록 카드가 a태그 안에 위치 --%>
-				        <div class="drFP-Card">
-				        	<div class="drFP-CardTitleArea">
-						        <img alt="미해결이파리" src="./static/img/drFP-leaf-unsolved.png" class="drFP-leaf">
-						        <label class="drFP-CardTitle">제목1 이 꽃 이름 알려주세요</label>
-					        </div>
-					        <div class="drFP-thumbnailArea">
-								<img alt="풀풀박사게시글이미지" src="image?file=${drfoolpool.filename}"/>
-					        </div>
-				        </div>
-					</a>
-			        <a href="drFoolpoolDetail?num=${drfoolpool.num}"> <%-- 카드 자체를 클릭가능하도록 카드가 a태그 안에 위치 --%>
-				        <div class="drFP-Card">
-				        	<div class="drFP-CardTitleArea">
-						        <img alt="해결이파리" src="./static/img/drFP-leaf-solved.png" class="drFP-leaf">
-						        <label class="drFP-CardTitle">제목2</label>
-					        </div>
-					        <div class="drFP-thumbnailArea">
-								<img alt="풀풀박사게시글이미지" src="image?file=${drfoolpool.filename}"/>
-					        </div>
-				        </div>
-					</a>
-			        <a href="drFoolpoolDetail?num=${drfoolpool.num}"> <%-- 카드 자체를 클릭가능하도록 카드가 a태그 안에 위치 --%>
-				        <div class="drFP-Card">
-				        	<div class="drFP-CardTitleArea">
-						        <img alt="미해결이파리" src="./static/img/drFP-leaf-unsolved.png" class="drFP-leaf">
-						        <label class="drFP-CardTitle">제목3생략되는긴제목생략되는긴제목긴제목긴제목긴제목긴제목긴제목긴제목</label>
-					        </div>
-					        <div class="drFP-thumbnailArea">
-								<img alt="풀풀박사게시글이미지" src="image?file=${drfoolpool.filename}"/>
-					        </div>
-				        </div>
-					</a>
 			    </div> <%-- drFP-CardGrid --%>
                 
                 
-                <%-- 검색바 --%>
+                <%-- 검색바 --%>.
                 <h5 class="drFP-searchBar">
                 	<select name="type">
                 		<option value="unselected">선택</option>
