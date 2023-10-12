@@ -36,6 +36,7 @@
     <script type="text/javascript" src="${path }/static/js/poolentarierForm.js"></script>
     <script type="text/javascript" src="${path }/static/js/join.js"></script>
     <script type="text/javascript" src="${path }/static/js/login.js"></script>
+    <script type="text/javascript" src="${path }/static/js/search_flower.js"></script>
 <title>FoolPool</title>
 </head>
 <body>

@@ -6,12 +6,13 @@
             <div class="searchFlowerDivLine">
             	<div class="searchFlowerTopBorder"></div>
                 <div class="searchFlowerSelectOptionDiv">
-                    <select class="searchFlowerOptionBox searchFlower_pd_r_22">
+                    <select class="searchFlowerOptionBox searchFlower_pd_r_22" id="searchFlowerTitleOption" name="searchFlowerTitleOption">
                         <option value="singleDate">날짜(단일)</option>
                         <option value="periodDate">날짜(기간)</option>
                         <option value="flowerName">꽃 이름</option>
                         <option value="flowerLang">꽃말</option>
                     </select>
+                    <div id="searchFlowerOptionInputBox">
                     <select class="searchFlowerStartMonth searchFlower_pd_r_22">
 						<c:set var="n" value="1" />
 						<c:forEach var="n" begin="1" end="12">
@@ -25,20 +26,21 @@
 							<c:set var="n" value="${n+1}" />
 						</c:forEach>
                     </select>
-                    <div></div>
-                    <select class="searchFlowerEndMonth searchFlower_pd_r_22 searchFlower_disabled">
-                        <c:set var="n" value="1" />
-						<c:forEach var="n" begin="1" end="12">
-							<option value="${n}">${n<10 ? '0':''}${n}월</option>
-						</c:forEach>
-                    </select>
-                    <select class="searchFlowerEndDay searchFlower_pd_r_22 searchFlower_disabled">
-                        <c:set var="n" value="1" />
-						<c:forEach begin="1" end="31">
-							<option value="${n}">${n>9 ? n:'0'}${n>9 ? '':n}일</option>
-							<c:set var="n" value="${n+1}" />
-						</c:forEach>
-                    </select>
+<!--                     <div></div> -->
+<!--                     <select class="searchFlowerEndMonth searchFlower_pd_r_22 searchFlower_disabled"> -->
+<%--                         <c:set var="n" value="1" /> --%>
+<%-- 						<c:forEach var="n" begin="1" end="12"> --%>
+<%-- 							<option value="${n}">${n<10 ? '0':''}${n}월</option> --%>
+<%-- 						</c:forEach> --%>
+<!--                     </select> -->
+<!--                     <select class="searchFlowerEndDay searchFlower_pd_r_22 searchFlower_disabled"> -->
+<%--                         <c:set var="n" value="1" /> --%>
+<%-- 						<c:forEach begin="1" end="31"> --%>
+<%-- 							<option value="${n}">${n>9 ? n:'0'}${n>9 ? '':n}일</option> --%>
+<%-- 							<c:set var="n" value="${n+1}" /> --%>
+<%-- 						</c:forEach> --%>
+<!--                     </select> -->
+                    </div>
                     <button class="searchFlower_searchBtn">검색</button>
                 </div>
                 <div class="flowerCardsection">
@@ -107,10 +109,6 @@
         </div>
     </div>
     <!--  -->
-<script type="text/javascript">
-var fool = new foolPool();
-fool.jspName = "searchflower";
-</script>
 </body>
 
 </html>
