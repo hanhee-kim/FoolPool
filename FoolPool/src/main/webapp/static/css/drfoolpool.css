@@ -80,9 +80,15 @@
 	margin: 0 5px;
 	color: #D9D9D9;
 }
+/*
 #drFP-pagingnumbs-selected {
 	color: #466b55;
 }
+*/
+#drFP-selectedPage {
+	color: #466b55;
+}
+
 
 
 .drFP-FilteringAndWriteBtn {

@@ -45,10 +45,6 @@ public class DrFoolPoolList extends HttpServlet {
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
 			Map<String,Object> resMap = drFoolPoolService.drFoolPoolListByPage(curpage); // PageInfo와 List<DrFoolPool>가 담긴 맵을 서비스로부터 반환받음
-			
-			List<DrFoolPool> list = (List<DrFoolPool>) resMap.get("drFoolPoolList");
-			System.out.println("서블릿-----\n0번째 게시글: " + list.get(0).toString());
-			
 			request.setAttribute("resMap", resMap);
 			request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolList.jsp").forward(request, response);
 			

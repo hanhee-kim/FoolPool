@@ -26,8 +26,9 @@ public class DrFoolPoolServiceImpl implements DrFoolPoolService {
 		
 		// DB에서 조회한 결과행의 수를 통해 전체 페이지 수 계산
 		int drFoolPoolCount = drFoolPoolDAO.selectDrFoolPoolCount();
-		System.out.println("-----serviceImpl\ndrFoolPoolCount: " + drFoolPoolCount);
-		int maxPage = (int)Math.ceil((double)drFoolPoolCount/10);
+		int itemsPerPage = 6; // 페이지당 카드 6개 표시
+		int maxPage = (int)Math.ceil((double)drFoolPoolCount/itemsPerPage);
+		System.out.println("-----serviceImpl\n데이터의 수: " + drFoolPoolCount + "\n총페이지수: " + maxPage);
 		
 		// 현재페이지를 통해 버튼의시작페이지번호와 버튼의끝페이지번호를 만든다
 		int startPage = (curpage-1)/10*10+1;

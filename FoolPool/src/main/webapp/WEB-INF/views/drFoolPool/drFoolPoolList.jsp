@@ -32,7 +32,6 @@ System.out.println("리스트의 0번째 게시글 번호: " + list.get(0).getNo
                 
                 <%-- 카드그리드 3x2 --%>
 			    <div class="drFP-CardGrid">
-			    
 			        <c:forEach items="${resMap.drFoolPoolList}" var="drfoolpool">
 			        <a href="drFoolpoolDetail?no=${drfoolpool.no}"> 
 				        <div class="drFP-Card">
@@ -53,7 +52,6 @@ System.out.println("리스트의 0번째 게시글 번호: " + list.get(0).getNo
 				        </div>
 					</a>
 			        </c:forEach>
-					
 			    </div> <%-- drFP-CardGrid --%>
                 
                 
@@ -64,53 +62,48 @@ System.out.println("리스트의 0번째 게시글 번호: " + list.get(0).getNo
                 		<option value="writer">작성자</option>
                 		<option value="all">제목+내용</option>
                 	</select>
-                	<input type="text" name="keyword" id="keyword" value="${res.keyword }"/>
+                	<input type="text" name="keyword" id="keyword" value="${resMap.keyword }"/>
 					<input type="submit" value="검색"/>
                 </h5>
+                
                 
                 <%-- 페이징 영역 --%>
                 <div class="drFP-paging">
 			      <c:choose>
-			         <c:when test="${res.pageInfo.curPage>1 }">
-			            <a href="drfoolpoollist?page=${res.pageInfo.curPage-1}">&lt;</a>
+			         <c:when test="${resMap.pageInfo.curPage>1 }">
+			            <a href="goDrFoolPool?page=${resMap.pageInfo.curPage-1}">&lt;</a>
 			         </c:when>
 			         <c:otherwise>
 			            <a>&lt;</a>
 			         </c:otherwise>
 			      </c:choose>
-			      <%--
-			      <c:forEach begin="${res.pageInfo.startPage}" end="${res.pageInfo.endPage}" var="i">
+			      
+			      <c:forEach begin="${resMap.pageInfo.startPage}" end="${resMap.pageInfo.endPage}" var="i">
 			         <c:choose>
-			            <c:when test="${res.pageInfo.curPage==i}">
-			               <a href="drfoolpoollist?page=${i}" class="select" onclick="callBtn(${i});return ${res.keyword==null};">${i}</a>&nbsp;
+			            <c:when test="${resMap.pageInfo.curPage==i}">
+			               <a href="goDrFoolPool?page=${i}" id="drFP-selectedPage" onclick="callBtn(${i});return ${resMap.keyword==null};">${i}</a>&nbsp;
 			               </c:when>
 			            <c:otherwise>
-			               <a href="drfoolpoollist?page=${i}" class="btn" onclick="callBtn(${i});return ${res.keyword==null};">${i}</a>&nbsp;
+			               <a href="goDrFoolPool?page=${i}" class="drFP-unselectedPage" onclick="callBtn(${i});return ${resMap.keyword==null};">${i}</a>&nbsp;
 			               </c:otherwise>
 			         </c:choose>
 			      </c:forEach>
-			      --%>
-			      <div class="drFP-pagingnumbs">
-			      	<a href="1page" id="drFP-pagingnumbs-selected">1</a><a href="2page">2</a><a>3</a><a>4</a><a>5</a><a>6</a><a>7</a><a>8</a><a>9</a><a>10</a>
-			      </div>
+
 			      <c:choose>
-			         <c:when test="${res.pageInfo.curPage<res.pageInfo.allPage }">
-			            <a href="drfoolpoollist?page=${res.pageInfo.curPage+1}">&gt;</a>
+			         <c:when test="${resMap.pageInfo.curPage<resMap.pageInfo.allPage }">
+			            <a href="goDrFoolPool?page=${resMap.pageInfo.curPage+1}">&gt;</a>
 			         </c:when>
 			         <c:otherwise>
 			            <a>&gt;</a>
 			         </c:otherwise>
 			      </c:choose>
-			   </div> <%-- drFP-paging --%>
-               
-               
+			   </div>
+			   <%-- drFP-paging --%>
                
                <div class="drFP-BottomBorder"></div> 
                 
             </div>
             <%-- drFP-DivLine --%>
-            
-            <%-- 1011 dev pull 하기 전 --%>
             
         </div>
         <%-- containerChild --%>
