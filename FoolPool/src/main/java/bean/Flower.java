@@ -16,9 +16,9 @@ import dao.FlowerDAOImpl;
 
 public class Flower {
 
-	private String dataNo; // 꽃번호
-	private String fMonth; // 꽃월
-	private String fDay; // 꽃일
+	private Integer dataNo; // 꽃번호
+	private Integer fMonth; // 꽃월
+	private Integer fDay; // 꽃일
 	private String flowNm; // 꽃이름
 	private String fSctNm; // 꽃학명
 	private String fEngNm; // 꽃영문이름
@@ -27,12 +27,33 @@ public class Flower {
 	private String fUse; // 꽃의 사용
 	private String fGrow; // 꽃기르는법
 	private String fType; // 꽃 종류
-	private String fileName1; // 이미지명 1
+	private String fileName1; // 이미지명 1,
 	private String fileName2; // 이미지명 2
 	private String fileName3; // 이미지명 3
 	private String imgUrl1; // 이미지 URL1
 	private String imgUrl2; // 이미지 URL2
 	private String imgUrl3; // 이미지 URL3
+
+	public Flower() {};
+	public Flower(Integer dataNo,Integer fMonth,Integer fDay,String flowNm,String fSctNm,String fEngNm,String flowLang,String fContent,String fUse,String fGrow,String fType,String fileName1,String fileName2,String fileName3, String imgUrl1,String imgUrl2,String imgUrl3) {
+		this.dataNo = dataNo;
+		this.fMonth = fMonth;
+		this.fDay = fDay;
+		this.flowNm = flowNm;
+		this.fSctNm = fSctNm;
+		this.fEngNm = fEngNm;
+		this.flowLang = flowLang;
+		this.fContent = fContent;
+		this.fUse = fUse;
+		this.fGrow = fGrow;
+		this.fType = fType;
+		this.fileName1 = fileName1;
+		this.fileName2 = fileName2;
+		this.fileName3 = fileName3;
+		this.imgUrl1 = imgUrl1;
+		this.imgUrl2 = imgUrl2;
+		this.imgUrl3 = imgUrl3;
+	}
 
 	@Override
 	public String toString() {
@@ -41,27 +62,27 @@ public class Flower {
 				imgUrl1, imgUrl2, imgUrl3);
 	}
 
-	public String getDataNo() {
+	public Integer getDataNo() {
 		return dataNo;
 	}
 
-	public void setDataNo(String dataNo) {
+	public void setDataNo(Integer dataNo) {
 		this.dataNo = dataNo;
 	}
 
-	public String getfMonth() {
+	public Integer getfMonth() {
 		return fMonth;
 	}
 
-	public void setfMonth(String fMonth) {
+	public void setfMonth(Integer fMonth) {
 		this.fMonth = fMonth;
 	}
 
-	public String getfDay() {
+	public Integer getfDay() {
 		return fDay;
 	}
 
-	public void setfDay(String fDay) {
+	public void setfDay(Integer fDay) {
 		this.fDay = fDay;
 	}
 
@@ -176,5 +197,7 @@ public class Flower {
 	public void setImgUrl3(String imgUrl3) {
 		this.imgUrl3 = imgUrl3;
 	}
+
+	
 
 }

@@ -36,11 +36,11 @@
          
            <div class="noticebtn_list">
            <!-- ADMIN일때만 수정,삭제 버튼 보임. -->
-           <c:if test="${notice.writer =='ADMIN' }">
-            <a href="noticeFormEdit.jsp">수정</a>&nbsp;&nbsp;</c:if>
-            <a href="./noticeList.jsp">목록</a>&nbsp;&nbsp;
+          
+            <a href="noticeformedit?no=${notice.no}">수정</a>&nbsp;&nbsp;
+            <a href=notice>목록</a>&nbsp;&nbsp;
              <c:if test="${notice.writer =='ADMIN' }">
-            <a href="./noticeList.jsp" id="delOk">삭제</a></c:if>
+            <a href="notice" id="delOk">삭제</a></c:if>
             </div>
             </article>
 	</div>

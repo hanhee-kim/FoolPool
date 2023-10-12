@@ -1,16 +1,21 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Map;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import service.NoticeService;
+import service.NoticeServiceImpl;
+
 /**
  * Servlet implementation class NoticeList
  */
-@WebServlet("/noticelist")
+@WebServlet("/notice")
 public class NoticeList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -26,16 +31,30 @@ public class NoticeList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setCharacterEncoding("utf-8");
-		request.getRequestDispatcher("WEB-INF/views/notice/noticeList.jsp").forward(request, response);
+		String page = request.getParameter("page");
+		
+		int curpage = 1;
+		if(page!=null)curpage = Integer.parseInt(page);
+		
+		try {
+			NoticeService noticeService = new NoticeServiceImpl();
+			Map<String, Object> res = noticeService.noticeListByPage(curpage);
+			request.setAttribute("res", res);
+		
+			request.getRequestDispatcher("WEB-INF/views/notice/noticeList.jsp").forward(request, response);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("err", e.getMessage());
+			request.getRequestDispatcher("noticeError.jsp").forward(request, response);
+		}
+		
+		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+	
+	
 
 }
