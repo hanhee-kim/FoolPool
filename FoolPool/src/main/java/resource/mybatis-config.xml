@@ -13,6 +13,7 @@
 		<typeAlias type="bean.DrFoolPool" alias="DrFoolPool" />
 		<typeAlias type="bean.Notice" alias="Notice" />
 		<typeAlias type="bean.Member" alias="Member" />
+		<typeAlias type="bean.Poolentarier" alias="Poolentarier" />
 	</typeAliases>
 
 	<environments default="development">
@@ -30,5 +31,6 @@
 		<mapper resource="mapper/DrFoolPool.xml" />
 		<mapper resource="mapper/Member.xml"/>
 		<mapper resource="mapper/Notice.xml" />
+		<mapper resource="mapper/Poolentarier.xml" />
 	</mappers>
 </configuration>
