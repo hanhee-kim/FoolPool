@@ -33,6 +33,7 @@ public class DrFoolPoolDetail extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("-----DrFoolPoolDetail서블릿 doGet호출-----");
 		
 		// 요청uri: drFoolPoolDetail?no=해당게시글번호
 		
@@ -44,6 +45,9 @@ public class DrFoolPoolDetail extends HttpServlet {
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
 			DrFoolPool drFoolPool = drFoolPoolService.drFoolPoolDetail(no);
+			
+			System.out.println("DB에서 조회한 drFoolPool: " + drFoolPool.toString());
+			
 			request.setAttribute("drFoolPool", drFoolPool);
 			
 			// # 로그인처리 후 수정
