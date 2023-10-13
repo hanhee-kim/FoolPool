@@ -7,8 +7,8 @@
 
 
 $(document).ready(function() {
-	var selectedOption = $("#searchFlowerTitleOption").val();
 	$("#searchFlowerTitleOption").change(function() {
+		var selectedOption = $(this).val();
 
 		// 선택이 되면 모든 요소에 안보이는 클래스 집어넣기
 			
@@ -59,26 +59,26 @@ $(document).ready(function() {
 		}
 	});
 	
-	$('#searchFlower_searchBtn').onclick(function(){
-		var data = {};
-		if(selectedOption === "singleDate"){
-			
-		} else if(selectedOption === "periodDate"){
-			
-		} else if(selectedOption === "flowerName"){
-			
-		} else if(selectedOption === "flowerLang") {
-				
-			}
-		//
-		$.ajax({
-			url:'searchflower',
-			type:'post',
-			data:{},
-			success:'',
-			error:''
-		})//ajax			
-	})
+//	$('#searchFlower_searchBtn').onclick(function(){
+//		var data = {};
+//		if(selectedOption === "singleDate"){
+//			
+//		} else if(selectedOption === "periodDate"){
+//			
+//		} else if(selectedOption === "flowerName"){
+//			
+//		} else if(selectedOption === "flowerLang") {
+//				
+//			}
+//		//
+//		$.ajax({
+//			url:'searchflower',
+//			type:'post',
+//			data:{},
+//			success:'',
+//			error:''
+//		})//ajax			
+//	})
 		
 	
 });
