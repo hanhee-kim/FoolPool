@@ -43,11 +43,11 @@
                     <input type='text' class='searchFlowerByName searchFlower_disabled' name='searchFlowerByName' id='searchFlowerByName'/>
                     <input type='text' class='searchFlowerByLang searchFlower_disabled' name='searchFlowerByLang' id='searchFlowerByLang'/>
                     </div>
-                    <button id="searchFlower_searchBtn" class="searchFlower_searchBtn">검색</button>
+                    <button id="searchFlower_searchBtn" class="searchFlower_searchBtn" onclick="go_searchFlower()">검색</button>
                 </div>
                 <div class="flowerCardsection">
 					<div class="flowerCardsection_line">                
-	                    <div class="flowerCard" onclick="btnClick('detailFlower')">
+	                    <div class="flowerCard" onclick="btnClick('detailFlower?num=${flower.datano}')">
 	                        <div class="flowerCardImgSection">
 	                            <img class="flowerCardImg" src="">
 	                        </div>
@@ -104,7 +104,7 @@
 	               </div>
                 </div>
                 <div class="searchFlowerSeeMoreDiv">               
-                	<button class="searchFlowerSeeMore">더보기</button>
+                	<button class="searchFlowerSeeMore" onclick="">더보기</button>
                 </div>
                 <div class="searchFlowerBottomBorder"></div>
             </div>
