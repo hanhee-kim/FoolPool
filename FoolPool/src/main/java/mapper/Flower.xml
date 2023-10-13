@@ -45,4 +45,15 @@
 		select * from flower where (f_month=#{fMonth}) and (f_day=#{fDay})
 		]]>
 	</select>
+	<select id="selectFlowerByPeriod" parameterType="hashmap" resultType="Flower" resultMap="FlowerRM">
+		<![CDATA[
+		select * from flower where data_No between #{startNo} and #{endNo}
+		]]>
+	</select>
+	<select id="selectFlowerByWord" parameterType="hashmap" resultType="Flower" resultMap="FlowerRM">
+		<![CDATA[
+		select * from flower where ${type} like '%#{startNo}%'
+		]]>
+	</select>
+	
  </mapper>

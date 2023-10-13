@@ -4,13 +4,55 @@
  */
 
 //꽃검색 제목 옵션이 선택될 때 
-
+function go_searchFlower() {
+		var selectedVal = document.getElementById("searchFlowerTitleOption").value;
+		console.log(selectedVal);
+		var data;
+		
+		if( selectedVal === "singleDate"){ 
+			var startMonth = $('#searchFlowerStartMonth').val();
+			var startDay = $('#searchFlowerStartDay').val();
+			data = {'option':'singleDate','startMonth':startMonth,'startDay':startDay};
+			
+		} else if(selectedVal === "periodDate"){
+			var startMonth = $('#searchFlowerStartMonth').val();
+			var startDay = $('#searchFlowerStartDay').val();
+			var endMonth = $('#searchFlowerEndMonth').val();
+			var endDay = $('#searchFlowerEndDay').val();
+			data = {'option':'periodDate','startMonth':startMonth,'startDay':startDay,'endMonth':endMonth,'endDay':endDay};
+		} else if(selectedVal === "flowerName"){
+			var byName = $('#searchFlowerByName').val();
+			data = {'option':'flowerName','byName':byName};	
+		} else if(selectedVal === "flowerLang") {
+			var byLang = $('#searchFlowerByLang').val();	
+			data = {'option':'flowerLang','byLang':byLang};	
+		}
+		console.log(data);
+		console.log(JSON.stringify(data));
+		
+//		location.href='gosearchflower?data='+data;		
+//		$.ajax({
+//					url:'searchflower',
+//					type:'post',
+//					data:data,
+//					success:function(res){
+//						console.log(res+","+typeof(res));
+//						if(res == ''){
+//							Swal.fire({
+//								title:'조회된 데이터가 없습니다.',
+//								icon:'warning'
+//							});
+//						}
+//					},
+//					error:''
+//				})//ajax
+		
+		
+		}
 $(document).ready(function() {
 
 	$("#searchFlowerTitleOption").change(function() {
 		var selectedOption = $(this).val();
-
-		// 선택이 되면 모든 요소에 안보이는 클래스 집어넣기
 
 		$('#searchFlowerStartMonth').addClass("searchFlower_disabled");
 		$('#searchFlowerStartDay').addClass("searchFlower_disabled");
@@ -58,29 +100,4 @@ $(document).ready(function() {
 			$('#searchFlowerByLang').removeClass("searchFlower_disabled");
 		}
 	});//disabled function
-	
-		function go_searchFlower() {
-		var selectedVal = document.getElementById("searchFlowerTitleOption").val();
-		console.log(selectedVal);
-		}
-		//		var data = {
-		//		if( selectedVal === "singleDate"){
-		//	
-		//		} else if(selectedVal === "periodDate"){
-		//	
-		//		} else if(selectedVal === "flowerName"){
-		//			
-		//		} else if(selectedVal === "flowerLang") {
-		//				
-		//			}
-		//		
-		//		$.ajax({
-		//			url:'searchflower',
-		//			type:'post',
-		//			data:{},
-		//			success:'',
-		//			error:''
-		//		})//ajax			
-		//	}}
-
 });

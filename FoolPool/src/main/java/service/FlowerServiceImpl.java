@@ -156,6 +156,30 @@ public class FlowerServiceImpl implements FlowerService{
 		return flowerDao.selectFlowerByNo(dataNo);
 	}
 
+	@Override
+	public List<Flower> searchFlowerByPeriod(Integer sMonth, Integer sDay, Integer eMonth, Integer eDay) throws Exception {
+		Map<String,Integer> startParam = new HashMap<>();
+		Map<String,Integer> endParam = new HashMap<>();
+		Map<String,Integer> param = new HashMap<>();
+		startParam.put("fMonth", sMonth);
+		startParam.put("fDay", sDay);
+		endParam.put("fMonth", eMonth);
+		endParam.put("fDay", eDay);
+		Flower s_flower = flowerDao.selectFlowerByDate(startParam);
+		Flower e_flower = flowerDao.selectFlowerByDate(endParam);
+		Integer startNo = s_flower.getDataNo();
+		Integer endNo = e_flower.getDataNo();
+		param.put("startNo", startNo);
+		param.put("endNo", endNo);
+		return flowerDao.selectFlowerPeriod(param);
+	}
+
+	@Override
+	public List<Flower> searchFlowerByWord(String type, String word) throws Exception {
+		
+		return null;
+	}
+
 	
 
 }

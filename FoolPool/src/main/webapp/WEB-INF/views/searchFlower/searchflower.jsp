@@ -47,7 +47,7 @@
                 </div>
                 <div class="flowerCardsection">
 					<div class="flowerCardsection_line">                
-	                    <div class="flowerCard" onclick="btnClick('detailFlower?num=${flower.datano}')">
+	                    <div class="flowerCard" onclick="btnClick('detailFlower?num=${flower.dataNo}')">
 	                        <div class="flowerCardImgSection">
 	                            <img class="flowerCardImg" src="">
 	                        </div>
