@@ -1,9 +1,5 @@
 @charset "UTF-8";
 
-.searchFlower_disabled {
-	display: none;
-}
-
 .searchFlowerLabel {
 	font-size: 35px;
 	color: #466b55;
@@ -80,7 +76,16 @@
 	background-position-x: 70px;
 	border-radius: 12px;
 }
-
+#searchFlowerOptionInputBox{
+	display: flex;
+}
+#searchFlowerHyphen{
+    width: 25px;
+}
+.searchFlower_OptionDate{
+	display: flex;
+    gap: 10px;
+}
 .flowerCardsection {
 	width: 740px;
 	height: 575px;
@@ -196,4 +201,24 @@
 	font-weight: bold;
 	margin-left: 20px;
 	border-radius: 12px;
+}
+#searchFlowerOptionInputBox{
+	display: flex;
+}
+#searchFlowerHyphen{
+    width: 25px;
+    color: #466B55;
+    font-weight: bold;
+}
+.searchFlower_OptionDate{
+	display: flex;
+    margin: 0 7px;
+}
+.searchFlower_disabled {
+	display: none;
+}
+.searchFlower_abled{
+	display:flex;
+	justify-content: center;
+    align-items: center;
 }
