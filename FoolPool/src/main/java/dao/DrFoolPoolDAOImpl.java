@@ -21,5 +21,12 @@ public class DrFoolPoolDAOImpl implements DrFoolPoolDAO {
 	public Integer selectDrFoolPoolCount() throws Exception {
 		return sqlSession.selectOne("mapper.drfoolpool.selectDrFoolPoolCount");
 	}
+	
+	// 2. 게시글 작성
+	@Override
+	public void insertDrFoolPool(DrFoolPool drFoolPool) throws Exception {
+		sqlSession.insert("mapper.drfoolpool.insertDrFoolPool", drFoolPool);
+		sqlSession.commit();
+	}
 
 }

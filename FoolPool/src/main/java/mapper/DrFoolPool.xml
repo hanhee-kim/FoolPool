@@ -31,21 +31,20 @@
  			select count(no) from drfoolpool
  		]]>
  	</select>
- 
- 
- 
- 
- 
- 	<!-- 
- 	INSERT INTO drfoolpool 
-	(title, DATE, content, file_name, writer_id, writer_nickname)
-	VALUES
-	('제목2', CURDATE(), '내용2', 'img_01', 'user01', '닉네임01');
- 	 -->
- 
  	
- 
- 
+ 	
+ 	<!-- 2. 게시글 작성 -->
+ 	<!-- # 로그인 처리 이후 수정할것 -->
+	<insert id="insertDrFoolPool" parameterType="DrFoolPool" useGeneratedKeys="true" keyProperty="no">
+		<![CDATA[
+ 			INSERT INTO DRFOOLPOOL 
+ 			(title, DATE, content, file_name, writer_id, writer_nickname)
+			VALUES
+			(#{title}, CURDATE(), #{content}, #{fileName}, #{writerId}, #{writerNickname});
+ 		]]>
+	</insert>
+
+
  
  
  	

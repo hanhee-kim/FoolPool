@@ -58,4 +58,18 @@ public class DrFoolPoolServiceImpl implements DrFoolPoolService {
 		return map;
 	}
 
+
+	// 2. 게시글 작성
+	@Override
+	public void drFoolPoolWrite(DrFoolPool drFoolPool) throws Exception {
+		drFoolPoolDAO.insertDrFoolPool(drFoolPool);
+	}
+	
+	
+	
+	
+	
+	
+	
+
 }

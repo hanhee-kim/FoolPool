@@ -46,6 +46,7 @@ public class DrFoolPoolList extends HttpServlet {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
 			Map<String,Object> resMap = drFoolPoolService.drFoolPoolListByPage(curpage); // PageInfo와 List<DrFoolPool>가 담긴 맵을 서비스로부터 반환받음
 			request.setAttribute("resMap", resMap);
+			request.setAttribute("jspName", "drFoolPool"); // 해당 메뉴에 들어와있다면 인클루드되는 menubar.jsp의 해당 메뉴 버튼색을 짙게 바꾸어두기 위해 뷰로 넘기는 문자열
 			request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolList.jsp").forward(request, response);
 			
 		} catch (Exception e) {

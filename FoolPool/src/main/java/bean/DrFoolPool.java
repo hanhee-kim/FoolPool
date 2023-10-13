@@ -17,19 +17,19 @@ public class DrFoolPool {
 	private String writerNickname;
 	
 	// 생성자
-	public DrFoolPool() {}
-	public DrFoolPool(Integer no, String title, Date date, Integer view, String content, String fileName,
-			Boolean isSolved, String writerId, String writerNickname) {
-		this.no = no;
-		this.title = title;
-		this.date = date;
-		this.view = view;
-		this.content = content;
-		this.fileName = fileName;
-		this.isSolved = isSolved;
-		this.writerId = writerId;
-		this.writerNickname = writerNickname;
-	}
+//	public DrFoolPool() {}
+//	public DrFoolPool(Integer no, String title, Date date, Integer view, String content, String fileName,
+//			Boolean isSolved, String writerId, String writerNickname) {
+//		this.no = no;
+//		this.title = title;
+//		this.date = date;
+//		this.view = view;
+//		this.content = content;
+//		this.fileName = fileName;
+//		this.isSolved = isSolved;
+//		this.writerId = writerId;
+//		this.writerNickname = writerNickname;
+//	}
 	
 	// getter, setter
 	public Integer getNo() {

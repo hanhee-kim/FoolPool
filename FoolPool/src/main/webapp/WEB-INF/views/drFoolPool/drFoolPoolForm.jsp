@@ -31,7 +31,7 @@
 							</ul>
 						</div>
 						<div id="drFP-formBtn">
-							<input type="submit" value="등록"/>&nbsp;&nbsp; 
+							<input type="submit" value="등록"/>&nbsp;&nbsp; 
 							<input type="button" value="취소" onclick="drFPback();"/>
 						</div>
 					</form>

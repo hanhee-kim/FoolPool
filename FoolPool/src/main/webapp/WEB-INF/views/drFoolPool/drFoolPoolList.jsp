@@ -27,13 +27,17 @@ System.out.println("리스트의 0번째 게시글 번호: " + list.get(0).getNo
 	                    <span class="drFP-FilterBtn">미해결</span>
 	                    <span class="drFP-FilterBtn">해결</span>
 	                </div>
+	                <%-- # 로그인 상태에서만 보여지도록 할것 --%>
+	                <%--
+	                <c:if test="${user ne Empty }"> </c:if>
+	                 --%>
                 	<a href="drFoolpoolForm?num"><button class="drFP-writeBtn">질문하기</button></a>
                 </div>
                 
                 <%-- 카드그리드 3x2 --%>
 			    <div class="drFP-CardGrid">
 			        <c:forEach items="${resMap.drFoolPoolList}" var="drfoolpool">
-			        <a href="drFoolpoolDetail?no=${drfoolpool.no}"> 
+			        <a href="drFoolPoolDetail?no=${drfoolpool.no}"> 
 				        <div class="drFP-Card">
 				        	<div class="drFP-CardTitleArea">
 				        		<c:choose>
