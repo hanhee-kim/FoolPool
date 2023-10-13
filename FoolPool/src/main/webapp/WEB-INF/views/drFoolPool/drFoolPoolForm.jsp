@@ -10,27 +10,27 @@
             	
                 
                 <%-- 게시글 작성 --%>
-                <section id="drFP-formSection">
+                <section class="drFP-formSection">
                 	<h2>질문글 작성</h2>
 					<form action="drFoolpoolForm" method="post" enctype="multipart/form-data" name="drFoolPoolForm">
-						<div id="drFP-inputArea">
+						<div class="drFP-inputArea">
 							<ul>
 								<li>
 				                    <label for="drFP-formTitle">제목 <em>*</em></label><br>
-				                    <input name="title" type="text" id="drFP-formTitle">
+				                    <input class="drFP-formTitle" name="title" type="text">
 				                </li>
 				                <li>
 				                    <label for="drFP-formContent">내용 <em>*</em></label><br>
-				                    <textarea id="drFP-formContent" name="content" rows="20" cols="42" placeholder="질문방법 안내, 답변이 달린 질문글 삭제자제 권고"></textarea>
+				                    <textarea class="drFP-formContent" name="content" rows="20" cols="42" placeholder="질문방법 안내, 답변이 달린 질문글 삭제자제 권고"></textarea>
 				                </li>
 				                <li>
 				                    <label for="drFP-formImg">이미지 업로드 <em>*</em></label><br>
-				                    <input id="drFP-formImg" name="file" type="file" id="file" accept="image/*"/>
+				                    <input class="drFP-formImg" name="file" type="file" id="file" accept="image/*"/>
 				                    <%-- 업로드된 이미지 표시 고려 --%>
 				                </li>
 							</ul>
 						</div>
-						<div id="drFP-formBtn">
+						<div class="drFP-formBtn">
 							<input type="submit" value="등록"/>&nbsp;&nbsp; 
 							<input type="button" value="취소" onclick="drFPback();"/>
 						</div>

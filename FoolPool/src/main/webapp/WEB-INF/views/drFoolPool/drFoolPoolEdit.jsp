@@ -10,29 +10,29 @@
             	
                 
                 <%-- 게시글 수정 --%>
-                <section id="drFP-formSection">
+                <section class="drFP-formSection">
                 	<h2>질문글 수정</h2>
 					<form action="drFoolpoolForm" method="post" enctype="multipart/form-data" name="drFoolPoolForm">
 						<input type="hidden" name="num" value="${drfoolpool.num}"/>
 						<%-- hidden속성으로 게시글 번호를 가지고 있어야함 --%>
-						<div id="drFP-inputArea">
+						<div class="drFP-inputArea">
 							<ul>
 								<li>
 				                    <label for="drFP-formTitle">제목 <em>*</em></label><br>
-				                    <input name="title" type="text" id="drFP-formTitle" value="${drfoolpool.title}">
+				                    <input class="drFP-formTitle" name="title" type="text" value="${drfoolpool.title}">
 				                </li>
 				                <li>
 				                    <label for="drFP-formContent">내용 <em>*</em></label><br>
-				                    <textarea id="drFP-formContent" name="content" rows="20" cols="42" value="${drfoolpool.content}"></textarea>
+				                    <textarea class="drFP-formContent" name="content" rows="20" cols="42" value="${drfoolpool.content}"></textarea>
 				                </li>
 				                <li>
 				                    <label for="drFP-formImg">이미지 업로드 <em>*</em></label><br>
-				                    <input id="drFP-formImg" name="file" type="file" id="file" accept="image/*"/>
+				                    <input class="drFP-formImg" name="file" type="file" id="file" accept="image/*"/>
 				                    <%-- 업로드된 이미지 표시 고려 --%>
 				                </li>
 							</ul>
 						</div>
-						<div id="drFP-formBtn">
+						<div class="drFP-formBtn">
 							<input type="submit" value="수정"/>&nbsp;&nbsp; 
 							<input type="button" value="취소" onclick="drFPback();"/>
 						</div>

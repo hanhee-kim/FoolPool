@@ -339,17 +339,17 @@
 
 /* 3. 풀풀박사 게시글 작성 */
 
-#drFP-formSection {
+.drFP-formSection {
 	/* background: pink; */
 	width: 70%;
 	/* height: 600px; */
 	height: 575px;
 	margin-top: -45px;
 }
-#drFP-formSection>h2 {
+.drFP-formSection>h2 {
 	margin-left: 40px;
 }
-#drFP-inputArea {
+.drFP-inputArea {
 	/* background: lightgreen; */
 	margin-top: -15px;
 	width: 100%;
@@ -358,40 +358,40 @@
 	font-size: 18px;
 	overflow-y: scroll;
 }
-#drFP-inputArea input[type="text"],
-#drFP-inputArea textarea {
+.drFP-inputArea input[type="text"],
+.drFP-inputArea textarea {
     background: #F2F9EF;
     border: 0.5px dashed #466b55;
 }
-#drFP-inputArea input[type="text"] {
+.drFP-inputArea input[type="text"] {
 	width: 89.5%;
 }
 
-#drFP-inputArea li {
+.drFP-inputArea li {
 	list-style: none;
 	margin-bottom: 10px;
 }
-#drFP-inputArea li>label {
+.drFP-inputArea li>label {
 	margin-right: 10px;
 }
-#drFP-formTitle {
+.drFP-formTitle {
 	width: 90%;
 }
-#drFP-formContent {
+.drFP-formContent {
 	width: 90%;
 }
-#drFP-formImg {
+.drFP-formImg {
 	width: 90%;
 	border: none;
 	cursor: pointer;
 }
 
 
-#drFP-formBtn {
+.drFP-formBtn {
 	text-align: center;
 	/* background: pink; */
 }
-#drFP-formBtn input {
+.drFP-formBtn input {
 	/* z값을 주기 위해 position:relative로 지정 */
     position: relative; 
     z-index: 1; 

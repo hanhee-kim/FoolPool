@@ -46,7 +46,6 @@
  		]]>
 	</insert>
 	
-	
  	<!-- 3. 게시글 상세 -->
 	<select id="selectDrFoolPool" parameterType="Integer" resultType="DrFoolPool" resultMap="DrFoolPoolResultMap">
  		<![CDATA[
@@ -58,6 +57,7 @@
  			update drfoolpool set view=view+1 where no=#{no}
  		]]>
  	</update>
+	<!-- 충돌수정 -->
 
 
 
