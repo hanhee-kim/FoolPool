@@ -5,7 +5,7 @@
 	font-weight: bold;
 }
 
-.plDicLine {
+.plDivLine {
 	margin: 0 auto;
 	width: 1240px;
 	height: 720px;
@@ -14,7 +14,7 @@
 	align-items: center;
 }
 
-.plTopBorder, .plBottomBorder {
+.plTopBorder {
 	border: 4px solid #466B55;
 	width: 100%;
 	height: 60px;
@@ -23,19 +23,49 @@
 }
 
 .plBottomBorder {
-	border-bottom: 4px solid #466B55;
+	border: 4px solid #466B55;
+	width: 100%;
+	height: 60px;
 	border-top: 0;
 	border-radius: 0px 0px 20px 20px;
+	margin-top: -30px
 }
 
-.plSortBox {
-    width: 100%;
+.plListArea {
+	width: 1200px;
+    height: 660px;
+	margin-top: -30px;
+/* 	overflow-y: scroll; */
+}
+
+.plTopMenuDiv {
+	display: flex;
+}
+
+.plWriteFormDiv {
+/* 	width: 50%; */
+	width: 80px;
+	height: 30px;
+}
+
+.plWriteFormDivFotBtn {
+	display: flex;
+}
+
+.plWriteBtn {
+    color: #466b55;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.plSortDiv {
     height: 30px;
     display: flex;
     gap: 20px;
-    flex-direction: row-reverse;
-    margin-top: 20px;
-    margin-right: 40px;
 }
 
 .plSortNewDiv {
@@ -72,26 +102,31 @@
     font-size:18px;
 }
 
-.plBoardCardsection {
-	width: 900px;
-	height: 300px;
-	display: flex;
-	flex-direction: column;
-	padding: 10px 10px;
-	position: inherit;
+.plCardGrid {
+	width: 800px;
+	height: 255px;
+	margin: 0 auto;
+	display: grid;
+	grid-template-rows: repeat(2, 1fr); /* 2행 */
+    grid-template-columns: repeat(2, 1fr); /* 2열 */
+    gap: 20px; /* 그리드 아이템 간 간격 */
+    justify-items: center; /* 그리드 아이템 가로 중앙 정렬 */
+    align-items: center; /* 그리드 아이템 세로 중앙 정렬 */
+    padding: 10px 10px;
+/* 	flex-direction: column;
+	
+	position: inherit; */
 }
 
-.plBoardCardsection::-webkit-scrollbar {
+.plCardGrid::-webkit-scrollbar {
 	display: none; /* 크롬, 사파리, 오페라, 엣지 */
 }
 
-.plBoardCardsection_line {
-	display: flex;
-	justify-content: center;
-	gap: 150px;
+.plCardGrid a {
+	text-decoration: none;
 }
 
-.plBoardCard {
+.plCard {
 	width: 250px;
 	height: 250px;
 	position: relative;
@@ -100,13 +135,13 @@
 	cursor: pointer;
 }
 
-.plBoardCard:hover>.plFront {
+.plCard:hover>.plFront {
 	z-index: 1;
 	opacity: 0;
 	transform: rotateY(180deg);
 }
 
-.plBoardCard:hover>.plBack {
+.plCard:hover>.plBack {
 	z-index: 2;
 	opacity: 1;
 	transform: rotateY(0)
@@ -119,7 +154,7 @@
         0 -80px 0 0 #466b55 inset;
 }
 
-.plOption:hover .plBtn {
+.plOption:hover .plBtn .plWriteBtn {
     color: #fff;
     transition: all .9s, color .3s;
 }
@@ -140,7 +175,6 @@
 	border-radius: 50px 10px;
     border: 1px solid;
 	position: absolute;
-	background: red;
 	z-index: 2;
 	opacity: 1;
 	transform: rotateY(0deg);
@@ -160,7 +194,7 @@
 	margin: auto;
 	width: 800px;
 	text-align: center;
-	margin-top: 20px;
+	margin-top: 10px;
 }
 
 #plPagingArea a {
@@ -181,13 +215,11 @@
 }
 
 .plSearchOptionDiv {
-	margin: 20px 0;
-	width: 100%;
-	display: flex;
-	gap: 15px;
-	justify-content: center;
-	position: relative;
-    top: -18px;
+    width: 1200px;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 800px;
 }
 
 .plSearchType {
@@ -198,7 +230,6 @@
 	height: 40px;
 	width: 120px;
 	border: 0;
-	background-color: #d9d9d9;
 	padding: 3px 6px 0;
 	text-align: center;
 	background-position-x: 100px;
@@ -207,6 +238,7 @@
 	font-size: larger;
 	font-weight: bold;
 	border-radius: 12px;
+	border: 1px solid;
     cursor: pointer;
 }
 
@@ -215,9 +247,11 @@
 	border-radius: 12px;
 }
 
-#plKeyword {
+#plSearchText {
+	width: 100px;
 	height: 35px;
 	border-radius: 12px;
+	border: 1px solid;
 }
 
 .plSearchBtn {
@@ -232,13 +266,5 @@
     font-weight: bold;
     margin-left: 20px;
     border-radius: 12px;
-    cursor: pointer;
-}
-
-.plWriteFormDiv {
-	width: 80px;
-	position: absolute;
-	right: 20px;
-	top: 25px;
     cursor: pointer;
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="mapper.poolentarier">
+ 	<!-- 이렇게 맞춰 놓으면 밑에서 AS 안 써도 됨 -->
+<!-- 	<resultMap type="Poolentarier" id="PoolentarierRM">
+		<result property="id" column="id"/>
+	</resultMap> -->
+<!-- 	<insert id="insertPoolentarier" parameterType="Poolentarier">
+		<![CDATA[
+			insert into Poolentarier() values(#{})
+		]]>
+	</insert> -->
+	
+	<select id="selectPoolentarierCount" resultType="Integer">
+		<![CDATA[
+			select count(no) from poolentarier
+		]]>
+	</select>
+	
+	<select id="selectPoolentarierList" parameterType="Integer" resultType="Poolentarier">
+		<![CDATA[
+			select * from poolentarier order by no desc
+			limit #{row}, 4
+		]]>
+	</select>
+	
+	
+ </mapper>
