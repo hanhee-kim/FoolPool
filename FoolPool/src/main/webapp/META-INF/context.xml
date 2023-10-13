@@ -4,9 +4,9 @@
 			  auth="Container"
 			  type="javax.sql.DataSource"
 			  username="root"
-			  password="1234"
+			  password="sweet720!!"
 			  driverClassName="org.mariadb.jdbc.Driver"
 			  factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
-			  url="jdbc:mariadb://localhost:3307/foolpool"
+			  url="jdbc:mariadb://localhost:3306/foolpool"
 			  maxActive="500"/>
 </Context>

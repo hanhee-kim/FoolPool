@@ -56,6 +56,11 @@
             </div>
         </div>
     </div>
+    <script>
+    $(document).ready(function () {
+    	foolpool.jspName = 'searchFlower';
+    }
+    </script>
 </body>
 
 </html>

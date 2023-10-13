@@ -24,13 +24,19 @@
     <link rel="stylesheet" href="${path }/static/css/poolentarierList.css" />
 	<link rel="stylesheet" href="${path }/static/css/poolentarierForm.css" />
     <link rel="icon" href="static/img/icon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
     <script src="${path }/static/js/menubar.js"></script>
     <script src="${path }/static/js/notice.js"></script>
     <script src="${path }/static/js/drfoolpool.js"></script>
     <script type="text/javascript" src="${path }/static/js/poolentarierList.js"></script>
     <script type="text/javascript" src="${path }/static/js/poolentarierForm.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="${path }/static/js/join.js"></script>
+    <script type="text/javascript" src="${path }/static/js/login.js"></script>
+    <script type="text/javascript" src="${path }/static/js/search_flower.js"></script>
 <title>FoolPool</title>
 </head>
 <body>
@@ -60,21 +66,26 @@
         </div>
 
         <div class="loginBox menuBarItem">
-            <div class="joinBtn loginDiv" data-login="logout" onclick="btnClick('join')">회원가입</div>
-            <div class="loginBtn loginDiv" data-login="logout" onclick="btnClick('login')">로그인</div>
-            <div class="nickname" data-login="login" value="${nickname}"> 님</div>
-            <div class="logoutBtn loginDiv" data-login="login" onclick="btnClick('logout')">로그아웃</div>
+        <c:choose>
+			<c:when test="${member eq Empty }">
+	            <div class="joinBtn loginDiv" data-login="logout" onclick="btnClick('join')">회원가입</div>
+	            <div class="loginBtn loginDiv" data-login="logout" onclick="btnClick('login')">로그인</div>
+			</c:when>
+			<c:otherwise>
+	            <div class="nickname" data-login="login">${member.nickname} 님</div>
+	            <div class="logoutBtn loginDiv" data-login="login" onclick="btnClick('logout')">로그아웃</div>
+			</c:otherwise>
+		</c:choose>
         </div>
 
     </div>
     <script>
         
-        var foolPool = new foolPool();
-        
+        var fool = new foolPool();
         $(document).ready(function () {
-            foolPool.jspName = "${jspName}";
+            fool.jspName = "${jspName}";
 
-            switch (foolPool.jspName) {
+            switch (fool.jspName) {
                 case 'searchFlower':
                     $(".searchFlowerDiv").addClass("currentPage").removeClass("menu");
                     $(".searchFlowerDiv > div").addClass("currentPageTxt");
@@ -97,17 +108,6 @@
 
                 default:
                     break;
-            }
-            if (foolPool.login == 'login') {
-                $(".joinBtn").hide();
-                $(".loginBtn").hide();
-                $(".nickname").show();
-                $(".logoutBtn").show();
-            } else {
-                $(".joinBtn").show();
-                $(".loginBtn").show();
-                $(".nickname").hide();
-                $(".logoutBtn").hide();
             }
         })
         function btnClick(btnName) {
