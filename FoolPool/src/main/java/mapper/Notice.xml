@@ -4,6 +4,16 @@
  
  <mapper namespace="mapper.notice">
  
+	<!-- 게시글 작성  --> 
+	<insert id="insertNotice" parameterType="Notice" useGeneratedKeys="true" keyProperty="no">
+		<![CDATA[
+			insert into notice (title,content) values (#{title}, #{content})
+		]]>
+	</insert>
+ 
+ 
+ 
+ 
  	<!-- 공지사항 리스트 조회  -->
  	<select id="selectNoticeList" parameterType="Integer" resultType="Notice">
  	<![CDATA[
@@ -28,27 +38,22 @@
  	</select>
  	
  	<!-- 게시글 수정  -->
- 	<update id="updateNotice" parameterType="Notice" >
+ 	<update id="updateNotice" parameterType="Notice" useGeneratedKeys="true" keyProperty="no" >
  		update notice
  		<trim prefix="SET" suffixOverrides=",">
  		<if test="title != null">title=#{title},</if>
- 		<if test="content != content">title=#{content},</if>
+ 		<if test="content != content">content=#{content},</if>
  		</trim>
  		where no=#{no}
  	</update>
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+ 	
+ 	
+ 	<!-- 조회수 업데이트 -->
+ 	<update id="updateBoardViewCount" parameterType="Integer"  >
+ 	<![CDATA[
+ 		update notice set view = view+1 where no=#{no}
+ 	]]>
+ 	</update>
  
  
  

@@ -6,11 +6,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import bean.Notice;
+import service.NoticeService;
+import service.NoticeServiceImpl;
 
 /**
  * Servlet implementation class NoticeForm
  */
-@WebServlet("/noticeForm")
+@WebServlet("/noticeform")
 public class NoticeForm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -34,8 +39,26 @@ public class NoticeForm extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("utf-8");
+		
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		
+		Notice notice = new Notice();
+		notice.setTitle(title);
+		notice.setContent(content);
+		
+		
+		try {
+			NoticeService noticeService =  new NoticeServiceImpl();
+			noticeService.noticeWrite(notice);
+			response.sendRedirect("noticedetail?no="+notice.getNo()); //글 작성완료후 목록페이지말고 상세 페이지로 가기 
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("err", e.getMessage());
+			request.getRequestDispatcher("WEB-INF/views/notice/noticeError.jsp").forward(request, response);
+		}
 	}
 
 }

@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@include file="/WEB-INF/views/include/menubar.jsp"%>
+    
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 </head>
 <body>
 
@@ -30,7 +33,7 @@
 					</ul>
 				
 				<c:forEach var="list" items="${res.noticeList}">
-				<ul class="notice_ul" onclick="noticeDetail(${list.no})">
+				<ul class="notice_ul" onclick="noticedetail?no=(${list.no})">
 					<li class="no">${list.no }</li>	
 					<li class="title"><a href="noticedetail?no=${list.no}">${list.title }</a></li>					
 					<li class="date">${list.date }</li>
@@ -43,7 +46,7 @@
 
 			
 			<div class="noticesearch_area">
-				<form method="get">
+				<form action="./noticeform" method="post" id="noticeform">
 					<select id="searchCondition" name="searchCondition">
 						<option value="title" <c:if test="${ param.searchCondition == 'title'}">selected</c:if>>제목</option>
 						<option value="content" <c:if test="${ param.searchCondition == 'content'}">selected</c:if>>내용</option>
@@ -52,41 +55,44 @@
 						<input type="search" name="searchValue" value="${ param.searchValue }">
 					</span>
 					<button type="submit">검색하기</button>
-					<c:if test="${!empty userLogin}">
-						<button type="button" onclick="location.href='${contextPath}/notice/insert'">작성하기</button>
-					</c:if>
-				</form>
+					<%--
+					<button type="button" id="noticeformbtn" onclick="btnClick('noticeform')">작성하기</button>
+					 --%>
+					<a href="noticeform">작성하기</a>
+				</form> 
 			</div>
 			
-			
+			<%-- 검색바 --%>
+			<form action="./noticeform" method="post" id="noticeform">
+                <h5 class="drFP-searchBar">
+                	<select name="type" class="drFP-searchSelect">
+                		<option value="unselected" class="drFP-searchOption">선택</option>
+                		<option value="writer" class="drFP-searchOption">제목</option>
+                		<option value="all" class="drFP-searchOption">내용</option>
+                	</select>
+                	<input type="text" name="keyword" id="keyword" class="drFP-searchInput" value="${res.keyword }"/>
+					<input type="submit" class="drFP-searchInput drFP-searchSubmit" value="검색"/>
+                </h5>
+                <a href="noticeform">작성하기</a>
+                </form> 
+			</div>
+                
 			 <%-- 페이징 영역 --%>
-                <div class="drFP-paging">
+                <div class="drFP-paging ">
 			      <c:choose>
 			         <c:when test="${res.pageInfo.curPage>1 }">
-			            <a href="drfoolpoollist?page=${res.pageInfo.curPage-1}">&lt;</a>
+			            <a href="noticelist?page=${res.pageInfo.curPage-1}">&lt;</a>
 			         </c:when>
 			         <c:otherwise>
 			            <a>&lt;</a>
 			         </c:otherwise>
 			      </c:choose>
-			      <%--
-			      <c:forEach begin="${res.pageInfo.startPage}" end="${res.pageInfo.endPage}" var="i">
-			         <c:choose>
-			            <c:when test="${res.pageInfo.curPage==i}">
-			               <a href="drfoolpoollist?page=${i}" class="select" onclick="callBtn(${i});return ${res.keyword==null};">${i}</a>&nbsp;
-			               </c:when>
-			            <c:otherwise>
-			               <a href="drfoolpoollist?page=${i}" class="btn" onclick="callBtn(${i});return ${res.keyword==null};">${i}</a>&nbsp;
-			               </c:otherwise>
-			         </c:choose>
-			      </c:forEach>
-			      --%>
 			      <div class="drFP-pagingnumbs">
-			      	<a href="1page" id="drFP-pagingnumbs-selected">1</a><a href="2page">2</a><a>3</a><a>4</a><a>5</a><a>6</a><a>7</a><a>8</a><a>9</a><a>10</a>
+			      	<a href="1page" id="notice-pagingnumbs-selected">1</a><a href="2page">2</a>
 			      </div>
 			      <c:choose>
 			         <c:when test="${res.pageInfo.curPage<res.pageInfo.allPage }">
-			            <a href="drfoolpoollist?page=${res.pageInfo.curPage+1}">&gt;</a>
+			            <a href="noticelist?page=${res.pageInfo.curPage+1}">&gt;</a>
 			         </c:when>
 			         <c:otherwise>
 			            <a>&gt;</a>
@@ -97,28 +103,6 @@
 			
 		
 	</div>
-	
-	<script>
-	const notice_ul = document.querySelector('.notice_list');
-	notice_ul.addEventListener('mouseover', function(){
-		if(event.target.classList.contains("notice_ul")){
-			event.target.classList.add('onmouseover');
-		}else if(event.target.parentNode.classList.contains('notice_ul')){
-			event.target.parentNode.classList.add('onmouseover');
-		}
-	})
-	
-	notice_ul.addEventListener('mouseout', function(){
-		if(event.target.classList.contains("notice_ul")){
-			event.target.classList.remove('onmouseover');
-		}else if(event.target.parentNode.classList.contains('notice_ul')){
-			event.target.parentNode.classList.remove('onmouseover');
-		}
-	})
-	
-	function detailView(bid){
-		location.href = '${contextPath}/notice/detailView?bid=' + bid;
-	}
 	
 	
 	
