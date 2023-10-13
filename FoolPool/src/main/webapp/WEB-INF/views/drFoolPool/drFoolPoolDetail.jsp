@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/include/menubar.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%--JSTL포맷팅 라이브러리 --%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 
             <div class="drFP-Label">풀풀박사</div>
             
@@ -12,28 +16,28 @@
                 <%-- 게시글 상세 --%>
                 <div class="drFP-detailArea">
 			    	<div class="drFP-detail-1row">
-			    		<label>[해결완료]</label>
-			    		<label class="drFP-detailTitle">이 꽃 이름 알려주세요 궁금해서 미칠것 가타요</label>
+			    		<label>
+				    		<c:choose>
+						        <c:when test="${drFoolPool.isSolved}">[해결]</c:when>
+						        <c:otherwise>[미해결]</c:otherwise>
+						    </c:choose>
+			    		</label>
+			    		<label class="drFP-detailTitle">${drFoolPool.title}</label>
 			    	</div>
 			    	<div class="drFP-detail-2row">
-				    	<span>작성일: 2023년 10월 9일</span>
-				    	<span>조회수: 12</span>
-				    	<span class="dfFP-detail-writer">작성자: 김성탄탄탄탄탄</span>
+						<%--
+				    	<span>${drFoolPool.date}</span>
+				    	 --%>
+				    	 <%-- DATETIME컬럼과 매핑된 java.util.Date필드를 년-월-일로 포맷팅하여 출력 --%>
+				    	<fmt:formatDate value="${drFoolPool.date}" pattern="yyyy-MM-dd" var="formattedDate" />
+						<span>${formattedDate}</span>
+				    	<span>조회수: ${drFoolPool.view}</span>
+				    	<span class="dfFP-detail-writer">작성자: ${drFoolPool.writerNickname}</span>
 			    	</div>
-			    	
-			    	<%-- #1 이미지 크기를 통일 or max크기(영역)만 지정 --%>
-			    	<%-- #2 textarea 입력양에 따라 자동으로 크기 변경되도록 JS함수이용 --%>
 			    	<div class="drFP-detail-3row">
-			    		<img alt="풀풀박사게시글이미지" src="image?file=${drfoolpool.filename}">
+			    		<img alt="풀풀박사게시글이미지" src="image?file=${drFoolPool.fileName}">
 			    	</div>
-			    	<div class="drFP-detail-4row">
-			    		1내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용
-			    		내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력
-			    		내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력
-			    		내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력
-			    		내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력
-			    		내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력내용입력
-			    	</div>
+			    	<div class="drFP-detail-4row">${drFoolPool.content}</div>
 			    	<div class="drFP-detail-5row">
 			    		<a href="editDrFoolPool"><button>수정</button></a>
 			    		<button>삭제</button>

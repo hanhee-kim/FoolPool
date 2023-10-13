@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -71,6 +72,7 @@ public class DrFoolPoolForm extends HttpServlet {
 		String fileName = request.getParameter("file");
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
+		System.out.println("fileName: " + fileName + ", title: " + title + ", content: " + content);
 		
 		// 파일 업로드 - 파일 업로드 경로를 절대경로로 지정할것 cf. DB에는 파일명만 저장한다
 		String uploadPath = "C:\\upload\\" + fileName; 

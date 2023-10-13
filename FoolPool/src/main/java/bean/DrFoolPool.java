@@ -1,6 +1,9 @@
 package bean;
 
-import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+//import java.sql.Date;
+import java.util.Date;
 
 public class DrFoolPool {
 	
@@ -8,28 +11,13 @@ public class DrFoolPool {
 	// 필드명 카멜케이스로 작성 후 매퍼xml에서 resultMap사용할것
 	private Integer no;
 	private String title;
-	private Date date;
+	private Date date; // java.util.Date
 	private Integer view;
 	private String content;
 	private String fileName;
 	private Boolean isSolved;
 	private String writerId;
 	private String writerNickname;
-	
-	// 생성자
-//	public DrFoolPool() {}
-//	public DrFoolPool(Integer no, String title, Date date, Integer view, String content, String fileName,
-//			Boolean isSolved, String writerId, String writerNickname) {
-//		this.no = no;
-//		this.title = title;
-//		this.date = date;
-//		this.view = view;
-//		this.content = content;
-//		this.fileName = fileName;
-//		this.isSolved = isSolved;
-//		this.writerId = writerId;
-//		this.writerNickname = writerNickname;
-//	}
 	
 	// getter, setter
 	public Integer getNo() {
@@ -87,12 +75,32 @@ public class DrFoolPool {
 		this.writerNickname = writerNickname;
 	}
 	
-	
-	
+	// 메서드
 	@Override
 	public String toString() {
-		return String.format("글번호:%d, 글제목:%s, 조회수:%d, 파일명: %s, 작성자아이디: %s", no, title, view, fileName, writerId);
+		return String.format("글번호:%d, 글제목:%s, 작성일: %s, 조회수:%d, 내용:%s, 파일명: %s, 작성자아이디: %s, 해결여부: %s", no, title, date, view, content, fileName, writerId, isSolved==false?"미해결":"해결");
 	}
+	
+	
+/*
+	// Date를 원하는대로 포맷팅된 문자열로 변환하는 메서드
+	public Date dateToFormattedString() {
+//		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String strDate = simpleDateFormat.format(date);
+//		return strDate;
+		
+		Date formattedDate = null;
+		try {
+			formattedDate = simpleDateFormat.parse(strDate);
+		} catch (ParseException e) {
+			System.out.println("----DTO의 메서드 에러: String->Date변환 오류");
+			e.printStackTrace();
+		}
+		return formattedDate;
+	}
+*/	
+	
 	
 
 }

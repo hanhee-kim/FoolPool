@@ -41,12 +41,11 @@ public class DrFoolPoolDetail extends HttpServlet {
 		request.setAttribute("jspName", "drFoolPool");
 		
 		Integer no = Integer.parseInt(request.getParameter("no"));
-		
+		 
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
 			DrFoolPool drFoolPool = drFoolPoolService.drFoolPoolDetail(no);
-			
-			System.out.println("DB에서 조회한 drFoolPool: " + drFoolPool.toString());
+			System.out.println(drFoolPool.toString());
 			
 			request.setAttribute("drFoolPool", drFoolPool);
 			
@@ -59,18 +58,13 @@ public class DrFoolPoolDetail extends HttpServlet {
 //				request.setAttribute("select", isLike);
 //			}
 			
-			response.sendRedirect("WEB-INF/views/drFoolPool/drFoolPoolDetail?no=" + drFoolPool.getNo());
-			
-			// #################################################### 디테일jsp에 데이터 뿌려주기
+			request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolDetail.jsp").forward(request, response);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", e.getMessage());
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
-		
-		
-//		request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolDetail.jsp").forward(request, response);
 	}
 
 }
