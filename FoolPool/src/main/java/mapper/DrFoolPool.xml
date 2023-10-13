@@ -2,6 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="mapper.drfoolpool">
+ 
+ 
+ 
  	<!-- DB컬럼명과 DTO필드명 매핑 -->
  	<resultMap type="DrFoolPool" id="DrFoolPoolResultMap">
 		<result property="no" column="NO"/>
@@ -43,9 +46,24 @@
 			(#{title}, CURDATE(), #{content}, #{fileName}, #{writerId}, #{writerNickname});
  		]]>
 	</insert>
+	
+	
+ 	<!-- 3. 게시글 상세 -->
+ 	<!-- 
+	<select id="selectDrFoolPool" parameterType="Integer" resultType="DrFoolPool" resultMap="DrFoolPoolResultMap">
+ 		<![CDATA[
+ 			select * from drfoolpool where no=#{no}
+ 		]]>
+ 	</select>
+	<update id="updateDrFoolPoolViewCnt" parameterType="Integer">
+ 		<![CDATA[
+ 			update drfoolpool set view=view+1 where no=#{no}
+ 		]]>
+ 	</update>
+
+ -->
 
 
- 
  
  	
  </mapper>

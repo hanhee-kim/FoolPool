@@ -11,5 +11,8 @@ public interface DrFoolPoolService {
 	
 	// 2. 게시글 작성
 	void drFoolPoolWrite(DrFoolPool drFoolPool) throws Exception;
+	
+	// 3. 게시글 상세
+	DrFoolPool drFoolPoolDetail(Integer no) throws Exception;
 
 }

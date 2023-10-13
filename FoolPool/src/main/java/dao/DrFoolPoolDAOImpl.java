@@ -29,4 +29,16 @@ public class DrFoolPoolDAOImpl implements DrFoolPoolDAO {
 		sqlSession.commit();
 	}
 
+	// 3-1. 게시글 상세
+	@Override
+	public DrFoolPool selectDrFoolPool(Integer no) throws Exception {
+		return sqlSession.selectOne("mapper.drfoolpool.selectDrFoolPool", no);
+	}
+	// 3-2. 조회수 증가
+	@Override
+	public void updateDrFoolPoolViewCnt(Integer no) throws Exception {
+		sqlSession.update("mapper.drfoolpool.updateDrFoolPoolViewCnt", no);
+		sqlSession.commit();
+	}
+
 }

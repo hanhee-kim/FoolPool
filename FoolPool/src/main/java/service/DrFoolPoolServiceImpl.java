@@ -64,6 +64,14 @@ public class DrFoolPoolServiceImpl implements DrFoolPoolService {
 	public void drFoolPoolWrite(DrFoolPool drFoolPool) throws Exception {
 		drFoolPoolDAO.insertDrFoolPool(drFoolPool);
 	}
+
+
+	// 3. 게시글 상세
+	@Override
+	public DrFoolPool drFoolPoolDetail(Integer no) throws Exception {
+		drFoolPoolDAO.updateDrFoolPoolViewCnt(no); // 조회수 증가
+		return drFoolPoolDAO.selectDrFoolPool(no);
+	}
 	
 	
 	
