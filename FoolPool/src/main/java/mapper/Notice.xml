@@ -26,6 +26,16 @@
  			select * from notice where no=#{no}
  		]]>
  	</select>
+ 	
+ 	<!-- 게시글 수정  -->
+ 	<update id="updateNotice" parameterType="Notice" >
+ 		update notice
+ 		<trim prefix="SET" suffixOverrides=",">
+ 		<if test="title != null">title=#{title},</if>
+ 		<if test="content != content">title=#{content},</if>
+ 		</trim>
+ 		where no=#{no}
+ 	</update>
  
  
  

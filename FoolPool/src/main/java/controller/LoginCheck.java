@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,48 +12,37 @@ import service.MemberService;
 import service.MemberServiceImpl;
 
 /**
- * Servlet implementation class Join
+ * Servlet implementation class LoginCheck
  */
-@WebServlet("/join")
-public class Join extends HttpServlet {
+@WebServlet("/loginCheck")
+public class LoginCheck extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Join() {
+    public LoginCheck() {
         super();
         // TODO Auto-generated constructor stub
     }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		request.getRequestDispatcher("WEB-INF/views/login/join.jsp").forward(request, response);
-	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		
-		String id = request.getParameter("joinMemberId");
-		String nickname = request.getParameter("joinMemberNickname");
-		String password = request.getParameter("joinMemberPassword");
-		Member member = new Member(id, nickname, password);
-		System.out.println(id);
+		String id = request.getParameter("id");
+		String password = request.getParameter("password");
+		System.out.println("sevlet오는 id : "+id+"pw : "+password);
 		MemberService m_service = new MemberServiceImpl();
 		try {
-			m_service.joinMember(member);
-			request.getRequestDispatcher("WEB-INF/views/login/login.jsp").forward(request, response);
+			String res = m_service.loginCheck(id, password);
+			System.out.println(res);
+			response.getWriter().print(res);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 
 }

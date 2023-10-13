@@ -16,7 +16,7 @@ public class NoticeServiceImpl implements NoticeService {
 		noticeDao = new NoticeDAOImpl();
 	}
 
-	@Override
+	@Override //공지사항 리스트
 	public Map<String, Object> noticeListByPage(Integer page) throws Exception { //인자로 받은것이 현재 페이지 
 		
 		PageInfo pageInfo = new PageInfo();
@@ -49,11 +49,17 @@ public class NoticeServiceImpl implements NoticeService {
 		return map;
 	}
 
-	@Override
+	@Override //상세 페이지 
 	public Notice noticeDetail(Integer num) throws Exception {
 		//noticeDao.updateNoticeViewCount(num); 조회수 올라가는거
 		return noticeDao.selectNotice(num);
 		
+		
+	}
+
+	@Override //공지사항 수정
+	public void noticeEdit(Notice notice) throws Exception {
+		noticeDao.updateNotice(notice);
 		
 	}
 

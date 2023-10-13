@@ -39,6 +39,7 @@ public class DetailFlower extends HttpServlet {
 		try {
 			flower = f_service.searchFlowerByNo(f_num);
 			request.setAttribute("flower", flower);
+			request.setAttribute("jspName", "searchFlower");
 			request.getRequestDispatcher("WEB-INF/views/searchFlower/detailflower.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();

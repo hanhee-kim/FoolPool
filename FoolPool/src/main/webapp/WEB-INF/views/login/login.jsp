@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/include/menubar.jsp" %>
             <div class="loginFormBox">
-                <form action="login" method="post" class="loginForm">
+                <form action="login" method="post" class="loginForm" id="loginForm">
                     <div class="loginTitle">로그인</div>
                     <div class="loginLabelText">
                         <div class="loginLabel">아이디</div>

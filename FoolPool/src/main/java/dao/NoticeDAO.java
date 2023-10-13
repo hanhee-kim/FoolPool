@@ -14,4 +14,7 @@ public interface NoticeDAO {
 	//게시글 상세 
 	Notice selectNotice(Integer num)throws Exception;
 	
+	//게시글 수정 
+	void updateNotice(Notice notice)throws Exception;
+	
 }

@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class SearchFlower
+ * Servlet implementation class Logout
  */
-@WebServlet("/searchflower")
-public class SearchFlower extends HttpServlet {
+@WebServlet("/logout")
+public class Logout extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchFlower() {
+    public Logout() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,17 +26,10 @@ public class SearchFlower extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		request.setAttribute("jspName", "searchFlower");
-		request.getRequestDispatcher("WEB-INF/views/searchFlower/searchflower.jsp").forward(request, response);
+		request.getSession().removeAttribute("member");
+		response.sendRedirect("main");
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+
 
 }
