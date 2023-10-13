@@ -55,7 +55,7 @@ System.out.println("리스트의 0번째 게시글 번호: " + list.get(0).getNo
 			    </div> <%-- drFP-CardGrid --%>
                 
                 
-                <%-- 검색바 --%>.
+                <%-- 검색바 --%>
                 <h5 class="drFP-searchBar">
                 	<select name="type">
                 		<option value="unselected">선택</option>
