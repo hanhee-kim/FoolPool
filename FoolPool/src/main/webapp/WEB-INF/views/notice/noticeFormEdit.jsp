@@ -9,14 +9,32 @@
 	<div class="notice-TopBorder"></div>
 	
 	<div class="noticeWrapper">
-	<h2 class="noticetitle">제목</h2>
-	<input name="noticetitlewrite" type="text" id="noticetitlewrite",
-        maxlength="50" ,required placeholder="your title*" />
-	<h2 class="titlewrite">작성 내용</h2>
-	<textarea name="revised" id="revised" placeholder="your text*" required></textarea>
-	<button class="w-btn-green" type="button">수정완료</button>
-	</div>
+	<article class="noticemove-up">
 	
+	<!-- form 태그 추가하기 -->
+	<from action="noticeformedit" method="post">
+	
+	<table class="noticeDetailView">
+            <tr>
+               <td class="td_left"><label for="subject">제목</label></td>
+               <td class="td_right"><input name="subject" type="text" id="title"   value="${notice.title }"></td>
+            </tr>
+            <tr>
+               <td class="td_left"><label for="date">등록일</label></td>
+               <td class="td_right"><input type="text" name="date" id="date" readonly="readonly" value="${notice.date }" ></td>
+            </tr>
+	<tr>
+               <td class="td_left"><label for="content">내용</label></td>
+               <td><textarea id="content" name="content" cols="40" rows="15" >${notice.content }</textarea></td>
+            </tr>
+
+         </table>
+	
+	
+	<a href="notice"><button class="w-btn-green" type="button">수정완료</button></a>
+	</article>
+	</div>
+	</form>
 
 
 
