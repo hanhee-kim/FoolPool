@@ -102,27 +102,31 @@
     font-size:18px;
 }
 
-.plBoardCardsection {
-	width: 900px;
+.plCardGrid {
+	width: 800px;
 	height: 255px;
-	display: flex;
-	flex-direction: column;
-	padding: 10px 10px;
-	position: inherit;
 	margin: 0 auto;
+	display: grid;
+	grid-template-rows: repeat(2, 1fr); /* 2행 */
+    grid-template-columns: repeat(2, 1fr); /* 2열 */
+    gap: 20px; /* 그리드 아이템 간 간격 */
+    justify-items: center; /* 그리드 아이템 가로 중앙 정렬 */
+    align-items: center; /* 그리드 아이템 세로 중앙 정렬 */
+    padding: 10px 10px;
+/* 	flex-direction: column;
+	
+	position: inherit; */
 }
 
-.plBoardCardsection::-webkit-scrollbar {
+.plCardGrid::-webkit-scrollbar {
 	display: none; /* 크롬, 사파리, 오페라, 엣지 */
 }
 
-.plBoardCardsection_line {
-	display: flex;
-	justify-content: center;
-	gap: 150px;
+.plCardGrid a {
+	text-decoration: none;
 }
 
-.plBoardCard {
+.plCard {
 	width: 250px;
 	height: 250px;
 	position: relative;
@@ -131,13 +135,13 @@
 	cursor: pointer;
 }
 
-.plBoardCard:hover>.plFront {
+.plCard:hover>.plFront {
 	z-index: 1;
 	opacity: 0;
 	transform: rotateY(180deg);
 }
 
-.plBoardCard:hover>.plBack {
+.plCard:hover>.plBack {
 	z-index: 2;
 	opacity: 1;
 	transform: rotateY(0)
@@ -211,13 +215,11 @@
 }
 
 .plSearchOptionDiv {
-	margin: 20px 0;
-	width: 100%;
-	display: flex;
-	gap: 15px;
-	justify-content: center;
-	position: relative;
-    top: -18px;
+    width: 1200px;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 800px;
 }
 
 .plSearchType {
@@ -246,8 +248,10 @@
 }
 
 #plSearchText {
+	width: 100px;
 	height: 35px;
 	border-radius: 12px;
+	border: 1px solid;
 }
 
 .plSearchBtn {

@@ -26,10 +26,9 @@ public class PoolentarierDetail extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		request.setCharacterEncoding("utf-8");
 		
-		request.setAttribute("jspName", "poolentarierDetail.jsp");
+		request.setAttribute("jspName", "poolentarier");
 		
 		request.getRequestDispatcher("WEB-INF/views/poolentarier/poolentarierDetail.jsp").forward(request, response);
 	}

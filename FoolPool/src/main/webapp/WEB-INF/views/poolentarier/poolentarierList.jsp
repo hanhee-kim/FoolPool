@@ -22,62 +22,23 @@
 							</div>
 						</div>
 	            	</div>
-	
-					<div class="plBoardCardsection">
-						<div class="plBoardCardsection_line">
-							<a href="poolentarierDetail?num=${poolentarier.num }">
-								<div class="plBoardCard">
-									<img alt="ㅋㅋ" class="plFace plFront" src="static/img/flower.jpeg">
+				    
+	            	<%-- 카드그리드 2x2 --%>
+	            	<div class="plCardGrid">
+	            		<c:forEach items="${res.poolentarierList }" var="poolentarier">
+		            		<a href="poolentarierDetail?num=${poolentarier.no}">
+		            			<div class="plCard">
+		            				<img alt="ㅋㅋ" class="plFace plFront" src="static/img/flower.jpeg">
 									<div class="plFace plBack">
-										<h1>제목</h1>
-										<br>
-										<h3>식물 이름</h3>
-										<p>내용</p>
+										<h1>${poolentarier.title}</h1><br>
+										<h3>${poolentarier.plantsName}</h3>
+										<p>${poolentarier.content}</p>
 									</div>
-								</div>
-							</a>
-							<a href="poolentarierDetail?num=${poolentarier.num }">
-								<div class="plBoardCard">
-									<img alt="ㅋㅋ" class="plFace plFront" src="static/img/flower.jpeg">
-									<div class="plFace plBack">
-										<h1>제목</h1>
-										<br>
-										<h3>식물 이름</h3>
-										<p>내용</p>
-									</div>
-								</div>
-							</a>
-						</div>
-					</div>
-				
-					<div class="plBoardCardsection">
-						<div class="plBoardCardsection_line">
-							<a href="poolentarierDetail?num=${poolentarier.num }">
-								<div class="plBoardCard">
-									<img alt="ㅋㅋ" class="plFace plFront" src="static/img/flower.jpeg">
-									<div class="plFace plBack">
-										<h1>제목</h1>
-										<br>
-										<h3>식물 이름</h3>
-										<p>내용</p>
-									</div>
-								</div>
-							</a>
-							
-							<a href="poolentarierDetail?num=${poolentarier.num }">
-								<div class="plBoardCard">
-									<img alt="ㅋㅋ" class="plFace plFront" src="static/img/flower.jpeg">
-									<div class="plFace plBack">
-										<h1>제목</h1>
-										<br>
-										<h3>식물 이름</h3>
-										<p>내용</p>
-									</div>
-								</div>
-							</a>
-						</div>
-					</div>
-					
+		            			</div>
+		            		</a>
+	            		</c:forEach>
+	            	</div>
+
 					<div class=plSearchOptionDiv>
 						<form action="./boardsearch" method="post" id="plSearchform">
 							<input type="hidden" name="page" id="plPage" value="1">
@@ -89,7 +50,7 @@
 									<option value="keyword" ${res.type eq 'keyword'? 'selected':''}>키워드</option>
 									<option value="plant" ${res.type eq 'plant'? 'selected':''}>식물명</option>
 								</select>
-								<input type="text" name="searchText" id="plsearchText" value="${res.searchText}" />
+								<input type="text" name="searchText" id="plSearchText" value="${res.searchText}" />
 								<button class="plSearchBtn" type="submit">검색</button>
 							</h5>
 						</form>

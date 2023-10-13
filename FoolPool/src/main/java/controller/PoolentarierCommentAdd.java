@@ -28,9 +28,9 @@ public class PoolentarierCommentAdd extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
-		request.setAttribute("jspName", "poolentarierDetail.jsp");
+		request.setAttribute("jspName", "poolentarier");
 		
-		request.getRequestDispatcher("poolentarierDetail.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/views/poolentarier/poolentarierDetail").forward(request, response);
 	}
 
 }

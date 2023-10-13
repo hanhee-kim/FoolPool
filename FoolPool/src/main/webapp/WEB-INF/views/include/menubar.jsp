@@ -46,7 +46,7 @@
             <div class="searchFlowerDiv menu" onclick="btnClick('searchFlower')">
                 <div class="menuContent">꽃 검색</div>
             </div>
-            <div class="poolentarierListDiv menu" onclick="btnClick('poolentarierList')">
+            <div class="poolentarierListDiv menu" onclick="btnClick('poolentarier')">
                 <div class="menuContent">풀랜테리어</div>
             </div>
             <div class="drFoolPoolDiv menu" onclick="btnClick('drFoolPool')">
@@ -118,7 +118,7 @@
                 case 'searchFlower':
                     location.href = 'searchflower'
                     break;
-                case 'poolentarierList':
+                case 'poolentarier':
                     location.href = 'goPoolentarier'
                     break;
                 case 'drFoolPool':

@@ -28,7 +28,7 @@ public class PoolentarierEdit extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
-		request.setAttribute("jspName", "poolentarierEdit.jsp");
+		request.setAttribute("jspName", "poolentarier");
 		
 		request.getRequestDispatcher("WEB-INF/views/poolentarier/poolentarierEdit.jsp").forward(request, response);
 	}
