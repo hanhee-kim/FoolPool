@@ -1,16 +1,17 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import bean.DrFoolPool;
-import bean.Member;
+import bean.DrFoolPoolComment;
 import service.DrFoolPoolService;
 import service.DrFoolPoolServiceImpl;
 
@@ -45,9 +46,18 @@ public class DrFoolPoolDetail extends HttpServlet {
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
 			DrFoolPool drFoolPool = drFoolPoolService.drFoolPoolDetail(no);
+			List<DrFoolPoolComment> commentList = drFoolPoolService.drFoolPoolCommentList(no); 
+			
 			System.out.println(drFoolPool.toString());
+			System.out.println("댓글수: " + commentList.size() + "\n----댓글 목록 출력----");
+			Iterator<DrFoolPoolComment> iter = commentList.iterator();
+			while(iter.hasNext()){
+				System.out.println(iter.next().toString());
+			}
 			
 			request.setAttribute("drFoolPool", drFoolPool);
+			request.setAttribute("commentList", commentList);
+			request.setAttribute("commentCnt", commentList.size());
 			
 			// # 로그인처리 후 수정
 			// 현재로그인된 사용자와 해당게시글작성자가 일치하는지 여부를 활용하여 게시글수정/삭제, 댓글채택, 댓글삭제 코드 분기처리

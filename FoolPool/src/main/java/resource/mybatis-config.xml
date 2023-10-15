@@ -11,6 +11,7 @@
 		<!-- 특정 파일에 대한 임포트 역할 -->
 		<typeAlias type="bean.Flower" alias="Flower" />
 		<typeAlias type="bean.DrFoolPool" alias="DrFoolPool" />
+		<typeAlias type="bean.DrFoolPoolComment" alias="DrFoolPoolComment" />
 		<typeAlias type="bean.Notice" alias="Notice" />
 		<typeAlias type="bean.Member" alias="Member" />
 		<typeAlias type="bean.Poolentarier" alias="Poolentarier" />

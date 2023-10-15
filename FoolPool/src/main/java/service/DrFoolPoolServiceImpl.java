@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import bean.DrFoolPool;
+import bean.DrFoolPoolComment;
 import dao.DrFoolPoolDAO;
 import dao.DrFoolPoolDAOImpl;
 import util.PageInfo;
@@ -19,7 +20,6 @@ public class DrFoolPoolServiceImpl implements DrFoolPoolService {
 	
 
 	// 1. 게시글 목록
-	// 1-2. 게시글 목록
 	@Override
 	public Map<String, Object> drFoolPoolListByPage(int curPage, String filter, String sOption, String sValue)
 			throws Exception {
@@ -94,6 +94,22 @@ public class DrFoolPoolServiceImpl implements DrFoolPoolService {
 	@Override
 	public void drFoolPoolRemove(Integer no) throws Exception {
 		drFoolPoolDAO.deleteDrFoolPool(no);
+	}
+
+
+	// 5. 댓글 목록
+	@Override
+	public List<DrFoolPoolComment> drFoolPoolCommentList(Integer postNo) throws Exception {
+		List<DrFoolPoolComment> drFoolPoolCommentList = drFoolPoolDAO.selectDrFoolPoolCommentList(postNo);
+		return drFoolPoolCommentList;
+	}
+
+	// 6. 댓글 작성
+
+	// 7. 댓글 삭제
+	@Override
+	public void drFoolPoolCommentRemove(Integer commentNo) throws Exception {
+		drFoolPoolDAO.deleteDrFoolPoolComment(commentNo);
 	}
 
 

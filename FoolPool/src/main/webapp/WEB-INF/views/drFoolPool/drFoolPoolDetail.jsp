@@ -45,60 +45,23 @@
 			    	</div>
 			    	
 			    	<div class="drFP-commentArea">
-			    		<h4>댓글 [5]</h4>
-			    		<table>
-			    			<tr>
-			    				<td>닉네임1</td>
-			    				<td>댓글내용1댓글내용1댓글내용1댓글내용1댓글내용1</td>
-			    				<%-- 글작성자인 경우 채택버튼이(+자기댓글아닐때), 댓글작성자인경우 삭제버튼이 표시됨 즉, 동시에 두 버튼이 보일 일은 없음 --%>
-			    				<td>
-			    					<%--
-			    					<button class="drFP-commentPickBtn">채택하기</button>
-			    					 --%>
-			    					<button class="drFP-commentDelBtn">×</button>
-			    				</td>
-			    			</tr>
-			    			<tr>
-			    				<td>닉네임2</td>
-			    				<td>댓글내용2댓글내용2댓글내용2</td>
-			    				<td>
-			    					<%--
-			    					<button class="drFP-commentPickBtn">채택하기</button>
-			    					 --%>
-			    					<button class="drFP-commentDelBtn">×</button>
-			    				</td>
-			    			</tr>
-			    			<tr>
-			    				<td>닉네임3</td>
-			    				<td>줄바꿈되는긴댓글내용3줄바꿈되는긴댓글내용3줄바꿈되는긴댓글내용3줄바꿈되는긴댓글내용3줄바꿈되는긴댓글내용3줄바꿈되는긴댓글내용3줄바꿈되는긴댓글내용3줄바꿈되는긴댓글내용3줄바꿈되는긴댓글내용3줄바꿈되는긴댓글내용3</td>
-			    				<td>
-			    					<button class="drFP-commentPickBtn">채택하기</button>
-			    					<%--
-			    					<button class="drFP-commentDelBtn">×</button>
-			    					 --%>
-			    				</td>
-			    			</tr>
-			    			<tr>
-			    				<td>닉네임4</td>
-			    				<td>댓글내용4댓글내용4댓글내용4댓글내용4댓글내용4</td>
-			    				<td>
-			    					<button class="drFP-commentPickBtn">채택하기</button>
-			    					<%--
-			    					<button class="drFP-commentDelBtn">×</button>
-			    					 --%>
-			    				</td>
-			    			</tr>
-			    			<tr>
-			    				<td>닉네임5</td>
-			    				<td>댓글내용5댓글내용5댓글내용5댓글내용5댓글내용5</td>
-			    				<td>
-			    					<button class="drFP-commentPickBtn">채택하기</button>
-			    					<%--
-			    					<button class="drFP-commentDelBtn">×</button>
-			    					 --%>
-			    				</td>
-			    			</tr>
-			    		</table>
+			    		<h4>댓글 [${commentCnt}]</h4>
+			    		<c:forEach items="${commentList}" var="comment">
+				    		<table>
+				    			<tr>
+				    				<fmt:formatDate value="${comment.commentDate}" pattern="yyyy.MM.dd. HH:mm" var="formattedCommentDate" />
+				    				<td>${comment.writerNickname}</td>
+				    				<td>${comment.commentContent}</br><small>${formattedCommentDate}</small></td>
+				    				<%-- 글작성자인 경우 채택버튼이(+자기댓글아닐때), 댓글작성자인경우 삭제버튼이 표시됨 즉, 동시에 두 버튼이 보일 일은 없음 --%>
+				    				<td>
+				    					<%--
+				    					<button class="drFP-commentPickBtn">채택하기</button>
+				    					 --%>
+				    					<button class="drFP-commentDelBtn" onclick="dfFPCommdelete(${comment.commentNo}, ${comment.postNo})">×</button>
+				    				</td>
+				    			</tr>
+				    		</table>
+			    		</c:forEach>
 			    	</div>
 			    	
 			    	

@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 
 import bean.DrFoolPool;
+import bean.DrFoolPoolComment;
 import util.MybatisSqlSessionFactory;
 
 public class DrFoolPoolDAOImpl implements DrFoolPoolDAO {
@@ -48,6 +49,25 @@ public class DrFoolPoolDAOImpl implements DrFoolPoolDAO {
 		sqlSession.update("mapper.drfoolpool.deleteDrFoolPool", no);
 		sqlSession.commit();
 	}
+	
+	// 5. 댓글 목록
+	@Override
+	public List<DrFoolPoolComment> selectDrFoolPoolCommentList(Integer postNo) throws Exception {
+		List<DrFoolPoolComment> commlist = sqlSession.selectList("mapper.drfoolpool.selectDrFoolPoolComment", postNo);
+		return commlist;
+	}
+	
+	// 6. 댓글 작성
+
+	// 7. 댓글 삭제
+	@Override
+	public void deleteDrFoolPoolComment(Integer commentNo) throws Exception {
+		sqlSession.update("mapper.drfoolpool.deleteDrFoolPoolComment", commentNo);
+		sqlSession.commit();
+	}
+	
+	
+	
 	
 
 }

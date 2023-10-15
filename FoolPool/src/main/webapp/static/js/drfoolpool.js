@@ -14,6 +14,13 @@ function dfFPdelete(no) {
 	 }
 }
 
+/* 풀풀박사 댓글 삭제 버튼 */
+function dfFPCommdelete(commentNo, postNo) {
+	console.log("dfFPCommdelete 호출...");
+	if (confirm("정말 삭제하시겠습니까?") == true){ 
+		window.location.href = "deldrfoolpoolcomment?commentNo=" + commentNo + "&postNo=" + postNo;
+	 }
+}
 
 
 /* 게시글 목록의 검색form의 hidden input에 필터값 저장하여 제출하기 위함 */

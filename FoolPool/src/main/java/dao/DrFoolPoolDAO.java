@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import bean.DrFoolPool;
+import bean.DrFoolPoolComment;
 
 public interface DrFoolPoolDAO {
 	
@@ -21,5 +22,15 @@ public interface DrFoolPoolDAO {
 	
 	// 4. 게시글 삭제
 	void deleteDrFoolPool(Integer no) throws Exception;
+	
+	// 5. 댓글 목록
+	List<DrFoolPoolComment> selectDrFoolPoolCommentList(Integer postNo) throws Exception;
+	
+	// 6. 댓글 작성
+
+	// 7. 댓글 삭제
+	void deleteDrFoolPoolComment(Integer commentNo) throws Exception;
+	
+	
 	
 }
