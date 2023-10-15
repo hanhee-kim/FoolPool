@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="${path }/static/css/notice.css" />
     <link rel="stylesheet" href="${path }/static/css/poolentarierList.css" />
 	<link rel="stylesheet" href="${path }/static/css/poolentarierForm.css" />
+	<link rel="stylesheet" href="${path }/static/css/poolentarierEdit.css" />
+	<link rel="stylesheet" href="${path }/static/css/poolentarierDetail.css" />
     <link rel="icon" href="static/img/icon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
@@ -49,7 +51,7 @@
             <div class="searchFlowerDiv menu" onclick="btnClick('searchFlower')">
                 <div class="menuContent">꽃 검색</div>
             </div>
-            <div class="poolentarierListDiv menu" onclick="btnClick('poolentarierList')">
+            <div class="poolentarierDiv menu" onclick="btnClick('poolentarier')">
                 <div class="menuContent">풀랜테리어</div>
             </div>
             <div class="drFoolPoolDiv menu" onclick="btnClick('drFoolPool')">
@@ -91,9 +93,9 @@
                     $(".searchFlowerDiv > div").addClass("currentPageTxt");
                     break;
 
-                case 'poolentarierList':
-                    $(".poolentarierListDiv").addClass("currentPage").removeClass("menu");
-                    $(".poolentarierListDiv > div").addClass("currentPageTxt");
+                case 'poolentarier':
+                    $(".poolentarierDiv").addClass("currentPage").removeClass("menu");
+                    $(".poolentarierDiv > div").addClass("currentPageTxt");
                     break;
 
                 case 'drFoolPool':
@@ -115,7 +117,7 @@
                 case 'searchFlower':
                     location.href = 'searchflower'
                     break;
-                case 'poolentarierList':
+                case 'poolentarier':
                     location.href = 'goPoolentarier'
                     break;
                 case 'drFoolPool':

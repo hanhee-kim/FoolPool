@@ -40,7 +40,7 @@
 	            	</div>
 
 					<div class=plSearchOptionDiv>
-						<form action="./boardsearch" method="post" id="plSearchform">
+						<form action="./poolentarierSearch" method="post" id="plSearchform">
 							<input type="hidden" name="page" id="plPage" value="1">
 							<h5>
 								<select class="plSearchType" name="type">
@@ -62,7 +62,7 @@
 				<div id="plPagingArea">
 					<c:choose>
 						<c:when test="${res.pageInfo.curPage>1 }">
-							<a href="boardlist?page=${res.pageInfo.curPage-1}">&lt;</a>
+							<a href="goPoolentarier?page=${res.pageInfo.curPage-1}">&lt;</a>
 						</c:when>
 						<c:otherwise>
 			               <a>&lt;</a>
@@ -75,17 +75,17 @@
 						<c:choose>
 							<c:when test="${res.pageInfo.curPage==i}">
 								<%-- callBtn에 대한 return 처리를 callBtn에서 하지 않고, 호출한 이곳에서 return --%>
-								<a href="boardlist?page=${i}" onclick="plCallBtn(${i});return ${res.searchText==null};">${i}</a>&nbsp;
+								<a href="goPoolentarier?page=${i}" onclick="plCallBtn(${i});return ${res.searchText==null};">${i}</a>&nbsp;
 				         	</c:when>
 							<c:otherwise>
-								<a href="boardlist?page=${i}" onclick="plCallBtn(${i});return ${res.searchText==null};">${i}</a>&nbsp;
+								<a href="goPoolentarier?page=${i}" onclick="plCallBtn(${i});return ${res.searchText==null};">${i}</a>&nbsp;
 				         	</c:otherwise>
 						</c:choose>
 					</c:forEach>
 
 					<c:choose>
 						<c:when test="${res.pageInfo.curPage<res.pageInfo.allPage }">
-							<a href="boardlist?page=${res.pageInfo.curPage+1}">&gt;</a>
+							<a href="goPoolentarier?page=${res.pageInfo.curPage+1}">&gt;</a>
 						</c:when>
 						<c:otherwise>
 			               <a>&gt;</a>

@@ -9,30 +9,29 @@
 				<%-- 게시글 상세 --%>
 				<div class="pdDetailArea">
 					<div class="pdDetail-1row">
-						<label class="plDetailTitle">식물 인테리어 100일차</label>
+						<label class="plDetailTitle">${poolentarier.title}</label>
 					</div>
 					<div class="pdDetail-2row">
-						<span>작성일: 2023년 10월 9일</span> <span>조회수: 12</span> <span
-							class="pdDetail-writer">작성자: 놈친미</span>
+						<span>작성일: ${poolentarier.date}</span>
+						<span>조회수: ${poolentarier.view}</span>
+						<span class="pdDetail-writer">작성자: ${poolentarier.writerNickname}</span>
 					</div>
 			
 					<%-- #1 이미지 크기를 통일 or max크기(영역)만 지정 --%>
 					<%-- #2 textarea 입력양에 따라 자동으로 크기 변경되도록 JS함수이용 --%>
 					<div class="pdDetail-3row">
-						<img alt="풀랜테리어 게시글" src="image?file=${drfoolpool.filename}">
+						<img alt="풀랜테리어 사진" src="image?file=${poolentarier.fileName}">
 					</div>
 					
-					<div class="pdDetail-4row">식물명: 조팝나무</div>
+					<div class="pdDetail-4row">식물명: ${poolentarier.plantsName}</div>
 					<div class="pdDetail-5row">
-						내가짱이야
+						${poolentarier.content}
 					</div>
 					<div class="pdDetail-6row">
-						<span>#가산</span>
-						<span>#조팝나무</span>
-						<span>#인테리어</span>
+						<span>#${poolentarier.keyword}</span>
 					</div>
 					<div class="pdDetail-7row">
-						<a href="poolentarierEdit?num=${poolentarier.num }"><button>수정</button></a>
+						<a href="poolentarierEdit?num=${poolentarier.no}"><button>수정</button></a>
 						<button>삭제</button>
 						<button onclick="pdBack();">목록</button>
 					</div>

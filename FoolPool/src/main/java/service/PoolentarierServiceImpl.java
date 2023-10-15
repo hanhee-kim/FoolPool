@@ -28,7 +28,7 @@ public class PoolentarierServiceImpl implements PoolentarierService {
 		// 한 페이지 당 최대 게시글 수는 4개
 		// ceil은 무조건 올림 (소수점이 남아있으면 무조건 높은 정수로)
 		// ex: 39개의 게시글이 있으면, maxPage는 10 (39 / 4 = 9.xxx...이므로 10으로 올림)
-		int maxPage = (int) Math.ceil((double)poolentarierCount / 4);
+		int maxPage = (int) Math.ceil((double) poolentarierCount / 4);
 		
 		
 		// 현재 페이지인 page를 기반한 시작 페이지
@@ -65,8 +65,17 @@ public class PoolentarierServiceImpl implements PoolentarierService {
 		Map<String, Object> map = new HashMap<>();
 		map.put("pageInfo", pageInfo);
 		map.put("poolentarierList", poolentarierList);
-		System.out.println(poolentarierList);
+		
 		return map;
 	}
 
+	@Override
+	public Poolentarier poolentarierDetail(Integer num) throws Exception {
+		return poolentarierDAO.selectPoolentarierDetail(num);
+	}
+	
+	@Override
+	public void poolentarierWrite(Poolentarier poolentarier) throws Exception {
+		poolentarierDAO.insertPoolentarierDetail(poolentarier);
+	}
 }

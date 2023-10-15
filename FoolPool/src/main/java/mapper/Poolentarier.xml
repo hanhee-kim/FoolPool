@@ -3,9 +3,13 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="mapper.poolentarier">
  	<!-- 이렇게 맞춰 놓으면 밑에서 AS 안 써도 됨 -->
-<!-- 	<resultMap type="Poolentarier" id="PoolentarierRM">
-		<result property="id" column="id"/>
-	</resultMap> -->
+	<resultMap type="Poolentarier" id="PoolentarierRM">
+		<result property="fileName" column="file_Name"/>
+		<result property="plantsName" column="plants_Name"/>
+		<result property="writerId" column="writer_Id"/>
+		<result property="writerNickname" column="writer_Nickname"/>
+	</resultMap>
+
 <!-- 	<insert id="insertPoolentarier" parameterType="Poolentarier">
 		<![CDATA[
 			insert into Poolentarier() values(#{})
@@ -18,12 +22,23 @@
 		]]>
 	</select>
 	
-	<select id="selectPoolentarierList" parameterType="Integer" resultType="Poolentarier">
+	<select id="selectPoolentarierList" parameterType="Integer" resultType="Poolentarier" resultMap="PoolentarierRM">
 		<![CDATA[
 			select * from poolentarier order by no desc
 			limit #{row}, 4
 		]]>
 	</select>
 	
+	<select id="selectPoolentarierDetail" parameterType="Integer" resultType="Poolentarier" resultMap="PoolentarierRM">
+		<![CDATA[
+			select * from poolentarier where no = #{num}
+		]]>
+	</select>
+	
+	<insert id="insertPoolentarierDetail" parameterType="Poolentarier">
+		<![CDATA[
+			insert into poolentarier values (null, #{title}, curdate(), 0, #{content}, #{keyword}, #{fileName}, #{plantsName}, #{writerId}, #{writerNickname})
+		]]>
+	</insert>
 	
  </mapper>

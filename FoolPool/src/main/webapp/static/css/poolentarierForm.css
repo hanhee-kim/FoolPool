@@ -28,7 +28,7 @@
 	height: 60px;
 	border-top: 0;
 	border-radius: 0px 0px 20px 20px;
-	margin-top: -30px
+	margin-top: -30px;
 }
 
 .pfFormArea {
@@ -62,7 +62,7 @@
 	height: 40px;
 }
 
-.pfPlantName {
+.pfPlantsName {
 	height: 35px;
 	border-radius: 12px;
 	font-family: 'Cafe24SsurroundAir';
