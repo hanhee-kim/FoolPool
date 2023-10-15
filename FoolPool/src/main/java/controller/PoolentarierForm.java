@@ -61,16 +61,16 @@ public class PoolentarierForm extends HttpServlet {
 		System.out.println("파일명: " + fileName);
 		String plantsName = multi.getParameter("plantsName");
 		HttpSession session = request.getSession();
-		Member member = (Member) session.getAttribute("user");
-//		String writerId = member.getId();
-		String writerId = "fish";
-//		String writerNickname = member.getNickname();
-		String writerNickname = "물고기";
+		Member member = (Member) session.getAttribute("member");
+		String writerId = member.getId();
+//		String writerId = "fish";
+		String writerNickname = member.getNickname();
+//		String writerNickname = "물고기";
 		
 		// 키워드 값 설정
 		String[] keyword = new String[5]; // 키워드 배열 초기화
 		for(int i = 0;i < 5;i++) {
-			String parameterValue = multi.getParameter((i + 1) + "thKeyword");
+			String parameterValue = multi.getParameter("keyword" + i + 1);
 		    if (parameterValue != null) {
 		        keyword[i] = parameterValue;
 		    }
@@ -99,8 +99,8 @@ public class PoolentarierForm extends HttpServlet {
 		try {
 			PoolentarierService poolentarierService = new PoolentarierServiceImpl();
 			poolentarierService.poolentarierWrite(poolentarier);
-			request.getRequestDispatcher("WEB-INF/views/poolentarier/poolentarierList.jsp").forward(request, response);
-//			response.sendRedirect("poolentarierList");
+//			request.getRequestDispatcher("WEB-INF/views/poolentarier/poolentarierList.jsp").forward(request, response);
+			response.sendRedirect("goPoolentarier");
 		} catch(Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", e.getMessage());
