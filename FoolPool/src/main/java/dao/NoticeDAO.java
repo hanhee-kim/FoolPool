@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import bean.Notice;
 
@@ -20,7 +21,14 @@ public interface NoticeDAO {
 	//게시글 수정 
 	void updateNotice(Notice notice)throws Exception;
 	
-	//좋아요 수 카운트 하기 
+	//조회수 카운트 하기 
 	void updateNoticeViewCount(Integer num)throws Exception;
+	
+	//검색바 
+	List<Notice> searchNoticeList(Map<String,Object> parammap)throws Exception;
+	Integer searchNoticeCount(Map<String,Object> parammap)throws Exception;
+	
+	//게시글 삭제 
+	void deleteNotice(Integer num)throws Exception;
 	
 }

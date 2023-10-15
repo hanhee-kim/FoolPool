@@ -7,7 +7,7 @@
 	<!-- 게시글 작성  --> 
 	<insert id="insertNotice" parameterType="Notice" useGeneratedKeys="true" keyProperty="no">
 		<![CDATA[
-			insert into notice (title,content) values (#{title}, #{content})
+			insert into notice (date,title,content,writer_id) values (curdate(),#{title}, #{content},#{writer_id})
 		]]>
 	</insert>
  
@@ -49,14 +49,31 @@
  	
  	
  	<!-- 조회수 업데이트 -->
- 	<update id="updateBoardViewCount" parameterType="Integer"  >
+ 	<update id="updateNoticeViewCount" parameterType="Integer"  >
  	<![CDATA[
  		update notice set view = view+1 where no=#{no}
  	]]>
  	</update>
+ 	
+ 	
+ 	<!-- 게시글 검색 목록 -->
+ 	<select id="searchNoticeList" parameterType="hashMap" resultType="Notice">
+ 		select * from notice 
+ 		where ${type} like '%${keyword}%' order by no desc
+ 		limit #{row}, 10
+ 	</select>
+ 	<!-- 게시글 검색시 페이징 처리에 필요한 전체 행의 수 -->
+ 	<select id="searchNoticeCount" parameterType="hashMap" resultType="Integer">
+ 		select count(*) from notice
+ 		where ${type} like '%${keyword}%'
+ 	</select>
  
- 
- 
+ 	<!-- 게시글 삭제-->
+ 	 <delete id="deleteNotice" parameterType="Integer">
+ 	 <![CDATA[
+ 		delete from notice where no=#{no}   
+ 	]]>
+ 	 </delete>
  
  
  
