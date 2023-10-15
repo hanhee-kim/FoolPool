@@ -101,11 +101,12 @@
 }
 
 .flowerCardsection_line {
-	display: flex;
-    justify-content: center;
-    gap: 60px;
-    margin-bottom: 13px;
-    padding: 12px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    row-gap: 30px;
+    justify-items: center;
+	padding-top: 20px;
 }
 .flowerCard {
 	border: 3px solid #466b55;
@@ -213,6 +214,23 @@
 .searchFlower_OptionDate{
 	display: flex;
     margin: 0 7px;
+}
+.searchFlowerByName,
+.searchFlowerByLang{
+	border-radius: 10px;
+    font-family: 'Cafe24SsurroundAir';
+    font-weight: bold;
+    padding-left: 10px;
+    width: 180px;
+}
+.searchFlowerMSG{
+    display: grid;
+    width: 700px;
+    text-align: center;
+    font-family: Cafe24SsurroundAir;
+    font-size: 30px;
+    color: #466B55;
+    margin-top: 50px;
 }
 .searchFlower_disabled {
 	display: none;

@@ -16,6 +16,7 @@
                     </div>
                     <div class="searchFlowerDetailSectionLine"></div>
                     <div class="searchFlowerDetailSection">
+                    	<img src=""></img>
                         <div class="searchFlowerDetailImgDiv">
                             <div class="searchFlowerShowFlowerBigImg">
                                 <img class="searchFlowerShowFlowerImg"
@@ -49,6 +50,7 @@
                                 <div class="searchFlowerDetailFlowerUseContent searchFlowerDetailText">${flower.fUse}</div>
                                 </div>
                             </div>
+                        <img src=""></img>
                     </div>
 
                 </div>
@@ -56,11 +58,6 @@
             </div>
         </div>
     </div>
-    <script>
-    $(document).ready(function () {
-    	foolpool.jspName = 'searchFlower';
-    }
-    </script>
 </body>
 
 </html>

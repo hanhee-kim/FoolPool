@@ -147,6 +147,7 @@ public class FlowerServiceImpl implements FlowerService{
 		Map<String, Integer> param = new HashMap<>();
 		param.put("fMonth", fMonth);
 		param.put("fDay", fDay);
+
 		return flowerDao.selectFlowerByDate(param);
 		
 	}
@@ -154,6 +155,36 @@ public class FlowerServiceImpl implements FlowerService{
 	@Override
 	public Flower searchFlowerByNo(Integer dataNo) throws Exception {
 		return flowerDao.selectFlowerByNo(dataNo);
+	}
+
+	@Override
+	public List<Flower> searchFlowerByPeriod(Integer sMonth, Integer sDay, Integer eMonth, Integer eDay) throws Exception {
+		Map<String,Integer> startParam = new HashMap<>();
+		Map<String,Integer> endParam = new HashMap<>();
+		Map<String,Integer> param = new HashMap<>();
+		startParam.put("fMonth", sMonth);
+		startParam.put("fDay", sDay);
+		endParam.put("fMonth", eMonth);
+		endParam.put("fDay", eDay);
+		System.out.println(sDay+" eM"+eDay);
+		Flower s_flower = flowerDao.selectFlowerByDate(startParam);
+		Flower e_flower = flowerDao.selectFlowerByDate(endParam);
+		Integer startNo = s_flower.getDataNo();
+		Integer endNo = e_flower.getDataNo();
+		System.out.println(startNo);
+		param.put("startNo", startNo);
+		param.put("endNo", endNo);
+		System.out.println(param);
+		return flowerDao.selectFlowerPeriod(param);
+	}
+
+	@Override
+	public List<Flower> searchFlowerByWord(String type, String word) throws Exception {
+		Map<String,String> param = new HashMap<>();
+		param.put("type", type);
+		param.put("word", word);
+		List<Flower> flowers = flowerDao.selectFlowerByWord(param);
+		return flowers;
 	}
 
 	
