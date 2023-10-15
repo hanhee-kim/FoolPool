@@ -9,6 +9,7 @@
 		<result property="writerId" column="writer_Id"/>
 		<result property="writerNickname" column="writer_Nickname"/>
 	</resultMap>
+
 <!-- 	<insert id="insertPoolentarier" parameterType="Poolentarier">
 		<![CDATA[
 			insert into Poolentarier() values(#{})
@@ -28,5 +29,16 @@
 		]]>
 	</select>
 	
+	<select id="selectPoolentarierDetail" parameterType="Integer" resultType="Poolentarier" resultMap="PoolentarierRM">
+		<![CDATA[
+			select * from poolentarier where no = #{num}
+		]]>
+	</select>
+	
+	<insert id="insertPoolentarierDetail" parameterType="Poolentarier">
+		<![CDATA[
+			insert into poolentarier values (null, #{title}, curdate(), 0, #{content}, #{keyword}, #{fileName}, #{plantsName}, #{writerId}, #{writerNickname})
+		]]>
+	</insert>
 	
  </mapper>

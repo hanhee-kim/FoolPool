@@ -69,4 +69,13 @@ public class PoolentarierServiceImpl implements PoolentarierService {
 		return map;
 	}
 
+	@Override
+	public Poolentarier poolentarierDetail(Integer num) throws Exception {
+		return poolentarierDAO.selectPoolentarierDetail(num);
+	}
+	
+	@Override
+	public void poolentarierWrite(Poolentarier poolentarier) throws Exception {
+		poolentarierDAO.insertPoolentarierDetail(poolentarier);
+	}
 }

@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Poolentarier;
+import service.PoolentarierService;
+import service.PoolentarierServiceImpl;
+
 /**
  * Servlet implementation class poolentarierDetail
  */
@@ -27,10 +31,20 @@ public class PoolentarierDetail extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		Integer num = Integer.parseInt(request.getParameter("num"));
 		
 		request.setAttribute("jspName", "poolentarier");
-		
-		request.getRequestDispatcher("WEB-INF/views/poolentarier/poolentarierDetail.jsp").forward(request, response);
+		try {
+			// 서비스 객체 생성
+			PoolentarierService poolentarierService = new PoolentarierServiceImpl();
+			Poolentarier poolentarier = poolentarierService.poolentarierDetail(num);
+			request.setAttribute("poolentarier", poolentarier);
+			request.getRequestDispatcher("WEB-INF/views/poolentarier/poolentarierDetail.jsp").forward(request, response);
+		} catch(Exception e) {
+			e.printStackTrace();
+			request.setAttribute("err", e.getMessage());
+			request.getRequestDispatcher("error.jsp").forward(request, response);
+		}
 	}
 
 }

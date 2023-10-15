@@ -1,6 +1,8 @@
 var maxKeywords = 5;
+var keywordCounter = 0;
 
-function addKeyword() {
+function addKeyword(event) {
+	event.preventDefault();
 	var pfKeyword = document.getElementById("pfKeyword");
 	var keyword = pfKeyword.value.trim();
 
@@ -8,13 +10,13 @@ function addKeyword() {
 		var keywordList = document.getElementById("keywordList");
 
 		// 현재 텍스트 개수 확인
-		var existingKeywordCount = keywordList
-			.getElementsByKeywordName("li").length;
+		var existingKeywordCount = keywordList.getElementsByTagName("li").length;
 
 		if (existingKeywordCount < maxKeywords) {
 			var li = document.createElement("li");
-			li.innerHTML = keyword
-				+ " <span class='pfRemove-button' onclick='removeKeywrod(this)'>X</span>";
+			keywordCounter++;
+			li.innerHTML = "<span name='" + keywordCounter + "thKeyword'>" + keyword
+			+ "</span> <span class='remove-button' onclick='removeKeyword(this)'>X</span>";
 			keywordList.appendChild(li);
 			pfKeyword.value = "";
 		} else {
@@ -27,4 +29,15 @@ function addKeyword() {
 function removeKeyword(element) {
 	var listItem = element.parentNode;
 	listItem.parentNode.removeChild(listItem);
+	keywordCounter = 0;
+	
+	// 순번 재설정
+	var listItems = document.querySelectorAll("#keywordList li");
+	for (var i = 0; i < listItems.length; i++) {
+		keywordCounter++;
+		var item = listItems[i];
+		var itemSpan = item.querySelector("span[name]");
+		itemSpan.setAttribute("name", i + 1 + "thKeyword");
+	}
+	
 }
