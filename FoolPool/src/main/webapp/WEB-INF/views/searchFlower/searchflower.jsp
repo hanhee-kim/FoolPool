@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/include/menubar.jsp" %>
 
+
+
             <div class="searchFlowerLabel">꽃 검색</div>
             <div class="searchFlowerDivLine">
             	<div class="searchFlowerTopBorder"></div>
@@ -46,71 +48,46 @@
                     <button id="searchFlower_searchBtn" class="searchFlower_searchBtn" onclick="go_searchFlower()">검색</button>
                 </div>
                 <div class="flowerCardsection">
-					<div class="flowerCardsection_line">                
-	                    <div class="flowerCard" onclick="btnClick('detailFlower?num=${flower.dataNo}')">
+	                <c:if test="${res.size <= 0}">
+	                <div class="searchFlowerMSG" id="searchFlowerMSG">꽃을 검색하세요!!!</div>
+	                </c:if>
+					<div class="flowerCardsection_line" id="flowerCardsection_line">                
+	                <c:if test="${res.size > 0}">
+	                <c:set var="i" value="1"/>
+	                <c:forEach items="${res.flowers}" var="flower">
+	                    <div class="flowerCard" id="flowerCard${i}" onclick="location.href='detailflower?flowerNumber=${flower.dataNo}'">
 	                        <div class="flowerCardImgSection">
-	                            <img class="flowerCardImg" src="">
+	                            <img class="flowerCardImg" src="${flower.imgUrl1 }">
 	                        </div>
 	                        <div class="flowerCardDateSection">
-	                            <div class="flowerCardMonth">1월</div>
-	                            <div class="flowerCardDay">1일</div>
-	                            <div class="flowerCardName">이름</div>
+	                            <div class="flowerCardMonth">${flower.fMonth }월</div>
+	                            <div class="flowerCardDay">${flower.fDay }일</div>
+	                            <div class="flowerCardName">${flower.flowNm }</div>
 	                        </div>
 	                        <div class="flowerCardNameLangSection">
-	                            <div class="flowerCardLang">성실,사랑,머머머등등등</div>
+	                            <div class="flowerCardLang">${flower.flowLang }</div>
 	                        </div>
 	                    </div>
-	                    <div class="flowerCard">
-	                        <div class="flowerCardImgSection">
-	                            <img class="flowerCardImg" src="">
-	                        </div>
-	                        <div class="flowerCardDateSection">
-	                            <div class="flowerCardMonth">1월</div>
-	                            <div class="flowerCardDay">1일</div>
-	                            <div class="flowerCardName">이름</div>
-	                        </div>
-	                        <div class="flowerCardNameLangSection">
-	                            <div class="flowerCardLang">성실,사랑,머머머등등등</div>
-	                        </div>
-	                    </div>
-	               </div>
-					<div class="flowerCardsection_line">                
-	                    <div class="flowerCard">
-	                        <div class="flowerCardImgSection">
-	                            <img class="flowerCardImg" src="">
-	                        </div>
-	                        <div class="flowerCardDateSection">
-	                            <div class="flowerCardMonth">1월</div>
-	                            <div class="flowerCardDay">1일</div>
-	                            <div class="flowerCardName">이름</div>
-	                        </div>
-	                        <div class="flowerCardNameLangSection">
-	                            <div class="flowerCardLang">성실,사랑,머머머등등등</div>
-	                        </div>
-	                    </div>
-	                    <div class="flowerCard">
-	                        <div class="flowerCardImgSection">
-	                            <img class="flowerCardImg" src="">
-	                        </div>
-	                        <div class="flowerCardDateSection">
-	                            <div class="flowerCardMonth">1월</div>
-	                            <div class="flowerCardDay">1일</div>
-	                            <div class="flowerCardName">이름</div>
-	                        </div>
-	                        <div class="flowerCardNameLangSection">
-	                            <div class="flowerCardLang">성실,사랑,머머머등등등</div>
-	                        </div>
-	                    </div>
+	                    <c:set var="i" value="${i+1}"/>
+	                </c:forEach>
+	                </c:if>
+	                
 	               </div>
                 </div>
-                <div class="searchFlowerSeeMoreDiv">               
-                	<button class="searchFlowerSeeMore" onclick="">더보기</button>
+                <div class="searchFlowerSeeMoreDiv">    
+                <c:if test="${res.size > 4}">
+                	<button class="searchFlowerSeeMore" id="searchFlowerSeeMore">더보기</button>
+                </c:if>           
                 </div>
                 <div class="searchFlowerBottomBorder"></div>
             </div>
         </div>
     </div>
     <!--  -->
-</body>
+<script>
+var flowerSize = '${res.size}';
+console.log(flowerSize);
 
+</script>
+</body>
 </html>

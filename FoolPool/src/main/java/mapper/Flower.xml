@@ -47,12 +47,12 @@
 	</select>
 	<select id="selectFlowerByPeriod" parameterType="hashmap" resultType="Flower" resultMap="FlowerRM">
 		<![CDATA[
-		select * from flower where data_No between #{startNo} and #{endNo}
+		select * from flower where data_No between #{startNo} and #{endNo} ORDER BY data_no
 		]]>
 	</select>
 	<select id="selectFlowerByWord" parameterType="hashmap" resultType="Flower" resultMap="FlowerRM">
 		<![CDATA[
-		select * from flower where ${type} like '%#{startNo}%'
+		select * from flower where ${type} like '%${word}%'  ORDER BY data_no
 		]]>
 	</select>
 	
