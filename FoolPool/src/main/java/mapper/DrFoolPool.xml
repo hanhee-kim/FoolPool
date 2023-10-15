@@ -47,20 +47,7 @@
 	    LIMIT #{row}, 6
 	</select>
 
- 	<!-- 1-2. 전체 페이지수 계산을 위한 전체 행 수 조회 -->
- 	<!-- 
- 	<select id="selectDrFoolPoolCount" parameterType="map" resultType="Integer">
- 		SELECT COUNT(NO) FROM drfoolpool
-	    <where>
-	        <choose>
-	            <when test="filter.equals('all')">and (is_solved = 0 OR is_solved = 1)</when>
-	            <when test="filter.equals('unsolved')">and is_solved = 0</when>
-	            <when test="filter.equals('solved')">and is_solved = 1</when>
-	        </choose>
-	    </where>
-	</select>
-	 -->
-	<!-- 1-3. 필터링과 검색 적용된 게시글수 카운트 -->
+	<!-- 1-2. 페이지정보 계산을 위한 게시글수 (필터링과 검색 적용) -->
 	<select id="selectDrFoolPoolCount" parameterType="map" resultType="Integer">
  		SELECT COUNT(NO) FROM drfoolpool
 	    <where>
@@ -108,8 +95,13 @@
  			update drfoolpool set view=view+1 where no=#{no}
  		]]>
  	</update>
-	<!-- 충돌수정 -->
-
+	
+	<!-- 4. 게시글 삭제 -->
+	<delete id="deleteDrFoolPool" parameterType="Integer">
+ 		<![CDATA[
+ 			delete from drfoolpool where no=#{no}
+ 		]]>
+ 	</delete>
 
 
  

@@ -7,7 +7,6 @@ import bean.DrFoolPool;
 public interface DrFoolPoolService {
 	
 	// 1. 게시글 목록
-	Map<String, Object> drFoolPoolListByPage(int curpage, String filter) throws Exception;
 	Map<String, Object> drFoolPoolListByPage(int curpage, String filter, String sOption, String sValue) throws Exception;
 	
 	// 2. 게시글 작성
@@ -15,5 +14,8 @@ public interface DrFoolPoolService {
 	
 	// 3. 게시글 상세
 	DrFoolPool drFoolPoolDetail(Integer no) throws Exception;
+	
+	// 4. 게시글 삭제
+	void drFoolPoolRemove(Integer no) throws Exception;
 
 }

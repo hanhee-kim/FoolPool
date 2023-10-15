@@ -40,7 +40,7 @@
 			    	<div class="drFP-detail-4row">${drFoolPool.content}</div>
 			    	<div class="drFP-detail-5row">
 			    		<a href="editDrFoolPool"><button>수정</button></a>
-			    		<button>삭제</button>
+			    		<button onclick="dfFPdelete(${drFoolPool.no})">삭제</button>
 			    		<button onclick="drFPback();">목록</button>
 			    	</div>
 			    	

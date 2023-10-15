@@ -40,17 +40,21 @@ public class DrFoolPoolList extends HttpServlet {
 		String page = request.getParameter("page");
 		String paramFilter = request.getParameter("filter");
 		
-		int curpage = 1; 
-		if(page!=null) curpage = Integer.parseInt(page);
+		int curPage = 1; 
+		if(page!=null) curPage = Integer.parseInt(page);
 		String filter = "all";
 		if(paramFilter!=null) filter = paramFilter;
 		
 		System.out.println("-----/goDrFoolPool doGet호출----");
-		System.out.println("page: " + page + ", curpage: " + curpage + ", paramFilter: " + paramFilter + ", filter: " + filter);
+		System.out.println("page: " + page + ", curPage: " + curPage + ", paramFilter: " + paramFilter + ", filter: " + filter);
+		
+		String sOption = null;
+		String sValue = null;
+			
 		
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
-			Map<String,Object> resMap = drFoolPoolService.drFoolPoolListByPage(curpage, filter); // PageInfo와 List<DrFoolPool>가 담긴 맵을 서비스로부터 반환받음
+			Map<String,Object> resMap = drFoolPoolService.drFoolPoolListByPage(curPage, filter, sOption, sValue); // PageInfo와 List<DrFoolPool>가 담긴 맵을 서비스로부터 반환받음
 			request.setAttribute("filter", filter);
 			request.setAttribute("resMap", resMap);
 			request.setAttribute("jspName", "drFoolPool"); // 해당 메뉴에 들어와있다면 인클루드되는 menubar.jsp의 해당 메뉴 버튼색을 짙게 바꾸어두기 위해 뷰로 넘기는 문자열
@@ -71,11 +75,11 @@ public class DrFoolPoolList extends HttpServlet {
 		
 		String filter = "all";
 		if(paramFilter!=null) filter = paramFilter;
-		int curpage = 1; 
-		if(page!=null) curpage = Integer.parseInt(page);
+		int curPage = 1; 
+		if(page!=null) curPage = Integer.parseInt(page);
 		
 		System.out.println("-----/goDrFoolPool doPost호출----");
-		System.out.println("page: " + page + ", curpage: " + curpage + ", filter: " + filter);
+		System.out.println("page: " + page + ", curPage: " + curPage + ", filter: " + filter);
 		
 		String sOption = request.getParameter("sOption");
 		String sValue = request.getParameter("sValue");
@@ -90,7 +94,7 @@ public class DrFoolPoolList extends HttpServlet {
 		
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
-			Map<String,Object> resMap = drFoolPoolService.drFoolPoolListByPage(curpage, filter, sOption, sValue);
+			Map<String,Object> resMap = drFoolPoolService.drFoolPoolListByPage(curPage, filter, sOption, sValue);
 			
 			System.out.println("----검색된 게시글 출력-----");
 			List<DrFoolPool> resList = (List<DrFoolPool>) resMap.get("drFoolPoolList");
