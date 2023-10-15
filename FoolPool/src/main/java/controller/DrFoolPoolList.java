@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -9,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.jasper.tagplugins.jstl.core.ForEach;
 
 import bean.DrFoolPool;
 import service.DrFoolPoolService;
@@ -64,8 +67,10 @@ public class DrFoolPoolList extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		String page = request.getParameter("page");
-		String filter = request.getParameter("filter");
+		String paramFilter = request.getParameter("filter");
 		
+		String filter = "all";
+		if(paramFilter!=null) filter = paramFilter;
 		int curpage = 1; 
 		if(page!=null) curpage = Integer.parseInt(page);
 		
@@ -77,14 +82,23 @@ public class DrFoolPoolList extends HttpServlet {
 		
 		System.out.println("sOption: " + sOption + ", sValue: " + sValue);
 		
-		if(sOption.equals("unselected")) { 
-			return; 
-		}
 		
+		// 검색옵션 선택하지 않고 제출시 발생하는 예외처리 할것
+//		if(sOption.equals("unselected")) { 
+//			return;
+//		}
 		
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
 			Map<String,Object> resMap = drFoolPoolService.drFoolPoolListByPage(curpage, filter, sOption, sValue);
+			
+			System.out.println("----검색된 게시글 출력-----");
+			List<DrFoolPool> resList = (List<DrFoolPool>) resMap.get("drFoolPoolList");
+			Iterator<DrFoolPool> iter = resList.iterator();
+			while(iter.hasNext()){
+				System.out.println(iter.next().toString());
+			}
+			
 			request.setAttribute("filter", filter);
 			request.setAttribute("resMap", resMap);
 			request.setAttribute("jspName", "drFoolPool");

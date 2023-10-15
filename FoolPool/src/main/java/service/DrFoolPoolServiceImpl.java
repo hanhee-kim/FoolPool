@@ -27,15 +27,13 @@ public class DrFoolPoolServiceImpl implements DrFoolPoolService {
 		PageInfo pageInfo = new PageInfo();
 		
 		// DB에서 조회한 결과행의 수를 통해 전체 페이지 수 계산
-		int filterNo = 2; // filter.equals("all")일때
-		if(filter.equals("unsolved")) filterNo = 0;
-		else if (filter.equals("solved")) filterNo = 1;
-		int drFoolPoolCount = drFoolPoolDAO.selectDrFoolPoolCount(filterNo);
-		System.out.println("drFoolPoolCount: " + drFoolPoolCount);
+		Map<String,Object> paramMapforCnt = new HashMap<>();
+		paramMapforCnt.put("filter", filter);
+		int drFoolPoolCount = drFoolPoolDAO.selectDrFoolPoolCount(paramMapforCnt);
+		System.out.println("****drFoolPoolCount: " + drFoolPoolCount);
 		int itemsPerPage = 6; // 페이지당 카드 6개 표시 *** xml의 limit절과 일치시킬것
 		int pagesPerGroup = 10; // 페이지그룹당 페이지번호 수
 		int maxPage = (int)Math.ceil((double)drFoolPoolCount/itemsPerPage);
-//		System.out.println("-----serviceImpl\n데이터의 수: " + drFoolPoolCount + "\n총페이지수: " + maxPage);
 		
 		// 현재페이지를 통해 버튼의시작페이지번호와 버튼의끝페이지번호를 만든다
 		int startPage = (curpage-1)/pagesPerGroup*pagesPerGroup+1;
@@ -76,20 +74,20 @@ public class DrFoolPoolServiceImpl implements DrFoolPoolService {
 	public Map<String, Object> drFoolPoolListByPage(int curpage, String filter, String sOption, String sValue)
 			throws Exception {
 		
-		System.out.println("============service\n curpage: " + curpage + ", filter: " + filter + ", sOption: " + sOption + ", sValue: " + sValue);
+		System.out.println("%%%%============service\n curpage: " + curpage + ", filter: " + filter + ", sOption: " + sOption + ", sValue: " + sValue);
 		
 		PageInfo pageInfo = new PageInfo();
 		
 		// DB에서 조회한 결과행의 수를 통해 전체 페이지 수 계산
-		int filterNo = 2; // filter.equals("all")일때
-		if(filter.equals("unsolved")) filterNo = 0;
-		else if (filter.equals("solved")) filterNo = 1;
-		int drFoolPoolCount = drFoolPoolDAO.selectDrFoolPoolCount(filterNo);
-		System.out.println("drFoolPoolCount: " + drFoolPoolCount);
+		Map<String,Object> paramMapforCnt = new HashMap<>();
+		paramMapforCnt.put("filter", filter);
+		paramMapforCnt.put("sOption", sOption);
+		paramMapforCnt.put("sValue", sValue);
+		int drFoolPoolCount = drFoolPoolDAO.selectDrFoolPoolCount(paramMapforCnt);
+		System.out.println("####drFoolPoolCount: " + drFoolPoolCount);
 		int itemsPerPage = 6; // 페이지당 카드 6개 표시 *** xml의 limit절과 일치시킬것
 		int pagesPerGroup = 10; // 페이지그룹당 페이지번호 수
 		int maxPage = (int)Math.ceil((double)drFoolPoolCount/itemsPerPage);
-//		System.out.println("-----serviceImpl\n데이터의 수: " + drFoolPoolCount + "\n총페이지수: " + maxPage);
 		
 		// 현재페이지를 통해 버튼의시작페이지번호와 버튼의끝페이지번호를 만든다
 		int startPage = (curpage-1)/pagesPerGroup*pagesPerGroup+1;
@@ -113,6 +111,8 @@ public class DrFoolPoolServiceImpl implements DrFoolPoolService {
 		Map<String,Object> paramMap = new HashMap<>();
 		paramMap.put("row", row-1);
 		paramMap.put("filter", filter);
+		paramMap.put("sOption", sOption);
+		paramMap.put("sValue", sValue);
 		System.out.println("row: " + (row-1) + ", filter: " + filter);
 		List<DrFoolPool> drFoolPoolList = drFoolPoolDAO.selectDrFoolPoolList(paramMap);
 		

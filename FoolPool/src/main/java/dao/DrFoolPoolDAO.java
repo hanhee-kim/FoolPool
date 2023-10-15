@@ -10,7 +10,8 @@ public interface DrFoolPoolDAO {
 	// 1. 게시글 목록
 //	List<DrFoolPool> selectDrFoolPoolList(Integer row) throws Exception;
 	List<DrFoolPool> selectDrFoolPoolList(Map<String,Object> paramMap) throws Exception;
-	Integer selectDrFoolPoolCount(int filterNo) throws Exception;
+	Integer selectDrFoolPoolCount(Map<String,Object> paramMap) throws Exception;
+	Integer selectDrFoolPoolCountSearched(Map<String,Object> paramMap) throws Exception;
 	
 	// 2. 게시글 작성
 	void insertDrFoolPool(DrFoolPool drFoolPool) throws Exception;

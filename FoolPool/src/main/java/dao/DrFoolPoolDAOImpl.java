@@ -19,8 +19,12 @@ public class DrFoolPoolDAOImpl implements DrFoolPoolDAO {
 		return list;
 	}
 	@Override
-	public Integer selectDrFoolPoolCount(int filterNo) throws Exception {
-		return sqlSession.selectOne("mapper.drfoolpool.selectDrFoolPoolCount", filterNo);
+	public Integer selectDrFoolPoolCount(Map<String,Object> paramMap) throws Exception {
+		return sqlSession.selectOne("mapper.drfoolpool.selectDrFoolPoolCount", paramMap);
+	}
+	@Override
+	public Integer selectDrFoolPoolCountSearched(Map<String, Object> paramMap) throws Exception {
+		return sqlSession.selectOne("mapper.drfoolpool.selectDrFoolPoolCountSearched", paramMap);
 	}
 	
 	// 2. 게시글 작성
@@ -41,5 +45,6 @@ public class DrFoolPoolDAOImpl implements DrFoolPoolDAO {
 		sqlSession.update("mapper.drfoolpool.updateDrFoolPoolViewCnt", no);
 		sqlSession.commit();
 	}
+	
 
 }
