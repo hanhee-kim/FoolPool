@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Context>			  <!-- password="sweet720!!" -->
+<Context allowCasualMultipartParsing="true" path="/"><!-- password="sweet720!!" -->
 	<Resource name="jdbc/foolpool"
 			  auth="Container"
 			  type="javax.sql.DataSource"
@@ -9,4 +9,5 @@
 			  factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
 			  url="jdbc:mariadb://localhost:3306/foolpool"
 			  maxActive="500"/>
+	 <Resources cachingAllowed="true" cacheMaxSize="100000" />
 </Context>

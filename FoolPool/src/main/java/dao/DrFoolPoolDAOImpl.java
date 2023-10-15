@@ -1,6 +1,7 @@
 package dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -13,13 +14,13 @@ public class DrFoolPoolDAOImpl implements DrFoolPoolDAO {
 
 	// 1. 게시글 목록
 	@Override
-	public List<DrFoolPool> selectDrFoolPoolList(Integer row) throws Exception {
-		List<DrFoolPool> list = sqlSession.selectList("mapper.drfoolpool.selectDrFoolPoolList", row);
+	public List<DrFoolPool> selectDrFoolPoolList(Map<String,Object> paramMap) throws Exception {
+		List<DrFoolPool> list = sqlSession.selectList("mapper.drfoolpool.selectDrFoolPoolList", paramMap);
 		return list;
 	}
 	@Override
-	public Integer selectDrFoolPoolCount() throws Exception {
-		return sqlSession.selectOne("mapper.drfoolpool.selectDrFoolPoolCount");
+	public Integer selectDrFoolPoolCount(int filterNo) throws Exception {
+		return sqlSession.selectOne("mapper.drfoolpool.selectDrFoolPoolCount", filterNo);
 	}
 	
 	// 2. 게시글 작성

@@ -21,19 +21,27 @@
  	<!-- 쿼리문 작성하기 -->
  
  	<!-- 1-1. 게시글목록 조회 -->
- 	<select id="selectDrFoolPoolList" parameterType="Integer" resultType="DrFoolPool" resultMap="DrFoolPoolResultMap">
- 		<![CDATA[
- 			select * from drfoolpool order by date desc
- 			limit #{row},6
- 		]]>
- 	</select>
+ 	<select id="selectDrFoolPoolList" parameterType="map" resultType="DrFoolPool" resultMap="DrFoolPoolResultMap">
+	    SELECT * FROM drfoolpool
+	    <where>
+	        <choose>
+	            <when test="filter.equals('all')">(is_solved = 0 OR is_solved = 1)</when>
+	            <when test="filter.equals('unsolved')">is_solved = 0</when>
+	            <when test="filter.equals('solved')">is_solved = 1</when>
+	        </choose>
+	    </where>
+	    ORDER BY date DESC
+	    LIMIT #{row}, 6
+	</select>
  	
  	<!-- 1-2. 전체 페이지수 계산을 위한 전체 행 수 조회 -->
- 	<select id="selectDrFoolPoolCount" resultType="Integer">
- 		<![CDATA[
- 			select count(no) from drfoolpool
- 		]]>
- 	</select>
+ 	<select id="selectDrFoolPoolCount" parameterType="Integer" resultType="Integer">
+	    SELECT COUNT(no) FROM drfoolpool where 1=1
+	    <if test="value == 2">and (is_solved = 0 OR is_solved = 1)</if>
+        <if test="value == 0">and is_solved = 0</if>
+        <if test="value == 1">and is_solved = 1</if>
+	</select>
+ 	
  	
  	<!-- 2. 게시글 작성 -->
  	<!-- # 로그인 처리 이후 수정할것 -->

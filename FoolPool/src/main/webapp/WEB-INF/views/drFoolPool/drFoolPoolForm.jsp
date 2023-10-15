@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/include/menubar.jsp" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
             <div class="drFP-Label">풀풀박사</div>
             
@@ -17,11 +18,11 @@
 							<ul>
 								<li>
 				                    <label for="drFP-formTitle">제목 <em>*</em></label><br>
-				                    <input class="drFP-formTitle" name="title" type="text">
+				                    <input class="drFP-formTitle" name="title" type="text" required="required">
 				                </li>
 				                <li>
 				                    <label for="drFP-formContent">내용 <em>*</em></label><br>
-				                    <textarea class="drFP-formContent" name="content" rows="20" cols="42" placeholder="질문방법 안내, 답변이 달린 질문글 삭제자제 권고"></textarea>
+				                    <textarea class="drFP-formContent" name="content" rows="20" cols="42" placeholder="질문방법 안내, 답변이 달린 질문글 삭제자제 권고" required="required"></textarea>
 				                </li>
 				                <li>
 				                    <label for="drFP-formImg">이미지 업로드 <em>*</em></label><br>
@@ -47,10 +48,7 @@
         <%-- containerChild --%>
     </div>
 	<%-- container --%>
-	
-<script>
 
-</script>
 
 </body>
 

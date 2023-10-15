@@ -29,7 +29,7 @@
 				    	<span>${drFoolPool.date}</span>
 				    	 --%>
 				    	 <%-- DATETIME컬럼과 매핑된 java.util.Date필드를 년-월-일로 포맷팅하여 출력 --%>
-				    	<fmt:formatDate value="${drFoolPool.date}" pattern="yyyy-MM-dd" var="formattedDate" />
+				    	<fmt:formatDate value="${drFoolPool.date}" pattern="yyyy.MM.dd. HH:mm" var="formattedDate" />
 						<span>${formattedDate}</span>
 				    	<span>조회수: ${drFoolPool.view}</span>
 				    	<span class="dfFP-detail-writer">작성자: ${drFoolPool.writerNickname}</span>

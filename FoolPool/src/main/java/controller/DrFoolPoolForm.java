@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -56,7 +57,7 @@ public class DrFoolPoolForm extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("-----------form서블릿의 doPost메서드 호출--------\n");
+		System.out.println("-----/drFoolpoolForm doPost호출------");
 		
 		request.setCharacterEncoding("utf-8");
 		request.setAttribute("jspName", "drFoolPool");
@@ -68,16 +69,20 @@ public class DrFoolPoolForm extends HttpServlet {
 		String writerId = "로그인처리전임시아이디";
 		String writerNickname = "로그인처리전임시닉네임";
 		
-		// form입력값 가져오기
-		String fileName = request.getParameter("file");
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		System.out.println("fileName: " + fileName + ", title: " + title + ", content: " + content);
-		
 		// 파일 업로드 - 파일 업로드 경로를 절대경로로 지정할것 cf. DB에는 파일명만 저장한다
-		String uploadPath = "C:\\upload\\" + fileName; 
+//		String uploadPath = "C:\\upload\\" + fileName; 
+		String uploadPath = "C:\\upload"; 
 		int size = 10*1024*1024;
 		MultipartRequest multi = new MultipartRequest(request, uploadPath, size, "utf-8", new DefaultFileRenamePolicy());
+		 
+		// form입력값 가져오기
+				String fileName = multi.getParameter("file");
+				if (fileName==null) {
+					
+				}
+				String title = multi.getParameter("title");
+				String content = multi.getParameter("content");
+				System.out.println("fileName: " + fileName + ", title: " + title + ", content: " + content);
 		
 		// DrFoolPool객체 생성
 		DrFoolPool drFoolPool = new DrFoolPool();

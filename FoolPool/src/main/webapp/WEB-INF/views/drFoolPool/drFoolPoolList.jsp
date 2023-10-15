@@ -7,12 +7,11 @@
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.List" %>
 <% 
-System.out.println("------drFoolPoolList.jsp-------");
+// System.out.println("------drFoolPoolList.jsp-------");
 Map<String,Object> resMap = (Map)request.getAttribute("resMap");
 List<DrFoolPool> list = (List)resMap.get("drFoolPoolList");
-System.out.println("리스트의 0번째 게시글 번호: " + list.get(0).getNo()); 
+// System.out.println("리스트의 0번째 게시글 번호: " + list.get(0).getNo()); 
 %>
-
 
             <div class="drFP-Label">풀풀박사</div>
             
@@ -23,9 +22,23 @@ System.out.println("리스트의 0번째 게시글 번호: " + list.get(0).getNo
             	<%-- 필터링 버튼 3개 + 글쓰기 버튼 --%>
             	<div class="drFP-FilteringAndWriteBtn">
 	                <div class="drFP-Filtering">
-	                    <span class="drFP-FilterBtn drFP-FilterBtnSelected">전체</span>
-	                    <span class="drFP-FilterBtn">미해결</span>
-	                    <span class="drFP-FilterBtn">해결</span>
+	                	<c:choose>
+	                		<c:when test="${filter eq 'unsolved'}">
+	                			<a class="drFP-FilterBtn" href="goDrFoolPool?filter=all&page=1">전체</a>
+	                			<a class="drFP-FilterBtn drFP-FilterBtnSelected" href="goDrFoolPool?filter=unsolved&page=1">미해결</a>
+	                			<a class="drFP-FilterBtn" href="goDrFoolPool?filter=solved&page=1">해결</a>
+	                		</c:when>
+	                		<c:when test="${filter eq 'solved'}">
+	                			<a class="drFP-FilterBtn" href="goDrFoolPool?filter=all&page=1">전체</a>
+	                			<a class="drFP-FilterBtn" href="goDrFoolPool?filter=unsolved&page=1">미해결</a>
+	                			<a class="drFP-FilterBtn drFP-FilterBtnSelected" href="goDrFoolPool?filter=solved&page=1">해결</a>
+	                		</c:when>
+	                		<c:otherwise>
+	                			<a class="drFP-FilterBtn drFP-FilterBtnSelected" href="goDrFoolPool?filter=all&page=1">전체</a>
+	                			<a class="drFP-FilterBtn" href="goDrFoolPool?filter=unsolved&page=1">미해결</a>
+	                			<a class="drFP-FilterBtn" href="goDrFoolPool?filter=solved&page=1">해결</a>
+	                		</c:otherwise>
+	                	</c:choose>
 	                </div>
 	                <%-- # 로그인 상태에서만 보여지도록 할것 --%>
 	                <%--
@@ -36,7 +49,7 @@ System.out.println("리스트의 0번째 게시글 번호: " + list.get(0).getNo
                 
                 <%-- 카드그리드 3x2 --%>
 			    <div class="drFP-CardGrid">
-			        <c:forEach items="${resMap.drFoolPoolList}" var="drfoolpool">
+			        <c:forEach items="${resMap['drFoolPoolList']}" var="drfoolpool">
 			        <a href="drFoolPoolDetail?no=${drfoolpool.no}"> 
 				        <div class="drFP-Card">
 				        	<div class="drFP-CardTitleArea">
@@ -61,15 +74,18 @@ System.out.println("리스트의 0번째 게시글 번호: " + list.get(0).getNo
                 
                 <%-- 검색바 --%>
                 <h5 class="drFP-searchBar">
-                	<select name="type">
-                		<option value="unselected">선택</option>
-                		<option value="writer">작성자</option>
-                		<option value="all">제목+내용</option>
-                	</select>
-                	<input type="text" name="keyword" id="keyword" value="${resMap.keyword }"/>
-					<input type="submit" value="검색"/>
+                	<form action="goDrFoolPool" method="post">
+                		<input type="hidden" name="page" id="dfFP-page" value="${resMap.pageInfo.curPage<resMap.pageInfo.allPage }"/>
+                		<input type="hidden" name="filter" id="dfFP-filter"/>
+	                	<select name="sOption">
+	                		<option value="unselected">선택</option>
+	                		<option value="writer">작성자</option>
+	                		<option value="all">제목+내용</option>
+	                	</select>
+	                	<input type="text" name="sValue" id="sValue" value="${resMap.sValue }"/>
+						<input type="submit" value="검색"/>
+                	</form>
                 </h5>
-                
                 
                 <%-- 페이징 영역 --%>
                 <div class="drFP-paging">

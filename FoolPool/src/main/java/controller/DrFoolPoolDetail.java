@@ -33,7 +33,7 @@ public class DrFoolPoolDetail extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("-----DrFoolPoolDetail서블릿 doGet호출-----");
+		System.out.println("-----/drFoolPoolDetail doGet호출-----");
 		
 		// 요청uri: drFoolPoolDetail?no=해당게시글번호
 		
