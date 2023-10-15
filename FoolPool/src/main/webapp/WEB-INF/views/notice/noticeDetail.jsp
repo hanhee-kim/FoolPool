@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/include/menubar.jsp"%>
-
+<c@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core">
 
 
 <div class="notice-Label">공지사항</div>
@@ -32,13 +32,18 @@
            <div class="noticebtn_list">
            <%-- ADMIN일때만 수정,삭제 버튼 보임.<c:if test="${notice.writer =='ADMIN' }">  </c:if> --%>
           
-            <%-- <a href="noticeformedit?no=${notice.no}">수정</a> --%>&nbsp;&nbsp;
-            <a href=noticeformedit>수정</a>&nbsp;&nbsp;
+            
+            <c:if test="${member.role == 'ADMIN' }"> 
+            <a href="noticeformedit?no=${notice.no}">수정</a>&nbsp;&nbsp;</c:if>
+            <%--<a href=noticeformedit>수정</a>&nbsp;&nbsp;--%>
             <a href=notice>목록</a>&nbsp;&nbsp;
-            
-            
-             
-            <a href="notice" id="delOk">삭제</a>
+
+				<c:if test="${member.role == 'ADMIN' }"> 
+					<a href="noticedelete?no=${notice.no }"
+						id="delOk">삭제</a></c:if>
+				
+
+				<%--<a href="noticedelete?no=${notice.no}&page=${res.pageInfo.curPage}" id="delOk">삭제</a> --%>
             </div>
             </article>
 	</div>

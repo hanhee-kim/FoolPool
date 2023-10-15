@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.Member;
 import bean.Notice;
 import service.NoticeService;
 import service.NoticeServiceImpl;
@@ -31,20 +34,35 @@ public class NoticeForm extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+		
+		request.setAttribute("jspName", "notice");
 		request.getRequestDispatcher("WEB-INF/views/notice/noticeForm.jsp").forward(request, response);
+		
 	}
+
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		//Member logged = (Member)request.getSession().getAttribute("login");
+		
+		//로그인된 유저 정보가져오기 
+		HttpSession session = request.getSession();
+		Member member = (Member)session.getAttribute("member");
+		String writer_id = member.getId();
+		
 		
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		
+		System.out.println("-------noticeform서블릿-----\ntitle: " + title);
+		System.out.println("-------noticeform서블릿-----\nwriter_id: " + writer_id );
+	
+		//객체에 값 세팅 
 		Notice notice = new Notice();
+		notice.setWriter_id(writer_id);
 		notice.setTitle(title);
 		notice.setContent(content);
 		
@@ -52,13 +70,17 @@ public class NoticeForm extends HttpServlet {
 		try {
 			NoticeService noticeService =  new NoticeServiceImpl();
 			noticeService.noticeWrite(notice);
-			response.sendRedirect("noticedetail?no="+notice.getNo()); //글 작성완료후 목록페이지말고 상세 페이지로 가기 
-			
+			//response.sendRedirect("noticedetail?no="+notice.getNo()); //글 작성완료후 목록페이지말고 상세 페이지로 가기 
+			response.sendRedirect("noticedetail?no="+notice.getNo());
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", e.getMessage());
 			request.getRequestDispatcher("WEB-INF/views/notice/noticeError.jsp").forward(request, response);
+
+			
+			
+			
 		}
 	}
+	}
 
-}

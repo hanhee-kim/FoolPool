@@ -1,6 +1,9 @@
 @charset "UTF-8";
 
-
+/*페이징 현재 페이지 색 */
+.active {
+	background-color: skyblue;
+}
 /* 메뉴 타이틀 */
 .notice-Label {
 	font-size: 35px;
@@ -12,7 +15,7 @@
 .notice-DivLine {
 	margin: 0 auto;
 	width: 1240px;
-	height: 720px;
+	height: 745px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -157,6 +160,7 @@
 .noticeOuter {
 	width: 1000px;
 	margin: auto;
+	height: 745px;
 }
 
 .noticeListwrap {
@@ -229,31 +233,37 @@
 	width: 100px;
 }
 
-.onmouseover {
-	background: #f3f5f7;
-	cursor: pointer;
-}
 
-.notice_paging {
-	height: 50px;
-	line-height: 50px;
+
+.noticePaging{
+	/* background: skyblue; */
+	
+	/* 원하는 위치에 배치하기 위해 절대값으로 지정 */
+    /* margin-left: 500px; */
+    justify-content: center;
+    align-items: center;
+	font-family: 'Cafe24SsurroundAir';
+	font-size: larger;
+	font-weight: bold;
 	display: flex;
-	justify-content: center;
-	list-style: none;
-	width: 480px;
-	margin: auto;
+	margin-top:50px;
+	
 }
-
-
-.notice_paging a {
+.noticePaging a {
 	text-decoration: none;
-	color: #282A35;
-	width: 40px;
-	display: block;
-	text-align: center;
+	margin: 0 5px;
+	color: #D9D9D9;
 }
 
-.notice_paging a.current_page {
+#notice-selectedPage {
+	color: #466b55;
+}
+
+
+
+
+
+.noticePaging a.current_page {
 	border-bottom: 2px solid #282A35;
 	font-weight: bold;
 }
@@ -304,29 +314,7 @@
 	margin: 5px;
 }
 
-.notice-paging {
-    /* background: skyblue; */
-    /* position: absolute; */
-    /* top: 935px; */
-    /* z-index: 10; */
-    display: flex;
-    font-family: 'Cafe24SsurroundAir';
-    font-size: larger;
-    font-weight: bold;
-    /* margin-left: 300px; */
-    margin-top: 30px;
-    align-items: center;
-    justify-content: center;
- 
-}
-.notice-paging a {
-	text-decoration: none;
-	margin: 0 5px;
-	color: #D9D9D9;
-}
-#notice-pagingnumbs-selected {
-	color: #466b55;
-}
+
    
 
 
