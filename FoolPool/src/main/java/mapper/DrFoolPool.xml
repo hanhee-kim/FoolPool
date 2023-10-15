@@ -112,7 +112,18 @@
  		]]>
  	</delete>
  	
- 	<!-- 5. 댓글 목록 -->
+ 	<!-- 5. 게시글 수정 -->
+ 	<update id="updateDrFoolPool" parameterType="Integer">
+ 		update drfoolpool
+ 		<trim prefix="SET" suffixOverrides=",">
+ 			<if test="title != null">title=#{title},</if>
+ 			<if test="content != null">content=#{content},</if>
+ 			<if test="fileName != null">file_name=#{fileName},</if>
+ 		</trim>
+ 		where no=#{no}
+ 	</update>
+ 	
+ 	<!-- 6. 댓글 목록 -->
 	<select id="selectDrFoolPoolComment" parameterType="Integer" resultType="DrFoolPoolComment" resultMap="DrFoolPoolCommentResultMap">
 	 	<![CDATA[
 	 		SELECT * from drfoolpool_comment WHERE POST_NO=#{postNo}
@@ -120,7 +131,7 @@
 	 	]]>
  	</select>
  	
- 	<!-- 6. 댓글 작성 -->
+ 	<!-- 7. 댓글 작성 -->
  	<insert id="insertDrFoolPoolComment" parameterType="DrFoolPoolComment" useGeneratedKeys="true" keyProperty="commentNo">
 		<![CDATA[
  			INSERT INTO drfoolpool_comment 
@@ -130,7 +141,7 @@
  		]]>
 	</insert>
 
- 	<!-- 7. 댓글 삭제 -->
+ 	<!-- 8. 댓글 삭제 -->
  	<delete id="deleteDrFoolPoolComment" parameterType="Integer">
  		<![CDATA[
  			delete from drfoolpool_comment where COMMENT_NO=#{commentNo}

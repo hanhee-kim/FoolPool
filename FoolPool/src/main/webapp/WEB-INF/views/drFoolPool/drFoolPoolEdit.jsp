@@ -12,18 +12,17 @@
                 <%-- 게시글 수정 --%>
                 <section class="drFP-formSection">
                 	<h2>질문글 수정</h2>
-					<form action="drFoolpoolForm" method="post" enctype="multipart/form-data" name="drFoolPoolForm">
-						<input type="hidden" name="num" value="${drfoolpool.num}"/>
-						<%-- hidden속성으로 게시글 번호를 가지고 있어야함 --%>
+					<form action="editDrFoolPool" method="post" enctype="multipart/form-data" name="drFoolPoolForm">
+						<input type="hidden" name="no" value="${drFoolPool.no}"/>
 						<div class="drFP-inputArea">
 							<ul>
 								<li>
 				                    <label for="drFP-formTitle">제목 <em>*</em></label><br>
-				                    <input class="drFP-formTitle" name="title" type="text" value="${drfoolpool.title}">
+				                    <input class="drFP-formTitle" name="title" type="text" value="${drFoolPool.title}">
 				                </li>
 				                <li>
 				                    <label for="drFP-formContent">내용 <em>*</em></label><br>
-				                    <textarea class="drFP-formContent" name="content" rows="20" cols="42" value="${drfoolpool.content}"></textarea>
+				                    <textarea class="drFP-formContent" name="content" rows="20" cols="42">${drFoolPool.content}</textarea>
 				                </li>
 				                <li>
 				                    <label for="drFP-formImg">이미지 업로드 <em>*</em></label><br>

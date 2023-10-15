@@ -13,12 +13,13 @@ public class DrFoolPoolDAOImpl implements DrFoolPoolDAO {
 	
 	SqlSession sqlSession = MybatisSqlSessionFactory.getSqlSessionFactory().openSession();
 
-	// 1. 게시글 목록
+	// 1-1. 게시글 목록
 	@Override
 	public List<DrFoolPool> selectDrFoolPoolList(Map<String,Object> paramMap) throws Exception {
 		List<DrFoolPool> list = sqlSession.selectList("mapper.drfoolpool.selectDrFoolPoolList", paramMap);
 		return list;
 	}
+	// 1-2. 전체 게시글 수 
 	@Override
 	public Integer selectDrFoolPoolCount(Map<String,Object> paramMap) throws Exception {
 		return sqlSession.selectOne("mapper.drfoolpool.selectDrFoolPoolCount", paramMap);
@@ -50,26 +51,34 @@ public class DrFoolPoolDAOImpl implements DrFoolPoolDAO {
 		sqlSession.commit();
 	}
 	
-	// 5. 댓글 목록
+	// 5. 게시글 수정
+	@Override
+	public void updateDrFoolPool(DrFoolPool drFoolPool) throws Exception {
+		sqlSession.insert("mapper.drfoolpool.updateDrFoolPool", drFoolPool);
+		sqlSession.commit();
+	}
+	
+	// 6. 댓글 목록
 	@Override
 	public List<DrFoolPoolComment> selectDrFoolPoolCommentList(Integer postNo) throws Exception {
 		List<DrFoolPoolComment> commlist = sqlSession.selectList("mapper.drfoolpool.selectDrFoolPoolComment", postNo);
 		return commlist;
 	}
 	
-	// 6. 댓글 작성
+	// 7. 댓글 작성
 	@Override
 	public void insertDrFoolPoolComment(DrFoolPoolComment comment) throws Exception {
 		sqlSession.insert("mapper.drfoolpool.insertDrFoolPoolComment", comment);
 		sqlSession.commit();
 	}
 
-	// 7. 댓글 삭제
+	// 8. 댓글 삭제
 	@Override
 	public void deleteDrFoolPoolComment(Integer commentNo) throws Exception {
 		sqlSession.update("mapper.drfoolpool.deleteDrFoolPoolComment", commentNo);
 		sqlSession.commit();
 	}
+	
 	
 	
 	

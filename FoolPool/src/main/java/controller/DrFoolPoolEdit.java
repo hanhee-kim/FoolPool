@@ -7,6 +7,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
+import bean.DrFoolPool;
+import service.DrFoolPoolService;
+import service.DrFoolPoolServiceImpl;
+
 /**
  * Servlet implementation class DrFoolPoolEdit
  */
@@ -27,16 +34,88 @@ public class DrFoolPoolEdit extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		request.setAttribute("jspName", "drFoolPool");
-		request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolEdit.jsp").forward(request, response);
+		Integer no = Integer.parseInt(request.getParameter("no"));
+		
+		try {
+			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
+			DrFoolPool drFoolPool = drFoolPoolService.drFoolPoolDetail(no);
+			System.out.println("-----/editDrFoolPool doGet 호출-----\n" + drFoolPool.toString());
+			request.setAttribute("drFoolPool", drFoolPool);
+			request.setAttribute("jspName", "drFoolPool");
+			request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolEdit.jsp").forward(request, response);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("err", "풀풀박사 게시글 수정 실패");
+			request.getRequestDispatcher("error.jsp").forward(request, response);
+		}
+		
+		/*
+		// 로그인처리 완료 후 아래 코드로 위의 코드 대체할것
+		 
+		// 뷰의 버튼이 아니라 사용자가 직접 url로 요청하여 들어왔을때도 비로그인 상태일때는 로그인페이지로 이동하게함
+		HttpSession session = request.getSession();
+		if(session.getAttribute("user")==null) {
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+		} else {
+			request.setAttribute("jspName", "drFoolPool");
+			request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolEdit.jsp").forward(request, response);
+		}
+		*/
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		System.out.println("-----/editDrFoolPool doPost호출------");
+		request.setCharacterEncoding("utf-8");
+		request.setAttribute("jspName", "drFoolPool");
+		
+		// 로그인 정보 가져오기
+//		HttpSession session = request.getSession();
+//		Member member = (Member) session.getAttribute("user");
+//		String writerId = member.getId();
+		String writerId = "user01";
+		String writerNickname = "닉네임01";
+		
+		// 파일 업로드 - 파일 업로드 경로를 절대경로로 지정할것 cf. DB에는 파일명만 저장한다
+//		String uploadPath = "C:\\upload\\" + fileName; 
+		String uploadPath = "C:\\upload"; 
+		int size = 10*1024*1024;
+		MultipartRequest multi = new MultipartRequest(request, uploadPath, size, "utf-8", new DefaultFileRenamePolicy());
+		 
+		// form입력값 가져오기
+		String fileName = multi.getParameter("file");
+		// #### 파일명이 null로 받아와지는 문제 ###
+		if (fileName==null) fileName = "drfoolpool_sample1.png";
+			
+		String title = multi.getParameter("title");
+		String content = multi.getParameter("content");
+		Integer no = Integer.parseInt(multi.getParameter("no"));
+		System.out.println("fileName: " + fileName + ", title: " + title + ", content: " + content + ", no: " + no);
+		
+		// DrFoolPool객체 생성
+		DrFoolPool drFoolPool = new DrFoolPool();
+		drFoolPool.setTitle(title);
+		drFoolPool.setContent(content);
+		drFoolPool.setFileName(fileName);
+		drFoolPool.setNo(no);
+		// 임시코드
+		drFoolPool.setWriterId(writerId);
+		drFoolPool.setWriterNickname(writerNickname); // 로그인처리후에는 (1) DB에 아이디를 통해 조회한 닉네임을 넣어주거나 (2) 서블릿에서 채우지 않고 매퍼에서 조인/서브쿼리를 이용한다
+//		System.out.println("--------수정 정보-------\n" + drFoolPool.toString());
+		
+		try {
+			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
+			drFoolPoolService.drFoolPoolEdit(drFoolPool);
+			response.sendRedirect("drFoolPoolDetail?no=" + drFoolPool.getNo());
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("err", e.getMessage());
+			request.getRequestDispatcher("error.jsp").forward(request, response);
+		}
 	}
 
 }

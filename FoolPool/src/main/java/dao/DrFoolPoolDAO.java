@@ -8,8 +8,9 @@ import bean.DrFoolPoolComment;
 
 public interface DrFoolPoolDAO {
 	
-	// 1. 게시글 목록
+	// 1-1. 게시글 목록
 	List<DrFoolPool> selectDrFoolPoolList(Map<String,Object> paramMap) throws Exception;
+	// 1-2. 전체 게시글 수
 	Integer selectDrFoolPoolCount(Map<String,Object> paramMap) throws Exception;
 	
 	// 2. 게시글 작성
@@ -23,13 +24,16 @@ public interface DrFoolPoolDAO {
 	// 4. 게시글 삭제
 	void deleteDrFoolPool(Integer no) throws Exception;
 	
-	// 5. 댓글 목록
+	// 5. 게시글 수정
+	void updateDrFoolPool(DrFoolPool drFoolPool) throws Exception;
+	
+	// 6. 댓글 목록
 	List<DrFoolPoolComment> selectDrFoolPoolCommentList(Integer postNo) throws Exception;
 	
-	// 6. 댓글 작성
+	// 7. 댓글 작성
 	void insertDrFoolPoolComment(DrFoolPoolComment comment) throws Exception;
 
-	// 7. 댓글 삭제
+	// 8. 댓글 삭제
 	void deleteDrFoolPoolComment(Integer commentNo) throws Exception;
 	
 	

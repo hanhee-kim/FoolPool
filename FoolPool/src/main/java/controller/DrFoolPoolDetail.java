@@ -42,7 +42,7 @@ public class DrFoolPoolDetail extends HttpServlet {
 		request.setAttribute("jspName", "drFoolPool");
 		
 		Integer no = Integer.parseInt(request.getParameter("no"));
-		 
+
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
 			DrFoolPool drFoolPool = drFoolPoolService.drFoolPoolDetail(no);

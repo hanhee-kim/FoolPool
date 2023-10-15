@@ -96,25 +96,35 @@ public class DrFoolPoolServiceImpl implements DrFoolPoolService {
 		drFoolPoolDAO.deleteDrFoolPool(no);
 	}
 
+	
+	// 5. 게시글 수정
+	@Override
+	public void drFoolPoolEdit(DrFoolPool drFoolPool) throws Exception {
+		drFoolPoolDAO.updateDrFoolPool(drFoolPool);
+	}
 
-	// 5. 댓글 목록
+
+	// 6. 댓글 목록
 	@Override
 	public List<DrFoolPoolComment> drFoolPoolCommentList(Integer postNo) throws Exception {
 		List<DrFoolPoolComment> drFoolPoolCommentList = drFoolPoolDAO.selectDrFoolPoolCommentList(postNo);
 		return drFoolPoolCommentList;
 	}
 
-	// 6. 댓글 작성
+	// 7. 댓글 작성
 	@Override
 	public void drFoolPoolCommentWrite(DrFoolPoolComment comment) throws Exception {
 		drFoolPoolDAO.insertDrFoolPoolComment(comment);
 	}
 
-	// 7. 댓글 삭제
+	// 8. 댓글 삭제
 	@Override
 	public void drFoolPoolCommentRemove(Integer commentNo) throws Exception {
 		drFoolPoolDAO.deleteDrFoolPoolComment(commentNo);
 	}
+
+
+	
 
 
 

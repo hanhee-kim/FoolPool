@@ -36,7 +36,7 @@
 			    	</div>
 			    	<div class="drFP-detail-4row">${drFoolPool.content}</div>
 			    	<div class="drFP-detail-5row">
-			    		<a href="editDrFoolPool"><button>수정</button></a>
+			    		<button onclick="drFPedit(${drFoolPool.no})">수정</button>
 			    		<button onclick="drFPdelete(${drFoolPool.no})">삭제</button>
 			    		<button onclick="drFPbackToList(${drFoolPool.no})">목록</button>
 			    	</div>

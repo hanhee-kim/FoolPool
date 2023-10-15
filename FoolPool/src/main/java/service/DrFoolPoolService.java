@@ -20,13 +20,16 @@ public interface DrFoolPoolService {
 	// 4. 게시글 삭제
 	void drFoolPoolRemove(Integer no) throws Exception;
 	
-	// 5. 댓글 목록
+	// 5. 게시글 수정
+	void drFoolPoolEdit(DrFoolPool drFoolPool) throws Exception;
+	
+	// 6. 댓글 목록
 	List<DrFoolPoolComment> drFoolPoolCommentList(Integer postNo) throws Exception;
 	
-	// 6. 댓글 작성
+	// 7. 댓글 작성
 	void drFoolPoolCommentWrite(DrFoolPoolComment comment) throws Exception;
 
-	// 7. 댓글 삭제
+	// 8. 댓글 삭제
 	void drFoolPoolCommentRemove(Integer commentNo) throws Exception;
 
 }
