@@ -116,7 +116,7 @@
                     location.href = 'searchflower'
                     break;
                 case 'poolentarierList':
-                    location.href = 'poolentarierList'
+                    location.href = 'goPoolentarier'
                     break;
                 case 'drFoolPool':
                     location.href = 'goDrFoolPool'
