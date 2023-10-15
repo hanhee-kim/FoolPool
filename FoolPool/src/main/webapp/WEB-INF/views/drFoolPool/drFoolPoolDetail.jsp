@@ -25,9 +25,6 @@
 			    		<label class="drFP-detailTitle">${drFoolPool.title}</label>
 			    	</div>
 			    	<div class="drFP-detail-2row">
-						<%--
-				    	<span>${drFoolPool.date}</span>
-				    	 --%>
 				    	 <%-- DATETIME컬럼과 매핑된 java.util.Date필드를 년-월-일로 포맷팅하여 출력 --%>
 				    	<fmt:formatDate value="${drFoolPool.date}" pattern="yyyy.MM.dd. HH:mm" var="formattedDate" />
 						<span>${formattedDate}</span>
@@ -40,8 +37,8 @@
 			    	<div class="drFP-detail-4row">${drFoolPool.content}</div>
 			    	<div class="drFP-detail-5row">
 			    		<a href="editDrFoolPool"><button>수정</button></a>
-			    		<button onclick="dfFPdelete(${drFoolPool.no})">삭제</button>
-			    		<button onclick="drFPback();">목록</button>
+			    		<button onclick="drFPdelete(${drFoolPool.no})">삭제</button>
+			    		<button onclick="drFPbackToList(${drFoolPool.no})">목록</button>
 			    	</div>
 			    	
 			    	<div class="drFP-commentArea">
@@ -57,11 +54,19 @@
 				    					<%--
 				    					<button class="drFP-commentPickBtn">채택하기</button>
 				    					 --%>
-				    					<button class="drFP-commentDelBtn" onclick="dfFPCommdelete(${comment.commentNo}, ${comment.postNo})">×</button>
+				    					<button class="drFP-commentDelBtn" onclick="drFPCommdelete(${comment.commentNo}, ${comment.postNo})">×</button>
 				    				</td>
 				    			</tr>
 				    		</table>
 			    		</c:forEach>
+			    		<div id="dfFP-commentForm">
+				    		<form action="addDrFoolPoolComment" method="post">
+				    			<input type="hidden" name="postNo" value="${drFoolPool.no}"/>
+				    			<span>로그인한사용자의닉네임길면줄넘김해주기</span>
+				    			<input type="text" name="commentContent"/>
+				    			<input type="submit" value="등록"/>
+				    		</form>
+			    		</div>
 			    	</div>
 			    	
 			    	

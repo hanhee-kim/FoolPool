@@ -24,6 +24,7 @@ public interface DrFoolPoolService {
 	List<DrFoolPoolComment> drFoolPoolCommentList(Integer postNo) throws Exception;
 	
 	// 6. 댓글 작성
+	void drFoolPoolCommentWrite(DrFoolPoolComment comment) throws Exception;
 
 	// 7. 댓글 삭제
 	void drFoolPoolCommentRemove(Integer commentNo) throws Exception;

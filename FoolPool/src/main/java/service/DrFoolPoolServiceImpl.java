@@ -105,12 +105,18 @@ public class DrFoolPoolServiceImpl implements DrFoolPoolService {
 	}
 
 	// 6. 댓글 작성
+	@Override
+	public void drFoolPoolCommentWrite(DrFoolPoolComment comment) throws Exception {
+		drFoolPoolDAO.insertDrFoolPoolComment(comment);
+	}
 
 	// 7. 댓글 삭제
 	@Override
 	public void drFoolPoolCommentRemove(Integer commentNo) throws Exception {
 		drFoolPoolDAO.deleteDrFoolPoolComment(commentNo);
 	}
+
+
 
 
 	

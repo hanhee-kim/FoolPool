@@ -58,6 +58,11 @@ public class DrFoolPoolDAOImpl implements DrFoolPoolDAO {
 	}
 	
 	// 6. 댓글 작성
+	@Override
+	public void insertDrFoolPoolComment(DrFoolPoolComment comment) throws Exception {
+		sqlSession.insert("mapper.drfoolpool.insertDrFoolPoolComment", comment);
+		sqlSession.commit();
+	}
 
 	// 7. 댓글 삭제
 	@Override
@@ -65,6 +70,7 @@ public class DrFoolPoolDAOImpl implements DrFoolPoolDAO {
 		sqlSession.update("mapper.drfoolpool.deleteDrFoolPoolComment", commentNo);
 		sqlSession.commit();
 	}
+	
 	
 	
 	

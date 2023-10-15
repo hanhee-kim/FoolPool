@@ -27,6 +27,7 @@ public interface DrFoolPoolDAO {
 	List<DrFoolPoolComment> selectDrFoolPoolCommentList(Integer postNo) throws Exception;
 	
 	// 6. 댓글 작성
+	void insertDrFoolPoolComment(DrFoolPoolComment comment) throws Exception;
 
 	// 7. 댓글 삭제
 	void deleteDrFoolPoolComment(Integer commentNo) throws Exception;

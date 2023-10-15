@@ -1,21 +1,25 @@
-/*
- * 풀풀박사 게시글 작성-취소 버튼
- * 풀풀박사 게시글 상세-목록 버튼
- */
+/* 풀풀박사 게시글 작성-취소 버튼 */
 function drFPback() {
 	// history.go(-1);
     history.back();
 }
+
+/* 풀풀박사 게시글 상세-목록 버튼 */
+function drFPbackToList(no) {
+	console.log("drFPbackToList 호출...");
+	window.location.href = "goDrFoolPool";
+}
+
 /* 풀풀박사 게시글 삭제 버튼 */
-function dfFPdelete(no) {
-	console.log("dfFPdelete 호출...");
+function drFPdelete(no) {
+	console.log("drFPdelete 호출...");
 	if (confirm("정말 삭제하시겠습니까?") == true){ 
 		window.location.href = "drFoolPoolDelete?no=" + no;
 	 }
 }
 
 /* 풀풀박사 댓글 삭제 버튼 */
-function dfFPCommdelete(commentNo, postNo) {
+function drFPCommdelete(commentNo, postNo) {
 	console.log("dfFPCommdelete 호출...");
 	if (confirm("정말 삭제하시겠습니까?") == true){ 
 		window.location.href = "deldrfoolpoolcomment?commentNo=" + commentNo + "&postNo=" + postNo;

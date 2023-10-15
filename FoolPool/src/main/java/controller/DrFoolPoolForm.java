@@ -66,8 +66,8 @@ public class DrFoolPoolForm extends HttpServlet {
 //		HttpSession session = request.getSession();
 //		Member member = (Member) session.getAttribute("user");
 //		String writerId = member.getId();
-		String writerId = "로그인처리전임시아이디";
-		String writerNickname = "로그인처리전임시닉네임";
+		String writerId = "user01";
+		String writerNickname = "닉네임01";
 		
 		// 파일 업로드 - 파일 업로드 경로를 절대경로로 지정할것 cf. DB에는 파일명만 저장한다
 //		String uploadPath = "C:\\upload\\" + fileName; 
@@ -76,27 +76,27 @@ public class DrFoolPoolForm extends HttpServlet {
 		MultipartRequest multi = new MultipartRequest(request, uploadPath, size, "utf-8", new DefaultFileRenamePolicy());
 		 
 		// form입력값 가져오기
-				String fileName = multi.getParameter("file");
-				if (fileName==null) {
-					
-				}
-				String title = multi.getParameter("title");
-				String content = multi.getParameter("content");
-				System.out.println("fileName: " + fileName + ", title: " + title + ", content: " + content);
+		String fileName = multi.getParameter("file");
+		// #### 파일명이 null로 받아와지는 문제 ###
+		if (fileName==null) fileName = "drfoolpool_sample1.png";
+			
+		String title = multi.getParameter("title");
+		String content = multi.getParameter("content");
+		System.out.println("fileName: " + fileName + ", title: " + title + ", content: " + content);
 		
 		// DrFoolPool객체 생성
 		DrFoolPool drFoolPool = new DrFoolPool();
 		drFoolPool.setTitle(title);
 		drFoolPool.setContent(content);
 		drFoolPool.setFileName(fileName);
-		drFoolPool.setWriterId(writerId);
 		// 임시코드
+		drFoolPool.setWriterId(writerId);
 		drFoolPool.setWriterNickname(writerNickname); // 로그인처리후에는 (1) DB에 아이디를 통해 조회한 닉네임을 넣어주거나 (2) 서블릿에서 채우지 않고 매퍼에서 조인/서브쿼리를 이용한다
 		
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
 			drFoolPoolService.drFoolPoolWrite(drFoolPool);
-			response.sendRedirect("WEB-INF/views/drFoolPool/drFoolPoolDetail?no=" + drFoolPool.getNo());
+			response.sendRedirect("drFoolPoolDetail?no=" + drFoolPool.getNo());
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -110,7 +110,7 @@ public class DrFoolPoolForm extends HttpServlet {
 	/* cf. DTO의 필드
 	private Integer no; // db에서 auto_increment 되는 값
 	private String title; 
-	private Date date; // 매퍼에서 curdate()로 넣어줄것
+	private Date date; // 매퍼에서 now()로 넣어줄 값
 	private Integer view; // db에서 디폴트값0 가짐
 	private String content;
 	private String fileName;

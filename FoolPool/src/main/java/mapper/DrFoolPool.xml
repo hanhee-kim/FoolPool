@@ -121,7 +121,15 @@
  	</select>
  	
  	<!-- 6. 댓글 작성 -->
- 	
+ 	<insert id="insertDrFoolPoolComment" parameterType="DrFoolPoolComment" useGeneratedKeys="true" keyProperty="commentNo">
+		<![CDATA[
+ 			INSERT INTO drfoolpool_comment 
+ 			(comment_date, comment_content, writer_id, writer_nickname, post_no)
+			VALUES
+			(now(), #{commentContent}, #{writerId}, #{writerNickname}, #{postNo});
+ 		]]>
+	</insert>
+
  	<!-- 7. 댓글 삭제 -->
  	<delete id="deleteDrFoolPoolComment" parameterType="Integer">
  		<![CDATA[
