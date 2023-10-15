@@ -199,6 +199,10 @@
 	height: 34px;
 }
 
+#drFP-emptyList {
+	color: red;
+}
+
 
 /* 2. 풀풀박사 게시글 상세 */
 .drFP-detailArea {

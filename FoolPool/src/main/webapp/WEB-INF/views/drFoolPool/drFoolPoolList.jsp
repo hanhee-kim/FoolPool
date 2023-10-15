@@ -1,3 +1,4 @@
+<%@page import="org.apache.ibatis.reflection.SystemMetaObject"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/include/menubar.jsp" %>
@@ -10,6 +11,7 @@
 // System.out.println("------drFoolPoolList.jsp-------");
 Map<String,Object> resMap = (Map)request.getAttribute("resMap");
 List<DrFoolPool> list = (List)resMap.get("drFoolPoolList");
+// System.out.println("list.size() : " + list.size()); // list는 limt하여 가져온 목록이므로 6개 이하
 // System.out.println("리스트의 0번째 게시글 번호: " + list.get(0).getNo()); 
 %>
 
@@ -49,35 +51,41 @@ List<DrFoolPool> list = (List)resMap.get("drFoolPoolList");
                 
                 <%-- 카드그리드 3x2 --%>
 			    <div class="drFP-CardGrid">
-			        <c:forEach items="${resMap['drFoolPoolList']}" var="drfoolpool">
-			        <a href="drFoolPoolDetail?no=${drfoolpool.no}"> 
-				        <div class="drFP-Card">
-				        	<div class="drFP-CardTitleArea">
-				        		<c:choose>
-					        		<c:when test="${drfoolpool.isSolved==false}">
-							        <img alt="미해결이파리" src="./static/img/drFP-leaf-unsolved.png" class="drFP-leaf">
-					        		</c:when>
-					        		<c:otherwise>
-							        <img alt="해결이파리" src="./static/img/drFP-leaf-solved.png" class="drFP-leaf">
-					        		</c:otherwise>
-				        		</c:choose>
-						        <label class="drFP-CardTitle">${drfoolpool.title}</label>
-					        </div>
-					        <div class="drFP-thumbnailArea">
-								<img alt="풀풀박사게시글이미지" src="image?file=${drfoolpool.fileName}" width="290" height="160"/>
-					        </div>
-				        </div>
-					</a>
-			        </c:forEach>
+			    	<%-- 목록이 0행일때의 예외처리 --%>
+			    	<c:if test="${resMap['drFoolPoolList'].size()==0}">
+			    		<div id="drFP-emptyList">...</div>
+			    	</c:if>
+			    	<c:if test="${resMap['drFoolPoolList'].size()>0}">
+						<c:forEach items="${resMap['drFoolPoolList']}" var="drfoolpool">
+					        <a href="drFoolPoolDetail?no=${drfoolpool.no}"> 
+						        <div class="drFP-Card">
+						        	<div class="drFP-CardTitleArea">
+						        		<c:choose>
+							        		<c:when test="${drfoolpool.isSolved==false}">
+									        <img alt="미해결이파리" src="./static/img/drFP-leaf-unsolved.png" class="drFP-leaf">
+							        		</c:when>
+							        		<c:otherwise>
+									        <img alt="해결이파리" src="./static/img/drFP-leaf-solved.png" class="drFP-leaf">
+							        		</c:otherwise>
+						        		</c:choose>
+								        <label class="drFP-CardTitle">${drfoolpool.title}</label>
+							        </div>
+							        <div class="drFP-thumbnailArea">
+										<img alt="풀풀박사게시글이미지" src="image?file=${drfoolpool.fileName}" width="290" height="160"/>
+							        </div>
+						        </div>
+							</a>
+				        </c:forEach>
+			    	</c:if>
 			    </div> <%-- drFP-CardGrid --%>
                 
                 
                 <%-- 검색바 --%>
                 <h5 class="drFP-searchBar">
-                	<form action="goDrFoolPool" method="post">
+                	<form action="goDrFoolPool" method="post" id="drFP-searchForm">
                 		<input type="hidden" name="page" id="dfFP-page" value="${resMap.pageInfo.curPage }"/>
                 		<input type="hidden" name="filter" id="dfFP-filter"/>
-	                	<select name="sOption">
+	                	<select name="sOption" id="sOption">
 	                		<option value="unselected">선택</option>
 	                		<option value="writer_nickname">작성자</option>
 	                		<option value="all">제목+내용</option>

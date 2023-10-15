@@ -55,6 +55,8 @@ public class DrFoolPoolServiceImpl implements DrFoolPoolService {
 		
 		// 현재 페이지의 시작 행 (SELECT문의 limit절에서 사용)
 		int row = (curPage-1)*itemsPerPage+1; 
+		System.out.println("maxPage: " + maxPage + ", curPage: " + curPage + ", row: " + row);
+		if(row<0) row = 1;
 		
 		// 서비스의 메서드 호출하여 리스트를 반환받음
 		Map<String,Object> paramMap = new HashMap<>();

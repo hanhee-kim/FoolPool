@@ -88,9 +88,9 @@ public class DrFoolPoolList extends HttpServlet {
 		
 		
 		// 검색옵션 선택하지 않고 제출시 발생하는 예외처리 할것
-//		if(sOption.equals("unselected")) { 
-//			return;
-//		}
+		if(sOption.equals("unselected")) { 
+			return;
+		}
 		
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
