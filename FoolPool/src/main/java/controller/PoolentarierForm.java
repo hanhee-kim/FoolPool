@@ -49,7 +49,8 @@ public class PoolentarierForm extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		// 파일 업로드 시작
-		String uploadPath = request.getServletContext().getRealPath("static/img");
+//		String uploadPath = request.getServletContext().getRealPath("static/img");
+		String uploadPath = "C:\\upload";
 		int size = 10 * 1024 * 1024;
 		MultipartRequest multi = new MultipartRequest(request, uploadPath, size, "utf-8", new DefaultFileRenamePolicy());
 		// 파일 업로드 끝
@@ -67,22 +68,10 @@ public class PoolentarierForm extends HttpServlet {
 		String writerNickname = member.getNickname();
 //		String writerNickname = "물고기";
 		
-		System.out.println(multi.getParameter("keyword1"));
-		System.out.println(multi.getParameter("keyword2"));
-		System.out.println(multi.getParameter("keyword3"));
-		System.out.println(multi.getParameter("keyword4"));
-		System.out.println(multi.getParameter("keyword5"));
-		
-		String temp = "keyword" + 1;
-		System.out.println(temp);
-		
 		// 키워드 값 설정
 		String[] keyword = new String[5]; // 키워드 배열 초기화
 		for(int i = 1;i < 6;i++) {
-//			temp = "keyword" + i;
-			temp = i + "thKeyword";
-			System.out.println(i + "번째: " + temp);
-			String parameterValue = multi.getParameter(temp);
+			String parameterValue = multi.getParameter(i + "");
 		    if (parameterValue != null) {
 		        keyword[i - 1] = parameterValue;
 		    }

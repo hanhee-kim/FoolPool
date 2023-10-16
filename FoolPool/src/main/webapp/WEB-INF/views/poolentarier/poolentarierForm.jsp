@@ -39,7 +39,7 @@
 									<td>
 										<input id="pfKeyword" type="text" placeholder="키워드 입력"
 											name="keyword">
-										<button class="pfKeywordAddBtn" onclick="addKeyword(event)">추가</button>
+										<button class="pfKeywordAddBtn" onclick="pfAddKeywordBtn(event)">추가</button>
 									</td>
 								</tr>
 								<tr>
@@ -52,6 +52,9 @@
 								<tr>
 									<td class="pfSaveBtnContainer">
 										<input type="submit" class="pfBtn btn-primary pull-right" value="저장"/>
+									</td>
+									<td class="peSaveBtnContainer">
+										<button class="pfBtn" onclick="poolentarierCancelBtn();">취소</button>
 									</td>
 								</tr>
 							</tbody>

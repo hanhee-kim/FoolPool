@@ -26,9 +26,9 @@
 	            	<%-- 카드그리드 2x2 --%>
 	            	<div class="plCardGrid">
 	            		<c:forEach items="${res.poolentarierList }" var="poolentarier">
-		            		<a href="poolentarierDetail?num=${poolentarier.no}">
+		            		<a href="poolentarierDetail?no=${poolentarier.no}">
 		            			<div class="plCard">
-		            				<img alt="ㅋㅋ" class="plFace plFront" src="static/img/flower.jpeg">
+		            				<img alt="풀랜테리어 사진" class="plFace plFront" src="image?file=${poolentarier.fileName}">
 									<div class="plFace plBack">
 										<h1>${poolentarier.title}</h1><br>
 										<h3>${poolentarier.plantsName}</h3>
@@ -41,16 +41,16 @@
 
 					<div class=plSearchOptionDiv>
 						<form action="./poolentarierSearch" method="post" id="plSearchform">
-							<input type="hidden" name="page" id="plPage" value="1">
+							<input type="hidden" name="page" id="plPage" value="${res.pageInfo.curPage }">
 							<h5>
-								<select class="plSearchType" name="type">
-									<option value="all">전체</option>
-									<option value="subjectcontent" ${res.type eq 'subjectcontent'? 'selected':''}>제목+내용</option>
-									<option value="writer" ${res.type eq 'writer'? 'selected':''}>작성자</option>
-									<option value="keyword" ${res.type eq 'keyword'? 'selected':''}>키워드</option>
-									<option value="plant" ${res.type eq 'plant'? 'selected':''}>식물명</option>
+								<select class="plSearchOption" name="plSearchOption">
+									<option value="unselected">선택</option>
+									<option value="all" ${res.plSearchOption eq 'subjectcontent'? 'selected':''}>제목+내용</option>
+									<option value="writer" ${res.plSearchOption eq 'writer'? 'selected':''}>작성자</option>
+									<option value="keyword" ${res.plSearchOption eq 'keyword'? 'selected':''}>키워드</option>
+									<option value="plant" ${res.plSearchOption eq 'plant'? 'selected':''}>식물명</option>
 								</select>
-								<input type="text" name="searchText" id="plSearchText" value="${res.searchText}" />
+								<input type="text" name="plSearchText" id="plSearchText" value="${res.plSearchText}" />
 								<button class="plSearchBtn" type="submit">검색</button>
 							</h5>
 						</form>

@@ -22,14 +22,20 @@ public class PoolentarierDAOImpl implements PoolentarierDAO {
 	}
 	
 	@Override
-	public Poolentarier selectPoolentarierDetail(Integer num) throws Exception {
-		Poolentarier poolentarier = sqlSession.selectOne("mapper.poolentarier.selectPoolentarierDetail", num);
-		return sqlSession.selectOne("mapper.poolentarier.selectPoolentarierDetail", num);
+	public Poolentarier selectPoolentarierDetail(Integer no) throws Exception {
+		Poolentarier poolentarier = sqlSession.selectOne("mapper.poolentarier.selectPoolentarierDetail", no);
+		return sqlSession.selectOne("mapper.poolentarier.selectPoolentarierDetail", no);
 	}
 	
 	@Override
 	public void insertPoolentarierDetail(Poolentarier poolentarier) throws Exception {
 		sqlSession.insert("mapper.poolentarier.insertPoolentarierDetail", poolentarier);
+		sqlSession.commit();
+	}
+	
+	@Override
+	public void deletePoolentarierDetail(Integer no) throws Exception {
+		sqlSession.delete("mapper.poolentarier.deletePoolentarier", no);
 		sqlSession.commit();
 	}
 }

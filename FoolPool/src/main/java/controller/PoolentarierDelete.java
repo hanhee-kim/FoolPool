@@ -1,23 +1,27 @@
 package controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import service.PoolentarierService;
+import service.PoolentarierServiceImpl;
+
 /**
  * Servlet implementation class PoolentarierDel
  */
-@WebServlet("/delPoolentarier")
-public class PoolentarierDel extends HttpServlet {
+@WebServlet("/poolentarierDelete")
+public class PoolentarierDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PoolentarierDel() {
+    public PoolentarierDelete() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,10 +31,23 @@ public class PoolentarierDel extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		Integer no = Integer.parseInt(request.getParameter("no"));
+		String page = request.getParameter("page");
+		int curPage = 1; 
+		if(page!=null) curPage = Integer.parseInt(page);
 		
 		request.setAttribute("jspName", "poolentarier");
+		try {
+			PoolentarierService poolentarierService = new PoolentarierServiceImpl();
+			poolentarierService.poolentarierDelete(no);
+			response.sendRedirect("goPoolentarier?page="+curPage);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("err", "풀풀박사 게시글 삭제 오류");
+			request.getRequestDispatcher("error.jsp").forward(request, response);
+		}
 		
-		request.getRequestDispatcher("WEB-INF/views/poolentarier/poolentarierList.jsp").forward(request, response);
 	}
 
 }

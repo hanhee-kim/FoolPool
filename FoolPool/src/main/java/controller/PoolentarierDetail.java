@@ -31,13 +31,13 @@ public class PoolentarierDetail extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		Integer num = Integer.parseInt(request.getParameter("num"));
+		Integer no = Integer.parseInt(request.getParameter("no"));
 		
 		request.setAttribute("jspName", "poolentarier");
 		try {
 			// 서비스 객체 생성
 			PoolentarierService poolentarierService = new PoolentarierServiceImpl();
-			Poolentarier poolentarier = poolentarierService.poolentarierDetail(num);
+			Poolentarier poolentarier = poolentarierService.poolentarierDetail(no);
 			request.setAttribute("poolentarier", poolentarier);
 			request.getRequestDispatcher("WEB-INF/views/poolentarier/poolentarierDetail.jsp").forward(request, response);
 		} catch(Exception e) {
