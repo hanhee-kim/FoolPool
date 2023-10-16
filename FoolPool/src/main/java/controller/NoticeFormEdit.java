@@ -71,7 +71,9 @@ public class NoticeFormEdit extends HttpServlet {
 		notice.setNo(no);
 		notice.setTitle(title);
 		notice.setContent(content);
-		
+		System.out.println(notice.getNo());
+		System.out.println(notice.getTitle());
+		System.out.println(notice.getContent());
 		try {
 			NoticeService noticeService = new NoticeServiceImpl();
 			noticeService.noticeModify(notice);

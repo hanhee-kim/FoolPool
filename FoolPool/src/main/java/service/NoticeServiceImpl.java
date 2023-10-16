@@ -54,15 +54,18 @@ public class NoticeServiceImpl implements NoticeService {
 		map.put("noticeList", noticeList);
 		return map;
 	}
+	
+	
 
 	@Override //상세 페이지 
 	public Notice noticeDetail(Integer num) throws Exception {
-        noticeDao.updateNoticeViewCount(num); 
+		noticeDao.updateNoticeViewCount(num);
 		return noticeDao.selectNotice(num);			
 	}
 
 	@Override //수정
 	public void noticeModify(Notice notice) throws Exception {
+		System.out.println("noticeModify");
 		noticeDao.updateNotice(notice);
 	}
 
@@ -104,6 +107,8 @@ public class NoticeServiceImpl implements NoticeService {
 		noticeDao.deleteNotice(num);
 		
 	}
+
+
 
 	
 
