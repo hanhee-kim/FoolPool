@@ -45,11 +45,14 @@
     border-bottom: 1px solid white;
     align-items: center;   
 }
+.loginLabelText{
+    margin: 25px;
+}
 .joinLabelText{
     grid-template-columns: 105px 175px 90px;
 }
 .loginLabelText{
-    grid-template-columns: 120px 170px;
+    grid-template-columns: 85px 200px;
 }
 .joinText,
 .loginText{
