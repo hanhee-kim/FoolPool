@@ -7,7 +7,7 @@
     display: flex;
 }
 .joinBox{
-    width: 550px;
+    width: 450px;
     height: 525px;
     margin: 140px auto 0;
 }
@@ -40,12 +40,13 @@
 .joinLabelText,
 .loginLabelText{
     display: grid;
-    margin: 25px;
+    margin: 10px;
     font-size: 16px;
     border-bottom: 1px solid white;
+    align-items: center;   
 }
 .joinLabelText{
-    grid-template-columns: 120px 170px 150px;
+    grid-template-columns: 105px 175px 90px;
 }
 .loginLabelText{
     grid-template-columns: 120px 170px;
@@ -105,6 +106,31 @@
 }
 .boxBtn{
     transition: ease-in-out .2s;
+}
+.joinformDiv{
+	height:27px;
+}
+.joinCheckMsgDiv{
+	text-align: right;
+    margin-right: 40px;
+    font-size: 14px;
+}
+/* 크롬, 파이어폭스, 오페라, 사파리 최신 버전 */
+.join_PH::placeholder {
+  color: #ffffff66;
+  font-style: italic;
+  font-size: 11px;
+}
+/* 크롬, 파이어폭스, 오페라, 사파리의 구버전과 Edge, IE */
+.join_PH::-webkit-input-placeholder {
+  color: #ffffff66;
+  font-style: italic;
+  font-size: 11px;
+}
+.join_PH:-ms-input-placeholder {
+  color: #ffffff66;
+  font-style: italic;
+  font-size: 11px;
 }
 
 

@@ -4,6 +4,8 @@
 var isIdCheck = false;
 var isNicknameCheck = false;
 var isPasswordMatched = false;
+
+//로그인시 아이디,닉네임 8글자까지 아이디는 영문,숫자만
 $(function() {
 	//id 중복버튼 클릭시
 	$("#idDuplicateCheck").click(function() {
