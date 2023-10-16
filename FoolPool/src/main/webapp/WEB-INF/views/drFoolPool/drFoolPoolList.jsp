@@ -21,18 +21,16 @@ List<DrFoolPool> list = (List)resMap.get("drFoolPoolList");
             
             	<div class="drFP-TopBorder"></div>
             	
-            	<%-- 필터링 버튼 3개 + 글쓰기 버튼 --%>
+            	<%-- 필터링 + 글쓰기 버튼 --%>
             	<div class="drFP-FilteringAndWriteBtn">
 	                <div class="drFP-Filtering" >
 	                	<a href="goDrFoolPool?filter=all&page=1" class="${filter eq 'all' ? 'drFP-FilterBtn drFP-FilterBtnSelected' : 'drFP-FilterBtn'}">전체</a>
 						<a href="goDrFoolPool?filter=unsolved&page=1" class="${filter eq 'unsolved' ? 'drFP-FilterBtn drFP-FilterBtnSelected' : 'drFP-FilterBtn'}">미해결</a>
 						<a href="goDrFoolPool?filter=solved&page=1" class="${filter eq 'solved' ? 'drFP-FilterBtn drFP-FilterBtnSelected' : 'drFP-FilterBtn'}">해결</a>
 	                </div>
-	                <%-- # 로그인 상태에서만 보여지도록 할것 --%>
-	                <%--
-	                <c:if test="${user ne Empty }"> </c:if>
-	                 --%>
-                	<a href="drFoolpoolForm?num"><button class="drFP-writeBtn">질문하기</button></a>
+	                <c:if test="${member ne Empty}">
+                		<a href="drFoolpoolForm?num"><button class="drFP-writeBtn">질문하기</button></a>
+                	</c:if>
                 </div>
                 
                 <%-- 카드그리드 3x2 --%>
@@ -48,10 +46,10 @@ List<DrFoolPool> list = (List)resMap.get("drFoolPoolList");
 						        	<div class="drFP-CardTitleArea">
 						        		<c:choose>
 							        		<c:when test="${drfoolpool.isSolved==false}">
-									        <img alt="미해결이파리" src="./static/img/drFP-leaf-unsolved.png" class="drFP-leaf">
+									        <img alt="미해결이파리" src="./static/img/leaf-unsolved.png" class="drFP-leaf">
 							        		</c:when>
 							        		<c:otherwise>
-									        <img alt="해결이파리" src="./static/img/drFP-leaf-solved.png" class="drFP-leaf">
+									        <img alt="해결이파리" src="./static/img/leaf-solved.png" class="drFP-leaf">
 							        		</c:otherwise>
 						        		</c:choose>
 								        <label class="drFP-CardTitle">${drfoolpool.title}</label>

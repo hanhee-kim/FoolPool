@@ -10,10 +10,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
+import javax.servlet.http.HttpSession;
 
 import bean.DrFoolPool;
+import bean.Member;
 import service.DrFoolPoolService;
 import service.DrFoolPoolServiceImpl;
 
@@ -37,6 +37,7 @@ public class DrFoolPoolList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		request.setAttribute("jspName", "drFoolPool"); // 해당 메뉴에 들어와있다면 인클루드되는 menubar.jsp의 해당 메뉴 버튼색을 짙게 바꾸어두기 위해 뷰로 넘기는 문자열
 		String page = request.getParameter("page");
 		String paramFilter = request.getParameter("filter");
 		
@@ -53,11 +54,14 @@ public class DrFoolPoolList extends HttpServlet {
 			
 		
 		try {
+			HttpSession session = request.getSession();
+			Member member = (Member) session.getAttribute("member");
+			if(member != null) System.out.println("로그인 정보: " + member.getId() + ", " + member.getNickname());
+			
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
 			Map<String,Object> resMap = drFoolPoolService.drFoolPoolListByPage(curPage, filter, sOption, sValue); // PageInfo와 List<DrFoolPool>가 담긴 맵을 서비스로부터 반환받음
 			request.setAttribute("filter", filter);
 			request.setAttribute("resMap", resMap);
-			request.setAttribute("jspName", "drFoolPool"); // 해당 메뉴에 들어와있다면 인클루드되는 menubar.jsp의 해당 메뉴 버튼색을 짙게 바꾸어두기 위해 뷰로 넘기는 문자열
 			request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolList.jsp").forward(request, response);
 			
 		} catch (Exception e) {

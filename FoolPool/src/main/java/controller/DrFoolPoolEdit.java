@@ -6,11 +6,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import bean.DrFoolPool;
+import bean.Member;
 import service.DrFoolPoolService;
 import service.DrFoolPoolServiceImpl;
 
@@ -33,9 +35,13 @@ public class DrFoolPoolEdit extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		// 뷰의 버튼이 아니라 사용자가 직접 url로 요청하여 들어왔을때도 비로그인 상태일때는 로그인페이지로 이동하게함
+		HttpSession session = request.getSession();
+		if(session.getAttribute("member")==null) request.getRequestDispatcher("login.jsp").forward(request, response);
+			
 		request.setCharacterEncoding("utf-8");
 		Integer no = Integer.parseInt(request.getParameter("no"));
-		
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
 			DrFoolPool drFoolPool = drFoolPoolService.drFoolPoolDetail(no);
@@ -50,18 +56,8 @@ public class DrFoolPoolEdit extends HttpServlet {
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
 		
-		/*
-		// 로그인처리 완료 후 아래 코드로 위의 코드 대체할것
-		 
-		// 뷰의 버튼이 아니라 사용자가 직접 url로 요청하여 들어왔을때도 비로그인 상태일때는 로그인페이지로 이동하게함
-		HttpSession session = request.getSession();
-		if(session.getAttribute("user")==null) {
-			request.getRequestDispatcher("login.jsp").forward(request, response);
-		} else {
-			request.setAttribute("jspName", "drFoolPool");
-			request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolEdit.jsp").forward(request, response);
-		}
-		*/
+		request.setAttribute("jspName", "drFoolPool");
+		request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolEdit.jsp").forward(request, response);
 	}
 
 	/**
@@ -73,11 +69,10 @@ public class DrFoolPoolEdit extends HttpServlet {
 		request.setAttribute("jspName", "drFoolPool");
 		
 		// 로그인 정보 가져오기
-//		HttpSession session = request.getSession();
-//		Member member = (Member) session.getAttribute("user");
-//		String writerId = member.getId();
-		String writerId = "user01";
-		String writerNickname = "닉네임01";
+		HttpSession session = request.getSession();
+		Member member = (Member) session.getAttribute("member");
+		String writerId = member.getId();
+		String writerNickname = member.getNickname();
 		
 		// 파일 업로드 - 파일 업로드 경로를 절대경로로 지정할것 cf. DB에는 파일명만 저장한다
 		String uploadPath = "C:\\upload"; 
@@ -97,10 +92,8 @@ public class DrFoolPoolEdit extends HttpServlet {
 		drFoolPool.setContent(content);
 		drFoolPool.setFileName(fileName);
 		drFoolPool.setNo(no);
-		// 임시코드
 		drFoolPool.setWriterId(writerId);
-		drFoolPool.setWriterNickname(writerNickname); // 로그인처리후에는 (1) DB에 아이디를 통해 조회한 닉네임을 넣어주거나 (2) 서블릿에서 채우지 않고 매퍼에서 조인/서브쿼리를 이용한다
-//		System.out.println("--------수정 정보-------\n" + drFoolPool.toString());
+		drFoolPool.setWriterNickname(writerNickname);
 		
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();

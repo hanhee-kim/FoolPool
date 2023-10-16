@@ -7,8 +7,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.DrFoolPoolComment;
+import bean.Member;
 import service.DrFoolPoolService;
 import service.DrFoolPoolServiceImpl;
 
@@ -35,11 +37,10 @@ public class DrFoolPoolCommentWrite extends HttpServlet {
 		request.setAttribute("jspName", "drFoolPool");
 		
 		// 로그인 정보 가져오기
-//		HttpSession session = request.getSession();
-//		Member member = (Member) session.getAttribute("user");
-//		String writerId = member.getId();
-		String writerId = "user01";
-		String writerNickname = "닉네임01";
+		HttpSession session = request.getSession();
+		Member member = (Member) session.getAttribute("member");
+		String writerId = member.getId();
+		String writerNickname = member.getNickname();
 		
 		// form 입력값 가져오기
 		String commentContent = request.getParameter("commentContent");
@@ -50,7 +51,6 @@ public class DrFoolPoolCommentWrite extends HttpServlet {
 		DrFoolPoolComment comment = new DrFoolPoolComment();
 		comment.setCommentContent(commentContent);
 		comment.setPostNo(postNo);
-		// 임시코드
 		comment.setWriterId(writerId);
 		comment.setWriterNickname(writerNickname);
 		
@@ -64,7 +64,6 @@ public class DrFoolPoolCommentWrite extends HttpServlet {
 			request.setAttribute("err", e.getMessage());
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
-		
 	}
 	
 	/* cf. DTO의 필드

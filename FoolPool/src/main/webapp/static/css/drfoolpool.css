@@ -349,7 +349,14 @@
     cursor: pointer; 
     margin-right: 20px;
 }
-
+.drFP-crown {
+	width: 30px;
+	height: 30px;
+	margin-bottom: -10px;
+}
+.drFP-picked {
+	font-weight: bold;
+}
 
 /* 3. 풀풀박사 게시글 작성 */
 

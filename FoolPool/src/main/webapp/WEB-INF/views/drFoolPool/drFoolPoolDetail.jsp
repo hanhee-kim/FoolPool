@@ -36,37 +36,48 @@
 			    	</div>
 			    	<div class="drFP-detail-4row">${drFoolPool.content}</div>
 			    	<div class="drFP-detail-5row">
-			    		<button onclick="drFPedit(${drFoolPool.no})">수정</button>
-			    		<button onclick="drFPdelete(${drFoolPool.no})">삭제</button>
+			    		<c:if test="${member ne Empty && member.id eq drFoolPool.writerId}">
+				    		<button onclick="drFPedit(${drFoolPool.no})">수정</button>
+				    		<button onclick="drFPdelete(${drFoolPool.no})">삭제</button>
+			    		</c:if>
 			    		<button onclick="drFPbackToList(${drFoolPool.no})">목록</button>
 			    	</div>
 			    	
 			    	<div class="drFP-commentArea">
 			    		<h4>댓글 [${commentCnt}]</h4>
-			    		<c:forEach items="${commentList}" var="comment">
 				    		<table>
-				    			<tr>
-				    				<fmt:formatDate value="${comment.commentDate}" pattern="yyyy.MM.dd. HH:mm" var="formattedCommentDate" />
-				    				<td>${comment.writerNickname}</td>
-				    				<td>${comment.commentContent}</br><small>${formattedCommentDate}</small></td>
-				    				<%-- 글작성자인 경우 채택버튼이(+자기댓글아닐때), 댓글작성자인경우 삭제버튼이 표시됨 즉, 동시에 두 버튼이 보일 일은 없음 --%>
-				    				<td>
-				    					<%--
-				    					<button class="drFP-commentPickBtn">채택하기</button>
-				    					 --%>
-				    					<button class="drFP-commentDelBtn" onclick="drFPCommdelete(${comment.commentNo}, ${comment.postNo})">×</button>
-				    				</td>
-				    			</tr>
+					    		<c:forEach items="${commentList}" var="comment">
+					    			<tr>
+					    				<fmt:formatDate value="${comment.commentDate}" pattern="yyyy.MM.dd. HH:mm" var="formattedCommentDate" />
+					    				<td>${comment.writerNickname}</td>
+					    				<td>
+						    				<c:if test="${comment.isPicked==true}">
+						    					<img alt="채택왕관" src="./static/img/crown.png" class="drFP-crown">&nbsp;
+						    				</c:if>
+						    				<label class="${comment.isPicked eq true ? 'drFP-picked' : ''}">${comment.commentContent}</label></br>
+					    					<small>${formattedCommentDate}</small>
+					    				</td>
+					    				<td>
+					    					<c:if test="${member ne Empty && member.id eq drFoolPool.writerId && member.id ne comment.writerId && drFoolPool.isSolved eq false}">
+						    					<button class="drFP-commentPickBtn">채택하기</button>
+					    					</c:if>
+					    					<c:if test="${member ne Empty && member.id eq comment.writerId && comment.isPicked eq false }">
+						    					<button class="drFP-commentDelBtn" onclick="drFPCommdelete(${comment.commentNo}, ${comment.postNo})">×</button>
+					    					</c:if>
+					    				</td>
+					    			</tr>
+				    			</c:forEach>
 				    		</table>
-			    		</c:forEach>
-			    		<div id="dfFP-commentForm">
-				    		<form action="addDrFoolPoolComment" method="post">
-				    			<input type="hidden" name="postNo" value="${drFoolPool.no}"/>
-				    			<span>로그인한사용자의닉네임길면줄넘김해주기</span>
-				    			<input type="text" name="commentContent"/>
-				    			<input type="submit" value="등록"/>
-				    		</form>
-			    		</div>
+				    	<c:if test="${member ne Empty}">
+				    		<div id="dfFP-commentForm">
+					    		<form action="addDrFoolPoolComment" method="post">
+					    			<input type="hidden" name="postNo" value="${drFoolPool.no}"/>
+					    			<span>로그인한사용자의닉네임길면줄넘김해주기</span>
+					    			<input type="text" name="commentContent"/>
+					    			<input type="submit" value="등록"/>
+					    		</form>
+				    		</div>
+				    	</c:if>
 			    	</div>
 			    	
 			    	
