@@ -329,8 +329,9 @@
     border: 1px solid #e1e1e1;
     padding: 1px 0px 0 0;
     border-radius: 8px;
-    height: 30px
-  
+    height: 30px;
+    width: 80px;
+    font-size: 18px;
   } 
   .noticeDetailBtn3{
   	color: #466b55;
@@ -347,47 +348,50 @@
   
   }  
   .noticeDetailTitle{
- 	 width:500px; 
+ 	 width:450px;
  	 height:auto; 
      font-size:15px; 
      border:0; 
      border-radius: 15px; 
      outline:none; 
-     padding-left:10px;
+     padding-left:20px;
      background-color:rgb(233,233,233);
+/*      background-color: #fdffdc; */
      white-space: normal;
      text-overflow: clip; 
      overflow: visible;
-  	 line-height: 50px; /* 텍스트를 수직으로 중앙에 정렬합니다 */
+     height: 35px;
+/*   	 line-height: 50px; 텍스트를 수직으로 중앙에 정렬합니다 */
      word-wrap: break-word; /* 텍스트가 컨테이너의 너비를 초과할 때 줄 바꿈을 허용합니다 */
   } 
   .noticeDetailDate{
-   width:500px; 
- 	 height:32px; 
+     width:450px;
+ 	 height:35px; 
      font-size:15px; 
      border:0; 
      border-radius: 15px; 
      outline:none; 
-     padding-left:10px;
+     padding-left:20px;
      background-color:rgb(233,233,233);
+/*      background-color: #fdffdc; */
   }  
   .noticeDetailTextarea{
- 	 width:500px; 
- 	 height:350px; 
      font-size:15px; 
      border:0; 
      border-radius: 15px; 
      outline:none; 
-     padding-left:10px;
+     padding-left:20px;
+     padding-top: 10px;
      background-color:rgb(233,233,233);
+/*      background-color: #fdffdc; */
  	 resize: none; 
- 	 width: 512px; /* 원하는 너비로 설정 */
-  	 height: 354px;
+     width: 450px;
+     height: 350px;
   } 
       .noticebtn_list{
       display: flex;
       justify-content: center;
-      margin-left: 10px;
+      width: 600px;
       }
       a {
    text-decoration: none;
