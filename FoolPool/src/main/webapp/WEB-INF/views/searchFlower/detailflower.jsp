@@ -16,19 +16,20 @@
                     </div>
                     <div class="searchFlowerDetailSectionLine"></div>
                     <div class="searchFlowerDetailSection">
-                    	<img class="searchFlowerIcon" src="./static/img/before_icon.png" onclick='location.href="detailflower?flowerNumber=${flower.dataNo-1}"'}></img>
+                    	<img id="searchFlowerBeforeIcon" class="searchFlowerIcon" data-datano="${flower.dataNo }" src="./static/img/before_icon.png"></img>
+                    	
                         <div class="searchFlowerDetailImgDiv">
                             <div class="searchFlowerShowFlowerBigImg">
-                                <img class="searchFlowerShowFlowerImg" id="searchFlower_bigImg" onclick="window.open('${flower.imgUrl1}')"
+                                <img class="searchFlowerShowFlowerImg" id="searchFlower_bigImg"
                                     src="${flower.imgUrl1 }"></img>
                             </div>
                             <div class="searchFlowerShowFlowerSmallImg">
                                 <img class="searchFlowerShowFlowerImg1 searchFlowerDetailSmallImg" id="searchFlower_d_img1"
-                                    src="${flower.imgUrl1 }" onclick="changeImage(this)"/>
+                                    src="${flower.imgUrl1 }"/>
                                 <img class="searchFlowerShowFlowerImg2 searchFlowerDetailSmallImg" id="searchFlower_d_img2"
-                                    src="${flower.imgUrl2 }" onclick="changeImage(this)"/>
+                                    src="${flower.imgUrl2 }"/>
                                 <img class="searchFlowerShowFlowerImg3 searchFlowerDetailSmallImg" id="searchFlower_d_img3"
-                                    src="${flower.imgUrl3 }" onclick="changeImage(this)"/>
+                                    src="${flower.imgUrl3 }"/>
                             </div>
                         </div>
                         <div class="searchFlowerFlowerContentDiv">
@@ -50,7 +51,7 @@
                                 <div class="searchFlowerDetailFlowerUseContent searchFlowerDetailText">${flower.fUse}</div>
                                 </div>
                             </div>
-                        <img class="searchFlowerIcon" src="./static/img/next_icon.png" onclick='location.href="detailflower?flowerNumber=${flower.dataNo+1}"'></img>
+                        <img id="searchFlowerNextIcon" class="searchFlowerIcon" data-datano="${flower.dataNo}" src="./static/img/next_icon.png"></img>
                     </div>
 
                 </div>

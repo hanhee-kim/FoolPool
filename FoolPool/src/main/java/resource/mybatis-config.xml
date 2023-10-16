@@ -19,10 +19,16 @@
 	<environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
-			<dataSource type="JNDI">
-				<property name="data_source"
-					value="java:comp/env/jdbc/foolpool" />
-			</dataSource>
+				<dataSource type="POOLED">
+					<property name="driver" value="org.mariadb.jdbc.Driver"/>
+					<property name="url" value="jdbc:mariadb://localhost:3306/foolpool"/>
+					<property name="username" value="root"/>
+					<property name="password" value="sweet720!!"/>
+				</dataSource>
+<!-- 			<dataSource type="JNDI"> -->
+<!-- 				<property name="data_source" -->
+<!-- 					value="java:comp/env/jdbc/foolpool" /> -->
+<!-- 			</dataSource> -->
 		</environment>
 	</environments>
 

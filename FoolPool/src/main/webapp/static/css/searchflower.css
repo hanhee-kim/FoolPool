@@ -185,7 +185,7 @@
     margin-bottom: -25px;
 }
 .searchFlowerSeeMore{
-	position: fixed;
+	position: absolute;
 	top: 880px;
 	height: 40px;
 	width: 100px;
@@ -215,6 +215,8 @@
 }
 .searchFlowerByName,
 .searchFlowerByLang{
+	height: 30px;
+    font-size: 20px;
 	border-radius: 10px;
     font-family: 'Cafe24SsurroundAir';
     font-weight: bold;
