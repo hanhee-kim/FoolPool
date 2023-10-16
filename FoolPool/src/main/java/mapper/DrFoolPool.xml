@@ -3,8 +3,6 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="mapper.drfoolpool">
  
- 
- 
  	<!-- DB컬럼명과 DTO필드명 매핑 -->
  	<resultMap type="DrFoolPool" id="DrFoolPoolResultMap">
 		<result property="no" column="NO"/>
@@ -79,9 +77,7 @@
 	    </where>
 	</select>
  	
- 	
  	<!-- 2. 게시글 작성 -->
- 	<!-- # 로그인 처리 이후 수정할것 -->
 	<insert id="insertDrFoolPool" parameterType="DrFoolPool" useGeneratedKeys="true" keyProperty="no">
 		<![CDATA[
  			INSERT INTO DRFOOLPOOL 
@@ -147,5 +143,17 @@
  			delete from drfoolpool_comment where COMMENT_NO=#{commentNo}
  		]]>
  	</delete>
+ 	
+ 	<!-- 9. 댓글 채택 -->
+ 	<update id="updateDrFoolPoolCommentToPicked" parameterType="Integer">
+ 		<![CDATA[
+ 			update drfoolpool_comment set IS_PICKED=1 where COMMENT_NO=#{commentNo}
+ 		]]>
+ 	</update>
+ 	<update id="updateDrFoolPoolToSolved" parameterType="Integer">
+ 		<![CDATA[
+ 			update drfoolpool set IS_SOLVED=1 where NO=#{postNo}
+ 		]]>
+ 	</update>
 
  </mapper>

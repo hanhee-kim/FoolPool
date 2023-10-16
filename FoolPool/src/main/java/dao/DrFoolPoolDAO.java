@@ -36,6 +36,11 @@ public interface DrFoolPoolDAO {
 	// 8. 댓글 삭제
 	void deleteDrFoolPoolComment(Integer commentNo) throws Exception;
 	
+	// 9-1. 댓글 채택여부 변경
+	void updateDrFoolPoolCommentToPicked(Integer commentNo) throws Exception;
+	// 9-2. 게시글 해결여부 변경 
+	void updateDrFoolPoolToSolved(Integer postNo) throws Exception;
+	
 	
 	
 }

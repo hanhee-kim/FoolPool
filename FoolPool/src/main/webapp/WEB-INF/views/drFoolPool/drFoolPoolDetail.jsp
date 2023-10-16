@@ -59,10 +59,10 @@
 					    				</td>
 					    				<td>
 					    					<c:if test="${member ne Empty && member.id eq drFoolPool.writerId && member.id ne comment.writerId && drFoolPool.isSolved eq false}">
-						    					<button class="drFP-commentPickBtn">채택하기</button>
+						    					<button class="drFP-commentPickBtn" onclick="drFPCommPick(${comment.commentNo}, ${comment.postNo})">채택하기</button>
 					    					</c:if>
 					    					<c:if test="${member ne Empty && member.id eq comment.writerId && comment.isPicked eq false }">
-						    					<button class="drFP-commentDelBtn" onclick="drFPCommdelete(${comment.commentNo}, ${comment.postNo})">×</button>
+						    					<button class="drFP-commentDelBtn" onclick="drFPCommDelete(${comment.commentNo}, ${comment.postNo})">×</button>
 					    					</c:if>
 					    				</td>
 					    			</tr>
@@ -72,7 +72,7 @@
 				    		<div id="dfFP-commentForm">
 					    		<form action="addDrFoolPoolComment" method="post">
 					    			<input type="hidden" name="postNo" value="${drFoolPool.no}"/>
-					    			<span>로그인한사용자의닉네임길면줄넘김해주기</span>
+					    			<span>${member.nickname}</span>
 					    			<input type="text" name="commentContent"/>
 					    			<input type="submit" value="등록"/>
 					    		</form>

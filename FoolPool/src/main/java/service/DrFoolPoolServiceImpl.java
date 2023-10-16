@@ -18,7 +18,6 @@ public class DrFoolPoolServiceImpl implements DrFoolPoolService {
 	public DrFoolPoolServiceImpl() {
 		drFoolPoolDAO = new DrFoolPoolDAOImpl();
 	}
-	
 
 	// 1. 게시글 목록
 	@Override
@@ -78,14 +77,11 @@ public class DrFoolPoolServiceImpl implements DrFoolPoolService {
 		return resMap;
 	}
 	
-
-	
 	// 2. 게시글 작성
 	@Override
 	public void drFoolPoolWrite(DrFoolPool drFoolPool) throws Exception {
 		drFoolPoolDAO.insertDrFoolPool(drFoolPool);
 	}
-
 
 	// 3. 게시글 상세
 	@Override
@@ -94,20 +90,17 @@ public class DrFoolPoolServiceImpl implements DrFoolPoolService {
 		return drFoolPoolDAO.selectDrFoolPool(no);
 	}
 
-
 	// 4. 게시글 삭제
 	@Override
 	public void drFoolPoolRemove(Integer no) throws Exception {
 		drFoolPoolDAO.deleteDrFoolPool(no);
 	}
-
 	
 	// 5. 게시글 수정
 	@Override
 	public void drFoolPoolEdit(DrFoolPool drFoolPool) throws Exception {
 		drFoolPoolDAO.updateDrFoolPool(drFoolPool);
 	}
-
 
 	// 6. 댓글 목록
 	@Override
@@ -126,6 +119,13 @@ public class DrFoolPoolServiceImpl implements DrFoolPoolService {
 	@Override
 	public void drFoolPoolCommentRemove(Integer commentNo) throws Exception {
 		drFoolPoolDAO.deleteDrFoolPoolComment(commentNo);
+	}
+
+	// 9. 댓글 채택
+	@Override
+	public void drFoolPoolCommentPick(Integer commentNo, Integer postNo) throws Exception {
+		drFoolPoolDAO.updateDrFoolPoolCommentToPicked(commentNo);
+		drFoolPoolDAO.updateDrFoolPoolToSolved(postNo);
 	}
 
 

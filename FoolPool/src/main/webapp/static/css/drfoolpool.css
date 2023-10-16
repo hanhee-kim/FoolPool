@@ -386,6 +386,12 @@
 }
 .drFP-inputArea input[type="text"] {
 	width: 89.5%;
+	height: 30px;
+}
+.drFP-inputArea textarea {
+	width: 722px;
+    height: 300px;
+    resize: none; /* textarea 크기 고정 */
 }
 
 .drFP-inputArea li {

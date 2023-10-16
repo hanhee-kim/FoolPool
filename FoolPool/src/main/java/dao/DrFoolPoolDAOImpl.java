@@ -47,14 +47,14 @@ public class DrFoolPoolDAOImpl implements DrFoolPoolDAO {
 	// 4. 게시글 삭제
 	@Override
 	public void deleteDrFoolPool(Integer no) throws Exception {
-		sqlSession.update("mapper.drfoolpool.deleteDrFoolPool", no);
+		sqlSession.delete("mapper.drfoolpool.deleteDrFoolPool", no);
 		sqlSession.commit();
 	}
 	
 	// 5. 게시글 수정
 	@Override
 	public void updateDrFoolPool(DrFoolPool drFoolPool) throws Exception {
-		sqlSession.insert("mapper.drfoolpool.updateDrFoolPool", drFoolPool);
+		sqlSession.update("mapper.drfoolpool.updateDrFoolPool", drFoolPool);
 		sqlSession.commit();
 	}
 	
@@ -75,14 +75,21 @@ public class DrFoolPoolDAOImpl implements DrFoolPoolDAO {
 	// 8. 댓글 삭제
 	@Override
 	public void deleteDrFoolPoolComment(Integer commentNo) throws Exception {
-		sqlSession.update("mapper.drfoolpool.deleteDrFoolPoolComment", commentNo);
+		sqlSession.delete("mapper.drfoolpool.deleteDrFoolPoolComment", commentNo);
+		sqlSession.commit();
+	}
+	
+	// 9-1. 댓글 채택여부 변경
+	@Override
+	public void updateDrFoolPoolCommentToPicked(Integer commentNo) throws Exception {
+		sqlSession.update("mapper.drfoolpool.updateDrFoolPoolCommentToPicked", commentNo);
+		sqlSession.commit();
+	}
+	// 9-2. 게시글 해결여부 변경 
+	public void updateDrFoolPoolToSolved(Integer postNo) throws Exception {
+		sqlSession.update("mapper.drfoolpool.updateDrFoolPoolToSolved", postNo);
 		sqlSession.commit();
 	}
 	
 	
-	
-	
-	
-	
-
 }

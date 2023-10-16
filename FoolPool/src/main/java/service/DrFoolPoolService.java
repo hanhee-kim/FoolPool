@@ -31,5 +31,8 @@ public interface DrFoolPoolService {
 
 	// 8. 댓글 삭제
 	void drFoolPoolCommentRemove(Integer commentNo) throws Exception;
+	
+	// 9. 댓글 채택
+	void drFoolPoolCommentPick(Integer commentNo, Integer postNo) throws Exception;
 
 }

@@ -13,7 +13,7 @@ function drFPbackToList(no) {
 /* 풀풀박사 상세 - 삭제 버튼 */
 function drFPdelete(no) {
 	console.log("drFPdelete 호출...");
-	if (confirm("정말 삭제하시겠습니까?") == true){ 
+	if (confirm("게시글을 삭제하시겠습니까?") == true){ 
 		window.location.href = "drFoolPoolDelete?no=" + no;
 	 }
 }
@@ -24,10 +24,17 @@ function drFPedit(no) {
 }
 
 /* 풀풀박사 댓글 삭제 버튼 */
-function drFPCommdelete(commentNo, postNo) {
+function drFPCommDelete(commentNo, postNo) {
 	console.log("dfFPCommdelete 호출...");
-	if (confirm("정말 삭제하시겠습니까?") == true){ 
+	if (confirm("댓글을 삭제하시겠습니까?") == true){ 
 		window.location.href = "deldrfoolpoolcomment?commentNo=" + commentNo + "&postNo=" + postNo;
+	 }
+}
+/* 풀풀박사 댓글 채택 버튼 */
+function drFPCommPick(commentNo, postNo) {
+	console.log("drFPCommPick 호출...");
+	if (confirm("이 댓글을 채택하시겠습니까?") == true){ 
+		window.location.href = "pickdrfoolpoolcomment?commentNo=" + commentNo + "&postNo=" + postNo;
 	 }
 }
 
