@@ -1,5 +1,6 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,6 +27,7 @@ public class DrFoolPoolServiceImpl implements DrFoolPoolService {
 		// 검색 전에는 sOption과 sValue를 null로 받아 호출됨
 		System.out.println("===========service\n curPage: " + curPage + ", filter: " + filter + ", sOption: " + sOption + ", sValue: " + sValue);
 		
+		Map<String, Object> resMap = new HashMap<>();
 		PageInfo pageInfo = new PageInfo();
 		
 		// 게시글 행의 수를 통해 전체 페이지 수 계산
@@ -47,6 +49,13 @@ public class DrFoolPoolServiceImpl implements DrFoolPoolService {
 		// 게시글 삭제 예외처리
 		if(curPage>maxPage) curPage=maxPage;
 		
+		// 검색결과 0행의 예외처리: 빈 객체를 서블릿으로 리턴하고 뷰에서는 list.size()가 0이거나 0초과인 경우를 분기처리
+		if(curPage<=0) {
+			resMap.put("pageInfo", pageInfo);
+			resMap.put("drFoolPoolList", new ArrayList<DrFoolPool>());
+			return resMap;
+		}
+		
 		// PageInfo객체 완성
 		pageInfo.setAllPage(maxPage);
 		pageInfo.setCurPage(curPage);
@@ -56,23 +65,21 @@ public class DrFoolPoolServiceImpl implements DrFoolPoolService {
 		// 현재 페이지의 시작 행 (SELECT문의 limit절에서 사용)
 		int row = (curPage-1)*itemsPerPage+1; 
 		System.out.println("maxPage: " + maxPage + ", curPage: " + curPage + ", row: " + row);
-		if(row<0) row = 1;
 		
-		// 서비스의 메서드 호출하여 리스트를 반환받음
+		// DAO의 메서드를 호출하여 리스트를 반환받음
 		Map<String,Object> paramMap = new HashMap<>();
 		paramMap.put("row", row-1);
 		paramMap.put("filter", filter);
 		paramMap.put("sOption", sOption);
 		paramMap.put("sValue", sValue);
-		System.out.println("row: " + (row-1) + ", filter: " + filter);
+		System.out.println("###DAO호출시의 인자\nrow: " + (row-1) + ", filter" + filter + ", sOption: " + sOption + ", sValue: " + sValue);
 		List<DrFoolPool> drFoolPoolList = drFoolPoolDAO.selectDrFoolPoolList(paramMap);
 		
 		// 페이지정보 객체와 리스트를 맵에 담아 호출부로 리턴
-		Map<String, Object> map = new HashMap<>();
-		map.put("pageInfo", pageInfo);
-		map.put("drFoolPoolList", drFoolPoolList);
+		resMap.put("pageInfo", pageInfo);
+		resMap.put("drFoolPoolList", drFoolPoolList);
 		
-		return map;
+		return resMap;
 	}
 	
 

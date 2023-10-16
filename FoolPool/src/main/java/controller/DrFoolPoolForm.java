@@ -70,16 +70,12 @@ public class DrFoolPoolForm extends HttpServlet {
 		String writerNickname = "닉네임01";
 		
 		// 파일 업로드 - 파일 업로드 경로를 절대경로로 지정할것 cf. DB에는 파일명만 저장한다
-//		String uploadPath = "C:\\upload\\" + fileName; 
 		String uploadPath = "C:\\upload"; 
 		int size = 10*1024*1024;
 		MultipartRequest multi = new MultipartRequest(request, uploadPath, size, "utf-8", new DefaultFileRenamePolicy());
 		 
 		// form입력값 가져오기
-		String fileName = multi.getParameter("file");
-		// #### 파일명이 null로 받아와지는 문제 ###
-		if (fileName==null) fileName = "drfoolpool_sample1.png";
-			
+		String fileName = multi.getOriginalFileName("file"); // null로 받아지는 문제는 uploadPath설정부터 문제있었기 때문(업로드가 되지 않아 뽑아지지 않음)
 		String title = multi.getParameter("title");
 		String content = multi.getParameter("content");
 		System.out.println("fileName: " + fileName + ", title: " + title + ", content: " + content);

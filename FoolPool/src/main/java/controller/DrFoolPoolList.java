@@ -102,6 +102,7 @@ public class DrFoolPoolList extends HttpServlet {
 			while(iter.hasNext()){
 				System.out.println(iter.next().toString());
 			}
+			System.out.println("검색결과 수 : " + resList.size());
 			
 			request.setAttribute("filter", filter);
 			request.setAttribute("resMap", resMap);

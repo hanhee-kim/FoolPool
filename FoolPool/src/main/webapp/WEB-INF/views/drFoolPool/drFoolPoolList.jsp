@@ -23,24 +23,10 @@ List<DrFoolPool> list = (List)resMap.get("drFoolPoolList");
             	
             	<%-- 필터링 버튼 3개 + 글쓰기 버튼 --%>
             	<div class="drFP-FilteringAndWriteBtn">
-	                <div class="drFP-Filtering">
-	                	<c:choose>
-	                		<c:when test="${filter eq 'unsolved'}">
-	                			<a class="drFP-FilterBtn" href="goDrFoolPool?filter=all&page=1">전체</a>
-	                			<a class="drFP-FilterBtn drFP-FilterBtnSelected" href="goDrFoolPool?filter=unsolved&page=1">미해결</a>
-	                			<a class="drFP-FilterBtn" href="goDrFoolPool?filter=solved&page=1">해결</a>
-	                		</c:when>
-	                		<c:when test="${filter eq 'solved'}">
-	                			<a class="drFP-FilterBtn" href="goDrFoolPool?filter=all&page=1">전체</a>
-	                			<a class="drFP-FilterBtn" href="goDrFoolPool?filter=unsolved&page=1">미해결</a>
-	                			<a class="drFP-FilterBtn drFP-FilterBtnSelected" href="goDrFoolPool?filter=solved&page=1">해결</a>
-	                		</c:when>
-	                		<c:otherwise>
-	                			<a class="drFP-FilterBtn drFP-FilterBtnSelected" href="goDrFoolPool?filter=all&page=1">전체</a>
-	                			<a class="drFP-FilterBtn" href="goDrFoolPool?filter=unsolved&page=1">미해결</a>
-	                			<a class="drFP-FilterBtn" href="goDrFoolPool?filter=solved&page=1">해결</a>
-	                		</c:otherwise>
-	                	</c:choose>
+	                <div class="drFP-Filtering" >
+	                	<a href="goDrFoolPool?filter=all&page=1" class="${filter eq 'all' ? 'drFP-FilterBtn drFP-FilterBtnSelected' : 'drFP-FilterBtn'}">전체</a>
+						<a href="goDrFoolPool?filter=unsolved&page=1" class="${filter eq 'unsolved' ? 'drFP-FilterBtn drFP-FilterBtnSelected' : 'drFP-FilterBtn'}">미해결</a>
+						<a href="goDrFoolPool?filter=solved&page=1" class="${filter eq 'solved' ? 'drFP-FilterBtn drFP-FilterBtnSelected' : 'drFP-FilterBtn'}">해결</a>
 	                </div>
 	                <%-- # 로그인 상태에서만 보여지도록 할것 --%>
 	                <%--
