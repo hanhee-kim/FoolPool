@@ -6,13 +6,13 @@
                     <div class="joinTitle">회원가입</div>
                     <div class="joinLabelText joinformDiv">
                         <div class="joinLabel">아이디</div>
-                        <input type="text" class="joinText join_PH" id="joinMemberId" name="joinMemberId" required="required" placeholder="ID는 영문,숫자 최대 8자">
+                        <input type="text" class="joinText join_PH" id="joinMemberId" name="joinMemberId" required="required" onkeyup="checkIdEffec()" placeholder="ID는 영문,숫자 4~8자">
                         <div class="joinMemberIdCheckBtn"><button class="joinDuplicateBtn" id="idDuplicateCheck">중복체크</button></div>
                     </div>
                     <div id="idEffecMessage" class="joinformDiv joinCheckMsgDiv"></div>
                     <div class="joinLabelText joinformDiv">
                         <div class="joinLabel">닉네임</div>
-                        <input type="text" class="joinText join_PH" id="joinMemberNickname" name="joinMemberNickname" required="required" placeholder="닉네임은는 최대 8자">
+                        <input type="text" class="joinText join_PH" id="joinMemberNickname" name="joinMemberNickname" required="required"  onkeyup="checkNickEffec()" maxlength="8" placeholder="특수문자 제외 최대 8자">
                         <div class="joinMemberNicknameCheckBtn"><button class="joinDuplicateBtn" id="nicknameDuplicateCheck">중복체크</button></div>
                     </div>
                     <div id="nicknameEffecMessage" class="joinformDiv joinCheckMsgDiv"></div>
