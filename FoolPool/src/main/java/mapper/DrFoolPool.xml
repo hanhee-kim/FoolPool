@@ -113,7 +113,7 @@
  	</delete>
  	
  	<!-- 5. 게시글 수정 -->
- 	<update id="updateDrFoolPool" parameterType="Integer">
+ 	<update id="updateDrFoolPool" parameterType="DrFoolPool" useGeneratedKeys="true" keyProperty="no">
  		update drfoolpool
  		<trim prefix="SET" suffixOverrides=",">
  			<if test="title != null">title=#{title},</if>

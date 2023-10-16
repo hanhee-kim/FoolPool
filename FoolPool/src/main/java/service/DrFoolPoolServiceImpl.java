@@ -46,15 +46,11 @@ public class DrFoolPoolServiceImpl implements DrFoolPoolService {
 		int endPage = startPage+pagesPerGroup-1;
 		if(endPage>maxPage) endPage=maxPage;
 		
+		// drFoolPoolCount==0일때의 예외처리: 아래 코드로 인해 curPage가 0이 되면 자연히 row가 음수가 되어 sql예외 발생하게됨
+		if(maxPage==0) maxPage = 1;
+
 		// 게시글 삭제 예외처리
 		if(curPage>maxPage) curPage=maxPage;
-		
-		// 검색결과 0행의 예외처리: 빈 객체를 서블릿으로 리턴하고 뷰에서는 list.size()가 0이거나 0초과인 경우를 분기처리
-		if(curPage<=0) {
-			resMap.put("pageInfo", pageInfo);
-			resMap.put("drFoolPoolList", new ArrayList<DrFoolPool>());
-			return resMap;
-		}
 		
 		// PageInfo객체 완성
 		pageInfo.setAllPage(maxPage);

@@ -17,7 +17,7 @@
 		<typeAlias type="bean.Poolentarier" alias="Poolentarier" />
 	</typeAliases>
 
-	<environments default="development">
+	<!-- <environments default="development">
 		<environment id="development">
 			<transactionManager type="JDBC" />
 			<dataSource type="JNDI">
@@ -25,7 +25,18 @@
 					value="java:comp/env/jdbc/foolpool" />
 			</dataSource>
 		</environment>
-	</environments>
+	</environments> -->
+	<environments default="development">
+      <environment id="development">
+         <transactionManager type="JDBC" />
+             <dataSource type="POOLED">
+            <property name="driver" value="org.mariadb.jdbc.Driver"/>
+            <property name="url" value="jdbc:mariadb://localhost:3306/foolpool"/>
+            <property name="username" value="root"/>
+            <property name="password" value="1234"/>
+         </dataSource>
+         </environment>
+   </environments>
 
 	<mappers>
 		<mapper resource="mapper/Flower.xml" />

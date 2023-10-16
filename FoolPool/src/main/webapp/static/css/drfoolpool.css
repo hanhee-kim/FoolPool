@@ -1,8 +1,7 @@
 @charset "UTF-8";
 
-/* 1. 풀풀박사 게시글 목록 */
+/* 0. 풀풀박사 페이지 공통 */
 
-/* 메뉴 타이틀 */
 .drFP-Label {
 	font-size: 35px;
 	color: #466b55;
@@ -17,6 +16,10 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+}
+.drFP-DivLine a:link, .drFP-DivLine a:visited, .drFP-DivLine a:hover { 
+	text-decoration: none;
+	color: black;
 }
 
 .drFP-TopBorder, .drFP-BottomBorder {
@@ -34,7 +37,7 @@
 	
 	margin-top: -30px;
 }
-
+/* 1. 풀풀박사 게시글 목록 */
 .drFP-searchBar {
 	text-align: center;
 /*	margin-bottom: -30px; */
@@ -56,15 +59,10 @@
 }
 
 .drFP-searchBar>:last-child {
-	background: #D9D9D9;
-	border: #D9D9D9 1px solid;
 	padding: 5px 20px;
 }
 
-
 .drFP-paging{
-	/* background: skyblue; */
-	
 	/* 원하는 위치에 배치하기 위해 절대값으로 지정 */
 	position: absolute;
 	top: 935px; 
@@ -78,18 +76,11 @@
 .drFP-paging a {
 	text-decoration: none;
 	margin: 0 5px;
-	color: #D9D9D9;
+	color: #D9D9D9 !important;
 }
-/*
-#drFP-pagingnumbs-selected {
-	color: #466b55;
-}
-*/
 #drFP-selectedPage {
-	color: #466b55;
+	color: #466b55 !important;
 }
-
-
 
 .drFP-FilteringAndWriteBtn {
 	width: 95%;
@@ -162,8 +153,6 @@
 
 .drFP-CardTitleArea {
 	width: 320px;
-	border: 0.5px red solid;
-	
 	display: flex; /* 아이콘과 타이틀을 왼쪽정렬하기 위함 */
 }
 .drFP-CardTitle {
@@ -182,12 +171,17 @@
 
 
 .drFP-thumbnailArea {
-	border: 0.5px red solid; 
+	/* border: 2px green dashed; */
 	width: 290px;
 	height: 160px;
 	margin-top: -20px;
 }
-
+.drFP-thumbnailArea>img {
+    /* img는 원본 비율을 유지하되 부모 div크기에 맞추고 벗어나면 잘리게 된다 */
+	width:100%;
+    height:100%;
+    object-fit:cover;
+}
 
 /* mouse hover한 카드 */
 .drFP-CardHover {
@@ -200,7 +194,7 @@
 }
 
 #drFP-emptyList {
-	color: red;
+	background: pink;
 }
 
 
@@ -208,7 +202,8 @@
 .drFP-detailArea {
     width: 1200px;
 	margin-top: -30px;
-	overflow-y: scroll;
+	overflow-y: auto;
+	overflow-x: none;
 	
 	/* 1012 변경 */
     height: 660px;
@@ -242,13 +237,18 @@
 }
 
 .drFP-detail-3row { 
-	border: 1px red solid; 
-	width: 500px;
-	height: 300px;
-	
-	margin: 20px;
-	margin-left: 70px;
+	max-height: auto;
+	margin: 30px auto;
+	max-width: 900px; /* 이미지의 너비가 부모인 이 요소보다 클 때에만 적용 */
 }
+.drFP-detail-3row>img {
+	display: block;
+	max-width: 100%; /* 부모 너비에 맞춤 */
+	height: auto;
+	object-fit: scale-down; /* 컨테이너 안에서 이미지가 비율 유지하며 사이즈 조절 */
+	margin: 0 auto; /* 수평 중앙 정렬 */
+}
+
 .drFP-detail-4row {
 	width: 90%;
 	margin-left: 60px;
@@ -272,9 +272,7 @@
 	border: 0;
 	border-radius: 5px;
 	padding: 5px 15px;
-	
 	cursor: pointer;
-	color: red;
 }
 .drFP-commentArea {
 	margin: 45px 20px 10px 60px; /* 위 오른 아래 왼 */
@@ -287,7 +285,7 @@
 	position: relative; 
     z-index: 10; 
     
-    background: pink;
+    background: lime;
 }
 .drFP-commentArea table {
 	width: 95%;
@@ -328,7 +326,6 @@
 	line-height: 180%;
     width: auto; /* 너비를 자동으로 설정 */
     white-space: normal; /* 텍스트 내용이 넘칠 때 줄바꿈 허용 */
-    overflow: visible; /* 넘치더라도 내용을 표시 */
     text-overflow: clip; /* 내용이 넘칠 때 생략 기호 표시하지 않음 */
 }
 

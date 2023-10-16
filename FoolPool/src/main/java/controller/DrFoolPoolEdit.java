@@ -80,16 +80,12 @@ public class DrFoolPoolEdit extends HttpServlet {
 		String writerNickname = "닉네임01";
 		
 		// 파일 업로드 - 파일 업로드 경로를 절대경로로 지정할것 cf. DB에는 파일명만 저장한다
-//		String uploadPath = "C:\\upload\\" + fileName; 
 		String uploadPath = "C:\\upload"; 
 		int size = 10*1024*1024;
 		MultipartRequest multi = new MultipartRequest(request, uploadPath, size, "utf-8", new DefaultFileRenamePolicy());
 		 
 		// form입력값 가져오기
-		String fileName = multi.getParameter("file");
-		// #### 파일명이 null로 받아와지는 문제 ###
-		if (fileName==null) fileName = "drfoolpool_sample1.png";
-			
+		String fileName = multi.getOriginalFileName("file");
 		String title = multi.getParameter("title");
 		String content = multi.getParameter("content");
 		Integer no = Integer.parseInt(multi.getParameter("no"));

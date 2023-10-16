@@ -76,7 +76,7 @@ public class DrFoolPoolList extends HttpServlet {
 		String filter = "all";
 		if(paramFilter!=null) filter = paramFilter;
 		int curPage = 1; 
-		if(page!=null) curPage = Integer.parseInt(page);
+//		if(page!=null) curPage = Integer.parseInt(page);
 		
 		System.out.println("-----/goDrFoolPool doPost호출----");
 		System.out.println("page: " + page + ", curPage: " + curPage + ", filter: " + filter);
