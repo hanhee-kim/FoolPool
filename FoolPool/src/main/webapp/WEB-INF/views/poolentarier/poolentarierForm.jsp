@@ -6,7 +6,7 @@
 			<div class="pfDivLine">
             	<div class="pfTopBorder"></div>
 				<div class="pfFormArea">
-					<form action="poolentarierForm" method="post" enctype="multipart/form-data" id="poolentarierFormForm">
+					<form action="poolentarierForm" method="post" enctype="multipart/form-data" id="poolentarierForm">
 						<table class="pfTable pfTable-striped">
 							<thead>
 								<tr>

@@ -21,7 +21,7 @@ function addKeyword(event) {
 			pfKeyword.value = "";
 
             // 폼에 값을 추가
-            var form = document.getElementById("poolentarierFormForm"); // 폼의 ID를 사용하여 폼 요소를 가져옴
+			var form = document.getElementById("poolentarierForm"); // 폼의 ID를 사용하여 폼 요소를 가져옴
             var hiddenInput = document.createElement("input");
             hiddenInput.type = "hidden";
             hiddenInput.name = "keyword" + keywordCounter;
@@ -30,10 +30,10 @@ function addKeyword(event) {
 
             // 폼 제출
             // form.submit();
-		} else {
-			alert("더 이상 텍스트를 추가할 수 없습니다. 최대 " + maxKeywords + "개까지만 가능합니다.");
-			pfKeyword.value = "";
 		}
+	} else {
+		alert("더 이상 텍스트를 추가할 수 없습니다. 최대 " + maxKeywords + "개까지만 가능합니다.");
+		pfKeyword.value = "";
 	}
 }
 

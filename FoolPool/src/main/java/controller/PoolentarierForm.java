@@ -67,20 +67,31 @@ public class PoolentarierForm extends HttpServlet {
 		String writerNickname = member.getNickname();
 //		String writerNickname = "물고기";
 		
+		System.out.println(multi.getParameter("keyword1"));
+		System.out.println(multi.getParameter("keyword2"));
+		System.out.println(multi.getParameter("keyword3"));
+		System.out.println(multi.getParameter("keyword4"));
+		System.out.println(multi.getParameter("keyword5"));
+		
+		String temp = "keyword" + 1;
+		System.out.println(temp);
+		
 		// 키워드 값 설정
 		String[] keyword = new String[5]; // 키워드 배열 초기화
-		for(int i = 0;i < 5;i++) {
-			String parameterValue = multi.getParameter("keyword" + i + 1);
+		for(int i = 1;i < 6;i++) {
+//			temp = "keyword" + i;
+			temp = i + "thKeyword";
+			System.out.println(i + "번째: " + temp);
+			String parameterValue = multi.getParameter(temp);
 		    if (parameterValue != null) {
-		        keyword[i] = parameterValue;
+		        keyword[i - 1] = parameterValue;
 		    }
 		}
-		
-		String keywords = null;
+
+		String keywords = keyword[0];;
 		// | 구분자로 키워드 값을 하나의 문자열로 통합
-		if(keyword.length > 0) {
-			keywords = keyword[0];
-			for(int i = 1;i < keyword.length;i++) {
+		for(int i = 1;i < keyword.length;i++) {
+			if(keyword[i] != null) {
 				keywords += "|" + keyword[i];
 			}
 		}
