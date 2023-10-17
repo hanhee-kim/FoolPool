@@ -43,7 +43,7 @@
 }
 .searchFlowerDetailSection{
     display: grid;
-    grid-template-columns: 320px 800px;
+    grid-template-columns: 10px 320px 800px 10px;
     margin-left: 35px;
     gap: 30px;
 }
