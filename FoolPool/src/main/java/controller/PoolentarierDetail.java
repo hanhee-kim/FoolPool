@@ -39,6 +39,14 @@ public class PoolentarierDetail extends HttpServlet {
 			PoolentarierService poolentarierService = new PoolentarierServiceImpl();
 			Poolentarier poolentarier = poolentarierService.poolentarierDetail(no);
 			request.setAttribute("poolentarier", poolentarier);
+			
+			String keyword = poolentarier.getKeyword();
+			String[] keywords = keyword.split(",");
+			for(int i = 0;i < keywords.length;i++) {
+				keywords[i] = "#" + keywords[i];
+			}
+			request.setAttribute("keywords", keywords);
+			
 			request.getRequestDispatcher("WEB-INF/views/poolentarier/poolentarierDetail.jsp").forward(request, response);
 		} catch(Exception e) {
 			e.printStackTrace();

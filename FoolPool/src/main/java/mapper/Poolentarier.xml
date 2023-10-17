@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="mapper.poolentarier">
+ 
  	<!-- 이렇게 맞춰 놓으면 밑에서 AS 안 써도 됨 -->
 	<resultMap type="Poolentarier" id="PoolentarierRM">
 		<result property="fileName" column="file_Name"/>
@@ -9,42 +10,83 @@
 		<result property="writerId" column="writer_Id"/>
 		<result property="writerNickname" column="writer_Nickname"/>
 	</resultMap>
-
-<!-- 	<insert id="insertPoolentarier" parameterType="Poolentarier">
-		<![CDATA[
-			insert into Poolentarier() values(#{})
-		]]>
-	</insert> -->
 	
+	<!-- 전체 게시글 수 조회 -->
 	<select id="selectPoolentarierCount" resultType="Integer">
-		<![CDATA[
-			select count(no) from poolentarier
-		]]>
+		SELECT COUNT(no) FROM POOLENTARIER
+		<where>
+			<choose>
+				<when test="searchOption != null and searchOption == 'all'">
+					(title LIKE '%${searchText}%' OR content LIKE '%{searchText}%')
+				</when>
+				<otherwise>
+					<choose>
+			        	<when test="searchOption != null and searchText != null">
+			            	AND ${searchOption} like '%${searchText}%'
+			        	</when>
+			        	<otherwise></otherwise>
+					</choose>
+
+				</otherwise>
+			</choose>
+		</where>
+		<choose>
+			<when test="sortOption.equals('new')">ORDER BY NO DESC</when>
+			<when test="sortOption.equals('view')">ORDER BY VIEW DESC</when>
+		</choose>
 	</select>
 	
-	<select id="selectPoolentarierList" parameterType="Integer" resultType="Poolentarier" resultMap="PoolentarierRM">
-		<![CDATA[
-			select * from poolentarier order by no desc
-			limit #{row}, 4
-		]]>
+	<!-- 전체 게시글 목록 조회 -->
+	<select id="selectPoolentarierList" parameterType="hashmap" resultType="Poolentarier" resultMap="PoolentarierRM">
+		SELECT * FROM POOLENTARIER
+		<where>
+			<choose>
+				<when test="searchOption != null and searchOption == 'all'">
+					(title LIKE '%${searchText}%' OR content LIKE '%{searchText}%')
+				</when>
+				<otherwise>
+					<choose>
+			        	<when test="searchOption != null and searchText != null">
+			            	AND ${searchOption} like '%${searchText}%'
+			        	</when>
+			        	<otherwise></otherwise>
+					</choose>
+
+				</otherwise>
+			</choose>
+		</where>
+		<choose>
+			<when test="sortOption.equals('new')">ORDER BY NO DESC</when>
+			<when test="sortOption.equals('view')">ORDER BY VIEW DESC</when>
+		</choose>
+		LIMIT #{row}, 4
 	</select>
 	
+	<!-- 게시글 조회 -->
 	<select id="selectPoolentarierDetail" parameterType="Integer" resultType="Poolentarier" resultMap="PoolentarierRM">
 		<![CDATA[
 			select * from poolentarier where no = #{no}
 		]]>
 	</select>
 	
+	<!-- 게시글 작성 -->
 	<insert id="insertPoolentarierDetail" parameterType="Poolentarier">
 		<![CDATA[
 			insert into poolentarier values (null, #{title}, curdate(), 0, #{content}, #{keyword}, #{fileName}, #{plantsName}, #{writerId}, #{writerNickname})
 		]]>
 	</insert>
 	
+	<!-- 게시글 삭제 -->
 	<delete id="deletePoolentarier" parameterType="Integer">
 		<![CDATA[
 			delete from poolentarier where no = #{no}
 		]]>
 	</delete>
 	
+	<!-- 게시글 조회수 증가 -->
+	<update id="updatePoolentarierView" parameterType="Integer">
+ 		<![CDATA[
+ 			update poolentarier set view = view+1 where no = #{no}
+ 		]]>
+ 	</update>
  </mapper>

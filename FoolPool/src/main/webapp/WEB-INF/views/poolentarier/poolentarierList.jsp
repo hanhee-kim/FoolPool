@@ -8,49 +8,57 @@
             	<div class="plListArea">
 					<div class="plTopMenuDiv">
 	            		<div class="plWriteFormDiv">
-	            			<div class="plWriteFormDivForBtn plOption" onclick="location.href='poolentarierForm'">
-								<div class="plWriteBtn">글쓰기</div>
-							</div>
+	            			<c:if test="${member ne Empty}">
+	            				<div class="plWriteFormDivForBtn plOption" onclick="location.href='poolentarierForm'">
+									<div class="plWriteBtn">글쓰기</div>
+								</div>
+	            			</c:if>
 	            		</div>
 		            	
 						<div class="plSortDiv">
-							<div class="plSortNewDiv plOption" onclick="">
-								<div class="plBtn">최신순</div>
+							<div class="plSortNewDiv plOption">
+								<a href="goPoolentarier?sortOption=new&page=1" class="${sortOption eq 'new' ? 'plSortBtn plSortBtnSelected' : plSortBtn}">최신순</a>
 							</div>
-							<div class="plSortViewDiv plOption" onclick="">
-								<div class="plBtn">조회순</div>
+							<div class="plSortViewDiv plOption">
+								<a href="goPoolentarier?sortOption=view&page=1" class="${sortOption eq 'view' ? 'plSortBtn plSortBtnSelected' : plSortBtn}">조회순</a>
 							</div>
 						</div>
 	            	</div>
 				    
 	            	<%-- 카드그리드 2x2 --%>
 	            	<div class="plCardGrid">
-	            		<c:forEach items="${res.poolentarierList }" var="poolentarier">
-		            		<a href="poolentarierDetail?no=${poolentarier.no}">
-		            			<div class="plCard">
-		            				<img alt="풀랜테리어 사진" class="plFace plFront" src="image?file=${poolentarier.fileName}">
-									<div class="plFace plBack">
-										<h1>${poolentarier.title}</h1><br>
-										<h3>${poolentarier.plantsName}</h3>
-										<p>${poolentarier.content}</p>
-									</div>
-		            			</div>
-		            		</a>
-	            		</c:forEach>
+	            		<c:if test="${res.poolentarierList eq Empty}">
+	            			<div class="plEmptyList">...</div>
+	            		</c:if>
+	            		<c:if test="${res.poolentarierList ne Empty}">
+	            			<c:forEach items="${res.poolentarierList }" var="poolentarier">
+			            		<a href="poolentarierDetail?no=${poolentarier.no}">
+			            			<div class="plCard">
+			            				<img alt="풀랜테리어 사진" class="plFace plFront" src="image?file=${poolentarier.fileName}">
+										<div class="plFace plBack">
+											<h1>${poolentarier.title}</h1><br>
+											<h3>${poolentarier.plantsName}</h3>
+											<p>${poolentarier.content}</p>
+										</div>
+			            			</div>
+			            		</a>
+	            			</c:forEach>
+	            		</c:if>
 	            	</div>
 
 					<div class=plSearchOptionDiv>
-						<form action="./poolentarierSearch" method="post" id="plSearchform">
-							<input type="hidden" name="page" id="plPage" value="${res.pageInfo.curPage }">
+						<form action="./goPoolentarier" method="post" id="plSearchform">
+							<input type="hidden" name="page" id="plPage" value="${res.pageInfo.curPage }"/>
+							<input type="hidden" name="sortOption" id="plSort" value="${sortOption}"/>
 							<h5>
-								<select class="plSearchOption" name="plSearchOption">
-									<option value="unselected">선택</option>
-									<option value="all" ${res.plSearchOption eq 'subjectcontent'? 'selected':''}>제목+내용</option>
-									<option value="writer" ${res.plSearchOption eq 'writer'? 'selected':''}>작성자</option>
-									<option value="keyword" ${res.plSearchOption eq 'keyword'? 'selected':''}>키워드</option>
-									<option value="plant" ${res.plSearchOption eq 'plant'? 'selected':''}>식물명</option>
+								<select class="plSearchOption" name="SearchOption" value="${searchOption}">
+									<option value="unselected" ${searchOption eq 'unselected' ? 'selected' : ''}>선택</option>
+									<option value="all" ${searchOption eq 'all' ? 'selected' : ''}>제목+내용</option>
+									<option value="writer" ${searchOption eq 'writer' ? 'selected' : ''}>작성자</option>
+									<option value="keyword" ${searchOption eq 'keyword' ? 'selected' : ''}>키워드</option>
+									<option value="plantsName" ${searchOption eq 'plantsName' ? 'selected' : ''}>식물명</option>
 								</select>
-								<input type="text" name="plSearchText" id="plSearchText" value="${res.plSearchText}" />
+								<input type="text" name="SearchText" id="plSearchText" value="${SearchText}" />
 								<button class="plSearchBtn" type="submit">검색</button>
 							</h5>
 						</form>

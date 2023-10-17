@@ -13,15 +13,16 @@ public class PoolentarierServiceImpl implements PoolentarierService {
 	
 	private PoolentarierDAO poolentarierDAO;
 	
+	// 생성자
 	public PoolentarierServiceImpl() {
 		poolentarierDAO = new PoolentarierDAOImpl();
 	}
 
+	// 전체 게시글 개수 조회 + 전체 게시글 조회
 	@Override
-	public Map<String, Object> poolentarierListByPage(Integer page) throws Exception {
+	public Map<String, Object> poolentarierListByPage(Integer page, String sortOption, String searchOption, String searchText) throws Exception {
 		PageInfo pageInfo = new PageInfo();
 		
-		// 전체 게시글 개수 조회
 		int poolentarierCount = poolentarierDAO.selectPoolentarierCount();
 		
 		// 전체 페이지(최대 페이지) 개수 설정
@@ -58,10 +59,17 @@ public class PoolentarierServiceImpl implements PoolentarierService {
 		// ex: 3페이지면, row는 9번 (9번부터 시작)
 		int row = (page - 1) * 4 + 1;
 		
-		// row번째 게시글부터 게시글 가져오기 (4개 가져옴
-		List<Poolentarier> poolentarierList = poolentarierDAO.selectPoolentarierList(row - 1);
+		// DAO의 메서드를 호출하여 리스트를 반환받음
+		Map<String,Object> paramMap = new HashMap<>();
+		paramMap.put("row", row - 1);
+		paramMap.put("sortOption", sortOption);
+		paramMap.put("searchOption", searchOption);
+		paramMap.put("searchText", searchText);
+		
+		// row번째 게시글부터 게시글 가져오기 (4개씩 조회)
+		List<Poolentarier> poolentarierList = poolentarierDAO.selectPoolentarierList(paramMap);
 
-		// 
+		// 페이지 정보 객체, 풀랜테리어 리스트 반환
 		Map<String, Object> map = new HashMap<>();
 		map.put("pageInfo", pageInfo);
 		map.put("poolentarierList", poolentarierList);
@@ -69,19 +77,62 @@ public class PoolentarierServiceImpl implements PoolentarierService {
 		return map;
 	}
 
+	// 게시글 조회 + 게시글 조회수 상승
 	@Override
 	public Poolentarier poolentarierDetail(Integer no) throws Exception {
+		poolentarierDAO.updatePoolentarierView(no);
 		return poolentarierDAO.selectPoolentarierDetail(no);
 	}
 	
+	// 게시글 작성
 	@Override
 	public void poolentarierWrite(Poolentarier poolentarier) throws Exception {
 		poolentarierDAO.insertPoolentarierDetail(poolentarier);
 	}
-	
+
+	// 게시글 삭제
 	@Override
 	public void poolentarierDelete(Integer no) throws Exception {
 		poolentarierDAO.deletePoolentarierDetail(no);
-		
 	}
+	
+	@Override
+	public Map<String, Object> poolentarierSearch(Integer page, String sortOption, String searchOption, String searchText) throws Exception {
+		Map<String, Object> param = new HashMap<>();
+		param.put("searchOption", searchOption);
+		param.put("searchText", searchText);
+		
+		PageInfo pageInfo = new PageInfo();
+		int poolentarierCount = poolentarierDAO.selectPoolentarierCount();
+		int maxPage = (int) Math.ceil((double)poolentarierCount / 10);
+		int startPage = (page - 1) / 10 * 10 + 1;
+		int endPage = startPage + 10 - 1;
+		if(endPage > maxPage) endPage = maxPage;
+		if(page > maxPage) page = maxPage;
+		
+		pageInfo.setAllPage(maxPage);
+		pageInfo.setCurPage(page);
+		pageInfo.setStartPage(startPage);
+		pageInfo.setEndPage(endPage);
+		
+		// 검색 결과가 없을 떄??
+		Map<String, Object> map = new HashMap<>();
+		map.put("pageInfo", pageInfo);
+		
+		if(page == 0) {
+			return map;
+		}
+		
+		int row = (page - 1) * 10 + 1;
+		param.put("row", row - 1);
+		List<Poolentarier> poolentarierList = poolentarierDAO.selectPoolentarierList(param);
+
+
+		map.put("poolentarierList", poolentarierList);
+		map.put("searchOption", searchOption);
+		map.put("searchText", searchText);
+		
+		return map;
+	}
+	
 }

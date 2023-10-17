@@ -28,7 +28,9 @@
 						${poolentarier.content}
 					</div>
 					<div class="pdDetail-6row">
-						<span>#${poolentarier.keyword}</span>
+						<c:forEach items="${keywords}" var="keyword" >
+							<span>${keyword}</span>&nbsp;
+						</c:forEach>
 					</div>
 					<div class="pdDetail-7row">
 						<a href="poolentarierEdit?no=${poolentarier.no}"><button>수정</button></a>
