@@ -89,13 +89,7 @@ public class DrFoolPoolList extends HttpServlet {
 		String sValue = request.getParameter("sValue");
 		
 		System.out.println("sOption: " + sOption + ", sValue: " + sValue);
-		
-		
-		// 검색옵션 선택하지 않고 제출시 발생하는 예외처리 할것
-		if(sOption.equals("unselected")) { 
-			return;
-		}
-		
+
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
 			Map<String,Object> resMap = drFoolPoolService.drFoolPoolListByPage(curPage, filter, sOption, sValue);
@@ -110,6 +104,8 @@ public class DrFoolPoolList extends HttpServlet {
 			
 			request.setAttribute("filter", filter);
 			request.setAttribute("resMap", resMap);
+			request.setAttribute("sOption", sOption);
+			request.setAttribute("sValue", sValue);
 			request.setAttribute("jspName", "drFoolPool");
 			request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolList.jsp").forward(request, response);
 			

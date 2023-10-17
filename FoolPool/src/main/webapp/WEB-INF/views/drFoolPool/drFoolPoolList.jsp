@@ -68,7 +68,7 @@ List<DrFoolPool> list = (List)resMap.get("drFoolPoolList");
                 <h5 class="drFP-searchBar">
                 	<form action="goDrFoolPool" method="post" id="drFP-searchForm">
                 		<input type="hidden" name="page" id="dfFP-page" value="${resMap.pageInfo.curPage }"/>
-                		<input type="hidden" name="filter" id="dfFP-filter"/>
+                		<input type="hidden" name="filter" id="dfFP-filter" value="${filter}"/>
 	                	<select name="sOption" id="sOption">
 	                		<option value="unselected">선택</option>
 	                		<option value="writer_nickname">작성자</option>
@@ -76,8 +76,8 @@ List<DrFoolPool> list = (List)resMap.get("drFoolPoolList");
 	                		<option value="title">제목</option>
 	                		<option value="content">내용</option>
 	                	</select>
-	                	<input type="text" name="sValue" id="sValue" value="${resMap.sValue }"/>
-						<input type="submit" value="검색"/>
+	                	<input type="text" name="sValue" id="sValue" value="${sValue}"/>
+						<input type="submit" value="검색" onclick="drFPkeepSearch()"/>
                 	</form>
                 </h5>
                 

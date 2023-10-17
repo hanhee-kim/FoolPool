@@ -51,6 +51,27 @@ $(document).ready(function() {
     });
 });
 
+function drFPkeepSearch() {
+	const searchForm = document.getElementById("searchForm");
+    const sValueInput = document.getElementById("sValue");
+    const sOptionSelect = document.getElementById("sOption");
+    
+    // form데이터 세팅
+    const formData = new FormData(searchForm);
+    formData.append("sOption", sOptionSelect.value);
+    formData.append("sValue", sValueInput.value);
+    
+    // ajax를 사용하여 post요청
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "goDrFoolPool", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(new URLSearchParams(formData));
+    
+    // form의 기본submit을 막음
+    event.preventDefault();
+}
+
+
 
 
 /* 게시글 목록의 검색form의 hidden input에 필터값 저장하여 제출하기 위함 */
