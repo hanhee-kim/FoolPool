@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Poolentarier;
+import bean.PoolentarierComment;
 import service.PoolentarierService;
 import service.PoolentarierServiceImpl;
 
@@ -40,12 +43,21 @@ public class PoolentarierDetail extends HttpServlet {
 			Poolentarier poolentarier = poolentarierService.poolentarierDetail(no);
 			request.setAttribute("poolentarier", poolentarier);
 			
+			// 키워드 분리
 			String keyword = poolentarier.getKeyword();
-			String[] keywords = keyword.split(",");
-			for(int i = 0;i < keywords.length;i++) {
-				keywords[i] = "#" + keywords[i];
+			if(keyword != null) {
+				String[] keywords = keyword.split(",");
+				for(int i = 0;i < keywords.length;i++) {
+					keywords[i] = "#" + keywords[i];
+				}
+				request.setAttribute("keywords", keywords);
 			}
-			request.setAttribute("keywords", keywords);
+			
+			// 전체 댓글 조회
+			List<PoolentarierComment> poolentarierCommentList = poolentarierService.poolentarierCommentList(no);
+			request.setAttribute("poolentarierCommentList", poolentarierCommentList);
+			// 댓글 개수 조회
+			request.setAttribute("commentCount", poolentarierCommentList.size());
 			
 			request.getRequestDispatcher("WEB-INF/views/poolentarier/poolentarierDetail.jsp").forward(request, response);
 		} catch(Exception e) {

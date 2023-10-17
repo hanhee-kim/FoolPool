@@ -1,6 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/include/menubar.jsp" %>
+
+<%@ page import="bean.Poolentarier" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.List" %>
+<% 
+// System.out.println("------drFoolPoolList.jsp-------");
+Map<String,Object> resMap = (Map)request.getAttribute("res");
+List<Poolentarier> list = (List)resMap.get("poolentarierList");
+// System.out.println("list.size() : " + list.size()); // list는 limt하여 가져온 목록이므로 6개 이하
+// System.out.println("리스트의 0번째 게시글 번호: " + list.get(0).getNo()); 
+%>
 			
 			<div class="plLabel">풀랜테리어</div>
 			<div class="plDivLine">
@@ -45,21 +56,22 @@
 	            			</c:forEach>
 	            		</c:if>
 	            	</div>
-
+					
+					<%-- 검색창 --%>
 					<div class=plSearchOptionDiv>
-						<form action="./goPoolentarier" method="post" id="plSearchform">
-							<input type="hidden" name="page" id="plPage" value="${res.pageInfo.curPage }"/>
+						<form action="goPoolentarier" method="post" id="plSearchform">
+							<input type="hidden" name="page" id="plPage" value="${res.pageInfo.curPage}"/>
 							<input type="hidden" name="sortOption" id="plSort" value="${sortOption}"/>
 							<h5>
-								<select class="plSearchOption" name="SearchOption" value="${searchOption}">
-									<option value="unselected" ${searchOption eq 'unselected' ? 'selected' : ''}>선택</option>
-									<option value="all" ${searchOption eq 'all' ? 'selected' : ''}>제목+내용</option>
-									<option value="writer" ${searchOption eq 'writer' ? 'selected' : ''}>작성자</option>
-									<option value="keyword" ${searchOption eq 'keyword' ? 'selected' : ''}>키워드</option>
-									<option value="plantsName" ${searchOption eq 'plantsName' ? 'selected' : ''}>식물명</option>
+								<select name="searchOption" class="plSearchOption">
+									<option value="unselected">선택</option>
+									<option value="all">제목+내용</option>
+									<option value="writer">작성자</option>
+									<option value="keyword">키워드</option>
+									<option value="plantsName">식물명</option>
 								</select>
-								<input type="text" name="SearchText" id="plSearchText" value="${SearchText}" />
-								<button class="plSearchBtn" type="submit">검색</button>
+								<input type="text" name="searchText" id="plSearchText" value="${searchText}" />
+								<button class="plSearchBtn" type="submit" onclick="plkeepSearch()">검색</button>
 							</h5>
 						</form>
 					</div>

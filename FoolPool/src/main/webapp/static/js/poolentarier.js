@@ -15,6 +15,26 @@ function plCallBtn(no) {
 	}	
 }
 
+function plkeepSearch() {
+	const plSearchForm = document.getElementById("plSearchForm");
+    const searchValueInput = document.getElementById("searchValue");
+    const searchOptionSelect = document.getElementById("searchOption");
+    
+    // form데이터 세팅
+    const formData = new FormData(plSearchForm);
+    formData.append("searchOption", searchOptionSelect.value);
+    formData.append("searchValue", searchValueInput.value);
+    
+    // ajax를 사용하여 post요청
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "goPoolentarier", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(new URLSearchParams(formData));
+    
+    // form의 기본submit을 막음
+    event.preventDefault();
+}
+
 // poolenatarierForm
 
 var maxKeywords = 5;
@@ -85,3 +105,11 @@ function pfRemoveKeywordBtn(element) {
 }
 
 // poolentarierDetail
+
+// 댓글 삭제
+// 
+function pdRemoveComment(commentNo, postNo) {
+	if (confirm("댓글을 삭제하시겠습니까?") == true) {
+		window.location.href = "poolentarierCommentDelete?commentNo=" + commentNo + "&postNo=" + postNo;
+	}
+}
