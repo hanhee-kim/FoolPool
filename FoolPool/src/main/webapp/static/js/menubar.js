@@ -1,3 +1,1 @@
-function foolPool() {
-            this.login = "";
-        }
+function foolPool() { }

@@ -1,0 +1,638 @@
+@charset "UTF-8";
+.noticesearch_area {
+	text-align: center;
+/*	margin-bottom: -30px; */
+	margin-bottom: 15px;
+	
+	/* bottomBorder에 덮이지 않도록함 */
+	position: relative;
+	z-index: 9;
+}
+
+/* 후손선택자 작성시 주의할것 */
+.noticesearch_area select, .noticesearch_area option, .noticesearch_area input {
+	font-family: 'Cafe24SsurroundAir';
+	font-size: 20px;
+	font-weight: bold;
+	padding: 5px;
+	border-radius: 5px;
+	border: 0.5px solid gray;
+}
+
+.noticesearch_area>:last-child {
+	background: #D9D9D9;
+	border: #D9D9D9 1px solid;
+	padding: 5px 20px;
+}
+
+
+
+
+
+/* noticeDetail에서 수정,목록,삭제버튼 */
+.my-link{
+	color: #466b55;
+    font-weight: bold; display: flex;align-items: center;justify-content: center;flex-shrink: 0;
+    color: #466b55;border: 1px solid #e1e1e1;padding: 1px 0px 0 0;border-radius: 8px;height: 30px;
+}
+
+/* 메뉴 타이틀 */
+.notice-Label {
+	font-size: 35px;
+	color: #466b55;
+	margin: 30px 0 15px 100px;
+	font-weight: bold;
+}
+
+.notice-DivLine {
+	margin: 0 auto;
+	width: 1240px;
+	height: 745px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.notice-TopBorder, .notice-BottomBorder {
+	border: 4px solid #466B55;
+	width: 100%;
+	height: 60px;
+	border-bottom: 0;
+	border-radius: 20px 20px 0px 0px;
+	
+	
+}
+
+.notice-BottomBorder {
+	border-bottom: 4px solid #466B55;
+	border-top: 0;
+	border-radius: 0px 0px 20px 20px;
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+/* noticeForm   */
+
+
+.noticeFormWrapper {
+        width: 500px;
+        position: relative;
+        left: 25px;
+        max-width: 100%;
+        margin: 0 auto;
+        outline: 2px solid #524638;
+        outline: radius 10px;
+        padding: 70px;
+        border-radius: 10px;
+        /* margin-top: 100px; */
+        margin-top: 5px;
+        height: 500px;
+        
+      }
+.noticeFormWriter {
+     width:500px; 
+ 	 height:32px; 
+     font-size:15px; 
+     border:0; 
+     border-radius: 15px; 
+     outline:none; 
+     padding-left:10px;
+     background-color:rgb(233,233,233);
+}
+.noticeFormTitle{
+	width: 500px;
+	height: 32px;
+	font-size: 15px;
+	border: 0;
+	border-radius: 15px;
+	outline: none;
+	padding-left: 10px;
+	background-color: rgb(233, 233, 233);
+}
+.noticeFormText{
+	 width:500px; 
+ 	 height:260px; 
+     font-size:15px; 
+     border:0; 
+     border-radius: 15px; 
+     outline:none; 
+     padding-left:10px;
+     background-color:rgb(233,233,233);
+ 	 resize: none; 
+ 	
+}
+.noticeFormBtn{
+	color: #466b55;
+    font-weight: bold; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #466b55;
+    border: 1px solid #e1e1e1;
+    padding: 1px 0px 0 0;
+    border-radius: 8px;
+    height: 30px;
+    float: right;
+    font-family: 'Cafe24SsurroundAir';
+}
+.noticeFormmove-up{
+	 	position: absolute;
+        top: 45%; /* 위로 옮길 픽셀 단위의 값 */
+        left: 50%;
+        transform: translate(-50%, -38%);
+        margin-top: -50px;
+	
+}
+
+.noticetitle {
+        font-weight: 800;
+        font-size: 21px;
+        letter-spacing: 0.06em;
+        margin-bottom: 30px;
+      }
+      .titlewrite {
+        font-weight: 800;
+        font-size: 21px;
+        letter-spacing: 0.06em;
+        margin-bottom: 30px;
+      }
+      .noticeFormtitle {
+        width: 500px;
+        height: 32px;
+        font-size: 15px;
+        border: 0;
+        border-radius: 15px;
+        outline: none;
+        padding-left: 10px;
+        background-color: rgb(233, 233, 233);
+      }
+      
+      noticeFormwriter
+      .revised {
+        width: 500px;
+        height: 300px;
+        font-size: 15px;
+        border: 0;
+        border-radius: 15px;
+        outline: none;
+        padding-left: 10px;
+        background-color: rgb(233, 233, 233);
+        
+      }
+/*     .w-btn-green {
+        background-color: #77af9c;
+        color: #000000;
+        position: relative;
+        padding: 30px 30px;
+        border-radius: 15px;
+        font-family: "paybooc-Light", sans-serif;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.25s;
+        padding: 6px 6px;
+        box-sizing: border-box;
+        margin: 10px;
+        border: 3px solid aliceblue;
+        float: right;
+        cursor: pointer;
+      }*/
+ /* .w-btn-green {
+	color: #466b55;
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	color: #466b55;
+	border: 1px solid #e1e1e1;
+	padding: 1px 0px 0 0;
+	border-radius: 8px;
+	height: 30px;
+}
+}*/
+
+
+/* errorPage  */
+.errorpage {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 575px;
+      }
+      .errorpage img{
+      max-width: 100%
+      }
+      
+ /* noticeFormEdit   */
+.noticeFormEditWrapper {
+        width: 500px;
+        position: relative;
+        left: 25px;
+        max-width: 100%;
+        margin: 0 auto;
+        outline: 2px solid #524638;
+        outline: radius 10px;
+        padding: 70px;
+        border-radius: 10px;
+        /* margin-top: 100px; */
+        margin-top: 5px;
+        height: 500px;
+        
+      }
+ 
+  .noticeFormEditmove-up {
+        position: absolute;
+        top: 49%; /* 위로 옮길 픽셀 단위의 값 */
+        left: 58%;
+        transform: translate(-50%, -38%);
+        margin-top: -60px;
+        
+      }
+ .noticeFormEditTitle{
+  	width:500px; 
+ 	 height:32px; 
+     font-size:15px; 
+     border:0; 
+     border-radius: 15px; 
+     outline:none; 
+     padding-left:10px;
+     background-color:rgb(233,233,233);
+}
+.noticeFormEditDate{
+	width:500px; 
+ 	 height:32px; 
+     font-size:15px; 
+     border:0; 
+     border-radius: 15px; 
+     outline:none; 
+     padding-left:10px;
+     background-color:rgb(233,233,233);
+	
+}
+.noticeFormEditTextarea{
+	 width:500px; 
+ 	 height:350px; 
+     font-size:15px; 
+     border:0; 
+     border-radius: 15px; 
+     outline:none; 
+     padding-left:10px;
+     background-color:rgb(233,233,233);
+ 	 resize: none; 
+ 	 width: 512px; /* 원하는 너비로 설정 */
+  	 height: 354px;
+}
+.noticeFormEditBtn{
+	font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #466b55;
+    border: 1px solid #e1e1e1;
+    padding: 1px 0px 0 0;
+    border-radius: 8px;
+    height: 30px;
+    margin-left:530px;
+    font-family: 'Cafe24SsurroundAir';
+    
+}
+
+      
+ /* noticeDetail  */    
+ .noticeDetailWrapper{
+  		width: 500px;
+        position: relative;
+        left: 25px;
+        max-width: 100%;
+        margin: 0 auto;
+        outline: 2px solid #524638;
+        outline: radius 10px;
+        padding: 70px;
+        border-radius: 10px;
+        /* margin-top: 100px; */
+        margin-top: 5px;
+        height: 500px;
+ }
+   .noticeDetailmove-up {
+        position: absolute;
+        top: 49%; /* 위로 옮길 픽셀 단위의 값 */
+        left: 58%;
+        transform: translate(-50%, -38%);
+        margin-top: -60px;
+        
+      }
+  .noticeDetailBtn1{
+  	color: #466b55;
+    font-weight: bold; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #466b55;
+    border: 1px solid #e1e1e1;
+    padding: 1px 0px 0 0;
+    border-radius: 8px;
+    height: 30px
+  
+  }    
+  .noticeDetailBtn2{
+  	color: #466b55;
+    font-weight: bold; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #466b55;
+    border: 1px solid #e1e1e1;
+    padding: 1px 0px 0 0;
+    border-radius: 8px;
+    height: 30px;
+    width: 80px;
+    font-size: 18px;
+  } 
+  .noticeDetailBtn3{
+  	color: #466b55;
+    font-weight: bold; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: #466b55;
+    border: 1px solid #e1e1e1;
+    padding: 1px 0px 0 0;
+    border-radius: 8px;
+    height: 30px
+  
+  }  
+  .noticeDetailTitle{
+ 	 width:450px;
+ 	 height:auto; 
+     font-size:15px; 
+     border:0; 
+     border-radius: 15px; 
+     outline:none; 
+     padding-left:20px;
+     background-color:rgb(233,233,233);
+/*      background-color: #fdffdc; */
+     white-space: normal;
+     text-overflow: clip; 
+     overflow: visible;
+     height: 35px;
+/*   	 line-height: 50px; 텍스트를 수직으로 중앙에 정렬합니다 */
+     word-wrap: break-word; /* 텍스트가 컨테이너의 너비를 초과할 때 줄 바꿈을 허용합니다 */
+  } 
+  .noticeDetailDate{
+     width:450px;
+ 	 height:35px; 
+     font-size:15px; 
+     border:0; 
+     border-radius: 15px; 
+     outline:none; 
+     padding-left:20px;
+     background-color:rgb(233,233,233);
+/*      background-color: #fdffdc; */
+  }  
+  .noticeDetailTextarea{
+     font-size:15px; 
+     border:0; 
+     border-radius: 15px; 
+     outline:none; 
+     padding-left:20px;
+     padding-top: 10px;
+     background-color:rgb(233,233,233);
+/*      background-color: #fdffdc; */
+ 	 resize: none; 
+     width: 450px;
+     height: 350px;
+  } 
+      .noticebtn_list{
+      display: flex;
+      justify-content: center;
+      width: 600px;
+      }
+      a {
+   text-decoration: none;
+}
+.noticeDetailView {
+   margin: 0 auto;
+   width: 700px;
+   margin-top:20px;
+   height: 500px;
+  
+}
+      
+ /* noticeDetail  */ 
+	.noticeFormEditmove-up {
+        position: absolute;
+        top: 50%; /* 위로 옮길 픽셀 단위의 값 */
+        left: 58%;
+        transform: translate(-50%, -38%);
+        margin-top: -60px;
+        
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+ /* noticeList  */ 
+ 
+ .notice_area {
+ 	position: relative;
+ 	left:70px;
+ 	    height: 720px;
+    width: 850px;
+ }
+
+.noticeOuter {
+	width: 1000px;
+	margin: auto;
+	height: 745px;
+}
+
+.noticeListwrap {
+	width: 850px;
+	margin: 100px auto;
+	height: 600px;
+}
+
+
+.notice_title {
+	border-bottom: 1px solid #282A35;
+}
+
+.notice_list {
+	margin: 20px 30px;
+	min-height: 565px;
+}
+
+.notice_list>ul {
+	border-bottom: 1px solid #f3f5f7;
+	height: 50px;
+	line-height: 50px;
+	display: flex;
+	justify-content: space-around;
+	list-style: none;
+}
+
+.notice_list>ul.last {
+	border: 0;
+}
+
+.notice_list>ul>li {
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	
+}
+.notice_list>ul>li>a {
+	display: block;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	white-space: nowrap; /* 텍스트를 한 줄로 유지하도록 설정 */
+	overflow: hidden; /* 넘치는 텍스트를 숨김 */
+	text-overflow: ellipsis; /* 텍스트가 넘치면 '...'으로 표시 */
+	max-width: 100%; /* li의 최대 너비를 100%로 설정 */}
+
+.notice_header {
+	background: #77af9c;
+	color: white;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.notice_list .id {
+	width: 60px;
+}
+
+.notice_list .category {
+	width: 60px;
+}
+
+.notice_list .title {
+	width: 350px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.notice_ul {
+	margin: 0;
+	padding: 0;
+}
+.notice_ul.date {
+	width: 150px;
+}
+.notice_ul.count {
+	width: 100px;
+}
+.notice_ul.no {
+	width: 100px;
+}
+
+
+
+.noticePaging{
+	/* background: skyblue; */
+	
+	/* 원하는 위치에 배치하기 위해 절대값으로 지정 */
+    /* margin-left: 500px; */
+    justify-content: center;
+    align-items: center;
+	font-family: 'Cafe24SsurroundAir';
+	font-size: larger;
+	font-weight: bold;
+	display: flex;
+	margin-top:50px;
+	
+}
+.noticePaging a {
+	text-decoration: none;
+	margin: 0 5px;
+	color: #D9D9D9;
+}
+
+#notice-selectedPage {
+	color: #466b55;
+}
+
+
+
+
+
+.noticePaging a.current_page {
+	border-bottom: 2px solid #282A35;
+	font-weight: bold;
+}
+
+.noticesearch_area {
+	text-align: center;
+	padding: 5px;
+}
+
+.noticesearch_area select {
+	width: 150px;
+	height: 30px;
+	border: 0px;
+}
+
+.noticesearch_area a {
+	width: 100px;
+    height: 35px;
+    border: 0px;
+    color: white;
+    background: #282A35;
+    margin: 5px;
+}
+
+.noticeinput_area {
+	border: solid 1px #dadada;
+	padding: 10px 10px 14px 10px;
+	margin-right: 20px;
+	background: white;
+}
+
+.noticeinput_area input {
+	width: 250px;
+	height: 30px;
+	border: 0px;
+}
+
+.noticeinput_area input:focus, .search_area select:focus {
+	outline: none;
+}
+
+.noticesearch_area button {
+	width: 100px;
+	height: 35px;
+	border: 0px;
+	color: white;
+	background: #282A35;
+	margin: 5px;
+}
+
+
+   
+
+
+

@@ -1,0 +1,266 @@
+@charset "UTF-8";
+
+.searchFlowerLabel {
+	font-size: 35px;
+	color: #466b55;
+	margin: 30px 0 15px 100px;
+	font-weight: bold;
+}
+
+.searchFlowerDivLine {
+	margin: 0 auto;
+	width: 1240px;
+	height: 740px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.searchFlowerTopBorder, .searchFlowerBottomBorder {
+	border: 4px solid #466B55;
+	width: 100%;
+	height: 60px;
+	border-bottom: 0;
+	border-radius: 20px 20px 0px 0px;
+}
+
+.searchFlowerBottomBorder {
+	border-bottom: 4px solid #466B55;
+	border-top: 0;
+	border-radius: 0px 0px 20px 20px;
+}
+
+.searchFlowerSelectOptionDiv {
+	margin: 20px 0;
+	width: 70%;
+	display: flex;
+	gap: 15px;
+	justify-content: center;
+	position: relative;
+    top: -18px;
+}
+
+.searchFlowerOptionBox::-ms-expand, .searchFlowerStartMonth::-ms-expand,
+	.searchFlowerStartDay::-ms-expand, .searchFlowerEndMonth::-ms-expand,
+	.searchFlowerEndDay::-ms-expand {
+	display: none; /*for IE10,11*/
+}
+
+.searchFlowerOptionBox, .searchFlowerStartMonth, .searchFlowerStartDay,
+	.searchFlowerEndMonth, .searchFlowerEndDay {
+	-webkit-appearance: none; /* for chrome */
+	-moz-appearance: none; /*for firefox*/
+	appearance: none;
+	background: url("../img/arrowDown.png") no-repeat;
+	height: 40px;
+	width: 120px;
+	border: 0;
+	background-color: #e0f4de;
+	padding: 3px 6px 0;
+	text-align: center;
+	background-position-x: 100px;
+	background-position-y: 14px;
+	font-family: 'Cafe24SsurroundAir';
+	font-size: larger;
+	font-weight: bold;
+	border-radius: 12px;
+}
+
+.searchFlowerOptionBox {
+	margin-right: 20px;
+}
+
+.searchFlowerStartMonth, .searchFlowerStartDay, .searchFlowerEndMonth,
+	.searchFlowerEndDay {
+	width: 90px;
+	background-position-x: 70px;
+	border-radius: 12px;
+}
+#searchFlowerOptionInputBox{
+	display: flex;
+}
+#searchFlowerHyphen{
+    width: 25px;
+}
+.searchFlower_OptionDate{
+	display: flex;
+    gap: 10px;
+}
+.flowerCardsection {
+	width: 740px;
+	height: 575px;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	padding: 0 30px;
+	position: inherit;
+}
+.flowerCardsection_line {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    row-gap: 30px;
+    justify-items: center;
+	padding-top: 20px;
+}
+.flowerCard {
+	border: 3px solid #466b55;
+    width: 330px;
+    background-color: #F2F9EF;
+    border-radius: 10px 50px;
+    transition: ease-in-out .3s;
+}
+.flowerCard:hover{
+	cursor: pointer;
+	transform: scale(1.1);
+}
+
+.flowerCardImgSection {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	padding-top: 10px;
+}
+
+.flowerCardImg {
+	width: 230px;
+	height: 140px;
+	border-radius: 15px;
+}
+
+.flowerCardImg, .flowerCardDateSection {
+	margin-bottom: 10px;
+}
+
+.flowerCardDateSection, .flowerCardNameLangSection {
+	display: flex;
+	justify-content: center;
+	color: #466B55;
+}
+.flowerCardNameLangSection{
+	margin-bottom: 10px
+}
+.flowerCardDateSection {
+	margin-left: -90px;
+}
+
+.flowerCardName {
+	margin-left: 30px;
+	padding: 3px 6px;
+}
+
+.flowerCardMonth, .flowerCardDay {
+	font-size: 20px;
+}
+
+.flowerCardName, .flowerCardLang {
+	font-size: 15px;
+}
+
+.searchFlower_pd_r_22 {
+	padding-right: 22px;
+}
+
+.searchFlower_searchBtn {
+	height: 40px;
+	width: 100px;
+	border: 0;
+	background-color: #e0f4de;
+	padding: 3px 6px 0;
+	text-align: center;
+	font-family: 'Cafe24SsurroundAir';
+	font-size: larger;
+	font-weight: bold;
+	margin-left: 20px;
+	border-radius: 12px;
+}
+.searchFlower_searchBtn:hover,
+.searchFlowerSeeMore:hover{
+	cursor: pointer;
+}
+.searchFlowerSeeMoreDiv{
+    display: flex;
+    width: 100px;
+    height: 40px;
+    margin-bottom: -25px;
+}
+.searchFlowerSeeMore{
+	position: absolute;
+	top: 880px;
+	height: 40px;
+	width: 100px;
+	border: 0;
+	background-color: #e0f4de;
+	padding: 3px 6px 0;
+	text-align: center;
+	font-family: 'Cafe24SsurroundAir';
+	font-size: larger;
+	font-weight: bold;
+	margin-left: 20px;
+	border-radius: 12px;
+}
+#searchFlowerOptionInputBox{
+	display: flex;
+    align-items: center;	
+}
+#searchFlowerHyphen{
+    width: 25px;
+    color: #466B55;
+    font-weight: bold;
+    text-align: center;
+}
+.searchFlower_OptionDate{
+	display: flex;
+    margin: 0 7px;
+}
+.searchFlowerByName,
+.searchFlowerByLang{
+	height: 30px;
+    font-size: 20px;
+	border-radius: 10px;
+    font-family: 'Cafe24SsurroundAir';
+    font-weight: bold;
+    padding-left: 10px;
+    width: 180px;
+}
+.searchFlowerMSG{
+    display: grid;
+    width: 700px;
+    text-align: center;
+    font-family: Cafe24SsurroundAir;
+    font-size: 30px;
+    color: #466B55;
+    margin-top: 50px;
+}
+.searchFlower_disabled {
+	display: none;
+}
+/* .searchFlower_abled{ */
+/* 	display:flex; */
+/* 	justify-content: center; */
+/*     align-items: center; */
+/* } */
+/* .flowerCardsection::-webkit-scrollbar {
+	display: none; 크롬, 사파리, 오페라, 엣지
+} */
+/* scrollbar */
+.flowerCardsection::-webkit-scrollbar {
+    width: 8px;  /* 스크롤바의 너비 */
+}
+
+.flowerCardsection::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background: #466b55; /* 스크롤바의 색상 */
+    border-radius: 70px;
+}
+
+.flowerCardsection::-webkit-scrollbar-track {
+    background: #466b5577;  /*스크롤바 뒷 배경 색상*/
+    border-radius: 70px;
+}
+/* 익스프롤러 10이하 스크롤바 CSS  */
+.flowerCardsection {
+    scrollbar-face-color:#466b55;
+    scrollbar-shadow-color:#dddddd;
+    scrollbar-track-color: #466b5577;
+   }

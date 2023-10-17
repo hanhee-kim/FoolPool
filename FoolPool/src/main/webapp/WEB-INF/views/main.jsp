@@ -1,29 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-            <jsp:include page="include/menubar.jsp"></jsp:include>
+<%@include file="include/menubar.jsp" %>
             
 
             <div class="flowerImgWrap">
                 <div class="flowerImgDiv1">
-                    <img class="showFlowerImg1" alt="" src="http://www.nihhs.go.kr/user/AttachFiles/FLOWF/0101-1.jpg" />
+                    <img class="showFlowerImg1" alt="" src="${flower.imgUrl1 }" />
                 </div>
                 <div class="flowerImgDiv2">
-                    <img class="showFlowerImg2" alt="" src="http://www.nihhs.go.kr/user/AttachFiles/FLOWF/0101-2.jpg" />                   
-                    <img class="showFlowerImg3" alt="" src="http://www.nihhs.go.kr/user/AttachFiles/FLOWF/0101-3.jpg" />
+                    <img class="showFlowerImg2" alt="" src="${flower.imgUrl2 }" />                   
+                    <img class="showFlowerImg3" alt="" src="${flower.imgUrl3 }" />
                 </div>
             </div>
             <div class="mainFlowerContentWrap">
                 <div class="flowerContentWrap">
                     <div class="showFlowerWrap">
-                    <div class="showFlowerMonthDay" id="showFlowerMonthDay" name="showFlowerMonthDay">11월 11일</div>
-                        <div class="showFlowerName" id="showFlowerName" name="flow_Nm">향나무보다더길어진다면</div>
+                    <div class="showFlowerMonthDay" id="showFlowerMonthDay" name="showFlowerMonthDay">${flower.fMonth}월 ${flower.fDay}일</div>
+                        <div class="showFlowerName" id="showFlowerName" name="flow_Nm">${flower.flowNm}</div>
                     </div>
-                        <div class="showrFlowerLang" id="showrFlowerLang" name="showrFlowerLang">" 영원한 향기말고 더 길다면 "</div>
+                        <div class="showrFlowerLang" id="showrFlowerLang" name="showrFlowerLang">" ${flower.flowLang} "</div>
                 </div>
-                <div class="showFlowerDetail" onclick="btnClick('flowerDetail')">자세히 알아보기</div>
+                <div class="showFlowerDetail" onclick="btnClick('detailFlower')" name="showFlowerDetail" value="${flower.dataNo }">자세히 알아보기</div>
                 <div class="randomBoxIcon">
-                    <img class="randomIcon" alt="" src="./static/img/randomDiceIcon.png" onclick="btnClick('main')" value=""/>
+                    <img class="randomIcon" alt="" src="./static/img/randomDiceIcon.png" onclick="btnClick('randomMain')"/>
                 </div>
             </div>
         </div>

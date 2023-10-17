@@ -1,0 +1,427 @@
+@charset "UTF-8";
+
+/* 0. 풀풀박사 페이지 공통 */
+
+.drFP-Label {
+	font-size: 35px;
+	color: #466b55;
+	margin: 30px 0 15px 100px;
+	font-weight: bold;
+}
+
+.drFP-DivLine {
+	margin: 0 auto;
+	width: 1240px;
+	height: 720px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.drFP-DivLine a:link, .drFP-DivLine a:visited, .drFP-DivLine a:hover { 
+	text-decoration: none;
+	color: black;
+}
+
+.drFP-TopBorder, .drFP-BottomBorder {
+	border: 4px solid #466B55;
+	width: 100%;
+	height: 60px;
+	border-bottom: 0;
+	border-radius: 20px 20px 0px 0px;
+}
+
+.drFP-BottomBorder {
+	border-bottom: 4px solid #466B55;
+	border-top: 0;
+	border-radius: 0px 0px 20px 20px;
+	
+	margin-top: -30px;
+}
+/* 1. 풀풀박사 게시글 목록 */
+.drFP-searchBar {
+	text-align: center;
+/*	margin-bottom: -30px; */
+	margin-bottom: 15px;
+	
+	/* bottomBorder에 덮이지 않도록함 */
+	position: relative;
+	z-index: 9;
+}
+
+/* 후손선택자 작성시 주의할것 */
+.drFP-searchBar select, .drFP-searchBar option, .drFP-searchBar input {
+	font-family: 'Cafe24SsurroundAir';
+	font-size: 20px;
+	font-weight: bold;
+	padding: 5px;
+	border-radius: 5px;
+	border: 0.5px solid gray;
+}
+
+.drFP-searchBar>:last-child {
+	padding: 5px 20px;
+}
+
+.drFP-paging{
+	/* 원하는 위치에 배치하기 위해 절대값으로 지정 */
+	position: absolute;
+	top: 935px; 
+	z-index: 10;
+	
+	display: flex;
+	font-family: 'Cafe24SsurroundAir';
+	font-size: larger;
+	font-weight: bold;
+}
+.drFP-paging a {
+	text-decoration: none;
+	margin: 0 5px;
+	color: #D9D9D9 !important;
+}
+#drFP-selectedPage {
+	color: #466b55 !important;
+}
+
+.drFP-FilteringAndWriteBtn {
+	width: 95%;
+	margin-top: -30px;
+	
+    display: flex; /* 요소를 가로로 나란히 배치하기 위해 flex 사용 */
+    justify-content: space-between; /* 요소 간 간격을 최대로 확보하여 좌우 정렬 */
+    align-items: center; /* 요소를 수직 가운데로 정렬 */
+}
+.drFP-Filtering {
+  	flex-grow: 1; /* 남은 공간을 모두 차지하여 왼쪽으로 밀기 */
+    display: flex; /* 요소를 가로로 나란히 배치하기 위해 flex 사용 */
+}
+.drFP-writeBtn {
+	margin-left: 10px; /* 글쓰기 버튼과 필터링 요소 사이에 마진 추가 */
+
+	height: 40px;
+	width: 110px;
+	text-align: center;
+	background: #D9D9D9;
+	font-family: 'Cafe24SsurroundAir';
+	font-size: larger;
+	font-weight: bold;
+	border: 0;
+	border-radius: 12px;
+	padding: 5px 15px;
+}
+.drFP-FilterBtn {
+	width: 80px;
+	height: 30px;
+	border-radius: 10px 50px;
+	padding: 5px;
+	font-size: larger;
+	font-weight: bolder;
+	
+	/* 필터버튼의 텍스트를 수평 수직 가운데 정렬 */
+	text-align: center;
+	line-height: 33px;
+}
+.drFP-FilterBtnSelected {
+	background: #D9D9D9; /* #선택된 필터만 배경색 적용되도록 할것 */
+}
+.drFP-CardGrid {
+    width: 1200px;
+    height: 575px;
+/*    margin-top: 40px; */
+    margin-top: 20px;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr); /* 2행 */
+    grid-template-columns: repeat(3, 1fr); /* 3열 */
+    gap: 20px; /* 그리드 아이템 간 간격 */
+    justify-items: center; /* 그리드 아이템 가로 중앙 정렬 */
+    align-items: center; /* 그리드 아이템 세로 중앙 정렬 */
+}
+.drFP-CardGrid a {
+    text-decoration: none;
+}
+.drFP-Card {
+    width: 351px;
+    height: 255px;
+    background-color: #e9e9e9;
+    border: none;
+    border-radius: 10px 50px;
+   
+	display: grid;
+	grid-template-rows: 1fr 4fr;
+	justify-items: center; /* 그리드 아이템 가로 중앙 정렬 */
+    align-items: center; /* 그리드 아이템 세로 중앙 정렬 */
+}
+
+.drFP-CardTitleArea {
+	width: 320px;
+	display: flex; /* 아이콘과 타이틀을 왼쪽정렬하기 위함 */
+}
+.drFP-CardTitle {
+	text-decoration: none;
+	font-size: larger;
+	font-weight: bolder;
+	
+	/* 제목이 범위를 넘어서면 생략기호 사용 */
+	text-overflow: ellipsis; 
+	overflow: hidden;
+	white-space: nowrap;
+	
+	margin-right: auto; /* 왼쪽정렬 */
+	margin: 12px 0 0 12px; /* 위, 왼 마진 */
+}
+
+
+.drFP-thumbnailArea {
+	/* border: 2px green dashed; */
+	width: 290px;
+	height: 160px;
+	margin-top: -20px;
+}
+.drFP-thumbnailArea>img {
+    /* img는 원본 비율을 유지하되 부모 div크기에 맞추고 벗어나면 잘리게 된다 */
+	width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* mouse hover한 카드 */
+.drFP-CardHover {
+	border: 3px solid #466B55;
+}
+
+.drFP-CardTitleArea>img {
+	width: 38px;
+	height: 34px;
+}
+
+#drFP-emptyList {
+	background: pink;
+}
+
+
+/* 2. 풀풀박사 게시글 상세 */
+.drFP-detailArea {
+    width: 1200px;
+	margin-top: -30px;
+	overflow-y: auto;
+	overflow-x: none;
+	
+	/* 1012 변경 */
+    height: 660px;
+	margin-bottom: -30px;
+
+}
+.drFP-detail-1row {
+	font-size: 25px;
+	font-weight: bolder;
+	margin-left: 60px;
+}
+.drFP-detail-2row {
+	margin-top: 12px;
+	font-size: 20px;
+	margin-left: 60px;
+	
+	display: flex;
+}
+.drFP-detail-2row>:first-child {
+	margin-left: 10px;
+}
+.drFP-detail-2row>:not(:last-child) {
+	margin-right: 22px;
+} 
+.drFP-detail-writer {
+	text-align: right;
+	
+	/* 작성자만 오른쪽 끝에 정렬하기위해 부모에 display:flex를 줌 */
+	margin-left: auto;
+	margin-right: 65px;
+}
+
+.drFP-detail-3row { 
+	max-height: auto;
+	margin: 30px auto;
+	max-width: 900px; /* 이미지의 너비가 부모인 이 요소보다 클 때에만 적용 */
+}
+.drFP-detail-3row>img {
+	display: block;
+	max-width: 100%; /* 부모 너비에 맞춤 */
+	height: auto;
+	object-fit: scale-down; /* 컨테이너 안에서 이미지가 비율 유지하며 사이즈 조절 */
+	margin: 0 auto; /* 수평 중앙 정렬 */
+}
+
+.drFP-detail-4row {
+	width: 90%;
+	margin-left: 60px;
+	line-height: 210%; /* 줄간격 조정 */
+}
+.drFP-detail-5row {
+	width: 90%;
+	text-align: right;
+	margin-top: 10px;
+	margin-left: 40px;
+	/* background: skyblue; */
+}
+.drFP-detail-5row button{
+	margin-left: 8px; 
+	
+	text-align: center;
+	background: #D9D9D9;
+	font-family: 'Cafe24SsurroundAir';
+	font-size: 17px;
+	font-weight: border;
+	border: 0;
+	border-radius: 5px;
+	padding: 5px 15px;
+	cursor: pointer;
+}
+.drFP-commentArea {
+	margin: 45px 20px 10px 60px; /* 위 오른 아래 왼 */
+	
+	/* z값을 주기 위해 position:relative로 지정 */
+    position: relative; 
+    z-index: 5; 
+}
+#dfFP-commentForm {
+	position: relative; 
+    z-index: 10; 
+    
+    background: lime;
+}
+.drFP-commentArea table {
+	width: 95%;
+	table-layout: fixed; /* 테이블 너비 고정 */
+	
+	border-top: 1px solid #444444;
+    border-collapse: collapse;
+}
+.drFP-commentArea table tr{
+	padding: 5px;
+}
+.drFP-commentArea table td{
+	padding: 5px;
+	margin-right: 10px;
+	
+	border-bottom: 1px solid #444444;
+    padding: 10px;
+}
+
+/* tr의 첫번째, 마지막 td의 너비 고정하고 중간 td는 남는 영역 전부 차지하게함 */
+.drFP-commentArea table tr td:first-child {
+    width: 110px;
+    
+    /* 긴댓글줄바꿈으로 인해 댓글영역의 높이가 커졌을때 자식요소인 (텍스트)닉네임은 수직중앙정렬이 아닌 위쪽 정렬하게 함 */
+    vertical-align : top;
+    padding-top: 15px;
+}
+.drFP-commentArea table tr td:last-child {
+    width: 100px;
+    text-align: right;
+    margin-right: 40px;
+    
+    /* 긴댓글줄바꿈으로 인해 댓글영역의 높이가 커졌을때 자식요소인 버튼은 수직중앙정렬이 아닌 위쪽 정렬하게 함 */
+    vertical-align : top;
+    padding-top: 15px;
+}
+.drFP-commentArea table tr td:nth-child(2) {
+	line-height: 180%;
+    width: auto; /* 너비를 자동으로 설정 */
+    white-space: normal; /* 텍스트 내용이 넘칠 때 줄바꿈 허용 */
+    text-overflow: clip; /* 내용이 넘칠 때 생략 기호 표시하지 않음 */
+}
+
+.drFP-commentArea table tr td button{
+	/* padding: 6px 10px 4px 10px; */
+	font-family: 'Cafe24SsurroundAir';
+	font-size: 16px;
+	border-radius: 5px;
+	border: none;
+}
+.drFP-commentPickBtn {
+	background: #F2F9EF !important;
+	border: 0.5px solid #466B55 !important;
+	padding: 4px 5px 3px 5px;
+}
+.drFP-commentDelBtn {
+	font-size: 30px;
+    border: 0 !important; /* 강제 우선적용 */
+    outline: none; 
+    background: none; 
+    cursor: pointer; 
+    margin-right: 20px;
+}
+.drFP-crown {
+	width: 30px;
+	height: 30px;
+	margin-bottom: -10px;
+}
+.drFP-picked {
+	font-weight: bold;
+}
+
+/* 3. 풀풀박사 게시글 작성 */
+
+.drFP-formSection {
+	/* background: pink; */
+	width: 70%;
+	/* height: 600px; */
+	height: 575px;
+	margin-top: -45px;
+}
+.drFP-formSection>h2 {
+	margin-left: 40px;
+}
+.drFP-inputArea {
+	/* background: lightgreen; */
+	margin-top: -15px;
+	width: 100%;
+	height: 530px;
+	/* height: 200px; */
+	font-size: 18px;
+	overflow-y: scroll;
+}
+.drFP-inputArea input[type="text"],
+.drFP-inputArea textarea {
+    background: #F2F9EF;
+    border: 0.5px dashed #466b55;
+}
+.drFP-inputArea input[type="text"] {
+	width: 89.5%;
+	height: 30px;
+}
+.drFP-inputArea textarea {
+	width: 722px;
+    height: 300px;
+    resize: none; /* textarea 크기 고정 */
+}
+
+.drFP-inputArea li {
+	list-style: none;
+	margin-bottom: 10px;
+}
+.drFP-inputArea li>label {
+	margin-right: 10px;
+}
+.drFP-formTitle {
+	width: 90%;
+}
+.drFP-formContent {
+	width: 90%;
+}
+.drFP-formImg {
+	width: 90%;
+	border: none;
+	cursor: pointer;
+}
+
+
+.drFP-formBtn {
+	text-align: center;
+	/* background: pink; */
+}
+.drFP-formBtn input {
+	/* z값을 주기 위해 position:relative로 지정 */
+    position: relative; 
+    z-index: 1; 
+    background: transparent; /* 배경을 투명하게 */
+    cursor: pointer;
+}

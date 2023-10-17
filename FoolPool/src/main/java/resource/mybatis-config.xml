@@ -4,22 +4,44 @@
    "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+<!-- 	<settings>
+		 <setting name="mapUnderscoreToCamelCase" value="true" />
+	</settings> -->
 	<typeAliases>
 		<!-- 특정 파일에 대한 임포트 역할 -->
 		<typeAlias type="bean.Flower" alias="Flower" />
+		<typeAlias type="bean.DrFoolPool" alias="DrFoolPool" />
+		<typeAlias type="bean.DrFoolPoolComment" alias="DrFoolPoolComment" />
+		<typeAlias type="bean.Notice" alias="Notice" />
+		<typeAlias type="bean.Member" alias="Member" />
+		<typeAlias type="bean.Poolentarier" alias="Poolentarier" />
 	</typeAliases>
 
-	<environments default="development">
-		<environment id="development">
-			<transactionManager type="JDBC" />
-			<dataSource type="JNDI">
+	<!-- <environments default="development">
+	</environments>		
+   		    <dataSource type="JNDI">
 				<property name="data_source"
 					value="java:comp/env/jdbc/foolpool" />
 			</dataSource>
 		</environment>
-	</environments>
+	</environments> -->
+	<environments default="development">
+      <environment id="development">
+         <transactionManager type="JDBC" />
+             <dataSource type="POOLED">
+            <property name="driver" value="org.mariadb.jdbc.Driver"/>
+            <property name="url" value="jdbc:mariadb://localhost:3306/foolpool"/>
+            <property name="username" value="root"/>
+            <property name="password" value="1234"/>
+         </dataSource>
+         </environment>
+   </environments>
 
 	<mappers>
 		<mapper resource="mapper/Flower.xml" />
+		<mapper resource="mapper/DrFoolPool.xml" />
+		<mapper resource="mapper/Member.xml"/>
+		<mapper resource="mapper/Notice.xml" />
+		<mapper resource="mapper/Poolentarier.xml" />
 	</mappers>
 </configuration>
