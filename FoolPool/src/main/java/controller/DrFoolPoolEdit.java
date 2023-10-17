@@ -55,9 +55,6 @@ public class DrFoolPoolEdit extends HttpServlet {
 			request.setAttribute("err", "풀풀박사 게시글 수정 실패");
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
-		
-		request.setAttribute("jspName", "drFoolPool");
-		request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolEdit.jsp").forward(request, response);
 	}
 
 	/**

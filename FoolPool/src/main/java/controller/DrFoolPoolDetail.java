@@ -51,7 +51,7 @@ public class DrFoolPoolDetail extends HttpServlet {
 			System.out.println(drFoolPool.toString());
 			System.out.println("댓글수: " + commentList.size() + "\n----댓글 목록 출력----");
 			Iterator<DrFoolPoolComment> iter = commentList.iterator();
-			while(iter.hasNext()){
+			while(iter!=null && iter.hasNext()){
 				System.out.println(iter.next().toString());
 			}
 			

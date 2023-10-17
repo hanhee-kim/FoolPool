@@ -3,17 +3,6 @@
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/include/menubar.jsp" %>
 
-<%@ page import="bean.DrFoolPool" %>
-<%@ page import="java.util.Map" %>
-<%@ page import="java.util.List" %>
-<% 
-// System.out.println("------drFoolPoolList.jsp-------");
-Map<String,Object> resMap = (Map)request.getAttribute("resMap");
-List<DrFoolPool> list = (List)resMap.get("drFoolPoolList");
-// System.out.println("list.size() : " + list.size()); // list는 limt하여 가져온 목록이므로 6개 이하
-// System.out.println("리스트의 0번째 게시글 번호: " + list.get(0).getNo()); 
-%>
-
             <div class="drFP-Label">풀풀박사</div>
             
             <div class="drFP-DivLine">
@@ -22,13 +11,6 @@ List<DrFoolPool> list = (List)resMap.get("drFoolPoolList");
             	
             	<%-- 필터링 + 글쓰기 버튼 --%>
             	<div class="drFP-FilteringAndWriteBtn">
-	                <%--
-	                <div class="drFP-Filtering">
-	                	<a href="goDrFoolPool?page=1&filter=all" class="${filter eq 'all' ? 'drFP-FilterBtn drFP-FilterBtnSelected' : 'drFP-FilterBtn'}">전체</a>
-						<a href="goDrFoolPool?page=1&filter=unsolved" class="${filter eq 'unsolved' ? 'drFP-FilterBtn drFP-FilterBtnSelected' : 'drFP-FilterBtn'}">미해결</a>
-						<a href="goDrFoolPool?page=1&filter=solved" class="${filter eq 'solved' ? 'drFP-FilterBtn drFP-FilterBtnSelected' : 'drFP-FilterBtn'}">해결</a>
-	                </div>
-	                 --%>
 	                <div class="drFP-Filtering">
 		                <c:url var="urlfilterall" value="goDrFoolPool">
 						    <c:param name="page" value="1" />
@@ -101,8 +83,6 @@ List<DrFoolPool> list = (List)resMap.get("drFoolPoolList");
                 <%-- 검색바 --%>
                 <h5 class="drFP-searchBar">
                 	<form action="goDrFoolPool" method="get" id="drFP-searchForm">
-                		<%-- <input type="hidden" name="page" id="dfFP-page" value="${resMap.pageInfo.curPage }"/>
-                		<input type="hidden" name="filter" id="dfFP-filter" value="${filter }"/> --%>
 	                	<select name="sOption" id="drFP-sOption" value="${sOption}">
 	                		<option value="unselected" ${sOption eq 'unselected' ? 'selected' : ''}>선택</option>
 						    <option value="writer_nickname" ${sOption eq 'writer_nickname' ? 'selected' : ''}>작성자</option>
@@ -110,8 +90,7 @@ List<DrFoolPool> list = (List)resMap.get("drFoolPoolList");
 						    <option value="title" ${sOption eq 'title' ? 'selected' : ''}>제목</option>
 						    <option value="content" ${sOption eq 'content' ? 'selected' : ''}>내용</option>
 	                	</select>
-                		<input type="hidden" name="sOption" id="dfFP-sOption" value="${sOption}"/>
-	                	<input type="text" name="sValue" id="drFP-sValue" value="${sValue}"/>
+	                	<input type="text" maxlength="100" name="sValue" id="drFP-sValue" value="${sValue}"/>
 						<input type="submit" value="검색"/>
                 	</form>
                 </h5>

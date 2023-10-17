@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/include/menubar.jsp" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--JSTL포맷팅 라이브러리 --%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 
             <div class="drFP-Label">풀풀박사</div>
             
@@ -25,11 +21,10 @@
 			    		<label class="drFP-detailTitle">${drFoolPool.title}</label>
 			    	</div>
 			    	<div class="drFP-detail-2row">
-				    	 <%-- DATETIME컬럼과 매핑된 java.util.Date필드를 년-월-일로 포맷팅하여 출력 --%>
 				    	<fmt:formatDate value="${drFoolPool.date}" pattern="yyyy.MM.dd. HH:mm" var="formattedDate" />
-						<span>${formattedDate}</span>
+				    	<span>작성자: ${drFoolPool.writerNickname}</span>
+						<span>작성일: ${formattedDate}</span>
 				    	<span>조회수: ${drFoolPool.view}</span>
-				    	<span class="dfFP-detail-writer">작성자: ${drFoolPool.writerNickname}</span>
 			    	</div>
 			    	<div class="drFP-detail-3row">
 			    		<img alt="풀풀박사게시글이미지" src="image?file=${drFoolPool.fileName}">
@@ -73,7 +68,8 @@
 					    		<form action="addDrFoolPoolComment" method="post">
 					    			<input type="hidden" name="postNo" value="${drFoolPool.no}"/>
 					    			<span>${member.nickname}</span>
-					    			<input type="text" name="commentContent"/>
+					    			<input type="text" maxlength="300" id="drFP-commentValue" onkeyup="drFPcommentValidation()" name="commentContent"/>
+					    			<div id="drFP-commentValidationMsg"></div>
 					    			<input type="submit" value="등록"/>
 					    		</form>
 				    		</div>
@@ -84,7 +80,7 @@
 			    </div> <%-- drFP-detailArea --%>
                 
                 
-               <div class="drFP-BottomBorder"></div> 
+               <div class="drFP-BottomBorder drFP-detailBottomBorder"></div> 
                 
             </div>
             <%-- drFP-DivLine --%>

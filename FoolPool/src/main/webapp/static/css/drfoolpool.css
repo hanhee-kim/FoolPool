@@ -214,6 +214,7 @@
 	font-size: 25px;
 	font-weight: bolder;
 	margin-left: 60px;
+	width: 1070px;
 }
 .drFP-detail-2row {
 	margin-top: 12px;
@@ -284,8 +285,6 @@
 #dfFP-commentForm {
 	position: relative; 
     z-index: 10; 
-    
-    background: lime;
 }
 .drFP-commentArea table {
 	width: 95%;
@@ -358,70 +357,167 @@
 	font-weight: bold;
 }
 
-/* 3. 풀풀박사 게시글 작성 */
+#drFP-commentValidationMsg {
+	font-size: 12px;
+	color: orange;
+}
+
+.drFP-detailBottomBorder {
+	/* 원하는 위치에 배치하기 위해 절대값으로 지정 */
+	position: absolute;
+	top: 890px; 
+	width: 1246.67px;
+}
+
+/* 3. 풀풀박사 게시글 작성폼, 수정폼 */
+.drFP-formBottomBorder {
+	/* 원하는 위치에 배치하기 위해 절대값으로 지정 */
+	position: absolute;
+	top: 890px; 
+	width: 1246.67px;
+}
 
 .drFP-formSection {
-	/* background: pink; */
 	width: 70%;
-	/* height: 600px; */
-	height: 575px;
+	height: 600px;
+	/* height: 575px; */
 	margin-top: -45px;
 }
 .drFP-formSection>h2 {
 	margin-left: 40px;
+	margin-top: 35px;
 }
 .drFP-inputArea {
-	/* background: lightgreen; */
 	margin-top: -15px;
 	width: 100%;
-	height: 530px;
-	/* height: 200px; */
+	height: 590px;
 	font-size: 18px;
-	overflow-y: scroll;
-}
-.drFP-inputArea input[type="text"],
-.drFP-inputArea textarea {
-    background: #F2F9EF;
-    border: 0.5px dashed #466b55;
-}
-.drFP-inputArea input[type="text"] {
-	width: 89.5%;
-	height: 30px;
-}
-.drFP-inputArea textarea {
-	width: 722px;
-    height: 300px;
-    resize: none; /* textarea 크기 고정 */
+	overflow-y: auto; /* ul에 스크롤 생기게 하면 수정폼에서 문제 생김 */
 }
 
 .drFP-inputArea li {
+	width: 90%;
 	list-style: none;
 	margin-bottom: 10px;
 }
 .drFP-inputArea li>label {
 	margin-right: 10px;
 }
-.drFP-formTitle {
-	width: 90%;
+.drFP-inputArea b {
+	color: orange;
+}
+.drFP-formTitle,
+.drFP-formContent {
+    background: #F2F9EF;
+    border: 0.5px dashed #466b55;
+	margin-top: 5px;
+}
+.drFP-formTitle  {
+	font-size: 18px;
+	width: 97%;
+	height: 30px;
+	padding: 0 10px;
+	font-family: 'Cafe24SsurroundAir';
 }
 .drFP-formContent {
-	width: 90%;
+	width: 722px;
+    height: 300px;
+    resize: none; /* textarea 크기 고정 */
+	font-size: 18px;
+	padding: 10px;
 }
-.drFP-formImg {
+.drFP-formContent::placeholder {
+	font-family: 'Cafe24SsurroundAir';
+	font-weight: bolder;
+}
+
+.drFP-titleValidationMsg, .drFP-contentValidationMsg {
+	width: 100%;
+	text-align: right;
+	font-size: 14px;
+	color: orange;
+	margin-top: 8px;
+}
+.drFP-contentValidationMsg {
+	margin-top: 3px;
+	
+}
+
+
+.drFP-fileSection {
+	width:744px;
+}
+
+/*
+.drFP-formImgInput {
 	width: 90%;
 	border: none;
 	cursor: pointer;
+	margin-top: 5px;
+	font-size: 16px;
+}
+*/
+
+/* 숨긴 input type="file"를 대체하는 커스텀 파일 버튼(label) */
+.drFP-customFileBtn {
+	display: inline-block;
+	cursor: pointer;
+    padding: 9px;
+    height: 20px;
+    width: 90px;
+    border: none;
+    border-radius: 5px;
+    background-color: #e0f4de;
+    text-align: center;
+    font-family: 'Cafe24SsurroundAir';
+    margin-right: 0 auto;
+    margin-top: 8px;
+    margin-left: 6px;
+}
+.drFP-selectedFileName {
+	background: #F2F9EF;
+    border: 0.5px dashed #466b55;
+    height: 30px;
+    width: 600px;
+    font-size: 18px;
+    font-family: 'Cafe24SsurroundAir';
+    padding-left: 10px;
 }
 
+.drFP-formImgPreview, #drFP-formImgExisting {
+	margin-top: 15px;
+	border: 3px solid orange;
+	max-width: 400px;
+	height: auto;
+}
 
 .drFP-formBtn {
+	margin-left: -10px;
+	margin-top: -40px;
 	text-align: center;
-	/* background: pink; */
 }
 .drFP-formBtn input {
 	/* z값을 주기 위해 position:relative로 지정 */
-    position: relative; 
-    z-index: 1; 
+    position: relative;
+    z-index: 10; 
     background: transparent; /* 배경을 투명하게 */
     cursor: pointer;
+    
+    padding: 9px;
+    height: 40px;
+    width: 100px;
+    border: none;
+    border-radius: 5px;
+    background-color: #e0f4de;
+    text-align: center;
+    font-family: 'Cafe24SsurroundAir';
+    font-size: 19px;
 }
+
+.drFP-formBtnforwrite {
+	margin-top: 28px;
+}
+.drFP-formBtnforedit {
+	margin-top: 15px;
+}
+
