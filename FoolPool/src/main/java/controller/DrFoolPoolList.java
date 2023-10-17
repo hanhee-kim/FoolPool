@@ -55,17 +55,23 @@ public class DrFoolPoolList extends HttpServlet {
 			System.out.println("***검색하지 않고 페이지이동");
 			sOption = null;
 			sValue = null;
+		} else {
+			System.out.println("sOption: " + sOption + ", sValue: " + sValue);
 		}
 		
 		try {
-			HttpSession session = request.getSession();
-			Member member = (Member) session.getAttribute("member");
-			if(member != null) System.out.println("로그인 정보: " + member.getId() + ", " + member.getNickname());
-			
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
-			Map<String,Object> resMap = drFoolPoolService.drFoolPoolListByPage(curPage, filter, sOption, sValue); // PageInfo와 List<DrFoolPool>가 담긴 맵을 서비스로부터 반환받음
+			Map<String,Object> resMap = drFoolPoolService.drFoolPoolListByPage(curPage, filter, sOption, sValue);
+			
+			System.out.println("----첫페이지 게시글 출력-----");
+			List<DrFoolPool> resList = (List<DrFoolPool>) resMap.get("drFoolPoolList");
+			Iterator<DrFoolPool> iter = resList.iterator();
+			while(iter != null && iter.hasNext()){
+				System.out.println(iter.next().toString());
+			}
+			
 			request.setAttribute("filter", filter);
-			request.setAttribute("resMap", resMap);
+			request.setAttribute("resMap", resMap); // 맵에 담긴 벨류: PageInfo, List<DrFoolPool>
 			request.setAttribute("sOption", sOption);
 			request.setAttribute("sValue", sValue);
 			request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolList.jsp").forward(request, response);
@@ -77,9 +83,11 @@ public class DrFoolPoolList extends HttpServlet {
 		}
 	}
 	
+/*
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		request.setAttribute("jspName", "drFoolPool");
 		String page = request.getParameter("page");
 		String paramFilter = request.getParameter("filter");
 		
@@ -120,5 +128,6 @@ public class DrFoolPoolList extends HttpServlet {
 		}
 		
 	}
+*/
 
 }

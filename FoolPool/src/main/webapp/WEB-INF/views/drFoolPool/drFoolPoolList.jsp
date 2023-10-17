@@ -2,7 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/include/menubar.jsp" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page import="bean.DrFoolPool" %>
 <%@ page import="java.util.Map" %>
@@ -101,17 +100,10 @@ List<DrFoolPool> list = (List)resMap.get("drFoolPoolList");
                 
                 <%-- 검색바 --%>
                 <h5 class="drFP-searchBar">
-                	<form action="goDrFoolPool" method="post" id="drFP-searchForm">
-                		<input type="hidden" name="page" id="dfFP-page" value="${resMap.pageInfo.curPage }"/>
-                		<input type="hidden" name="filter" id="dfFP-filter" value="${filter }"/>
+                	<form action="goDrFoolPool" method="get" id="drFP-searchForm">
+                		<%-- <input type="hidden" name="page" id="dfFP-page" value="${resMap.pageInfo.curPage }"/>
+                		<input type="hidden" name="filter" id="dfFP-filter" value="${filter }"/> --%>
 	                	<select name="sOption" id="drFP-sOption" value="${sOption}">
-	                		<%--
-	                		<option value="unselected">선택</option>
-	                		<option value="writer_nickname">작성자</option>
-	                		<option value="all">제목+내용</option>
-	                		<option value="title">제목</option>
-	                		<option value="content">내용</option>
-	                		--%>
 	                		<option value="unselected" ${sOption eq 'unselected' ? 'selected' : ''}>선택</option>
 						    <option value="writer_nickname" ${sOption eq 'writer_nickname' ? 'selected' : ''}>작성자</option>
 						    <option value="all" ${sOption eq 'all' ? 'selected' : ''}>제목+내용</option>
@@ -128,7 +120,15 @@ List<DrFoolPool> list = (List)resMap.get("drFoolPoolList");
                 <div class="drFP-paging">
 			      <c:choose>
 			         <c:when test="${resMap.pageInfo.curPage>1 }">
-			            <a href="goDrFoolPool?page=${resMap.pageInfo.curPage-1}">&lt;</a>
+			         	<c:url var="urlprevpagenumber" value="goDrFoolPool">
+						    <c:param name="page" value="${resMap.pageInfo.curPage-1}" />
+						    <c:param name="filter" value="${filter}" />
+						    <c:if test="${sOption ne null && sValue ne null}">
+						        <c:param name="sOption" value="${sOption}" />
+						        <c:param name="sValue" value="${sValue}" />
+						    </c:if>
+						</c:url>
+			            <a href="${urlprevpagenumber}">&lt;</a>
 			         </c:when>
 			         <c:otherwise>
 			            <a>&lt;</a>
@@ -139,7 +139,7 @@ List<DrFoolPool> list = (List)resMap.get("drFoolPoolList");
 			         <c:choose>
 			            <c:when test="${resMap.pageInfo.curPage==i}">
 			               <%-- c:url태그로 sOption과 sValue 유무에 따라 동적으로 get요청 url을 생성하여 a태그의 href에 등록 --%>
-			               <c:url var="urlpagenumberchangecurpage" value="goDrFoolPool">
+			               <c:url var="urlcurpagenumber" value="goDrFoolPool">
 							    <c:param name="page" value="${i}" />
 							    <c:param name="filter" value="${filter}" />
 							    <c:if test="${sOption ne null && sValue ne null}">
@@ -147,10 +147,10 @@ List<DrFoolPool> list = (List)resMap.get("drFoolPoolList");
 							        <c:param name="sValue" value="${sValue}" />
 							    </c:if>
 							</c:url>
-							<a href="${urlpagenumberchangecurpage}" id="drFP-selectedPage">${i}</a>
+							<a href="${urlcurpagenumber}" id="drFP-selectedPage">${i}</a>
 			            </c:when>
 			            <c:otherwise>
-			            	<c:url var="urlpagenumberchange" value="goDrFoolPool">
+			            	<c:url var="urlpagenumberschange" value="goDrFoolPool">
 							    <c:param name="page" value="${i}" />
 							    <c:param name="filter" value="${filter}" />
 							    <c:if test="${sOption ne null && sValue ne null}">
@@ -158,14 +158,22 @@ List<DrFoolPool> list = (List)resMap.get("drFoolPoolList");
 							        <c:param name="sValue" value="${sValue}" />
 							    </c:if>
 							</c:url>
-							<a href="${urlpagenumberchange}" class="drFP-unselectedPage">${i}</a>
+							<a href="${urlpagenumberschange}" class="drFP-unselectedPage">${i}</a>
 			            </c:otherwise>
 			         </c:choose>
 			      </c:forEach>
 
 			      <c:choose>
 			         <c:when test="${resMap.pageInfo.curPage<resMap.pageInfo.allPage }">
-			            <a href="goDrFoolPool?page=${resMap.pageInfo.curPage+1}">&gt;</a>
+			         	<c:url var="urlnextpagenumber" value="goDrFoolPool">
+						    <c:param name="page" value="${resMap.pageInfo.curPage+1}" />
+						    <c:param name="filter" value="${filter}" />
+						    <c:if test="${sOption ne null && sValue ne null}">
+						        <c:param name="sOption" value="${sOption}" />
+						        <c:param name="sValue" value="${sValue}" />
+						    </c:if>
+						</c:url>
+			            <a href="${urlnextpagenumber}">&gt;</a>
 			         </c:when>
 			         <c:otherwise>
 			            <a>&gt;</a>
