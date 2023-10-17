@@ -25,7 +25,7 @@
 				                </li>
 				                <li>
 				                    <label for="drFP-formImg">이미지 업로드 <em>*</em></label><br>
-				                    <input class="drFP-formImg" name="file" type="file" id="file" accept="image/*" required="required"/>
+				                    <input class="drFP-formImg" name="file" type="file" id="drFP-file" accept="image/*" required="required"/>
 				                    <%-- 업로드된 이미지 표시 고려 --%>
 				                </li>
 							</ul>

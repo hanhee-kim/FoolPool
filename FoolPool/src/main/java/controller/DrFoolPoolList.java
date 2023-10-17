@@ -49,9 +49,13 @@ public class DrFoolPoolList extends HttpServlet {
 		System.out.println("-----/goDrFoolPool doGet호출----");
 		System.out.println("page: " + page + ", curPage: " + curPage + ", paramFilter: " + paramFilter + ", filter: " + filter);
 		
-		String sOption = null;
-		String sValue = null;
-			
+		String sOption = request.getParameter("sOption");
+		String sValue = request.getParameter("sValue");
+		if(sOption==null || sValue==null) {
+			System.out.println("***검색하지 않고 페이지이동");
+			sOption = null;
+			sValue = null;
+		}
 		
 		try {
 			HttpSession session = request.getSession();
@@ -62,6 +66,8 @@ public class DrFoolPoolList extends HttpServlet {
 			Map<String,Object> resMap = drFoolPoolService.drFoolPoolListByPage(curPage, filter, sOption, sValue); // PageInfo와 List<DrFoolPool>가 담긴 맵을 서비스로부터 반환받음
 			request.setAttribute("filter", filter);
 			request.setAttribute("resMap", resMap);
+			request.setAttribute("sOption", sOption);
+			request.setAttribute("sValue", sValue);
 			request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolList.jsp").forward(request, response);
 			
 		} catch (Exception e) {
@@ -77,14 +83,14 @@ public class DrFoolPoolList extends HttpServlet {
 		String page = request.getParameter("page");
 		String paramFilter = request.getParameter("filter");
 		
+		// 검색폼 제출시 기존 필터값/페이지번호값은 해제하며 all/1로 초기화 
 		String filter = "all";
-		if(paramFilter!=null) filter = paramFilter;
 		int curPage = 1; 
-//		if(page!=null) curPage = Integer.parseInt(page);
 		
-		System.out.println("-----/goDrFoolPool doPost호출----");
+		System.out.println("###-----/goDrFoolPool doPost호출----");
 		System.out.println("page: " + page + ", curPage: " + curPage + ", filter: " + filter);
 		
+	
 		String sOption = request.getParameter("sOption");
 		String sValue = request.getParameter("sValue");
 		
@@ -94,19 +100,17 @@ public class DrFoolPoolList extends HttpServlet {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
 			Map<String,Object> resMap = drFoolPoolService.drFoolPoolListByPage(curPage, filter, sOption, sValue);
 			
-			System.out.println("----검색된 게시글 출력-----");
+			System.out.println("----검색목록의 첫페이지 출력-----");
 			List<DrFoolPool> resList = (List<DrFoolPool>) resMap.get("drFoolPoolList");
 			Iterator<DrFoolPool> iter = resList.iterator();
 			while(iter.hasNext()){
 				System.out.println(iter.next().toString());
 			}
-			System.out.println("검색결과 수 : " + resList.size());
 			
 			request.setAttribute("filter", filter);
 			request.setAttribute("resMap", resMap);
 			request.setAttribute("sOption", sOption);
 			request.setAttribute("sValue", sValue);
-			request.setAttribute("jspName", "drFoolPool");
 			request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolList.jsp").forward(request, response);
 			
 		} catch (Exception e) {

@@ -23,16 +23,51 @@ List<DrFoolPool> list = (List)resMap.get("drFoolPoolList");
             	
             	<%-- 필터링 + 글쓰기 버튼 --%>
             	<div class="drFP-FilteringAndWriteBtn">
-	                <div class="drFP-Filtering" >
-	                	<a href="goDrFoolPool?filter=all&page=1" class="${filter eq 'all' ? 'drFP-FilterBtn drFP-FilterBtnSelected' : 'drFP-FilterBtn'}">전체</a>
-						<a href="goDrFoolPool?filter=unsolved&page=1" class="${filter eq 'unsolved' ? 'drFP-FilterBtn drFP-FilterBtnSelected' : 'drFP-FilterBtn'}">미해결</a>
-						<a href="goDrFoolPool?filter=solved&page=1" class="${filter eq 'solved' ? 'drFP-FilterBtn drFP-FilterBtnSelected' : 'drFP-FilterBtn'}">해결</a>
+	                <%--
+	                <div class="drFP-Filtering">
+	                	<a href="goDrFoolPool?page=1&filter=all" class="${filter eq 'all' ? 'drFP-FilterBtn drFP-FilterBtnSelected' : 'drFP-FilterBtn'}">전체</a>
+						<a href="goDrFoolPool?page=1&filter=unsolved" class="${filter eq 'unsolved' ? 'drFP-FilterBtn drFP-FilterBtnSelected' : 'drFP-FilterBtn'}">미해결</a>
+						<a href="goDrFoolPool?page=1&filter=solved" class="${filter eq 'solved' ? 'drFP-FilterBtn drFP-FilterBtnSelected' : 'drFP-FilterBtn'}">해결</a>
 	                </div>
+	                 --%>
+	                <div class="drFP-Filtering">
+		                <c:url var="urlfilterall" value="goDrFoolPool">
+						    <c:param name="page" value="1" />
+						    <c:param name="filter" value="all" />
+						    <c:if test="${sOption ne null && sValue ne null}">
+						        <c:param name="sOption" value="${sOption}" />
+						        <c:param name="sValue" value="${sValue}" />
+						    </c:if>
+						</c:url>
+						<a href="${urlfilterall}" class="${filter eq 'all' ? 'drFP-FilterBtn drFP-FilterBtnSelected' : 'drFP-FilterBtn'}">전체</a>
+						
+		                <c:url var="urlfilterunsolved" value="goDrFoolPool">
+						    <c:param name="page" value="1" />
+						    <c:param name="filter" value="unsolved" />
+						    <c:if test="${sOption ne null && sValue ne null}">
+						        <c:param name="sOption" value="${sOption}" />
+						        <c:param name="sValue" value="${sValue}" />
+						    </c:if>
+						</c:url>
+						<a href="${urlfilterunsolved}" class="${filter eq 'unsolved' ? 'drFP-FilterBtn drFP-FilterBtnSelected' : 'drFP-FilterBtn'}">미해결</a>
+						
+		                <c:url var="urlfiltersolved" value="goDrFoolPool">
+						    <c:param name="page" value="1" />
+						    <c:param name="filter" value="solved" />
+						    <c:if test="${sOption ne null && sValue ne null}">
+						        <c:param name="sOption" value="${sOption}" />
+						        <c:param name="sValue" value="${sValue}" />
+						    </c:if>
+						</c:url>
+						<a href="${urlfiltersolved}" class="${filter eq 'solved' ? 'drFP-FilterBtn drFP-FilterBtnSelected' : 'drFP-FilterBtn'}">해결</a>
+					</div>
+					
 	                <c:if test="${member ne Empty}">
                 		<a href="drFoolpoolForm?num"><button class="drFP-writeBtn">질문하기</button></a>
                 	</c:if>
                 </div>
                 
+                 
                 <%-- 카드그리드 3x2 --%>
 			    <div class="drFP-CardGrid">
 			    	<%-- 목록이 0행일때의 예외처리 --%>
@@ -68,16 +103,24 @@ List<DrFoolPool> list = (List)resMap.get("drFoolPoolList");
                 <h5 class="drFP-searchBar">
                 	<form action="goDrFoolPool" method="post" id="drFP-searchForm">
                 		<input type="hidden" name="page" id="dfFP-page" value="${resMap.pageInfo.curPage }"/>
-                		<input type="hidden" name="filter" id="dfFP-filter" value="${filter}"/>
-	                	<select name="sOption" id="sOption">
+                		<input type="hidden" name="filter" id="dfFP-filter" value="${filter }"/>
+	                	<select name="sOption" id="drFP-sOption" value="${sOption}">
+	                		<%--
 	                		<option value="unselected">선택</option>
 	                		<option value="writer_nickname">작성자</option>
 	                		<option value="all">제목+내용</option>
 	                		<option value="title">제목</option>
 	                		<option value="content">내용</option>
+	                		--%>
+	                		<option value="unselected" ${sOption eq 'unselected' ? 'selected' : ''}>선택</option>
+						    <option value="writer_nickname" ${sOption eq 'writer_nickname' ? 'selected' : ''}>작성자</option>
+						    <option value="all" ${sOption eq 'all' ? 'selected' : ''}>제목+내용</option>
+						    <option value="title" ${sOption eq 'title' ? 'selected' : ''}>제목</option>
+						    <option value="content" ${sOption eq 'content' ? 'selected' : ''}>내용</option>
 	                	</select>
-	                	<input type="text" name="sValue" id="sValue" value="${sValue}"/>
-						<input type="submit" value="검색" onclick="drFPkeepSearch()"/>
+                		<input type="hidden" name="sOption" id="dfFP-sOption" value="${sOption}"/>
+	                	<input type="text" name="sValue" id="drFP-sValue" value="${sValue}"/>
+						<input type="submit" value="검색"/>
                 	</form>
                 </h5>
                 
@@ -95,11 +138,28 @@ List<DrFoolPool> list = (List)resMap.get("drFoolPoolList");
 			      <c:forEach begin="${resMap.pageInfo.startPage}" end="${resMap.pageInfo.endPage}" var="i">
 			         <c:choose>
 			            <c:when test="${resMap.pageInfo.curPage==i}">
-			               <a href="goDrFoolPool?page=${i}" id="drFP-selectedPage" onclick="callBtn(${i});return ${resMap.keyword==null};">${i}</a>&nbsp;
-			               </c:when>
+			               <%-- c:url태그로 sOption과 sValue 유무에 따라 동적으로 get요청 url을 생성하여 a태그의 href에 등록 --%>
+			               <c:url var="urlpagenumberchangecurpage" value="goDrFoolPool">
+							    <c:param name="page" value="${i}" />
+							    <c:param name="filter" value="${filter}" />
+							    <c:if test="${sOption ne null && sValue ne null}">
+							        <c:param name="sOption" value="${sOption}" />
+							        <c:param name="sValue" value="${sValue}" />
+							    </c:if>
+							</c:url>
+							<a href="${urlpagenumberchangecurpage}" id="drFP-selectedPage">${i}</a>
+			            </c:when>
 			            <c:otherwise>
-			               <a href="goDrFoolPool?page=${i}" class="drFP-unselectedPage" onclick="callBtn(${i});return ${resMap.keyword==null};">${i}</a>&nbsp;
-			               </c:otherwise>
+			            	<c:url var="urlpagenumberchange" value="goDrFoolPool">
+							    <c:param name="page" value="${i}" />
+							    <c:param name="filter" value="${filter}" />
+							    <c:if test="${sOption ne null && sValue ne null}">
+							        <c:param name="sOption" value="${sOption}" />
+							        <c:param name="sValue" value="${sValue}" />
+							    </c:if>
+							</c:url>
+							<a href="${urlpagenumberchange}" class="drFP-unselectedPage">${i}</a>
+			            </c:otherwise>
 			         </c:choose>
 			      </c:forEach>
 

@@ -42,8 +42,8 @@ function drFPCommPick(commentNo, postNo) {
 $(document).ready(function() {
     $('#drFP-searchForm').submit(function(event) {
 		console.log("검색바 유효성 검사 함수 호출...");
-        let sOption = $("#sOption").val();
-        let sValue = $("#sValue").val().trim();
+        let sOption = $("#drFP-sOption").val();
+        let sValue = $("#drFP-sValue").val().trim();
         if (sOption === "unselected" || sValue === "") {
             console.log("검색옵션 혹은 검색어가 없으므로 기본제출이 막아짐");
             event.preventDefault();
@@ -51,6 +51,9 @@ $(document).ready(function() {
     });
 });
 
+
+
+/*
 function drFPkeepSearch() {
 	const searchForm = document.getElementById("searchForm");
     const sValueInput = document.getElementById("sValue");
@@ -70,7 +73,7 @@ function drFPkeepSearch() {
     // form의 기본submit을 막음
     event.preventDefault();
 }
-
+*/
 
 
 
