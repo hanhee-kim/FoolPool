@@ -48,7 +48,7 @@ public class NoticeList extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", e.getMessage());
-			request.getRequestDispatcher("noticeError.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/views/notice/noticeError.jsp").forward(request, response);
 		}
 		
 		

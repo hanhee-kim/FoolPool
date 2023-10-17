@@ -40,6 +40,7 @@ public class NoticeDetail extends HttpServlet {
 		try {
 			NoticeService noticeService = new NoticeServiceImpl();
 			Notice notice = noticeService.noticeDetail(no);
+			//noticeService.noticeViewCountPlus(no);
 			System.out.println("notice의값:"+no); //notice의 no값 console에 뜸. 
 			request.setAttribute("notice", notice);
 			request.setAttribute("jspName", "notice");

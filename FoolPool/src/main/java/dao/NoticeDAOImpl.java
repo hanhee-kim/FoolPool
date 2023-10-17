@@ -35,8 +35,11 @@ public class NoticeDAOImpl implements NoticeDAO{
 
 	@Override //게시글 수정 
 	public void updateNotice(Notice notice) throws Exception {
+		System.out.println("updateNotice");
 		sqlSession.update("mapper.notice.updateNotice",notice);
+		System.out.println("mapper.notice.updateNotice");
 		sqlSession.commit();		
+		System.out.println("commit");
 	}
 
 	@Override //조회수 카운트 

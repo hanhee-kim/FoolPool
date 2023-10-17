@@ -1,3 +1,6 @@
+<%@page import="bean.Notice"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@include file="/WEB-INF/views/include/menubar.jsp"%>
@@ -53,14 +56,31 @@
 						<li class="count">조회수</li>
 					</ul>
 				
-				<c:forEach var="list" items="${res.noticeList}">
+					<%--목록이 0행일때의 예외처리 --%>
+					<c:if test="$res['noticeList'].size()==0}">
+						<div id="notice-emptyList">데이터 넣으세요</div>
+					</c:if>
+					
+				<c:if test="${res['noticeList'].size()>0 }">
+				
+				<%--동적으로 글번호 주고싶을때..? --%>
+				<c:forEach var="list" items="${res.noticeList}" varStatus="loop">			
+				 <c:set var="pageNumber" value="${res.pageInfo.curPage}" />
+   				 <c:set var="itemsPerPage" value="10" /> <!-- 페이지당 보여지는 항목 수 -->
+				
+				<c:set var="startIndex" value="${(pageNumber - 1) * itemsPerPage + 1}" />
+    			<c:set var="endIndex" value="${pageNumber * itemsPerPage}" />
+				
+			
 				<ul class="notice_ul" onclick="noticedetail?no=(${list.no})">
-					<li class="no" style="width=5%;">${list.no }</li>	
-					<li class="title" style="width=70%; text-overflow: ellipsis; "><a href="noticedetail?no=${list.no}">${list.title }</a></li>					
+					<li class="no" style="width=5%;">${loop.index +1 }</li>	
+					<li class="title" style="width=70%; text-overflow: ellipsis; "><a href="noticedetail?no=${list.no}" >${list.title }</a></li>					
 					<li class="date" style="width=15%;">${list.date }</li>
 					<li class="count" style="width=5%;">${list.view }</li>
 				</ul>
+				 
 				</c:forEach>
+				</c:if>
 			</div>
 			
                
