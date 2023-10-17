@@ -89,17 +89,12 @@
 .flowerCardsection {
 	width: 740px;
 	height: 575px;
-	overflow-y: scroll;
+	overflow-y: auto;
 	display: flex;
 	flex-direction: column;
 	padding: 0 30px;
 	position: inherit;
 }
-
-.flowerCardsection::-webkit-scrollbar {
-	display: none; /* 크롬, 사파리, 오페라, 엣지 */
-}
-
 .flowerCardsection_line {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -190,7 +185,8 @@
     margin-bottom: -25px;
 }
 .searchFlowerSeeMore{
-	position: relative;
+	position: absolute;
+	top: 880px;
 	height: 40px;
 	width: 100px;
 	border: 0;
@@ -205,11 +201,13 @@
 }
 #searchFlowerOptionInputBox{
 	display: flex;
+    align-items: center;	
 }
 #searchFlowerHyphen{
     width: 25px;
     color: #466B55;
     font-weight: bold;
+    text-align: center;
 }
 .searchFlower_OptionDate{
 	display: flex;
@@ -217,6 +215,8 @@
 }
 .searchFlowerByName,
 .searchFlowerByLang{
+	height: 30px;
+    font-size: 20px;
 	border-radius: 10px;
     font-family: 'Cafe24SsurroundAir';
     font-weight: bold;
@@ -235,8 +235,32 @@
 .searchFlower_disabled {
 	display: none;
 }
-.searchFlower_abled{
-	display:flex;
-	justify-content: center;
-    align-items: center;
+/* .searchFlower_abled{ */
+/* 	display:flex; */
+/* 	justify-content: center; */
+/*     align-items: center; */
+/* } */
+/* .flowerCardsection::-webkit-scrollbar {
+	display: none; 크롬, 사파리, 오페라, 엣지
+} */
+/* scrollbar */
+.flowerCardsection::-webkit-scrollbar {
+    width: 8px;  /* 스크롤바의 너비 */
 }
+
+.flowerCardsection::-webkit-scrollbar-thumb {
+    height: 30%; /* 스크롤바의 길이 */
+    background: #466b55; /* 스크롤바의 색상 */
+    border-radius: 70px;
+}
+
+.flowerCardsection::-webkit-scrollbar-track {
+    background: #466b5577;  /*스크롤바 뒷 배경 색상*/
+    border-radius: 70px;
+}
+/* 익스프롤러 10이하 스크롤바 CSS  */
+.flowerCardsection {
+    scrollbar-face-color:#466b55;
+    scrollbar-shadow-color:#dddddd;
+    scrollbar-track-color: #466b5577;
+   }

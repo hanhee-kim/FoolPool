@@ -37,6 +37,7 @@
     <script type="text/javascript" src="${path }/static/js/join.js"></script>
     <script type="text/javascript" src="${path }/static/js/login.js"></script>
     <script type="text/javascript" src="${path }/static/js/search_flower.js"></script>
+    <script type="text/javascript" src="${path }/static/js/detailflower.js"></script>
 <title>FoolPool</title>
 </head>
 <body>
