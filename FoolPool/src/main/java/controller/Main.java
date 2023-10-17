@@ -42,6 +42,7 @@ public class Main extends HttpServlet {
 //			System.out.println("service xml_parsing");
 //		} catch (Exception e) {
 //			e.printStackTrace();
+//			request.getRequestDispatcher("error.jsp").forward(request, response);
 //		}
 		
 		//flower가져오기
@@ -53,20 +54,12 @@ public class Main extends HttpServlet {
 			 flower =  f_service.searchFlowerByDate(fMonth, fDay);
 			request.setAttribute("flower", flower);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
 		
 		request.setAttribute("flower", flower);
 		request.getRequestDispatcher("WEB-INF/views/main.jsp").forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

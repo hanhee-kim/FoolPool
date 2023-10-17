@@ -33,15 +33,13 @@ public class LoginCheck extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
-		System.out.println("sevlet오는 id : "+id+"pw : "+password);
 		MemberService m_service = new MemberServiceImpl();
 		try {
 			String res = m_service.loginCheck(id, password);
-			System.out.println(res);
 			response.getWriter().print(res);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
 	}
 

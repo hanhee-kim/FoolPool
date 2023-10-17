@@ -40,7 +40,6 @@ public class SearchFlower extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 
 		String option = request.getParameter("option");
-		System.out.println(request.getParameter("option"));
 		FlowerService f_service = new FlowerServiceImpl();
 		Flower flower = new Flower();
 		List<Flower> flowers = new ArrayList<>();
@@ -59,6 +58,7 @@ public class SearchFlower extends HttpServlet {
 					flowers.add(flower);
 				} catch (Exception e) {
 					e.printStackTrace();
+					request.getRequestDispatcher("error.jsp").forward(request, response);
 				}
 
 			} else if (option.equals("periodDate")) {
@@ -74,6 +74,7 @@ public class SearchFlower extends HttpServlet {
 					flowers = f_service.searchFlowerByPeriod(startMonth, startDay, endMonth, endDay);
 				} catch (Exception e) {
 					e.printStackTrace();
+					request.getRequestDispatcher("error.jsp").forward(request, response);
 				}
 			} else if (option.equals("flowerName")) {
 				type = "flow_Nm";
@@ -84,6 +85,7 @@ public class SearchFlower extends HttpServlet {
 					flowers = f_service.searchFlowerByWord(type, flowerName);
 				} catch (Exception e) {
 					e.printStackTrace();
+					request.getRequestDispatcher("error.jsp").forward(request, response);
 				}
 			} else if (option.equals("flowerLang")) {
 				type = "flow_Lang";
@@ -94,6 +96,7 @@ public class SearchFlower extends HttpServlet {
 					flowers = f_service.searchFlowerByWord(type, flowerLang);
 				} catch (Exception e) {
 					e.printStackTrace();
+					request.getRequestDispatcher("error.jsp").forward(request, response);
 				}
 			}
 			res.put("option", option);
@@ -103,15 +106,6 @@ public class SearchFlower extends HttpServlet {
 			request.setAttribute("res", res);
 			request.setAttribute("jspName", "searchFlower");
 			request.getRequestDispatcher("WEB-INF/views/searchFlower/searchflower.jsp").forward(request, response);
-
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
 
 	}
 

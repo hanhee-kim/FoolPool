@@ -3,7 +3,7 @@
 <%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@include file="/WEB-INF/views/include/menubar.jsp"%>
+<%@include file="/WEB-INF/views/include/menubar.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
 <!DOCTYPE html>
@@ -57,7 +57,7 @@
 					</ul>
 				
 					<%--목록이 0행일때의 예외처리 --%>
-					<c:if test="$res['noticeList'].size()==0}">
+					<c:if test="${res['noticeList'].size()==0}">
 						<div id="notice-emptyList">데이터 넣으세요</div>
 					</c:if>
 					

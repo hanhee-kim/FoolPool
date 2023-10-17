@@ -51,8 +51,8 @@ public class Join extends HttpServlet {
 			m_service.joinMember(member);
 			request.getRequestDispatcher("WEB-INF/views/login/login.jsp").forward(request, response);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
 		
 	}
