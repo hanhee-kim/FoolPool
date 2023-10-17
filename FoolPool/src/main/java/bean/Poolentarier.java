@@ -1,6 +1,7 @@
 package bean;
 
-import java.sql.Date;
+//import java.sql.Date;
+import java.util.Date;
 
 public class Poolentarier {
 	private Integer no;

@@ -49,7 +49,8 @@ public class PoolentarierForm extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		// 파일 업로드 시작
-		String uploadPath = request.getServletContext().getRealPath("static/img");
+//		String uploadPath = request.getServletContext().getRealPath("static/img");
+		String uploadPath = "C:\\upload";
 		int size = 10 * 1024 * 1024;
 		MultipartRequest multi = new MultipartRequest(request, uploadPath, size, "utf-8", new DefaultFileRenamePolicy());
 		// 파일 업로드 끝
@@ -61,26 +62,25 @@ public class PoolentarierForm extends HttpServlet {
 		System.out.println("파일명: " + fileName);
 		String plantsName = multi.getParameter("plantsName");
 		HttpSession session = request.getSession();
-		Member member = (Member) session.getAttribute("user");
-//		String writerId = member.getId();
-		String writerId = "fish";
-//		String writerNickname = member.getNickname();
-		String writerNickname = "물고기";
+		Member member = (Member) session.getAttribute("member");
+		String writerId = member.getId();
+//		String writerId = "fish";
+		String writerNickname = member.getNickname();
+//		String writerNickname = "물고기";
 		
 		// 키워드 값 설정
 		String[] keyword = new String[5]; // 키워드 배열 초기화
-		for(int i = 0;i < 5;i++) {
-			String parameterValue = multi.getParameter((i + 1) + "thKeyword");
+		for(int i = 1;i < 6;i++) {
+			String parameterValue = multi.getParameter(i + "");
 		    if (parameterValue != null) {
-		        keyword[i] = parameterValue;
+		        keyword[i - 1] = parameterValue;
 		    }
 		}
-		
-		String keywords = null;
+
+		String keywords = keyword[0];;
 		// | 구분자로 키워드 값을 하나의 문자열로 통합
-		if(keyword.length > 0) {
-			keywords = keyword[0];
-			for(int i = 1;i < keyword.length;i++) {
+		for(int i = 1;i < keyword.length;i++) {
+			if(keyword[i] != null) {
 				keywords += "|" + keyword[i];
 			}
 		}
@@ -99,8 +99,8 @@ public class PoolentarierForm extends HttpServlet {
 		try {
 			PoolentarierService poolentarierService = new PoolentarierServiceImpl();
 			poolentarierService.poolentarierWrite(poolentarier);
-			request.getRequestDispatcher("WEB-INF/views/poolentarier/poolentarierList.jsp").forward(request, response);
-//			response.sendRedirect("poolentarierList");
+//			request.getRequestDispatcher("WEB-INF/views/poolentarier/poolentarierList.jsp").forward(request, response);
+			response.sendRedirect("goPoolentarier");
 		} catch(Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", e.getMessage());

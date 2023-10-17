@@ -31,9 +31,9 @@
 						<span>#${poolentarier.keyword}</span>
 					</div>
 					<div class="pdDetail-7row">
-						<a href="poolentarierEdit?num=${poolentarier.no}"><button>수정</button></a>
-						<button>삭제</button>
-						<button onclick="pdBack();">목록</button>
+						<a href="poolentarierEdit?no=${poolentarier.no}"><button>수정</button></a>
+						<a href="poolentarierDelete?no=${poolentarier.no}"><button>삭제</button></a>
+						<a href="goPoolentarier"><button>목록</button></a>
 					</div>
 			
 					<div class="pdCommentArea">
