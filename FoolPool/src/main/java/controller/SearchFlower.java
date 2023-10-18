@@ -58,7 +58,7 @@ public class SearchFlower extends HttpServlet {
 					flowers.add(flower);
 				} catch (Exception e) {
 					e.printStackTrace();
-					request.getRequestDispatcher("error.jsp").forward(request, response);
+					request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
 				}
 
 			} else if (option.equals("periodDate")) {
@@ -74,7 +74,7 @@ public class SearchFlower extends HttpServlet {
 					flowers = f_service.searchFlowerByPeriod(startMonth, startDay, endMonth, endDay);
 				} catch (Exception e) {
 					e.printStackTrace();
-					request.getRequestDispatcher("error.jsp").forward(request, response);
+					request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
 				}
 			} else if (option.equals("flowerName")) {
 				type = "flow_Nm";
@@ -85,7 +85,7 @@ public class SearchFlower extends HttpServlet {
 					flowers = f_service.searchFlowerByWord(type, flowerName);
 				} catch (Exception e) {
 					e.printStackTrace();
-					request.getRequestDispatcher("error.jsp").forward(request, response);
+					request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
 				}
 			} else if (option.equals("flowerLang")) {
 				type = "flow_Lang";
@@ -96,7 +96,7 @@ public class SearchFlower extends HttpServlet {
 					flowers = f_service.searchFlowerByWord(type, flowerLang);
 				} catch (Exception e) {
 					e.printStackTrace();
-					request.getRequestDispatcher("error.jsp").forward(request, response);
+					request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
 				}
 			}
 			res.put("option", option);

@@ -40,7 +40,7 @@ public class RandomMain extends HttpServlet {
 			flower = f_service.searchFlowerByNo(randomNum);
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.getRequestDispatcher("error.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
 		}
 		request.setAttribute("flower", flower);
 		request.getRequestDispatcher("WEB-INF/views/main.jsp").forward(request, response);

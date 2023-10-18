@@ -55,7 +55,7 @@ public class Login extends HttpServlet {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.getRequestDispatcher("error.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
 		}
 	}
 }

@@ -55,7 +55,7 @@ public class Main extends HttpServlet {
 			request.setAttribute("flower", flower);
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.getRequestDispatcher("error.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
 		}
 		
 		request.setAttribute("flower", flower);
