@@ -38,14 +38,14 @@
 								<tr>
 									<td>
 										<input id="pfKeyword" type="text" placeholder="키워드 입력"
-											name="keyword">
+											name="keywordInput">
 										<button class="pfKeywordAddBtn" onclick="pfAddKeywordBtn(event)">추가</button>
 									</td>
 								</tr>
 								<tr>
 									<td class="pfKeywordContainer">
 										<ul id="keywordList">
-											<!-- 여기에 추가된 텍스트가 나타납니다. -->
+										
 										</ul>
 									</td>
 								</tr>

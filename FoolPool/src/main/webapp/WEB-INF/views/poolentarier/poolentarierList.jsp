@@ -11,16 +11,7 @@
             	<div class="plTopBorder"></div>
             	<div class="plListArea">
 					<div class="plTopMenuDiv">
-	            		<div class="plWriteFormDiv">
-	            			<c:if test="${member ne Empty}">
-	            				<div class="plWriteFormDivForBtn plOption" onclick="location.href='poolentarierForm?num'">
-									<div class="plWriteBtn">글쓰기</div>
-								</div>
-	            			</c:if>
-	            		</div>
-		            	
 						<div class="plSortDiv">
-						
 							<c:url var="urlsortoptionnew" value="goPoolentarier">
 								<c:param name="page" value="1" />
 								<c:param name="sortOption" value="new" />
@@ -29,7 +20,7 @@
 									<c:param name="searchText" value="${searchText }" />
 								</c:if>
 							</c:url>
-							<a href="${urlsortoptionnew}" class="${sortOption eq 'new' ? 'plSortBtn plSortBtnSelected' : plSortBtn}">최신순</a>
+							<a href="${urlsortoptionnew}" class="${sortOption eq 'new' ? 'plSortBtn plSortBtnSelected plOption' : 'plSortBtn plOption'}">최신순</a>
 							
 							<c:url var="urlsortoptionview" value="goPoolentarier">
 								<c:param name="page" value="1" />
@@ -39,8 +30,16 @@
 									<c:param name="searchText" value="${searchText }" />
 								</c:if>
 							</c:url>
-							<a href="${urlsortoptionview}" class="${sortOption eq 'view' ? 'plSortBtn plSortBtnSelected' : plSortBtn}">조회순</a>
+							<a href="${urlsortoptionview}" class="${sortOption eq 'view' ? 'plSortBtn plSortBtnSelected plOption' : 'plSortBtn plOption'}">조회순</a>
 						</div>
+						
+						<div class="plWriteFormDiv">
+	            			<c:if test="${member ne Empty}">
+	            				<div class="plOption" onclick="location.href='poolentarierForm?num'">
+									<div class="plWriteBtn">글쓰기</div>
+								</div>
+	            			</c:if>
+	            		</div>
 	            	</div>
 				    
 	            	<%-- 카드그리드 2x2 --%>
@@ -54,9 +53,7 @@
 			            			<div class="plCard">
 			            				<img alt="풀랜테리어 사진" class="plFace plFront" src="image?file=${poolentarier.fileName}">
 										<div class="plFace plBack">
-											<h1>${poolentarier.title}</h1><br>
-											<h3>${poolentarier.plantsName}</h3>
-											<p>${poolentarier.content}</p>
+											<h1>${poolentarier.plantsName}</h1>
 										</div>
 			            			</div>
 			            		</a>
@@ -69,7 +66,7 @@
 						<form action="goPoolentarier" method="get" id="plSearchform">
 							<h5>
 								<select name="searchOption" class="plSearchOption" value="${searchOption} }">
-									<option value="unselected">선택</option>
+									
 									<option value="all" ${searchOption eq 'all'? 'selected':''}>제목+내용</option>
 									<option value="writer_Nickname" ${searchOption eq 'writer_Nickname'? 'selected':''}>작성자</option>
 									<option value="keyword" ${searchOption eq 'keyword'? 'selected':''}>키워드</option>
@@ -116,7 +113,7 @@
 								        <c:param name="searchText" value="${searchText}" />
 								    </c:if>
 								</c:url>
-								<a href="${urlcurpagenumber}">${i}</a>
+								<a href="${urlcurpagenumber}" id="plSelectedPage">${i}</a>
 				         	</c:when>
 							<c:otherwise>
 								<c:url var="urlpagenumberschange" value="goPoolentarier">
@@ -127,7 +124,7 @@
 										<c:param name="searchText" value="${searchText }" />
 									</c:if>
 								</c:url>
-								<a href="${urlpagenumberschange}">${i}</a>
+								<a href="${urlpagenumberschange}" id="plUnSelectedPage">${i}</a>
 				         	</c:otherwise>
 						</c:choose>
 					</c:forEach>
@@ -142,7 +139,7 @@
 							        <c:param name="searchText" value="${searchText}" />
 							    </c:if>
 							</c:url>
-							<a href="${urlnextpagenumber }">&gt;</a>
+							<a href="${urlnextpagenumber}">&gt;</a>
 						</c:when>
 						<c:otherwise>
 			               <a>&gt;</a>

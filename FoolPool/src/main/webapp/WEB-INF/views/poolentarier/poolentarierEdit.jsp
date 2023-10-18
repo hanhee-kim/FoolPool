@@ -49,9 +49,10 @@
 										<ul id="keywordList">
 											<c:forEach items="${keywords }" var="keyword" >
 												<c:set var="i" value="${i+1}"/>
-													<span name="${i}">${keyword}</span><span class='remove-button' onclick='pfRemoveKeywordBtn(this)'>X</span>
+													<li>
+														<span name="keyword">${keyword}</span><span class='pfRemove-button' onclick='pfRemoveKeywordBtn(this)'>X</span>
+													</li>
 											</c:forEach>
-											<!-- 여기에 추가된 텍스트가 나타납니다. -->
 										</ul>
 									</td>
 								</tr>
@@ -68,7 +69,7 @@
 						
 						<c:forEach items="${keywords}" var="keyword" >
 							<c:set var="i" value="${i+1}"/>
-								<input type="hidden" name="${i}" value="${keyword}">
+								<input type="checkbox" name="keywordForSubmit" value="${keyword}" checked="true"/>
 						</c:forEach>
 					</form>
 					

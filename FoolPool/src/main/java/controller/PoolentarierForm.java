@@ -67,12 +67,12 @@ public class PoolentarierForm extends HttpServlet {
 		String writerNickname = member.getNickname();
 		
 		// 키워드 값 설정
-		// name="keyword" 값을 모두 가져옴
-		String keyword = null;
-		String[] keywords = multi.getParameterValues("hiddenKeyword");
-		System.out.println(keywords[0]);
+		// checkbox 타입의 input 중, name="keywordForSubmit" 값을 모두 가져옴
+		String[] keywords = multi.getParameterValues("keywordForSubmit");
+
+		String keyword = keywords[0];
 		if (keywords != null) {
-			for(int i = 0;i < keywords.length;i++) {
+			for(int i = 1;i < keywords.length;i++) {
 				if(keywords[i] != null) {
 					keyword += "," + keywords[i];
 				}

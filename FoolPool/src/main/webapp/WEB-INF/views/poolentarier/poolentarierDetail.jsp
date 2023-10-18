@@ -12,9 +12,9 @@
 						<label class="plDetailTitle">${poolentarier.title}</label>
 					</div>
 					<div class="pdDetail-2row">
+						<span class="pdDetail-writer">작성자: ${poolentarier.writerNickname}</span>
 						<span>작성일: ${poolentarier.date}</span>
 						<span>조회수: ${poolentarier.view}</span>
-						<span class="pdDetail-writer">작성자: ${poolentarier.writerNickname}</span>
 					</div>
 			
 					<%-- #1 이미지 크기를 통일 or max크기(영역)만 지정 --%>
@@ -35,7 +35,7 @@
 					<div class="pdDetail-7row">
 						<c:if test="${member ne Empty && member.id eq poolentarier.writerId}">
 							<a href="poolentarierEdit?no=${poolentarier.no}"><button>수정</button></a>
-							<a href="poolentarierDelete?no=${poolentarier.no}"><button>삭제</button></a>
+							<button onclick="pdRemovePoolentarier(${poolentarier.no})">삭제</button></a>
 						</c:if>
 						<a href="goPoolentarier"><button>목록</button></a>
 					</div>
@@ -61,11 +61,12 @@
 							</c:if>
 						</table>
 						<c:if test="${member ne Empty }">
-							<div class="pdCommentWriteArea">
+							<div class="pdCommentForm">
 								<form action="poolentarierCommentAdd" method="post">
 									<input type="hidden" name="postNo" value="${poolentarier.no }"/>
 									<span>${member.nickname}</span>
-					    			<input type="text" name="commentContent"/>
+					    			<input type="text" maxlength="300" id="pdCommentValue" onkeyup="pdCommentValidation()" name="commentContent"/>
+					    			<div id="pdCommentValidationMsg"></div>
 					    			<input type="submit" value="등록"/>
 								</form>
 							</div>
