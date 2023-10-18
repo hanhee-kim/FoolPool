@@ -57,8 +57,35 @@
                 </div>
                 <div class="searchFlowerBottomBorder"></div>
             </div>
+             <div class="flowerModal" id="flower_d_Modal">
+        		<span class="closeModal" id="closeModal">&times;</span>
+        		<img class="flowerModal-content" id="flowerModalImage" src="your-image.jpg">
+    		</div>
         </div>
     </div>
+    <script type="text/javascript">
+ // 이미지 클릭 시 모달 열기
+    $('.searchFlowerShowFlowerImg').click(function() {
+        var modal = document.getElementById('flower_d_Modal');
+        var modalImage = document.getElementById('flowerModalImage');
+        modal.style.display = 'block';
+        modalImage.src = $(this).attr('src');
+    });
+
+    // 모달 닫기
+    $('#closeModal').click(function() {
+        var modal = document.getElementById('flower_d_Modal');
+        modal.style.display = 'none';
+    });
+
+    // 모달 외부 클릭 시 모달 닫기
+    $(window).click(function(e) {
+        var modal = document.getElementById('flower_d_Modal');
+        if (e.target == modal) {
+            modal.style.display = 'none';
+        }
+    });
+	</script>
 </body>
 
 </html>
