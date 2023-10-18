@@ -15,6 +15,7 @@
 		<typeAlias type="bean.Notice" alias="Notice" />
 		<typeAlias type="bean.Member" alias="Member" />
 		<typeAlias type="bean.Poolentarier" alias="Poolentarier" />
+		<typeAlias type="bean.PoolentarierComment" alias="PoolentarierComment" />
 	</typeAliases>
 
 	<!-- <environments default="development">

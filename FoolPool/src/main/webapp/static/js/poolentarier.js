@@ -7,12 +7,32 @@ function poolentarierCancelBtn() {
 // poolentarierList
 
 /* onclick="plCallBtn"인 a태그를 가지는 페이징에 대해, id가 searchform인 form을 호출하지만, return은 onclick이 포함된 곳에서 처리 */
-function plCallBtn(num) {
+function plCallBtn(no) {
 	var keyword = $("#keyword").val();
 	if(keyword!=null && keyword.trim()!='') {
-		$('#page').val(num);
+		$('#page').val(no);
 		$('#searchform').submit();
 	}	
+}
+
+function plkeepSearch() {
+	const plSearchForm = document.getElementById("plSearchForm");
+    const searchValueInput = document.getElementById("searchValue");
+    const searchOptionSelect = document.getElementById("searchOption");
+    
+    // form데이터 세팅
+    const formData = new FormData(plSearchForm);
+    formData.append("searchOption", searchOptionSelect.value);
+    formData.append("searchValue", searchValueInput.value);
+    
+    // ajax를 사용하여 post요청
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "goPoolentarier", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send(new URLSearchParams(formData));
+    
+    // form의 기본submit을 막음
+    event.preventDefault();
 }
 
 // poolenatarierForm
@@ -85,3 +105,11 @@ function pfRemoveKeywordBtn(element) {
 }
 
 // poolentarierDetail
+
+// 댓글 삭제
+// 
+function pdRemoveComment(commentNo, postNo) {
+	if (confirm("댓글을 삭제하시겠습니까?") == true) {
+		window.location.href = "poolentarierCommentDelete?commentNo=" + commentNo + "&postNo=" + postNo;
+	}
+}

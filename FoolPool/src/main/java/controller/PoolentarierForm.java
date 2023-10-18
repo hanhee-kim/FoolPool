@@ -78,10 +78,10 @@ public class PoolentarierForm extends HttpServlet {
 		}
 
 		String keywords = keyword[0];;
-		// | 구분자로 키워드 값을 하나의 문자열로 통합
+		// , 구분자로 키워드 값을 하나의 문자열로 통합
 		for(int i = 1;i < keyword.length;i++) {
 			if(keyword[i] != null) {
-				keywords += "|" + keyword[i];
+				keywords += "," + keyword[i];
 			}
 		}
 		
@@ -99,7 +99,6 @@ public class PoolentarierForm extends HttpServlet {
 		try {
 			PoolentarierService poolentarierService = new PoolentarierServiceImpl();
 			poolentarierService.poolentarierWrite(poolentarier);
-//			request.getRequestDispatcher("WEB-INF/views/poolentarier/poolentarierList.jsp").forward(request, response);
 			response.sendRedirect("goPoolentarier");
 		} catch(Exception e) {
 			e.printStackTrace();
