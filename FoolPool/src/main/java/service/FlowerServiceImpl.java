@@ -122,23 +122,11 @@ public class FlowerServiceImpl implements FlowerService{
 					}
 				}
 				flowerDao.insertFlower(flower);
-//				System.out.println("insert");
-//				for(Flower f : flowers) {
-//					System.out.println(f.getFlowNm());
-//				}
 				// Flower 객체를 리스트에 추가
 				flowers.add(flower);
 				//db에 저장
 //				FlowerDAOImpl fDAO = new FlowerDAOImpl();
 //				fDAO.insertFlower(flower);
-				
-				// 특정 요소 찾기
-//				for (Flower flowerQ : flowers) {
-//				    String dataNoQ = flowerQ.getDataNo();
-//				    System.out.println("dataNo: " + dataNoQ);
-//				}
-//	                --------------------------------
-
 			}
 	}
 
@@ -166,16 +154,23 @@ public class FlowerServiceImpl implements FlowerService{
 		startParam.put("fDay", sDay);
 		endParam.put("fMonth", eMonth);
 		endParam.put("fDay", eDay);
-		System.out.println(sDay+" eM"+eDay);
 		Flower s_flower = flowerDao.selectFlowerByDate(startParam);
 		Flower e_flower = flowerDao.selectFlowerByDate(endParam);
 		Integer startNo = s_flower.getDataNo();
 		Integer endNo = e_flower.getDataNo();
-		System.out.println(startNo);
 		param.put("startNo", startNo);
 		param.put("endNo", endNo);
-		System.out.println(param);
-		return flowerDao.selectFlowerPeriod(param);
+		List<Flower> flowers = null;
+		//(앞의 날짜가 더 큰수라면)
+		if(startNo > endNo) {
+			flowers = flowerDao.selectFlowerPeriodReverse(param);
+			return flowers;
+		} else {
+			flowers = flowerDao.selectFlowerPeriod(param);
+			return flowers;
+		}
+		
+		
 	}
 
 	@Override

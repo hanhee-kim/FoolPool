@@ -96,6 +96,9 @@
 </div>
 <!--  -->
 <script>
+//페이지가 완전히 로드된 후에 실행해야 값을 온전히 가지고옴(일은 스크립트 처리했기때문)
+$(document).ready(function(){	
+	
 //검색 후 검색한 값을 가지고 있도록함
 	var option = '${res.option}';
 	var startMonth = '${res.startMonth}';
@@ -116,7 +119,6 @@
 	if (option === "singleDate") { //날짜(단일)
 		$('#searchFlowerStartMonth').val(startMonth).prop('selected', true);//검색한값 유지
 		$('#searchFlowerStartDay').val(startDay).prop('selected', true);
-
 		$('#searchFlowerStartMonth').removeClass("searchFlower_disabled");
 		$('#searchFlowerStartDay').removeClass("searchFlower_disabled");
 	} else if (option === "periodDate") { //날짜(기간)
@@ -143,6 +145,7 @@
 		$('#searchFlowerStartMonth').removeClass("searchFlower_disabled");
 		$('#searchFlowerStartDay').removeClass("searchFlower_disabled");
 	}
+});
 </script>
 </body>
 </html>
