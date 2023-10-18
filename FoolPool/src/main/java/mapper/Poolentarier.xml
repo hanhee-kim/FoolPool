@@ -76,7 +76,7 @@
 	<!-- 게시글 작성 -->
 	<insert id="insertPoolentarierDetail" parameterType="Poolentarier">
 		<![CDATA[
-			insert into poolentarier values (null, #{title}, curdate(), 0, #{content}, #{keyword}, #{fileName}, #{plantsName}, #{writerId}, #{writerNickname})
+			insert into poolentarier values (null, #{title}, now(), 0, #{content}, #{keyword}, #{fileName}, #{plantsName}, #{writerId}, #{writerNickname})
 		]]>
 	</insert>
 	
@@ -97,7 +97,7 @@
  	<!-- 댓글 작성 -->
  	<insert id="insertPoolentarierComment" parameterType="PoolentarierComment">
  		<![CDATA[
- 			insert into poolentarier_comment values (null, curdate(), #{commentContent}, #{writerId}, #{writerNickname}, #{postNo})
+ 			insert into poolentarier_comment values (null, now(), #{commentContent}, #{writerId}, #{writerNickname}, #{postNo})
  		]]>
  	</insert>
  	

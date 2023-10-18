@@ -45,8 +45,6 @@ public class PoolentarierList extends HttpServlet {
 			curPage = Integer.parseInt(page);
 		}
 		
-		System.out.println("정렬옵션(서블렛): " + paramSortOption);
-		
 		// 기본 최신순 정렬
 		String sortOption = "new";
 		if(paramSortOption != null) {
@@ -90,47 +88,47 @@ public class PoolentarierList extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
+//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//		request.setCharacterEncoding("utf-8");
 //		request.setAttribute("jspName", "poolentarier");
-		String page = request.getParameter("page");
-		String paramSortOption = request.getParameter("sortOption");
-		
-		// 검색 폼 제출시 기존 정렬 및 페이징 값은 new / 1로 초기화 (해제) 
-		String sortOption = "new";
-		if(paramSortOption!=null) {
-			sortOption = paramSortOption;
-		}
-		
-		int curPage = 1;
-		
-		String searchOption = request.getParameter("SearchOption");
-		String searchText = request.getParameter("SearchText");
-
-		// 만일, 페이지 값이 존재한다면
-		if(page!=null) {
-			curPage = Integer.parseInt(page);
-		}
-	
-		try {
-			// 서비스 객체 생성
-			PoolentarierService poolentarierService = new PoolentarierServiceImpl();
-			// 서비스 객체에서 게시판 리스트업 메서드 호출하여 res로 받아옴
-			Map<String, Object> res = poolentarierService.poolentarierListByPage(curPage, sortOption, searchOption, searchText);
-			
-			// request 세팅
-			request.setAttribute("res", res);
-			request.setAttribute("sortOption", sortOption);
-			request.setAttribute("searchOption", searchOption);
-			request.setAttribute("searchText", searchText);
-			request.setAttribute("jspname", "poolentarier");
-			
-			request.getRequestDispatcher("WEB-INF/views/poolentarier/poolentarierList.jsp").forward(request, response);
-		} catch(Exception e) {
-			e.printStackTrace();
-			request.setAttribute("err", e.getMessage());
-			request.getRequestDispatcher("error.jsp").forward(request, response);
-		}
-	}
+//		String page = request.getParameter("page");
+//		String paramSortOption = request.getParameter("sortOption");
+//		
+//		// 검색 폼 제출시 기존 정렬 및 페이징 값은 new / 1로 초기화 (해제) 
+//		String sortOption = "new";
+//		if(paramSortOption!=null) {
+//			sortOption = paramSortOption;
+//		}
+//		
+//		int curPage = 1;
+//		
+//		String searchOption = request.getParameter("SearchOption");
+//		String searchText = request.getParameter("SearchText");
+//
+//		// 만일, 페이지 값이 존재한다면
+//		if(page!=null) {
+//			curPage = Integer.parseInt(page);
+//		}
+//	
+//		try {
+//			// 서비스 객체 생성
+//			PoolentarierService poolentarierService = new PoolentarierServiceImpl();
+//			// 서비스 객체에서 게시판 리스트업 메서드 호출하여 res로 받아옴
+//			Map<String, Object> res = poolentarierService.poolentarierListByPage(curPage, sortOption, searchOption, searchText);
+//			
+//			// request 세팅
+//			request.setAttribute("res", res);
+//			request.setAttribute("sortOption", sortOption);
+//			request.setAttribute("searchOption", searchOption);
+//			request.setAttribute("searchText", searchText);
+//			request.setAttribute("jspname", "poolentarier");
+//			
+//			request.getRequestDispatcher("WEB-INF/views/poolentarier/poolentarierList.jsp").forward(request, response);
+//		} catch(Exception e) {
+//			e.printStackTrace();
+//			request.setAttribute("err", e.getMessage());
+//			request.getRequestDispatcher("error.jsp").forward(request, response);
+//		}
+//	}
 
 }

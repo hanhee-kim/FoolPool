@@ -106,44 +106,45 @@ public class PoolentarierServiceImpl implements PoolentarierService {
 		poolentarierDAO.deletePoolentarierDetail(no);
 	}
 	
-//	@Override
-//	public Map<String, Object> poolentarierSearch(Integer page, String sortOption, String searchOption, String searchText) throws Exception {
-//		Map<String, Object> paramForCount = new HashMap<>();
-//		paramForCount.put("searchOption", searchOption);
-//		paramForCount.put("searchText", searchText);
-//		
-//		PageInfo pageInfo = new PageInfo();
-//		int poolentarierCount = poolentarierDAO.selectPoolentarierCount(paramForCount);
-//		int maxPage = (int) Math.ceil((double)poolentarierCount / 10);
-//		int startPage = (page - 1) / 10 * 10 + 1;
-//		int endPage = startPage + 10 - 1;
-//		if(endPage > maxPage) endPage = maxPage;
-//		if(page > maxPage) page = maxPage;
-//		
-//		pageInfo.setAllPage(maxPage);
-//		pageInfo.setCurPage(page);
-//		pageInfo.setStartPage(startPage);
-//		pageInfo.setEndPage(endPage);
-//		
-//		// 검색 결과가 없을 떄??
-//		Map<String, Object> map = new HashMap<>();
-//		map.put("pageInfo", pageInfo);
-//		
-//		if(page == 0) {
-//			return map;
-//		}
-//		
-//		int row = (page - 1) * 10 + 1;
-//		param.put("row", row - 1);
-//		List<Poolentarier> poolentarierList = poolentarierDAO.selectPoolentarierList(param);
-//
-//
-//		map.put("poolentarierList", poolentarierList);
-//		map.put("searchOption", searchOption);
-//		map.put("searchText", searchText);
-//		
-//		return map;
-//	}
+	// 게시글 검색
+	@Override
+	public Map<String, Object> poolentarierSearch(int page, String sortOption, String searchOption, String searchText) throws Exception {
+		Map<String, Object> param = new HashMap<>();
+		param.put("searchOption", searchOption);
+		param.put("searchText", searchText);
+		param.put("sortOption", sortOption);
+		
+		PageInfo pageInfo = new PageInfo();
+		int poolentarierCount = poolentarierDAO.selectPoolentarierCount(param);
+		int maxPage = (int) Math.ceil((double)poolentarierCount / 10);
+		int startPage = (page - 1) / 10 * 10 + 1;
+		int endPage = startPage + 10 - 1;
+		if(endPage > maxPage) endPage = maxPage;
+		if(page > maxPage) page = maxPage;
+		
+		pageInfo.setAllPage(maxPage);
+		pageInfo.setCurPage(page);
+		pageInfo.setStartPage(startPage);
+		pageInfo.setEndPage(endPage);
+		
+		// 검색 결과가 없을 떄??
+		Map<String, Object> map = new HashMap<>();
+		map.put("pageInfo", pageInfo);
+		
+		if(page == 0) {
+			return map;
+		}
+		
+		int row = (page - 1) * 10 + 1;
+		param.put("row", row - 1);
+		List<Poolentarier> poolentarierList = poolentarierDAO.selectPoolentarierList(param);
+
+		map.put("poolentarierList", poolentarierList);
+		map.put("searchOption", searchOption);
+		map.put("searchText", searchText);
+		
+		return map;
+	}
 	
 	@Override
 	public void poolentarierWriteComment(PoolentarierComment poolentarierComment) throws Exception {
