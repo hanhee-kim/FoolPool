@@ -42,8 +42,9 @@
     margin: 15px;
 }
 .searchFlowerDetailSection{
-    display: grid;
-    grid-template-columns: 40px 320px 800px 40px;
+	display: grid;
+	grid-template-columns: 40px 340px 790px 40px;
+    justify-content: center;
 }
 .searchFlowerDetailImgDiv{
     display: flex;
@@ -51,10 +52,21 @@
     align-items: center;
     justify-content: center;
 }
+.searchFlowerShowFlowerBigImg{
+    display: flex;
+    justify-content: center;
+    width: 310px;
+    height: 310px;
+    align-items: center;
+}
 .searchFlowerShowFlowerSmallImg{
     display: flex;
     flex-direction: row;
     gap: 3px;
+    width: 310px;
+    /* height: 110px; */
+    justify-content: center;
+    align-items: center;
 }
 .searchFlowerShowFlowerImg{
     width: 300px;
@@ -107,20 +119,43 @@
 	width:40px;
 	height:40px;
 	margin-top:200px;
+	display: flex;
+    align-items: center;
+    justify-content: center;
 }
-/* #searchFlowerBeforeIcon{ */
-/* 	background-image:url("./static/img/before_icon.png"); */
-/* 	background-size:cover; */
-/* 	background-repeat: norepeat; */
-/* } */
-/* #searchFlowerNextIcon{ */
-/* 	background-image:url("./static/img/next_icon.png"); */
-/* 	background-size:cover; */
-/* 	background-repeat: norepeat; */
-/* } */
+#searchFlowerNextIcon:hover,
+#searchFlowerBeforeIcon:hover,
+#searchFlower_bigImg:hover,
+#searchFlower_d_img1:hover,
+#searchFlower_d_img2:hover,
+#searchFlower_d_img3:hover{
+	cursor: pointer;
+}
+/* 이미지 플래시효과 */
+#searchFlower_d_img1:hover,
+#searchFlower_d_img2:hover,
+#searchFlower_d_img3:hover{
+	opacity: 1;
+	-webkit-animation: flash 1.5s;
+	animation: flash 1.5s;
+}
+@-webkit-keyframes flash {
+	0% {
+		opacity: .4;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes flash {
+	0% {
+		opacity: .4;
+	}
+	100% {
+		opacity: 1;
+	}
+}
 
-/*  style="background-image: url(./static/img/before_icon.png);" */
-/* scrollbar */
 .searchFlowerFlowerContentDiv::-webkit-scrollbar {
     width: 8px;  /* 스크롤바의 너비 */
 }
@@ -137,6 +172,7 @@
 }
 /* 익스프롤러 10이하 스크롤바 CSS  */
 .searchFlowerFlowerContentDiv {
+	width: 765px;
     scrollbar-face-color:#466b55;
     scrollbar-shadow-color:#dddddd;
     scrollbar-track-color: #466b5577;

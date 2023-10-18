@@ -41,8 +41,7 @@ function go_searchFlower() {
 
 //페이지 로드시 
 $(document).ready(function() {
-	var option = '${res.option}';
-	console.log(option);
+	//큰옵션이 바뀌면
 	$("#searchFlowerTitleOption").change(function() {
 		var selectedOption = $(this).val();
 
@@ -66,8 +65,10 @@ $(document).ready(function() {
 			$('#searchFlowerEndDay').removeClass("searchFlower_disabled");
 		} else if (selectedOption === "flowerName") {	//꽃 이름
 			$('#searchFlowerByName').removeClass("searchFlower_disabled");
+			$('#searchFlowerByName').focus();
 		} else if (selectedOption === "flowerLang") {	//꽃말
 			$('#searchFlowerByLang').removeClass("searchFlower_disabled");
+			$('#searchFlowerByLang').focus();
 		}
 	});//disabled function
 
@@ -105,5 +106,50 @@ $(document).ready(function() {
 	
 	
 });
+
+$(function(){
+	//day의 값 다르게 뽑는 함수
+	function showDaySelect(month,day){
+		if(month == 2){
+			for(var i=1; i<=29; i++) {
+				var option = `<option value="${i}">${i > 9 ? i : '0'}${i>9 ? '' : i}일</option>`;
+				day.append(option);
+			}						
+		} else if(month==1 || month==3 || month==5 || month==7 || month==8 ||month==10){
+			for(var i=1; i<=31; i++) {
+				var option = `<option value="${i}">${i > 9 ? i : '0'}${i>9 ? '' : i}일</option>`;
+				day.append(option);
+			}	
+		} else{
+			for(var i=1; i<=30; i++) {
+				var option = `<option value="${i}">${i > 9 ? i : '0'}${i>9 ? '' : i}일</option>`;
+				day.append(option);
+			}			
+		}
+	}
+	
+	//startMonth 셀렉트박스 변경시 옵션에 따른 day값 다르게 표기
+	//시작날셀렉트박스
+	$('#searchFlowerStartMonth').change(function(){
+		var s_month = $('#searchFlowerStartMonth option:selected').val();
+		var s_day = $('#searchFlowerStartDay');
+		$('#searchFlowerStartDay option').remove();
+		showDaySelect(s_month,s_day);
+	})
+	//끝날 셀렉트박스
+	$('#searchFlowerEndMonth').change(function(){
+		var e_month = $('#searchFlowerEndMonth  option:selected').val();
+		var e_day = $('#searchFlowerEndDay');
+		$('#searchFlowerEndDay option').remove();
+		showDaySelect(e_month,e_day);
+	});
+	
+	
+	$('#searchFlowerStartMonth').change();
+	$('#searchFlowerEndMonth').change();
+	
+});
+
+
 
 	
