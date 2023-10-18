@@ -33,11 +33,11 @@
     <script src="${path }/static/js/menubar.js"></script>
     <script src="${path }/static/js/notice.js"></script>
     <script src="${path }/static/js/drfoolpool.js"></script>
-    <script type="text/javascript" src="${path }/static/js/poolentarierList.js"></script>
-    <script type="text/javascript" src="${path }/static/js/poolentarierForm.js"></script>
+    <script type="text/javascript" src="${path }/static/js/poolentarier.js"></script>
     <script type="text/javascript" src="${path }/static/js/join.js"></script>
     <script type="text/javascript" src="${path }/static/js/login.js"></script>
     <script type="text/javascript" src="${path }/static/js/search_flower.js"></script>
+    <script type="text/javascript" src="${path }/static/js/detailflower.js"></script>
 <title>FoolPool</title>
 </head>
 <body>

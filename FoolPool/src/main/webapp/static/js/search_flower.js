@@ -14,6 +14,8 @@ function go_searchFlower() {
 	var selectedVal = document.getElementById("searchFlowerTitleOption").value;
 	console.log(selectedVal);
 	$('#flowerCardsection_line').removeClass("searchFlower_disabled");
+	$('#searchFlowerMSG').addClass("searchFlower_disabled");
+	$('#searchFlowerOptionCheck').removeClass("searchFlower_disabled");
 
 	var data;
 
@@ -41,7 +43,8 @@ function go_searchFlower() {
 
 //페이지 로드시 
 $(document).ready(function() {
-
+	var option = '${res.option}';
+	console.log(option);
 	$("#searchFlowerTitleOption").change(function() {
 		var selectedOption = $(this).val();
 
@@ -71,29 +74,37 @@ $(document).ready(function() {
 	});//disabled function
 
 	//조회목록 조작(페이지 로드 후)
-	var fCard = '$(res.flowers)';
 	var fCardLen = $(".flowerCard").length;
-	console.log(fCard);
 	$(".flowerCard").each(function(idx, obj) {
 		var cardId = obj.id;
 		if (idx >= 4) {
 			$('#' + cardId).addClass("searchFlower_disabled");
 		}
 	});
+	
 	//더보기 
-	var showeMoreCnt = 0;
+	//var showCardLen = fCardLen;
+	var showeMoreCnt = 1;
 	$("#searchFlowerSeeMore").on("click", function (){
-		console.log("더보기 클릭");
 		showeMoreCnt++;
+		console.log("더보기 클릭");
 		console.log("showeMoreCnt"+showeMoreCnt);
 		console.log("fCardLen :"+fCardLen)
-		if (fCardLen < 4) {
-				$(".flowerCard").removeClass("searchFlower_disabled");
-				$('#searchFlowerSeeMore').addClass("searchFlower_disabled");
+		if(0<fCardLen-(4*showeMoreCnt)){
+			$('#searchFlowerSeeMore').removeClass("searchFlower_disabled");
+			
+		}else if(fCardLen-(4*showeMoreCnt) <=0 ){
+			$('#searchFlowerSeeMore').addClass("searchFlower_disabled");
 		}
 		
+		$(".flowerCard").each(function(idx, obj) {
+		var cardId = obj.id;
+		if (idx < (4*showeMoreCnt)) {
+			$('#' + cardId).removeClass("searchFlower_disabled");
+		}
+	});
+		
 	})
-
 });
 
 	

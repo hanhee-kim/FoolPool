@@ -50,6 +50,7 @@
                 <div class="flowerCardsection">
 	                <c:if test="${res.size <= 0}">
 	                <div class="searchFlowerMSG" id="searchFlowerMSG">꽃을 검색하세요!!!</div>
+	                <div class="searchFlowerMSG searchFlower_disabled" id="searchFlowerOptionCheck" >검색 옵션을 확인하세요.</div>
 	                </c:if>
 					<div class="flowerCardsection_line" id="flowerCardsection_line">                
 	                <c:if test="${res.size > 0}">
@@ -85,8 +86,53 @@
     </div>
     <!--  -->
 <script>
-var flowerSize = '${res.size}';
-console.log(flowerSize);
+	var option = '${res.option}';
+	var startMonth = '${res.startMonth}';
+	var startDay = '${res.startDay}';
+	var endMonth = '${res.endMonth}';
+	var endDay = '${res.endDay}';
+	var flowerName = '${res.flowerName}';
+	var flowerLang = '${res.flowerLang}';
+		$('#searchFlowerTitleOption').val(option).prop('selected',true);//검색한값 유지
+	
+		$('#searchFlowerStartMonth').addClass("searchFlower_disabled");
+		$('#searchFlowerStartDay').addClass("searchFlower_disabled");
+		$('#searchFlowerHyphen').addClass("searchFlower_disabled");
+		$('#searchFlowerEndMonth').addClass("searchFlower_disabled");
+		$('#searchFlowerEndDay').addClass("searchFlower_disabled");
+		$('#searchFlowerByName').addClass("searchFlower_disabled");
+		$('#searchFlowerByLang').addClass("searchFlower_disabled");
+	if (option === "singleDate") {	//날짜(단일)
+		$('#searchFlowerStartMonth').val(startMonth).prop('selected',true);//검색한값 유지
+		$('#searchFlowerStartDay').val(startDay).prop('selected',true);
+		
+		$('#searchFlowerStartMonth').removeClass("searchFlower_disabled");
+		$('#searchFlowerStartDay').removeClass("searchFlower_disabled");
+	} else if (option === "periodDate") {	//날짜(기간)
+		$('#searchFlowerStartMonth').val(startMonth).prop('selected',true);//검색한값 유지
+		$('#searchFlowerStartDay').val(startDay).prop('selected',true);
+		$('#searchFlowerEndMonth').val(endMonth).prop('selected',true);
+		$('#searchFlowerEndDay').val(endDay).prop('selected',true);
+		
+		$('#searchFlowerStartMonth').removeClass("searchFlower_disabled");
+		$('#searchFlowerStartDay').removeClass("searchFlower_disabled");
+		$('#searchFlowerHyphen').removeClass("searchFlower_disabled");
+		$('#searchFlowerEndMonth').removeClass("searchFlower_disabled");
+		$('#searchFlowerEndDay').removeClass("searchFlower_disabled");
+	} else if (option === "flowerName") {	//꽃 이름
+		$('#searchFlowerByName').val(flowerName);//검색한값 유지
+		
+		$('#searchFlowerByName').removeClass("searchFlower_disabled");
+	} else if (option === "flowerLang") {	//꽃말
+		$('#searchFlowerByLang').val(flowerLang);//검색한값 유지
+	
+		$('#searchFlowerByLang').removeClass("searchFlower_disabled");
+	} else if(!option){
+		$('#searchFlowerTitleOption').val('singleDate').prop('selected',true);//처음 진입시 날짜(단일)로
+		$('#searchFlowerStartMonth').removeClass("searchFlower_disabled");
+		$('#searchFlowerStartDay').removeClass("searchFlower_disabled");
+	}
+	console.log(option);
 
 </script>
 </body>

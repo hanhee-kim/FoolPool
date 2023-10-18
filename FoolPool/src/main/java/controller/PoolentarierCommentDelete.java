@@ -11,13 +11,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class PoolentarierCommentDel
  */
 @WebServlet("/delPoolentarierComment")
-public class PoolentarierCommentDel extends HttpServlet {
+public class PoolentarierCommentDelete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PoolentarierCommentDel() {
+    public PoolentarierCommentDelete() {
         super();
         // TODO Auto-generated constructor stub
     }

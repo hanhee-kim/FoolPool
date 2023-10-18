@@ -51,7 +51,9 @@ public class SearchFlower extends HttpServlet {
 			if (option.equals("singleDate")) {
 				Integer startMonth = Integer.parseInt(request.getParameter("startMonth"));
 				Integer startDay = Integer.parseInt(request.getParameter("startDay"));
-				System.out.println(startDay);
+				res.put("startMonth", startMonth);
+				res.put("startDay", startDay);
+				
 				try {
 					flower = f_service.searchFlowerByDate(startMonth, startDay);
 					flowers.add(flower);
@@ -64,6 +66,10 @@ public class SearchFlower extends HttpServlet {
 				Integer startDay = Integer.parseInt(request.getParameter("startDay"));
 				Integer endMonth = Integer.parseInt(request.getParameter("endMonth"));
 				Integer endDay = Integer.parseInt(request.getParameter("endDay"));
+				res.put("startMonth", startMonth);
+				res.put("startDay", startDay);
+				res.put("endMonth", endMonth);
+				res.put("endDay", endDay);
 				try {
 					flowers = f_service.searchFlowerByPeriod(startMonth, startDay, endMonth, endDay);
 				} catch (Exception e) {
@@ -73,6 +79,7 @@ public class SearchFlower extends HttpServlet {
 				type = "flow_Nm";
 				String flowerName = (String) request.getParameter("byName");
 				System.out.println("flowerName : "+flowerName);
+				res.put("flowerName", flowerName);
 				try {
 					flowers = f_service.searchFlowerByWord(type, flowerName);
 				} catch (Exception e) {
@@ -82,16 +89,17 @@ public class SearchFlower extends HttpServlet {
 				type = "flow_Lang";
 				String flowerLang = request.getParameter("byLang");
 				System.out.println("Lang : "+flowerLang);
+				res.put("flowerLang", flowerLang);
 				try {
 					flowers = f_service.searchFlowerByWord(type, flowerLang);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
+			res.put("option", option);
 		}	
-			Integer flowerSize = flowers.size();
+			res.put("size", flowers.size());
 			res.put("flowers", flowers);
-			res.put("size", flowerSize);
 			request.setAttribute("res", res);
 			request.setAttribute("jspName", "searchFlower");
 			request.getRequestDispatcher("WEB-INF/views/searchFlower/searchflower.jsp").forward(request, response);

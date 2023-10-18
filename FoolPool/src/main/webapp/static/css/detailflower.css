@@ -43,9 +43,7 @@
 }
 .searchFlowerDetailSection{
     display: grid;
-    grid-template-columns: 10px 320px 800px 10px;
-    margin-left: 35px;
-    gap: 30px;
+    grid-template-columns: 40px 320px 800px 40px;
 }
 .searchFlowerDetailImgDiv{
     display: flex;
@@ -105,6 +103,23 @@
 .searchFlowerDetailText{
     white-space: break-spaces;
 }
+.searchFlowerIcon{
+	width:40px;
+	height:40px;
+	margin-top:200px;
+}
+/* #searchFlowerBeforeIcon{ */
+/* 	background-image:url("./static/img/before_icon.png"); */
+/* 	background-size:cover; */
+/* 	background-repeat: norepeat; */
+/* } */
+/* #searchFlowerNextIcon{ */
+/* 	background-image:url("./static/img/next_icon.png"); */
+/* 	background-size:cover; */
+/* 	background-repeat: norepeat; */
+/* } */
+
+/*  style="background-image: url(./static/img/before_icon.png);" */
 /* scrollbar */
 .searchFlowerFlowerContentDiv::-webkit-scrollbar {
     width: 8px;  /* 스크롤바의 너비 */

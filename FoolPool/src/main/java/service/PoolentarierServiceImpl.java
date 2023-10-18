@@ -70,12 +70,18 @@ public class PoolentarierServiceImpl implements PoolentarierService {
 	}
 
 	@Override
-	public Poolentarier poolentarierDetail(Integer num) throws Exception {
-		return poolentarierDAO.selectPoolentarierDetail(num);
+	public Poolentarier poolentarierDetail(Integer no) throws Exception {
+		return poolentarierDAO.selectPoolentarierDetail(no);
 	}
 	
 	@Override
 	public void poolentarierWrite(Poolentarier poolentarier) throws Exception {
 		poolentarierDAO.insertPoolentarierDetail(poolentarier);
+	}
+	
+	@Override
+	public void poolentarierDelete(Integer no) throws Exception {
+		poolentarierDAO.deletePoolentarierDetail(no);
+		
 	}
 }

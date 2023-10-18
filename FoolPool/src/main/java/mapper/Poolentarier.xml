@@ -31,7 +31,7 @@
 	
 	<select id="selectPoolentarierDetail" parameterType="Integer" resultType="Poolentarier" resultMap="PoolentarierRM">
 		<![CDATA[
-			select * from poolentarier where no = #{num}
+			select * from poolentarier where no = #{no}
 		]]>
 	</select>
 	
@@ -40,5 +40,11 @@
 			insert into poolentarier values (null, #{title}, curdate(), 0, #{content}, #{keyword}, #{fileName}, #{plantsName}, #{writerId}, #{writerNickname})
 		]]>
 	</insert>
+	
+	<delete id="deletePoolentarier" parameterType="Integer">
+		<![CDATA[
+			delete from poolentarier where no = #{no}
+		]]>
+	</delete>
 	
  </mapper>
