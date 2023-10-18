@@ -5,6 +5,9 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
 <style>
+body{
+    overflow: hidden;
+}
 @-webkit-keyframes fall {
     0% {
         opacity: 0.9;
@@ -944,12 +947,8 @@ $(window).load(function () {
 	
 
 <div class="error-Label">ERROR</div>
-
 <div class="error-DivLine">
-
 	<div class="error-TopBorder"></div>
-
-
 
 	<div class="error-container">
 		<img src="static/img/error.png" class="oopsError" alt="error 페이지입니다." />
@@ -959,11 +958,6 @@ $(window).load(function () {
 	 
 	 <a href="https://kr.freepik.com/free-vector/hand-drawn-positive-vibes-illustration_39956222.htm#page=7&query=error%20flower&position=1&from_view=search&track=ais">FoolPool</a>
 	 </div>
-	
-
-	
-	
- 
 
 	<div class="error-BottomBorder">
 	
