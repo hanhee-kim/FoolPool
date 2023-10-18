@@ -64,32 +64,26 @@ public class PoolentarierForm extends HttpServlet {
 		HttpSession session = request.getSession();
 		Member member = (Member) session.getAttribute("member");
 		String writerId = member.getId();
-//		String writerId = "fish";
 		String writerNickname = member.getNickname();
-//		String writerNickname = "물고기";
 		
 		// 키워드 값 설정
-		String[] keyword = new String[5]; // 키워드 배열 초기화
-		for(int i = 1;i < 6;i++) {
-			String parameterValue = multi.getParameter(i + "");
-		    if (parameterValue != null) {
-		        keyword[i - 1] = parameterValue;
-		    }
-		}
-
-		String keywords = keyword[0];;
-		// , 구분자로 키워드 값을 하나의 문자열로 통합
-		for(int i = 1;i < keyword.length;i++) {
-			if(keyword[i] != null) {
-				keywords += "," + keyword[i];
+		// name="keyword" 값을 모두 가져옴
+		String keyword = null;
+		String[] keywords = multi.getParameterValues("hiddenKeyword");
+		System.out.println(keywords[0]);
+		if (keywords != null) {
+			for(int i = 0;i < keywords.length;i++) {
+				if(keywords[i] != null) {
+					keyword += "," + keywords[i];
+				}
 			}
-		}
+        }
 		
 		// no, date, view는 mapper에서 설정
 		Poolentarier poolentarier= new Poolentarier();
 		poolentarier.setTitle(title);
 		poolentarier.setContent(content);
-		poolentarier.setKeyword(keywords);
+		poolentarier.setKeyword(keyword);
 		poolentarier.setFileName(fileName);
 		poolentarier.setPlantsName(plantsName);
 		poolentarier.setWriterId(writerId);

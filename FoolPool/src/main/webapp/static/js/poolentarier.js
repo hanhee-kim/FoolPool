@@ -15,32 +15,12 @@ function plCallBtn(no) {
 	}	
 }
 
-function plkeepSearch() {
-	const plSearchForm = document.getElementById("plSearchForm");
-    const searchValueInput = document.getElementById("searchValue");
-    const searchOptionSelect = document.getElementById("searchOption");
-    
-    // form데이터 세팅
-    const formData = new FormData(plSearchForm);
-    formData.append("searchOption", searchOptionSelect.value);
-    formData.append("searchValue", searchValueInput.value);
-    
-    // ajax를 사용하여 post요청
-    const xhr = new XMLHttpRequest();
-    xhr.open("POST", "goPoolentarier", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send(new URLSearchParams(formData));
-    
-    // form의 기본submit을 막음
-    event.preventDefault();
-}
-
 // poolenatarierForm
 
 var maxKeywords = 5;
 var keywordCounter = 0;
 
-function pfAddKeywordBtn(event) {
+function addKeyword(event) {
 	event.preventDefault();
 	var pfKeyword = document.getElementById("pfKeyword");
 	var keyword = pfKeyword.value.trim();
@@ -54,54 +34,31 @@ function pfAddKeywordBtn(event) {
 		if (existingKeywordCount < maxKeywords) {
 			var li = document.createElement("li");
 			keywordCounter++;
-			li.innerHTML = "<span name='" + keywordCounter + "'>" + keyword
-			+ "</span> <span class='remove-button' onclick='pfRemoveKeywordBtn(this)'>X</span>";
+			li.innerHTML = "<span name='" + keywordCounter + "thKeyword'>" + keyword
+			+ "</span> <span class='remove-button' onclick='removeKeyword(this)'>X</span>";
 			keywordList.appendChild(li);
 			pfKeyword.value = "";
-
-            // 폼에 값을 추가
-			var form = document.getElementById("poolentarierForm"); // 폼의 ID를 사용하여 폼 요소를 가져옴
-            var hiddenInput = document.createElement("input");
-            hiddenInput.type = "hidden";
-            hiddenInput.name = keywordCounter;
-            hiddenInput.value = keyword;
-            form.appendChild(hiddenInput);
-
-            // 폼 제출
-            // form.submit();
+		} else {
+			alert("더 이상 텍스트를 추가할 수 없습니다. 최대 " + maxKeywords + "개까지만 가능합니다.");
+			pfKeyword.value = "";
 		}
-	} else {
-		alert("더 이상 텍스트를 추가할 수 없습니다. 최대 " + maxKeywords + "개까지만 가능합니다.");
-		pfKeyword.value = "";
 	}
 }
 
-function pfRemoveKeywordBtn(element) {
+function removeKeyword(element) {
 	var listItem = element.parentNode;
-	var spanName = listItem.querySelector("span[name]").getAttribute("name");
-
-	// span 태그 삭제
 	listItem.parentNode.removeChild(listItem);
 	keywordCounter = 0;
 	
-	// input 태그 삭제
-    var form = document.getElementById("poolentarierForm");
-    var inputToDelete = document.querySelector("input[name='" + spanName + "']");
-    form.removeChild(inputToDelete);
-	
 	// 순번 재설정
-	var listLi = document.querySelectorAll("#keywordList li");
-	var listHiddenInput = form.querySelectorAll('input[type="hidden"]');
-	for (var i = 0; i < listLi.length; i++) {
+	var listItems = document.querySelectorAll("#keywordList li");
+	for (var i = 0; i < listItems.length; i++) {
 		keywordCounter++;
-		var item = listLi[i];
+		var item = listItems[i];
 		var itemSpan = item.querySelector("span[name]");
-		itemSpan.setAttribute("name", i + 1);
-		
-		item = listHiddenInput[i];
-		itemSpan = item.querySelector("input[name]");
-		itemSpan.setAttribute("name", i + 1);
+		itemSpan.setAttribute("name", i + 1 + "thKeyword");
 	}
+	
 }
 
 // poolentarierDetail

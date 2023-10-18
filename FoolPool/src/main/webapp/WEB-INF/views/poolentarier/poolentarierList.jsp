@@ -13,19 +13,33 @@
 					<div class="plTopMenuDiv">
 	            		<div class="plWriteFormDiv">
 	            			<c:if test="${member ne Empty}">
-	            				<div class="plWriteFormDivForBtn plOption" onclick="location.href='poolentarierForm'">
+	            				<div class="plWriteFormDivForBtn plOption" onclick="location.href='poolentarierForm?num'">
 									<div class="plWriteBtn">글쓰기</div>
 								</div>
 	            			</c:if>
 	            		</div>
 		            	
 						<div class="plSortDiv">
-							<div class="plSortNewDiv plOption">
-								<a href="goPoolentarier?sortOption=new&page=1" class="${sortOption eq 'new' ? 'plSortBtn plSortBtnSelected' : plSortBtn}">최신순</a>
-							</div>
-							<div class="plSortViewDiv plOption">
-								<a href="goPoolentarier?sortOption=view&page=1" class="${sortOption eq 'view' ? 'plSortBtn plSortBtnSelected' : plSortBtn}">조회순</a>
-							</div>
+						
+							<c:url var="urlsortoptionnew" value="goPoolentarier">
+								<c:param name="page" value="1" />
+								<c:param name="sortOption" value="new" />
+								<c:if test="${searchOption ne null && searchText ne null}">
+									<c:param name="searchOption" value="${searchOption }" />
+									<c:param name="searchText" value="${searchText }" />
+								</c:if>
+							</c:url>
+							<a href="${urlsortoptionnew}" class="${sortOption eq 'new' ? 'plSortBtn plSortBtnSelected' : plSortBtn}">최신순</a>
+							
+							<c:url var="urlsortoptionview" value="goPoolentarier">
+								<c:param name="page" value="1" />
+								<c:param name="sortOption" value="view" />
+								<c:if test="${searchOption ne null && searchText ne null}">
+									<c:param name="searchOption" value="${searchOption }" />
+									<c:param name="searchText" value="${searchText }" />
+								</c:if>
+							</c:url>
+							<a href="${urlsortoptionview}" class="${sortOption eq 'view' ? 'plSortBtn plSortBtnSelected' : plSortBtn}">조회순</a>
 						</div>
 	            	</div>
 				    
@@ -52,19 +66,17 @@
 					
 					<%-- 검색창 --%>
 					<div class=plSearchOptionDiv>
-						<form action="poolentarierSearch" method="post" id="plSearchform">
-							<input type="hidden" name="page" id="plPage" value="${res.pageInfo.curPage}"/>
-							<input type="hidden" name="sortOption" id="plSort" value="${sortOption}"/>
+						<form action="goPoolentarier" method="get" id="plSearchform">
 							<h5>
-								<select name="searchOption" class="plSearchOption">
+								<select name="searchOption" class="plSearchOption" value="${searchOption} }">
 									<option value="unselected">선택</option>
-									<option value="all" ${res.searchOption eq 'all'? 'selected':''}>제목+내용</option>
-									<option value="writer_Nickname" ${res.searchOption eq 'writer_Nickname'? 'selected':''}>작성자</option>
-									<option value="keyword" ${res.searchOption eq 'keyword'? 'selected':''}>키워드</option>
-									<option value="plantsName" ${res.searchOption eq 'plantsName'? 'selected':''}>식물명</option>
+									<option value="all" ${searchOption eq 'all'? 'selected':''}>제목+내용</option>
+									<option value="writer_Nickname" ${searchOption eq 'writer_Nickname'? 'selected':''}>작성자</option>
+									<option value="keyword" ${searchOption eq 'keyword'? 'selected':''}>키워드</option>
+									<option value="plantsName" ${searchOption eq 'plantsName'? 'selected':''}>식물명</option>
 								</select>
-								<input type="text" name="searchText" id="plSearchText" value="${res.searchText}" />
-								<button class="plSearchBtn" type="submit" onclick="plkeepSearch()">검색</button>
+								<input type="text" maxlength="100" name="searchText" id="plSearchText" value="${searchText}" />
+								<button class="plSearchBtn" type="submit">검색</button>
 							</h5>
 						</form>
 					</div>
@@ -75,7 +87,15 @@
 				<div id="plPagingArea">
 					<c:choose>
 						<c:when test="${res.pageInfo.curPage>1 }">
-							<a href="goPoolentarier?page=${res.pageInfo.curPage-1}">&lt;</a>
+							<c:url var="urlprevpagenumber" value="goPoolentarier">
+							    <c:param name="page" value="${res.pageInfo.curPage-1}" />
+							    <c:param name="sortOption" value="${sortOption}" />
+							    <c:if test="${searchOption ne null && searchText ne null}">
+							        <c:param name="searchOption" value="${searchOption}" />
+							        <c:param name="searchText" value="${searchText}" />
+							    </c:if>
+							</c:url>
+				            <a href="${urlprevpagenumber}">&lt;</a>
 						</c:when>
 						<c:otherwise>
 			               <a>&lt;</a>
@@ -87,18 +107,42 @@
 					<c:forEach begin="${res.pageInfo.startPage}" end="${res.pageInfo.endPage}" var="i">
 						<c:choose>
 							<c:when test="${res.pageInfo.curPage==i}">
-								<%-- callBtn에 대한 return 처리를 callBtn에서 하지 않고, 호출한 이곳에서 return --%>
-								<a href="goPoolentarier?page=${i}" onclick="plCallBtn(${i});return ${res.searchText==null};">${i}</a>&nbsp;
+								<%-- c:url태그로 searchOption과 searchText 유무에 따라 동적으로 get 요청 url 생성하여 a태그의 href에 할당 --%>
+								<c:url var="urlcurpagenumber" value="goPoolentarier">
+								    <c:param name="page" value="${i}" />
+								    <c:param name="sortOption" value="${sortOption}" />
+								    <c:if test="${searchOption ne null && searchText ne null}">
+								        <c:param name="searchOption" value="${searchOption}" />
+								        <c:param name="searchText" value="${searchText}" />
+								    </c:if>
+								</c:url>
+								<a href="${urlcurpagenumber}">${i}</a>
 				         	</c:when>
 							<c:otherwise>
-								<a href="goPoolentarier?page=${i}" onclick="plCallBtn(${i});return ${res.searchText==null};">${i}</a>&nbsp;
+								<c:url var="urlpagenumberschange" value="goPoolentarier">
+									<c:param name="page" value="${i}" />
+									<c:param name="sortOption" value="${sortOption}" />
+									<c:if test="${searchOption ne null && searchText ne null }">
+										<c:param name="searchOption" value="${searchOption }" />
+										<c:param name="searchText" value="${searchText }" />
+									</c:if>
+								</c:url>
+								<a href="${urlpagenumberschange}">${i}</a>
 				         	</c:otherwise>
 						</c:choose>
 					</c:forEach>
 
 					<c:choose>
 						<c:when test="${res.pageInfo.curPage<res.pageInfo.allPage }">
-							<a href="goPoolentarier?page=${res.pageInfo.curPage+1}">&gt;</a>
+							<c:url var="urlnextpagenumber" value="goPoolentarier">
+							    <c:param name="page" value="${res.pageInfo.curPage+1}" />
+							    <c:param name="sortOption" value="${sortOption}" />
+							    <c:if test="${searchOption ne null && searchText ne null}">
+							        <c:param name="searchOption" value="${searchOption}" />
+							        <c:param name="searchText" value="${searchText}" />
+							    </c:if>
+							</c:url>
+							<a href="${urlnextpagenumber }">&gt;</a>
 						</c:when>
 						<c:otherwise>
 			               <a>&gt;</a>
