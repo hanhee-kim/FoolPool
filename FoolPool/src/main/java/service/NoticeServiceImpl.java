@@ -35,6 +35,9 @@ public class NoticeServiceImpl implements NoticeService {
 		int endPage = startPage+10-1;
 		if(endPage>maxPage) endPage = maxPage;
 		
+		// NoticeCount==0일때의 예외처리: 아래 코드로 인해 page가 0이 되면 자연히 row가 음수가 되어 sql예외 발생하게됨
+		if(maxPage==0) maxPage = 1;
+		
 		//게시글 삭제 예외처리 
 		if(page>maxPage) page = maxPage;
 		
@@ -81,6 +84,7 @@ public class NoticeServiceImpl implements NoticeService {
 		int startPage = (page-1)/10*10+1;
 		int endPage = startPage+10-1;
 		if(endPage>maxPage)endPage = maxPage;
+		if(maxPage==0) maxPage = 1;
 		if(page>maxPage)page = maxPage;
 		
 		pageInfo.setAllPage(maxPage);

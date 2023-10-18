@@ -44,12 +44,13 @@ public class NoticeDelete extends HttpServlet {
 			noticeService.noticeDelete(no);
 			//request.getRequestDispatcher("WEB-INF/views/notice/noticeList.jsp").forward(request, response); 이거쓰면 아무것도 안뜸
 			//response.sendRedirect("noticelist");오류
+			response.getWriter().print("success");
 			response.sendRedirect(request.getContextPath() + "/notice");
 			return;
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("err", "게시글 삭제오류");
-			request.getRequestDispatcher("WEB-INF/views/notice/noticeError.jsp");
+			//request.setAttribute("err", "게시글 삭제오류");
+			request.getRequestDispatcher("WEB-INF/views/notice/error.jsp");
 		}
 	}
 

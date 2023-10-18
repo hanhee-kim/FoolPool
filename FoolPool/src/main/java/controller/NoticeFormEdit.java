@@ -81,8 +81,8 @@ public class NoticeFormEdit extends HttpServlet {
 			response.sendRedirect("noticedetail?no="+notice.getNo());
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("err", "게시글 수정 오류");
-			request.getRequestDispatcher("WEB-INF/views/notice/noticeError.jsp").forward(request, response);
+			//request.setAttribute("err", "게시글 수정 오류");
+			request.getRequestDispatcher("WEB-INF/views/notice/error.jsp").forward(request, response);
 		}
 		
 	}

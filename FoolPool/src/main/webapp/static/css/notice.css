@@ -1,5 +1,68 @@
 @charset "UTF-8";
-.noticesearch_area {
+/*에러페이지 div */
+.error-container{
+	position: relative;
+	width: 700px; /* Set the desired width */
+  height: 710px; /* Set the desired height */
+  overflow: hidden;
+}
+.oopsError{
+    width: 700px;
+    height: 600px;
+    border-radius: 6%;
+    position: relative;
+    z-index: 1;
+    
+}
+
+/* 에러페이지 */
+
+.error-Label {
+	font-size: 35px;
+	color: #466b55;
+	margin: 30px 0 15px 100px;
+	font-weight: bold;
+}
+
+.error-DivLine {
+	margin: 0 auto;
+	width: 1244px;
+	height: 720px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 6%;
+	/* background-image : url('error.png');
+	background-size: 300px 300px; */
+}
+.error-DivLine a:link, .error-DivLine a:visited, .error-DivLine a:hover { 
+	text-decoration: none;
+	color: black;
+}
+
+.error-TopBorder, .error-BottomBorder {
+	border: 4px solid #466B55;
+	width: 100%;
+	height: 60px;
+	border-bottom: 0;
+	border-radius: 20px 20px 0px 0px;
+	position: relative !important;
+  	z-index: 20 !important; 
+  	
+}
+
+.error-BottomBorder {
+	border-bottom: 4px solid #466B55;
+	border-top: 0;
+	border-radius: 0px 0px 20px 20px;
+	margin-top: -30px;
+	
+}
+
+
+
+/* 검색창 */
+.notice-searchBar {
 	text-align: center;
 /*	margin-bottom: -30px; */
 	margin-bottom: 15px;
@@ -8,9 +71,8 @@
 	position: relative;
 	z-index: 9;
 }
-
 /* 후손선택자 작성시 주의할것 */
-.noticesearch_area select, .noticesearch_area option, .noticesearch_area input {
+.notice-searchBar select, .notice-searchBar option, .notice-searchBar input {
 	font-family: 'Cafe24SsurroundAir';
 	font-size: 20px;
 	font-weight: bold;
@@ -19,11 +81,36 @@
 	border: 0.5px solid gray;
 }
 
-.noticesearch_area>:last-child {
-	background: #D9D9D9;
-	border: #D9D9D9 1px solid;
+.notice-searchBar>:last-child {
 	padding: 5px 20px;
 }
+
+
+
+
+/*list에서 페이징 하는 부분 */
+.noticePaging{
+	position: absolute;
+	top: 890px; 
+	z-index: 10;
+ left: 50%; /* 가로 중앙으로 이동하기 위해 50%로 설정합니다. */
+  transform: translateX(-50%); /* 가로 중앙 정렬을 조정합니다. */
+	display: flex;
+	font-family: 'Cafe24SsurroundAir';
+	font-size: larger;
+	font-weight: bold;
+}
+
+.noticePaging a {
+	text-decoration: none;
+	margin: 0 5px;
+	color: #D9D9D9 !important;
+}
+#notice-selectedPage {
+	color: #466b55 !important;
+}
+
+
 
 
 
@@ -72,7 +159,9 @@
 }
 
 
-
+.li.title{
+	text-align: left;
+}
 
 
 
@@ -145,6 +234,7 @@
     height: 30px;
     float: right;
     font-family: 'Cafe24SsurroundAir';
+    width: 80px;
 }
 .noticeFormmove-up{
 	 	position: absolute;
@@ -307,6 +397,8 @@
     height: 30px;
     margin-left:530px;
     font-family: 'Cafe24SsurroundAir';
+    width: 80px;
+    margin-left: 500px;
     
 }
 
@@ -345,7 +437,8 @@
     border: 1px solid #e1e1e1;
     padding: 1px 0px 0 0;
     border-radius: 8px;
-    height: 30px
+    height: 30px;
+    width:80px;
   
   }    
   .noticeDetailBtn2{
@@ -374,9 +467,22 @@
     border: 1px solid #e1e1e1;
     padding: 1px 0px 0 0;
     border-radius: 8px;
-    height: 30px
+    height: 30px;
+    width:80px;
   
   }  
+  
+  .noticeDetailBtn1:hover,
+  .noticeDetailBtn2:hover,
+  .noticeDetailBtn3:hover {
+  /* 호버시 버튼 스타일 변경 */
+  background-color: #b2d1be;
+  box-shadow: 0 80px 0 0 #466b55 inset,
+        0 -80px 0 0 #466b55 inset;
+  color: #fff; /* 원하는 색상으로 변경 */
+}
+
+
   .noticeDetailTitle{
  	 width:450px;
  	 height:auto; 
@@ -502,14 +608,14 @@
 .notice_list>ul>li {
 	margin: 0;
 	padding: 0;
-	text-align: center;
+	text-align: left;
 	
 }
 .notice_list>ul>li>a {
 	display: block;
 	margin: 0;
 	padding: 0;
-	text-align: center;
+	text-align: left;
 	white-space: nowrap; /* 텍스트를 한 줄로 유지하도록 설정 */
 	overflow: hidden; /* 넘치는 텍스트를 숨김 */
 	text-overflow: ellipsis; /* 텍스트가 넘치면 '...'으로 표시 */
@@ -552,25 +658,7 @@
 
 
 
-.noticePaging{
-	/* background: skyblue; */
-	
-	/* 원하는 위치에 배치하기 위해 절대값으로 지정 */
-    /* margin-left: 500px; */
-    justify-content: center;
-    align-items: center;
-	font-family: 'Cafe24SsurroundAir';
-	font-size: larger;
-	font-weight: bold;
-	display: flex;
-	margin-top:50px;
-	
-}
-.noticePaging a {
-	text-decoration: none;
-	margin: 0 5px;
-	color: #D9D9D9;
-}
+
 
 #notice-selectedPage {
 	color: #466b55;
@@ -580,10 +668,6 @@
 
 
 
-.noticePaging a.current_page {
-	border-bottom: 2px solid #282A35;
-	font-weight: bold;
-}
 
 .noticesearch_area {
 	text-align: center;
