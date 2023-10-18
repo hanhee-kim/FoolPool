@@ -14,8 +14,6 @@ function go_searchFlower() {
 	var selectedVal = document.getElementById("searchFlowerTitleOption").value;
 	console.log(selectedVal);
 	$('#flowerCardsection_line').removeClass("searchFlower_disabled");
-	$('#searchFlowerMSG').addClass("searchFlower_disabled");
-	$('#searchFlowerOptionCheck').removeClass("searchFlower_disabled");
 
 	var data;
 
@@ -81,7 +79,6 @@ $(document).ready(function() {
 			$('#' + cardId).addClass("searchFlower_disabled");
 		}
 	});
-	
 	//더보기 
 	//var showCardLen = fCardLen;
 	var showeMoreCnt = 1;
@@ -105,6 +102,8 @@ $(document).ready(function() {
 	});
 		
 	})
+	
+	
 });
 
 	

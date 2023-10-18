@@ -49,8 +49,7 @@
                 </div>
                 <div class="flowerCardsection">
 	                <c:if test="${res.size <= 0}">
-	                <div class="searchFlowerMSG" id="searchFlowerMSG">꽃을 검색하세요!!!</div>
-	                <div class="searchFlowerMSG searchFlower_disabled" id="searchFlowerOptionCheck" >검색 옵션을 확인하세요.</div>
+	                <div class="searchFlowerMSG" id="searchFlowerMSG1">검색 옵션에 맞춰 꽃을 검색해주세요!!!</div>
 	                </c:if>
 					<div class="flowerCardsection_line" id="flowerCardsection_line">                
 	                <c:if test="${res.size > 0}">
@@ -132,7 +131,6 @@
 		$('#searchFlowerStartMonth').removeClass("searchFlower_disabled");
 		$('#searchFlowerStartDay').removeClass("searchFlower_disabled");
 	}
-	console.log(option);
 
 </script>
 </body>
