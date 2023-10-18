@@ -42,10 +42,13 @@ public class DrFoolPoolDetail extends HttpServlet {
 		request.setAttribute("jspName", "drFoolPool");
 		
 		Integer no = Integer.parseInt(request.getParameter("no"));
-		Integer prevpage = Integer.parseInt(request.getParameter("prevpage"));
+		String prevpage = request.getParameter("prevpage");
+		int curPage = 1;
+		if(prevpage!=null) curPage = Integer.parseInt(prevpage);
 		String filter = request.getParameter("filter");
 		String sOption = request.getParameter("sOption");
 		String sValue = request.getParameter("sValue");
+		System.out.println("no:" + no + ",prevpage" + prevpage + ",filter:" + filter + ",sOption:" + sOption + ",sValue:" + sValue);
 
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();

@@ -35,7 +35,7 @@
 			    	<div class="drFP-detail-5row">
 			    		<c:if test="${member ne Empty && member.id eq drFoolPool.writerId}">
 				    		<button onclick="drFPedit(${drFoolPool.no})">수정</button>
-				    		<button onclick="drFPdelete(${drFoolPool.no}, ${prevpage}, ${filter}, ${sOption}, ${sValue})">삭제</button>
+				    		<button id="drFPdelBtn" data-no='${drFoolPool.no}' data-prevpage='${prevpage}' data-filter='${filter}' data-sOption='${sOption}' data-sValue='${sValue}' onclick="drFPdelBtnfunction();">삭제</button>
 			    		</c:if>
 			    		<button onclick="drFPbackToList(${drFoolPool.no})">목록</button>
 			    	</div>
@@ -66,7 +66,7 @@
 				    			</c:forEach>
 				    		</table>
 				    	<c:if test="${member ne Empty}">
-				    		<div id="dfFP-commentForm">
+				    		<div id="drFP-commentForm">
 					    		<form action="addDrFoolPoolComment" method="post">
 					    			<input type="hidden" name="postNo" value="${drFoolPool.no}"/>
 					    			<span>${member.nickname}</span>

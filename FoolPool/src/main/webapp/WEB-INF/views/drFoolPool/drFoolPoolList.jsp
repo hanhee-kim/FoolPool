@@ -50,12 +50,14 @@
                 
                  
                 <%-- 카드그리드 3x2 --%>
-			    <div class="drFP-CardGrid">
-			    	<%-- 목록이 0행일때의 예외처리 --%>
-			    	<c:if test="${resMap['drFoolPoolList'].size()==0}">
-			    		<div id="drFP-emptyList">...</div>
-			    	</c:if>
-			    	<c:if test="${resMap['drFoolPoolList'].size()>0}">
+		    	<c:if test="${resMap['drFoolPoolList'].size()==0}">
+		    		<div id="drFP-emptyList">
+		    			<p>게시글이 존재하지 않습니다</p>
+		    			<img alt="예외처리이파리" src="./static/img/leaf-exception.png" id="drFP-leafException">
+		    		</div>
+		    	</c:if>
+		    	<c:if test="${resMap['drFoolPoolList'].size()>0}">
+				    <div class="drFP-CardGrid">
 						<c:forEach items="${resMap['drFoolPoolList']}" var="drfoolpool">
 							<c:url var="urldetail" value="drFoolPoolDetail">
 							    <c:param name="no" value="${drfoolpool.no}" />
@@ -85,9 +87,8 @@
 						        </div>
 							</a>
 				        </c:forEach>
-			    	</c:if>
-			    </div> <%-- drFP-CardGrid --%>
-                
+			    	</div> <%-- drFP-CardGrid --%>
+                </c:if>
                 
                 <%-- 검색바 --%>
                 <h5 class="drFP-searchBar">
@@ -117,6 +118,9 @@
 						    </c:if>
 						</c:url>
 			            <a href="${urlprevpagenumber}">&lt;</a>
+			         </c:when>
+			         <c:when test="${resMap['drFoolPoolList'].size()==0}">
+			            <b></b>
 			         </c:when>
 			         <c:otherwise>
 			            <a>&lt;</a>
@@ -162,6 +166,9 @@
 						    </c:if>
 						</c:url>
 			            <a href="${urlnextpagenumber}">&gt;</a>
+			         </c:when>
+			         <c:when test="${resMap['drFoolPoolList'].size()==0}">
+			            <b></b>
 			         </c:when>
 			         <c:otherwise>
 			            <a>&gt;</a>

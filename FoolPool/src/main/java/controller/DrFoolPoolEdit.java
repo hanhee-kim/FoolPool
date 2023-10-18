@@ -36,16 +36,25 @@ public class DrFoolPoolEdit extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		System.out.println("/editDrFoolPool doGet 호출");
+
 		// 뷰의 버튼이 아니라 사용자가 직접 url로 요청하여 들어왔을때도 비로그인 상태일때는 로그인페이지로 이동하게함
 		HttpSession session = request.getSession();
 		if(session.getAttribute("member")==null) request.getRequestDispatcher("login.jsp").forward(request, response);
 			
 		request.setCharacterEncoding("utf-8");
 		Integer no = Integer.parseInt(request.getParameter("no"));
+		String page = request.getParameter("prevpage");
+		int curPage = 1; 
+		if(page!=null) curPage = Integer.parseInt(page);
+		String filter = request.getParameter("filter");
+		String sOption = request.getParameter("sOption");
+		String sValue = request.getParameter("sValue");
+		System.out.println("no:" + no + ",prevpage" + page + ",filter:" + filter + ",sOption:" + sOption + ",sValue:" + sValue);
+		
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
 			DrFoolPool drFoolPool = drFoolPoolService.drFoolPoolDetail(no);
-			System.out.println("-----/editDrFoolPool doGet 호출-----\n" + drFoolPool.toString());
 			request.setAttribute("drFoolPool", drFoolPool);
 			request.setAttribute("jspName", "drFoolPool");
 			request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolEdit.jsp").forward(request, response);

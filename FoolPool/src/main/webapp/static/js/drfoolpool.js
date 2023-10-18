@@ -10,10 +10,13 @@ function drFPbackToList(no) {
 	window.location.href = "goDrFoolPool";
 }
 
-/* swal.fire()로 변경 */
 /* 풀풀박사 상세 - 삭제 버튼 */
-function drFPdelete(no, prevpage, filter, sOption, sValue) {
-	console.log('-------');
+function drFPdelBtnfunction() {
+	 var no = document.getElementById("drFPdelBtn").getAttribute("data-no"); // 제이쿼리문법으로 가져오면 null로 가져와지는 값이 있었음
+	 var prevpage = document.getElementById("drFPdelBtn").getAttribute("data-prevpage");
+	 var filter = document.getElementById("drFPdelBtn").getAttribute("data-filter");
+	 var sOption = document.getElementById("drFPdelBtn").getAttribute("data-sOption");
+	 var sValue = document.getElementById("drFPdelBtn").getAttribute("data-sValue");
 	Swal.fire({
 		title: '게시글을 삭제하시겠습니까?',
 		text: '삭제후엔 게시글의 복구가 불가능합니다.',
@@ -25,24 +28,34 @@ function drFPdelete(no, prevpage, filter, sOption, sValue) {
 		cancelButtonText: '취소'
 	}).then((result) => {
 		if(result.isConfirmed) {
+			console.log('no:'+no+"prevpage:"+prevpage+",filter:"+filter+",sOption:"+sOption+",sValue:"+sValue);
 			if(sOption!=null && sValue!=null) {
-				location.href="drFoolPoolDelete?no=" + no + "&prevpage=" + prevpage + "&filter=" + filter + "&sOption=" + sOption + "sValue=" + sValue;
+				location.href="drFoolPoolDelete?no=" + no + "&prevpage=" + prevpage + "&filter=" + filter + "&sOption=" + sOption + "&sValue=" + sValue;
 			} else {
 				location.href="drFoolPoolDelete?no=" + no + "&prevpage=" + prevpage + "&filter=" + filter;
 			}
 		}
 	})
-	
-	/*console.log("drFPdelete 호출...");
-	if (confirm("게시글을 삭제하시겠습니까?") == true){ 
-		window.location.href = "drFoolPoolDelete?no=" + no + "&prevpage=" + prevpage;
-	 }*/
 }
+
 
 /* 풀풀박사 상세 - 수정 버튼 */
 function drFPedit(no) {
-	console.log("drFPedit 호출...");
-	window.location.href = "editDrFoolPool?no=" + no;
+	/*console.log("drFPedit 호출...");
+	window.location.href = "editDrFoolPool?no=" + no;*/
+	
+	var no = document.getElementById("drFPdelBtn").getAttribute("data-no"); // 제이쿼리문법으로 가져오면 null로 가져와지는 값이 있었음
+	var prevpage = document.getElementById("drFPdelBtn").getAttribute("data-prevpage");
+	var filter = document.getElementById("drFPdelBtn").getAttribute("data-filter");
+	var sOption = document.getElementById("drFPdelBtn").getAttribute("data-sOption");
+	var sValue = document.getElementById("drFPdelBtn").getAttribute("data-sValue");
+	
+	console.log('no:'+no+"prevpage:"+prevpage+",filter:"+filter+",sOption:"+sOption+",sValue:"+sValue);
+	if(sOption!=null && sValue!=null) {
+		location.href="editDrFoolPool?no=" + no + "&prevpage=" + prevpage + "&filter=" + filter + "&sOption=" + sOption + "&sValue=" + sValue;
+	} else {
+		location.href="editDrFoolPool?no=" + no + "&prevpage=" + prevpage + "&filter=" + filter;
+	}
 }
 
 /* 풀풀박사 댓글 삭제 버튼 */
@@ -101,13 +114,17 @@ $(document).ready(function() {
 	    $(".drFP-selectedFileName").val(selectedFileName);
 	});
     
-	/* 풀풀박사 작성폼, 수정폼 - 파일선택 유효성 검사 (커스텀버튼을 사용하기 위해 파일input에 display=none스타일이 적용했기때문에 required속성 사용하여 체크하지 못함) */
-    $('.drFP-form').submit(function(event) {
+	/* 풀풀박사 작성폼 - 파일선택 유효성 검사 (커스텀버튼을 사용하기 위해 파일input에 display=none스타일이 적용했기때문에 required속성 사용하여 체크하지 못함) */
+    $('#drFP-writeform').submit(function(event) {
         let fileName = $(".drFP-selectedFileName").val();
         if (fileName=='첨부파일 미선택') {
-            console.log("파일이 선택되지 않았으므로 기본제출이 막아짐"); // 404에러 방지
-            alert('글을 등록하기 위해서 첨부파일을 선택해주세요.');
-            event.preventDefault();
+			Swal.fire({
+				title:'글을 등록하기 위해서 첨부파일을 선택해주세요.',
+				icon:'warning',
+				confirmButtonColor: 'orange'
+			});
+			event.preventDefault();
+			// 파일미선택시 기본제출을 막아 404에러 방지
         }
     });
     

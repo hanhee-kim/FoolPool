@@ -17,18 +17,18 @@ System.out.println("edit.jsp에서 출력" + drFoolPool.getNo() + ", " + drFoolP
                 <%-- 게시글 수정 --%>
                 <section class="drFP-formSection">
                 	<h2>질문글 수정</h2>
-					<form action="editDrFoolPool" method="post" enctype="multipart/form-data" name="drFoolPoolForm" class="drFP-form">
+					<form action="editDrFoolPool" method="post" enctype="multipart/form-data" name="drFoolPoolForm" id="drFP-editform">
 						<input type="hidden" name="no" value="${drFoolPool.no}"/>
 						<div class="drFP-inputArea">
 							<ul>
 								<li>
 				                    <label>제목 <b>*</b></label><br>
-				                    <input class="drFP-formTitle drFP-text" name="title" type="text" required="required" maxlength="100">
+				                    <input class="drFP-formTitle drFP-text" name="title" type="text" maxlength="100" value="${drFoolPool.title}">
 				                    <div class="drFP-titleValidationMsg">유효성검사메시지란</div>
 				                </li>
 				                <li>
 				                    <label>내용 <b>*</b></label><br>
-				                    <textarea class="drFP-formContent" name="content" rows="20" cols="42" placeholder="***&#10;&#10;질문글은 이미지를 꼭 첨부하여 작성해주세요.&#10;&#10;다른 회원을 위해 해결된 게시글의 삭제는 자제해주세요.&#10;&#10;채택된 댓글은 삭제가 불가능합니다.&#10;&#10;***" required="required" maxlength="2000"></textarea>
+				                    <textarea class="drFP-formContent" name="content" rows="20" cols="42" maxlength="2000">${drFoolPool.content}</textarea>
 				                    <div class="drFP-contentValidationMsg">유효성검사메시지란</div>
 				                </li>
 				                <li>
@@ -47,7 +47,7 @@ System.out.println("edit.jsp에서 출력" + drFoolPool.getNo() + ", " + drFoolP
 				                </li>
 							</ul>
 							<div class="drFP-formBtn drFP-formBtnforedit">
-								<input type="submit" value="수정"/>&nbsp;&nbsp; 
+								<input type="submit" value="수정"/>&nbsp;&nbsp;
 								<input type="button" value="취소" onclick="drFPback();"/>
 							</div>
 						</div> <%-- drFP-inputArea --%>

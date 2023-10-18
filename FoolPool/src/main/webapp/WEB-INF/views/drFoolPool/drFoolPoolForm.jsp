@@ -12,7 +12,7 @@
                 <%-- 게시글 작성 --%>
                 <section class="drFP-formSection">
                 	<h2>질문글 작성</h2>
-					<form action="drFoolpoolForm" method="post" enctype="multipart/form-data" name="drFoolPoolForm" class="drFP-form">
+					<form action="drFoolpoolForm" method="post" enctype="multipart/form-data" name="drFoolPoolForm" id="drFP-writeform">
 						<div class="drFP-inputArea">
 							<ul>
 								<li>

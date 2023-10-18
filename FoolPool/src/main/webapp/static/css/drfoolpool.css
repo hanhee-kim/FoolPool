@@ -152,6 +152,26 @@
 .drFP-FilterBtnSelected {
 	background: #e0f4de;
 }
+
+#drFP-emptyList {
+	width: 1200px;
+    height: 575px;
+    margin-top: 120px;
+    
+    /* 자식요소 수직, 수평 정렬*/
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+}
+#drFP-emptyList p {
+	font-size: 25px;
+}
+#drFP-leafException {
+	/* 원본: 너비 341px */
+	width: 250px;
+	height: auto;
+}
+
 .drFP-CardGrid {
     width: 1200px;
     height: 575px;
@@ -228,10 +248,6 @@
 	height: 34px;
 }
 
-#drFP-emptyList {
-	background: pink;
-}
-
 
 /* 2. 풀풀박사 게시글 상세 */
 .drFP-detailArea {
@@ -299,15 +315,16 @@
 }
 .drFP-detail-5row button{
 	margin-left: 8px; 
-	
+	width: 100px;
+	height: 40px;
 	text-align: center;
-	background: #D9D9D9;
+	background: #e0f4de;
 	font-family: 'Cafe24SsurroundAir';
-	font-size: 17px;
+	font-size: 19px;
 	font-weight: border;
-	border: 0;
+	border: none;
 	border-radius: 5px;
-	padding: 5px 15px;
+	padding: 9px;
 	cursor: pointer;
 }
 .drFP-commentArea {
@@ -317,9 +334,8 @@
     position: relative; 
     z-index: 5; 
 }
-#dfFP-commentForm {
-	position: relative; 
-    z-index: 10; 
+.drFP-commentArea h4 {
+	font-size: larger;
 }
 .drFP-commentArea table {
 	width: 95%;
@@ -396,6 +412,31 @@
 	font-size: 12px;
 	color: orange;
 }
+/* 댓글 작성폼 */
+#drFP-commentForm {
+	background: orange;
+	position: relative; 
+    z-index: 10; 
+    width: 95%;
+    /* padding-top: 10px; */
+    
+    display: grid;
+    grid-template-rows: repeat(1, 1fr); /* 1행 */
+    grid-template-columns: repeat(3, 1fr); /* 3열 */
+    gap: 5px; /* 그리드 아이템 간 간격 */
+    justify-items: center; /* 그리드 아이템 가로 중앙 정렬 */
+    align-items: center; /* 그리드 아이템 세로 중앙 정렬 */
+}
+#drFP-commentForm span {
+	/* margin-left: 10px;
+    margin-right: 55px; */
+}
+#drFP-commentForm input[type=text] {
+	/* margin-left: 10px;
+    margin-right: 55px; */
+    height: 30px;
+}
+
 
 .drFP-detailBottomBorder {
 	/* 원하는 위치에 배치하기 위해 절대값으로 지정 */
@@ -411,7 +452,6 @@
 	top: 890px; 
 	width: 1246.67px;
 }
-
 .drFP-formSection {
 	width: 70%;
 	height: 600px;
@@ -477,12 +517,9 @@
 	margin-top: 3px;
 	
 }
-
-
 .drFP-fileSection {
 	width:744px;
 }
-
 /*
 .drFP-formImgInput {
 	width: 90%;
