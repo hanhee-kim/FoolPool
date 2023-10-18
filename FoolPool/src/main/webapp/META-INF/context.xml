@@ -7,7 +7,7 @@
 			  password="1234"
 			  driverClassName="org.mariadb.jdbc.Driver"
 			  factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
-			  url="jdbc:mariadb://localhost:3306/foolpool"
+			  url="jdbc:mariadb://localhost:3307/foolpool"
 			  maxActive="500"/>
 	 <Resources cachingAllowed="true" cacheMaxSize="100000" />
 </Context>

@@ -46,8 +46,8 @@ public class NoticeDetail extends HttpServlet {
 			request.setAttribute("jspName", "notice");
 			request.getRequestDispatcher("WEB-INF/views/notice/noticeDetail.jsp").forward(request, response);
 		} catch (Exception e) {
-			request.setAttribute("err", "notice 상세페이지 조회 실패 ");
-			request.getRequestDispatcher("WEB-INF/views/notice/noticeError.jsp").forward(request, response);
+			//request.setAttribute("err", "notice 상세페이지 조회 실패 ");
+			request.getRequestDispatcher("WEB-INF/views/notice/error.jsp").forward(request, response);
 		}
 		
 
