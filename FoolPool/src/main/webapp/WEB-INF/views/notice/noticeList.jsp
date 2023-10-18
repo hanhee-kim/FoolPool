@@ -3,21 +3,8 @@
 <%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@include file="/WEB-INF/views/include/menubar.jsp"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@include file="/WEB-INF/views/include/menubar.jsp"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<style type="text/css">
-.active {
-	background-color: #77af9c;
-}
-
-</style>
-<script src="https://coode.jquery.com/jquery-3.7.1.js"></script>
 <script>
 	function callBtn(num) {
 		var keyword=$("#keyword").val();
@@ -28,16 +15,8 @@
 		}
 		return true;
 	}
-
-
 </script>
-</head>
-<body>
-
-	<div class="notice-DivLine">
-
-
-
+<div class="notice-DivLine">
 
 		<div class="noticeOuter">
 
@@ -48,8 +27,8 @@
 					<h1>
 						공지사항
 						<c:if test="${member.role == 'ADMIN' }">
-							<a href="noticeform"
-								style="float: right; font-size: 20px; margiin-top: 20ppx;">작성하기</a>
+							<a href="noticeform" id="noticeformbtn"
+								>작성하기</a>
 						</c:if>
 					</h1>
 				</div> <%-- notice_title --%>
@@ -65,7 +44,7 @@
 
 					<%--목록이 0행일때의 예외처리 --%>
 					<c:if test="${res['noticeList'].size()==0}">
-						<div id="notice-emptyList">데이터가 없습니다.</div>
+						<div id="notice-emptyList" style="font-size:50px; color:#466B55; margin-top: 60px; margin-left: 200px;">데이터가 없습니다.</div>
 					</c:if>
 
 					<c:if test="${res['noticeList'].size()>0 }">
@@ -83,8 +62,8 @@
 
 							<ul class="notice_ul" onclick="noticedetail?no=(${list.no})">
 								<li class="no" style="">${loop.index +1 }</li>
-								<li class="title" style="text-overflow: ellipsis;"><a
-									href="noticedetail?no=${list.no}">${list.title }</a></li>
+								<li class="title" style="text-overflow: ellipsis;">
+								<a href="noticedetail?no=${list.no}" id="noticeaBtn">${list.title }</a></li>
 								<li class="date" style="">${list.date }</li>
 								<li class="count" style="">${list.view }</li>
 							</ul>

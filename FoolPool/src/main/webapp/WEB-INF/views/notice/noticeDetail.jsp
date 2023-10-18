@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/include/menubar.jsp"%>
-<c@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core">
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
@@ -26,7 +25,6 @@ $(document).ready(function() {
                     type: "GET",
                     url: "noticedelete?no=${notice.no}",
                     success: function(response) {
-                    	console.log(response);
                         if (response!= null) {
                             Swal.fire('승인이 완료되었습니다.', 'success').then(result => {
                             	   // 만약 Promise리턴을 받으면,
@@ -34,7 +32,7 @@ $(document).ready(function() {
                             		   location.href="notice";
                             	      
                             	   }
-                            	});;sss
+                            	});;
                         } else {
                             Swal.fire('오류 발생', '삭제에 실패했습니다.', 'error');
                         }

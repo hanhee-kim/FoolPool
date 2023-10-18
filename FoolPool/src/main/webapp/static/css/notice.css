@@ -1,4 +1,22 @@
 @charset "UTF-8";
+
+
+
+#noticeformbtn{
+	text-decoration: none;
+	color: black;
+	float: right; 
+	font-size: 20px; 
+	margiin-top: 20px;
+	
+	
+}
+
+#noticeaBtn{
+	text-decoration: none;
+	color: black;
+	text-overflow: ellipsis;
+}
 /*에러페이지 div */
 .error-container{
 	position: relative;

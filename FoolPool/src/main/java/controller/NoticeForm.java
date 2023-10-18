@@ -75,7 +75,7 @@ public class NoticeForm extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			//request.setAttribute("err", e.getMessage());
-			request.getRequestDispatcher("WEB-INF/views/notice/error.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
 
 			
 			

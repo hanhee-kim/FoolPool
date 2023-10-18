@@ -50,7 +50,7 @@ public class NoticeDelete extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			//request.setAttribute("err", "게시글 삭제오류");
-			request.getRequestDispatcher("WEB-INF/views/notice/error.jsp");
+			request.getRequestDispatcher("WEB-INF/views/error.jsp");
 		}
 	}
 

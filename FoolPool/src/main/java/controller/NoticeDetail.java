@@ -41,13 +41,12 @@ public class NoticeDetail extends HttpServlet {
 			NoticeService noticeService = new NoticeServiceImpl();
 			Notice notice = noticeService.noticeDetail(no);
 			//noticeService.noticeViewCountPlus(no);
-			System.out.println("notice의값:"+no); //notice의 no값 console에 뜸. 
 			request.setAttribute("notice", notice);
 			request.setAttribute("jspName", "notice");
 			request.getRequestDispatcher("WEB-INF/views/notice/noticeDetail.jsp").forward(request, response);
 		} catch (Exception e) {
 			//request.setAttribute("err", "notice 상세페이지 조회 실패 ");
-			request.getRequestDispatcher("WEB-INF/views/notice/error.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
 		}
 		
 
