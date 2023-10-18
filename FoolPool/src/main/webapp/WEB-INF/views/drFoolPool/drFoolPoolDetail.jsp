@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/include/menubar.jsp" %>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
             <div class="drFP-Label">풀풀박사</div>
             
@@ -33,7 +35,7 @@
 			    	<div class="drFP-detail-5row">
 			    		<c:if test="${member ne Empty && member.id eq drFoolPool.writerId}">
 				    		<button onclick="drFPedit(${drFoolPool.no})">수정</button>
-				    		<button onclick="drFPdelete(${drFoolPool.no})">삭제</button>
+				    		<button onclick="drFPdelete(${drFoolPool.no}, ${prevpage}, ${filter}, ${sOption}, ${sValue})">삭제</button>
 			    		</c:if>
 			    		<button onclick="drFPbackToList(${drFoolPool.no})">목록</button>
 			    	</div>
@@ -68,7 +70,7 @@
 					    		<form action="addDrFoolPoolComment" method="post">
 					    			<input type="hidden" name="postNo" value="${drFoolPool.no}"/>
 					    			<span>${member.nickname}</span>
-					    			<input type="text" maxlength="300" id="drFP-commentValue" onkeyup="drFPcommentValidation()" name="commentContent"/>
+					    			<input type="text" maxlength="300" id="drFP-commentValue" onkeyup="drFPcommentValidation()" name="commentContent" class="drFP-text"/>
 					    			<div id="drFP-commentValidationMsg"></div>
 					    			<input type="submit" value="등록"/>
 					    		</form>

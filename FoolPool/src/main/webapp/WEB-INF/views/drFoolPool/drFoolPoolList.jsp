@@ -57,7 +57,16 @@
 			    	</c:if>
 			    	<c:if test="${resMap['drFoolPoolList'].size()>0}">
 						<c:forEach items="${resMap['drFoolPoolList']}" var="drfoolpool">
-					        <a href="drFoolPoolDetail?no=${drfoolpool.no}"> 
+							<c:url var="urldetail" value="drFoolPoolDetail">
+							    <c:param name="no" value="${drfoolpool.no}" />
+							    <c:param name="prevpage" value="${resMap.pageInfo.curPage}" />
+							    <c:param name="filter" value="${filter}" />
+							    <c:if test="${sOption ne null && sValue ne null}">
+							        <c:param name="sOption" value="${sOption}" />
+							        <c:param name="sValue" value="${sValue}" />
+							    </c:if>
+							</c:url>
+					        <a href="${urldetail}"> 
 						        <div class="drFP-Card">
 						        	<div class="drFP-CardTitleArea">
 						        		<c:choose>
@@ -90,7 +99,7 @@
 						    <option value="title" ${sOption eq 'title' ? 'selected' : ''}>제목</option>
 						    <option value="content" ${sOption eq 'content' ? 'selected' : ''}>내용</option>
 	                	</select>
-	                	<input type="text" maxlength="100" name="sValue" id="drFP-sValue" value="${sValue}"/>
+	                	<input type="text" maxlength="100" name="sValue" id="drFP-sValue" class="drFP-text" value="${sValue}"/>
 						<input type="submit" value="검색"/>
                 	</form>
                 </h5>

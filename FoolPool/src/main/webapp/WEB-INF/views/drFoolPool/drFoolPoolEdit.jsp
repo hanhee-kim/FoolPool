@@ -23,7 +23,7 @@ System.out.println("edit.jsp에서 출력" + drFoolPool.getNo() + ", " + drFoolP
 							<ul>
 								<li>
 				                    <label>제목 <b>*</b></label><br>
-				                    <input class="drFP-formTitle" name="title" type="text" required="required" maxlength="100">
+				                    <input class="drFP-formTitle drFP-text" name="title" type="text" required="required" maxlength="100">
 				                    <div class="drFP-titleValidationMsg">유효성검사메시지란</div>
 				                </li>
 				                <li>
@@ -32,7 +32,7 @@ System.out.println("edit.jsp에서 출력" + drFoolPool.getNo() + ", " + drFoolP
 				                    <div class="drFP-contentValidationMsg">유효성검사메시지란</div>
 				                </li>
 				                <li>
-				                    <label>이미지 업로드 <b>*</b></label><br>
+				                    <label>이미지 첨부 <b>*</b></label><br>
 				                    <div class="drFP-fileSection">
 					                    <%-- 선택된 파일명 표시하며 이 값을 통해 null로 제출되면 안되는 파일선택여부를 체크함 --%>
 					                    <input class="drFP-selectedFileName" placeholder="첨부파일명" value="첨부파일 미선택" readonly="readonly" required="required"/>

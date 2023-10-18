@@ -10,13 +10,35 @@ function drFPbackToList(no) {
 	window.location.href = "goDrFoolPool";
 }
 
+/* swal.fire()로 변경 */
 /* 풀풀박사 상세 - 삭제 버튼 */
-function drFPdelete(no) {
-	console.log("drFPdelete 호출...");
+function drFPdelete(no, prevpage, filter, sOption, sValue) {
+	console.log('-------');
+	Swal.fire({
+		title: '게시글을 삭제하시겠습니까?',
+		text: '삭제후엔 게시글의 복구가 불가능합니다.',
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: 'orange',
+		cancelButtonColor: '#466b55',
+		confirmButtonText: '확인',
+		cancelButtonText: '취소'
+	}).then((result) => {
+		if(result.isConfirmed) {
+			if(sOption!=null && sValue!=null) {
+				location.href="drFoolPoolDelete?no=" + no + "&prevpage=" + prevpage + "&filter=" + filter + "&sOption=" + sOption + "sValue=" + sValue;
+			} else {
+				location.href="drFoolPoolDelete?no=" + no + "&prevpage=" + prevpage + "&filter=" + filter;
+			}
+		}
+	})
+	
+	/*console.log("drFPdelete 호출...");
 	if (confirm("게시글을 삭제하시겠습니까?") == true){ 
-		window.location.href = "drFoolPoolDelete?no=" + no;
-	 }
+		window.location.href = "drFoolPoolDelete?no=" + no + "&prevpage=" + prevpage;
+	 }*/
 }
+
 /* 풀풀박사 상세 - 수정 버튼 */
 function drFPedit(no) {
 	console.log("drFPedit 호출...");

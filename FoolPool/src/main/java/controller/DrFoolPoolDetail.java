@@ -42,6 +42,10 @@ public class DrFoolPoolDetail extends HttpServlet {
 		request.setAttribute("jspName", "drFoolPool");
 		
 		Integer no = Integer.parseInt(request.getParameter("no"));
+		Integer prevpage = Integer.parseInt(request.getParameter("prevpage"));
+		String filter = request.getParameter("filter");
+		String sOption = request.getParameter("sOption");
+		String sValue = request.getParameter("sValue");
 
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
@@ -55,6 +59,10 @@ public class DrFoolPoolDetail extends HttpServlet {
 				System.out.println(iter.next().toString());
 			}
 			
+			request.setAttribute("prevpage", prevpage);
+			request.setAttribute("filter", filter);
+			request.setAttribute("sOption", sOption);
+			request.setAttribute("sValue", sValue);
 			request.setAttribute("drFoolPool", drFoolPool);
 			request.setAttribute("commentList", commentList);
 			request.setAttribute("commentCnt", commentList.size());

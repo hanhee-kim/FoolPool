@@ -30,11 +30,16 @@ public class DrFoolPoolDelete extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("$$$$$글삭제 서블릿 호출");
+		
 		request.setCharacterEncoding("utf-8");
 		Integer no = Integer.parseInt(request.getParameter("no"));
-		String page = request.getParameter("page");
+		String page = request.getParameter("prevpage");
 		int curPage = 1; 
 		if(page!=null) curPage = Integer.parseInt(page);
+		String filter = request.getParameter("filter");
+		String sOption = request.getParameter("sOption");
+		String sValue = request.getParameter("sValue");
 		System.out.println("삭제할 글번호 no: " + no);
 		System.out.println("돌아갈 페이지 page: " + curPage);
 		
