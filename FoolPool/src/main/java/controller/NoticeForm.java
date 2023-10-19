@@ -57,8 +57,7 @@ public class NoticeForm extends HttpServlet {
 		
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		System.out.println("-------noticeform서블릿-----\ntitle: " + title);
-		System.out.println("-------noticeform서블릿-----\nwriter_id: " + writer_id );
+		
 	
 		//객체에 값 세팅 
 		Notice notice = new Notice();
