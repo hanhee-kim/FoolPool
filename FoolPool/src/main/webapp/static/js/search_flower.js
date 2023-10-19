@@ -84,10 +84,8 @@ $(document).ready(function() {
 	//var showCardLen = fCardLen;
 	var showeMoreCnt = 1;
 	$("#searchFlowerSeeMore").on("click", function (){
+		//보여지는게 처음부터 4개여서 카운트를 1로놓고 클릭할때 2로 만들어서 8개를 보여줌
 		showeMoreCnt++;
-		console.log("더보기 클릭");
-		console.log("showeMoreCnt"+showeMoreCnt);
-		console.log("fCardLen :"+fCardLen)
 		if(0<fCardLen-(4*showeMoreCnt)){
 			$('#searchFlowerSeeMore').removeClass("searchFlower_disabled");
 			

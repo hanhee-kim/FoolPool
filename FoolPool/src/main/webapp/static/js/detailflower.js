@@ -3,11 +3,7 @@
  */
 
 $(function() {
-//	//큰이미지 눌렀을시 새창으로 띄우기
-//	$("#searchFlower_bigImg").click(function() {
-//		window.open($(this).attr('src'));
-//	})
-	//모달창
+ //큰이미지 클릭시 모달창
  // 이미지 클릭 시 모달 열기
     $("#searchFlower_bigImg").click(function() {
         var modal = document.getElementById('flower_d_Modal');
@@ -21,19 +17,14 @@ $(function() {
         var modal = document.getElementById('flower_d_Modal');
         modal.style.display = 'none';
     });
-
-    // 모달 외부 클릭 시 모달 닫기
+//
+    // 모달에서 이미지 밖 클릭 시 모달 닫기
     $(window).click(function(e) {
         var modal = document.getElementById('flower_d_Modal');
         if (e.target == modal) {
             modal.style.display = 'none';
         }
     });
-//	window.addEventListener("click", function(event) {
-//		if (event.target === modal) {
-//			modal.style.display = "none";
-//		}
-//	});
 
 	//small이미지 클릭시 big이미지의 변환
 	$(".searchFlowerDetailSmallImg").click(function() {

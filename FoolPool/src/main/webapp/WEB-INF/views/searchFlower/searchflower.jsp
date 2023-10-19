@@ -26,11 +26,6 @@
 				</select>
 				<select id="searchFlowerStartDay"
 					class="searchFlowerStartDay searchFlower_pd_r_22 searchFlower_OptionDate">
-<%-- 					<c:set var="d" value="1" />
-					<c:forEach begin="1" end="31">
-						<option value="${d}">${d>9 ? d:'0'}${d>9 ? '':d}일</option>
-						<c:set var="n" value="${d+1}" />
-					</c:forEach> --%>
 				</select>
 			<div id="searchFlowerHyphen" class="searchFlower_disabled">~</div>
 			<select id="searchFlowerEndMonth"
@@ -42,11 +37,6 @@
 			</select> 
 			<select id="searchFlowerEndDay"
 				class="searchFlowerEndDay searchFlower_pd_r_22 searchFlower_OptionDate searchFlower_disabled">
-<%-- 				<c:set var="n" value="1" /> --%>
-<%-- 				<c:forEach begin="1" end="31"> --%>
-<%-- 					<option value="${n}">${n>9 ? n:'0'}${n>9 ? '':n}일</option> --%>
-<%-- 					<c:set var="n" value="${n+1}" /> --%>
-<%-- 				</c:forEach> --%>
 			</select> 
 			<input type='text' class='searchFlowerByName searchFlower_disabled'
 				name='searchFlowerByName' id='searchFlowerByName' /> <input
