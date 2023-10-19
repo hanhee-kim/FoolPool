@@ -51,11 +51,17 @@ function pfAddKeywordBtn(event) {
             // 폼 제출
             // form.submit();
 		} else {
-			alert("더 이상 텍스트를 추가할 수 없습니다. 최대 " + maxKeywords + "개까지만 가능합니다.");
+			Swal.fire({
+				text:"더 이상 텍스트를 추가할 수 없습니다. 최대 " + maxKeywords + "개까지만 가능합니다.",
+				icon:'warning'
+					});
 			pfKeyword.value = "";
 		}
 	} else {
-		alert("키워드를 입력하세요.");
+		Swal.fire({
+			title:'키워드를 입력하세요.',
+			icon:'warning'
+					});
 		pfKeyword.value = "";
 	}
 }
@@ -80,11 +86,22 @@ function pfRemoveKeywordBtn(element) {
 
 // 게시글 삭제
 function pdRemovePoolentarier(no) {
-	if (confirm("게시글을 삭제하시겠습니까?")) {
-		window.location.href = "poolentarierDelete?no=" + no;
-	} else {
-		
-	}
+	Swal.fire({
+		title: '게시글을 삭제하시겠습니까?',
+		text:'삭제 후 복구가 불가능합니다.',
+		icon: 'warning',
+		showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+		confirmButtonColor: '#5196d7', // confrim 버튼 색깔 지정
+		cancelButtonColor: '#e75959', // cancel 버튼 색깔 지정
+		confirmButtonText: '승인', // confirm 버튼 텍스트 지정
+		cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+		closeOnClickOutside: false
+		}).then(function(result) {
+			if (result.isConfirmed) {
+			// 확인 버튼을 눌렀을 때, 게시글을 삭제
+			window.location.href = "poolentarierDelete?no=" + no;
+			}
+		})
 }
 
 // 특수문자 제한
@@ -92,7 +109,10 @@ function characterCheck(obj){
 	var regExp = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi; 
 
 	if( regExp.test(obj.value) ){
-		alert("특수문자는 입력하실수 없습니다.");
+		Swal.fire({
+			title:'특수문자는 입력하실수 없습니다.',
+			icon:'warning'
+					});
 		obj.value = obj.value.substring( 0 , obj.value.length - 1 ); // 입력한 특수문자 한자리 지움
 	}
 }
@@ -102,11 +122,22 @@ function characterCheck(obj){
 
 // 댓글 삭제
 function pdRemoveComment(commentNo, postNo) {
-	if (confirm("댓글을 삭제하시겠습니까?")) {
-		window.location.href = "poolentarierCommentDelete?commentNo=" + commentNo + "&postNo=" + postNo;
-	} else {
-		
-	}
+	Swal.fire({
+		title: '댓글을 삭제하시겠습니까?',
+		icon: 'warning',
+		showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+		confirmButtonColor: '#5196d7', // confrim 버튼 색깔 지정
+		cancelButtonColor: '#e75959', // cancel 버튼 색깔 지정
+		confirmButtonText: '승인', // confirm 버튼 텍스트 지정
+		cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+		closeOnClickOutside: false
+		}).then(function(result) {
+			if (result.isConfirmed) {
+			// 확인 버튼을 눌렀을 때, 댓글을 삭제
+			window.location.href = "poolentarierCommentDelete?commentNo=" + commentNo + "&postNo=" + postNo;
+			}
+		})
+	
 }
 
 // 댓글 유효성 검사
@@ -168,8 +199,11 @@ $(document).ready(function() {
     $('.pfForm').submit(function(event) {
         let fileName = $(".pfSelectedFileName").val();
         if (fileName=='첨부파일 미선택') {
-            console.log("파일이 선택되지 않았으므로 기본제출이 막아짐"); // 404에러 방지
-            alert('글을 등록하기 위해서 첨부파일을 선택해주세요.');
+//            console.log("파일이 선택되지 않았으므로 기본제출이 막아짐"); // 404에러 방지
+            Swal.fire({
+				title: '글을 등록하기 위해서 첨부파일을 선택해주세요.',
+				icon: 'warning'
+					});
             event.preventDefault();
         }
     });

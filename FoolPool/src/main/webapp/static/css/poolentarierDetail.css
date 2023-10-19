@@ -216,7 +216,7 @@
 	width: 30px;
 }
 
-.pdCommentValue{
+#pdCommentValue{
 	height: 120px;
     resize: none; /* textarea 크기 고정 */
 	width: 880px;
@@ -242,7 +242,7 @@
     font-size: 16px;
 }
 
-.pdCommentFormBtns{
+#pdCommentFormBtns{
 	grid-column: 4; /* 4열에 위치하게 함 */
     text-align: right;
     margin-right: 10px;
@@ -258,4 +258,11 @@
 	font-size: 16px;
 	font-family: 'Cafe24SsurroundAir';
 	margin-left: 8px;
+}
+.pd_comm_btn{
+	width: 90px;
+    font-size: 17px;
+    border-radius: 10px;
+    border: 2px solid #466b55;
+	
 }

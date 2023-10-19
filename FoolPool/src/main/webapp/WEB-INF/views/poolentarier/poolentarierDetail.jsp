@@ -52,11 +52,11 @@
 					    				<small>${formattedCommentDate}</small>
 									</td>
 									<td>
-					    				<c:if test="${member ne Empty && member.id eq comment.writerId}">
 											<td>
+					    				<c:if test="${member ne Empty && member.id eq comment.writerId}">
 												<button class="pdCommentDelBtn" onclick="pdRemoveComment(${comment.commentNo}, ${comment.postNo})">X</button>
-											</td>
 										</c:if>
+											</td>
 					    			</td>
 								</tr>
 							</c:forEach>
@@ -73,8 +73,8 @@
 										<textarea maxlength="300" id="pdCommentValue" onkeyup="pdCommentValidation()" name="commentContent" required="required" placeholder="댓글을 입력해주세요"></textarea>
 					    				<div id="pdCommentValidationMsg"></div>
 					    				<p id="pdCommentFormBtns">
-						    				<input type="submit" value="댓글 등록"/>
-						    				<input type="reset" value="입력 취소" id="pdResetCommentbtn" disabled/>
+						    				<input class="pd_comm_btn" type="submit" value="댓글 등록"/>
+						    				<input type="reset" class="pd_comm_btn" value="입력 취소" id="pdResetCommentbtn" disabled/>
 					    				</p>
 									</div>
 								</form>
