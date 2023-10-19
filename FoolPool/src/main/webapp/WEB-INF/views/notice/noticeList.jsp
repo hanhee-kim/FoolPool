@@ -4,18 +4,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/include/menubar.jsp"%>
-
-<script>
-	function callBtn(num) {
-		var keyword=$("#keyword").val();
-		if(keyword!=null && keyword.trim()!=''){
-			$('#page').val(num);
-			$('#searchform').submit();
-			return false;
-		}
-		return true;
-	}
-</script>
 <div class="notice-DivLine">
 
 		<div class="noticeOuter">
@@ -44,7 +32,10 @@
 
 					<%--목록이 0행일때의 예외처리 --%>
 					<c:if test="${res['noticeList'].size()==0}">
-						<div id="notice-emptyList" style="font-size:50px; color:#466B55; margin-top: 60px; margin-left: 200px;">데이터가 없습니다.</div>
+						<div id="notice-emptyList">
+						<p>게시글이 존재하지 않습니다</p>
+						<img alt="예외처리이파리" src="./static/img/leaf-exception.png" id="notice-leafException">
+						</div>
 					</c:if>
 
 					<c:if test="${res['noticeList'].size()>0 }">
@@ -56,12 +47,12 @@
 							<!-- 페이지당 보여지는 항목 수 -->
 
 							<c:set var="startIndex"
-								value="${(pageNumber - 1) * itemsPerPage + 1}" />
+								value="${(pageNumber - 1) * itemsPerPage + loop.index+1}" />
 							<c:set var="endIndex" value="${pageNumber * itemsPerPage}" />
 
 
 							<ul class="notice_ul" onclick="noticedetail?no=(${list.no})">
-								<li class="no" style="">${loop.index +1 }</li>
+								<li class="no" style="">${startIndex }</li>
 								<li class="title" style="text-overflow: ellipsis;">
 								<a href="noticedetail?no=${list.no}" id="noticeaBtn">${list.title }</a></li>
 								<li class="date" style="">${list.date }</li>
@@ -91,11 +82,6 @@
 				</h5>
 
 
-
-				<!-- ADMIN 권한을 가진 사용자만 이 부분에 접근 가능한 코드 + sessoin로그인 확인하기 -->
-				<%--<c:if test="${sessionScope.user != null && sessionScope.user.role == 'ADMIN'}">
-    			<a href="noticeform">작성하기</a>	
-				</c:if>--%>
 
 		</div>
 		
