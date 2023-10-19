@@ -72,7 +72,7 @@
 									<option value="all" ${searchOption eq 'all'? 'selected':''}>제목+내용</option>
 									<option value="writer_Nickname" ${searchOption eq 'writer_Nickname'? 'selected':''}>작성자</option>
 									<option value="keyword" ${searchOption eq 'keyword'? 'selected':''}>키워드</option>
-									<option value="plantsName" ${searchOption eq 'plantsName'? 'selected':''}>식물명</option>
+									<option value="plants_Name" ${searchOption eq 'plantsName'? 'selected':''}>식물명</option>
 								</select>
 								<input type="text" maxlength="100" name="searchText" id="plSearchText" value="${searchText}" />
 								<button class="plSearchBtn" type="submit">검색</button>

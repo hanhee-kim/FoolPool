@@ -43,31 +43,40 @@
 					<div class="pdCommentArea">
 						<h4>댓글 [${commentCount}]</h4>
 						<table>
-							<c:if test="${poolentarierCommentList ne Empty }">
-								<c:forEach items="${poolentarierCommentList }" var="comment">
-									<tr>
-										<td>${comment.writerNickname }</td>
-										<td>
-											${comment.commentContent }
-											<small>${comment.commentDate }</small>
-										</td>
-										<c:if test="${member ne Empty && member.id eq comment.writerId}">
+							<c:forEach items="${poolentarierCommentList }" var="comment">
+								<tr>
+									<fmt:formatDate value="${comment.commentDate}" pattern="yyyy.MM.dd. HH:mm" var="formattedCommentDate" />
+					    			<td>${comment.writerNickname}</td>
+									<td>
+										<label>${comment.commentContent}</label></br>
+					    				<small>${formattedCommentDate}</small>
+									</td>
+									<td>
+					    				<c:if test="${member ne Empty && member.id eq comment.writerId}">
 											<td>
 												<button class="pdCommentDelBtn" onclick="pdRemoveComment(${comment.commentNo}, ${comment.postNo})">X</button>
 											</td>
 										</c:if>
-									</tr>
-								</c:forEach>
-							</c:if>
+					    			</td>
+								</tr>
+							</c:forEach>
 						</table>
+						
 						<c:if test="${member ne Empty }">
-							<div class="pdCommentForm">
-								<form action="poolentarierCommentAdd" method="post">
+							<div class="pdCommentWriteArea">
+								<form action="poolentarierCommentAdd" method="post" id="pdCommentForm">
 									<input type="hidden" name="postNo" value="${poolentarier.no }"/>
-									<span>${member.nickname}</span>
-					    			<input type="text" maxlength="300" id="pdCommentValue" onkeyup="pdCommentValidation()" name="commentContent"/>
-					    			<div id="pdCommentValidationMsg"></div>
-					    			<input type="submit" value="등록"/>
+									<div id="pdCommentWriter">
+										${member.nickname}<img alt="펜" src="./static/img/pen.png" id="pdPen">
+									</div>
+									<div>
+										<textarea maxlength="300" id="pdCommentValue" onkeyup="pdCommentValidation()" name="commentContent" required="required" placeholder="댓글을 입력해주세요"></textarea>
+					    				<div id="pdCommentValidationMsg"></div>
+					    				<p id="pdCommentFormBtns">
+						    				<input type="submit" value="댓글 등록"/>
+						    				<input type="reset" value="입력 취소" id="pdResetCommentbtn" disabled/>
+					    				</p>
+									</div>
 								</form>
 							</div>
 						</c:if>

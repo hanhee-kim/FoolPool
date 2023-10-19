@@ -18,7 +18,7 @@
 				                </li>
 				                <li>
 				                    <label>내용 <b>*</b></label><br>
-				                    <textarea class="pfFormContent" name="content" rows="20" cols="42" required="required" maxlength="2000" value="">
+				                    <textarea class="pfFormContent" name="content" rows="20" cols="42" required="required" maxlength="2000">
 				                    	${poolentarier.content}
 				                    </textarea>
 				                    <div class="pfContentValidationMsg">유효성검사메시지란</div>
@@ -50,7 +50,7 @@
 					                    <input class="pfSelectedFileName" placeholder="첨부파일명" value="첨부파일 미선택" readonly="readonly" required="required"/>
 					                    <%-- input type="file"(파일선택 버튼)를 숨기고 커스텀한 label을 사용 --%>
 					                    <input type="file" class="pfFormImgInput" name="fileName" id="pfFileforedit" accept="image/*" style="display: none;"/>
-					                    <label for="pfFileforwrite" class="pfCustomFileBtn">파일 선택</label><br>
+					                    <label for="pfFileforedit" class="pfCustomFileBtn">파일 선택</label><br>
 					                    <%-- 기존 이미지 표시 --%>
 					                    <img id="pfFormImgExisting" src="image?file=${poolentarier.fileName}">
 					                    <%-- 업로드이미지 미리보기 --%>
@@ -67,7 +67,7 @@
 						<c:if test="${keywords ne Empty}">
 							<c:forEach items="${keywords}" var="keyword" >
 								<c:set var="i" value="${i+1}"/>
-									<input type="checkbox" name="keywordForSubmit" value="${keyword}" checked="true"/>
+									<input type="checkbox" name="keywordForSubmit" class="pfCheckboxKeyword" value="${keyword}" checked="true"/>
 							</c:forEach>
 						</c:if>
 

@@ -121,17 +121,18 @@
 	padding: 5px 15px;
 	cursor: pointer;
 }
+
+
+
 .pdCommentArea {
 	margin: 45px 20px 10px 60px;
     position: relative;
     z-index: 5;
 }
 
-.pdCommentForm {
-	position: relative; 
-    z-index: 10; 
+.pdCommentArea h4 {
+	font-size: larger;
 }
-
 .pdCommentArea table {
 	width: 95%;
 	table-layout: fixed; /* 테이블 너비 고정 */
@@ -181,11 +182,13 @@
 	border-radius: 5px;
 	border: none;
 }
+
 .pdCommentPickBtn {
 	background: #F2F9EF !important;
 	border: 0.5px solid #466B55 !important;
 	padding: 4px 5px 3px 5px;
 }
+
 .pdCommentDelBtn {
 	font-size: 30px;
     border: 0 !important; /* 강제 우선적용 */
@@ -198,4 +201,61 @@
 #pdDommentValidationMsg {
 	font-size: 12px;
 	color: orange;
+}
+
+.pdCommentWriteArea {
+    margin-top: 24px;
+}
+
+.pdCommentWriter{
+	height: 100%;
+    padding: 10px 0 0 10px; /* 위, 왼 */
+}
+
+.pdPen {
+	width: 30px;
+}
+
+.pdCommentValue{
+	height: 120px;
+    resize: none; /* textarea 크기 고정 */
+	width: 880px;
+	grid-column: 2 / span 2; /* 2번째 열에서 시작하여 2열 다 차지하게함 */
+	margin: 10px 0 0 10px;
+	
+	font-size: 17px;
+	font-family: 'Cafe24SsurroundAir';
+	padding: 10px;
+	
+	outline-color: orange; /* focus된 입력창의 테두리색 변경 */
+}
+
+.pdCommentForm {
+	position: relative; 
+    z-index: 10; 
+    width: 95%;
+    
+    display: grid;
+    grid-template-rows: repeat(1, 1fr); /* 1행 */
+    grid-template-columns: 130px 1fr auto auto; /* 4열 */
+    
+    font-size: 16px;
+}
+
+.pdCommentFormBtns{
+	grid-column: 4; /* 4열에 위치하게 함 */
+    text-align: right;
+    margin-right: 10px;
+    margin-top: 0px;
+    margin-right: 0px;
+}
+
+.pdResetCommentbtn{
+	background: #e0f4de !important;
+	border: none;
+	padding: 10px 17px 8px;
+    border-radius: 5px;
+	font-size: 16px;
+	font-family: 'Cafe24SsurroundAir';
+	margin-left: 8px;
 }
