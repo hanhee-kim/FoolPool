@@ -4,10 +4,60 @@ function drFPback() {
     history.back();
 }
 
+/* 풀풀박사 작성, 수정 - 등록 버튼(input[type=submit]) 클릭시 동작 */
+$(function(){
+	$('#drFP-writeform').submit(function(e){
+		// 기본제출 동작을 막고 swal 띄운뒤 확인버튼 클릭시 제출되도록 함
+		e.preventDefault();
+		Swal.fire({
+			title:'게시글 등록 완료',
+			icon:'success',
+			confirmButtonColor: 'orange'
+		}).then((result) => {
+			if(result.isConfirmed) {
+				document.getElementById('drFP-writeform').submit();
+			}
+		});
+	});
+});
+$(function(){
+	$('#drFP-editform').submit(function(e){
+		// 기본제출 동작을 막고 swal 띄운뒤 확인버튼 클릭시 제출되도록 함
+		e.preventDefault();
+		Swal.fire({
+			title:'게시글 수정 완료',
+			icon:'success',
+			confirmButtonColor: 'orange'
+		}).then((result) => {
+			if(result.isConfirmed) {
+				document.getElementById('drFP-editform').submit();
+			}
+		});
+	});
+});
+
 /* 풀풀박사 상세 - 목록 버튼 */
 function drFPbackToList(no) {
-	console.log("drFPbackToList 호출...");
-	window.location.href = "goDrFoolPool";
+	/* console.log("drFPbackToList 호출...");
+	window.location.href = "goDrFoolPool"; */
+	
+	var no = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-no"); // 제이쿼리문법으로 가져오면 null로 가져와지는 값이 있었음
+	var prevpage = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-prevpage");
+	var filter = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-filter");
+	var sOption = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-sOption");
+	var sValue = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-sValue");
+	
+	alert('no:'+no+",prevpage:"+prevpage+",filter:"+filter+",sOption:"+sOption+",sValue:"+sValue);
+	if(prevpage==null || filter==null) {
+		location.href="goDrFoolPool";
+		
+	} else {
+		if(sOption!=null && sValue!=null && sOption!='' && sValue!='') {
+			location.href="goDrFoolPool?page=" + prevpage + "&filter=" + filter + "&sOption=" + sOption + "&sValue=" + sValue;
+		} else {
+			location.href="goDrFoolPool?page=" + prevpage + "&filter=" + filter;
+		}
+	}
 }
 
 /* 풀풀박사 상세 - 삭제 버튼 */
@@ -29,13 +79,13 @@ function drFPdelBtnfunction() {
 	}).then((result) => {
 		if(result.isConfirmed) {
 			console.log('no:'+no+"prevpage:"+prevpage+",filter:"+filter+",sOption:"+sOption+",sValue:"+sValue);
-			if(sOption!=null && sValue!=null) {
+			if(sOption!=null && sValue!=null && sOption!='' && sValue!='') {
 				location.href="drFoolPoolDelete?no=" + no + "&prevpage=" + prevpage + "&filter=" + filter + "&sOption=" + sOption + "&sValue=" + sValue;
 			} else {
 				location.href="drFoolPoolDelete?no=" + no + "&prevpage=" + prevpage + "&filter=" + filter;
 			}
 		}
-	})
+	});
 }
 
 
@@ -50,11 +100,16 @@ function drFPedit(no) {
 	var sOption = document.getElementById("drFPdelBtn").getAttribute("data-sOption");
 	var sValue = document.getElementById("drFPdelBtn").getAttribute("data-sValue");
 	
-	console.log('no:'+no+"prevpage:"+prevpage+",filter:"+filter+",sOption:"+sOption+",sValue:"+sValue);
-	if(sOption!=null && sValue!=null) {
-		location.href="editDrFoolPool?no=" + no + "&prevpage=" + prevpage + "&filter=" + filter + "&sOption=" + sOption + "&sValue=" + sValue;
+	alert('no:'+no+"prevpage:"+prevpage+",filter:"+filter+",sOption:"+sOption+",sValue:"+sValue);
+	if(prevpage!=null) {
+		location.href="editDrFoolPool?no=" + no;
+		
 	} else {
-		location.href="editDrFoolPool?no=" + no + "&prevpage=" + prevpage + "&filter=" + filter;
+		if(sOption!=null && sValue!=null && sOption!='' && sValue!='') {
+			location.href="editDrFoolPool?no=" + no + "&prevpage=" + prevpage + "&filter=" + filter + "&sOption=" + sOption + "&sValue=" + sValue;
+		} else {
+			location.href="editDrFoolPool?no=" + no + "&prevpage=" + prevpage + "&filter=" + filter;
+		}
 	}
 }
 
@@ -77,6 +132,15 @@ function drFPCommPick(commentNo, postNo) {
 function drFPcommentValidation() {
 	let commentValue = $('#drFP-commentValue').val();
 	let validationMsg = $('#drFP-commentValidationMsg');
+	const resetCommentbtn = $('#drFP-resetCommentbtn')[0];
+	
+	// 입력값이 생기면 input[type=reset] 버튼의 비활성화속성을 제거
+	if(commentValue.length>0) {
+		resetCommentbtn.disabled = false;
+	} else {
+		resetCommentbtn.disabled = true;
+	}
+	
 	if(commentValue.includes('나쁜말')) {
 		validationMsg.text('댓글에 비속어 사용을 자제해주세요');
 	}
@@ -89,8 +153,14 @@ function drFPcommentValidation() {
 }
 
 
-
 $(document).ready(function() {
+	
+	// input[type=reset]을 눌렀을때 기본동작으로는 입력값을 제거하면서 reset버튼을 다시 비활성화상태로 바꿔주지 않으므로 명시적으로 수행하게함
+	$('#drFP-resetCommentbtn').click(function() {
+    	$('#drFP-commentValue').val('');
+    	this.disabled = true;
+	});
+	
 	/* 풀풀박사 목록 - 검색바 유효성 검사 */
     $('#drFP-searchForm').submit(function(event) {
         let sOption = $("#drFP-sOption").val();
@@ -205,6 +275,8 @@ $(document).ready(function() {
             };
         }
     });
+    
+    // 댓글 
 });
 
 

@@ -47,7 +47,7 @@ public class DrFoolPoolList extends HttpServlet {
 		if(paramFilter!=null) filter = paramFilter;
 		String sOption = request.getParameter("sOption");
 		String sValue = request.getParameter("sValue");
-		
+
 		System.out.println("-----/goDrFoolPool doGet호출----");
 		System.out.println("page: " + page + ", curPage: " + curPage + ", paramFilter: " + paramFilter + ", filter: " + filter + "\nsOption: " + sOption + ", sValue: " + sValue);
 		

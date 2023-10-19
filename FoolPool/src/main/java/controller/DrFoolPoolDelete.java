@@ -30,7 +30,7 @@ public class DrFoolPoolDelete extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("/drFoolPoolDelete doGet 호출");
+		System.out.println("-----/drFoolPoolDelete doGet 호출-----");
 		
 		request.setCharacterEncoding("utf-8");
 		Integer no = Integer.parseInt(request.getParameter("no"));
@@ -42,10 +42,16 @@ public class DrFoolPoolDelete extends HttpServlet {
 		String sValue = request.getParameter("sValue");
 		System.out.println("no:" + no + ",prevpage" + page + ",filter:" + filter + ",sOption:" + sOption + ",sValue:" + sValue);
 		
+		
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
 			drFoolPoolService.drFoolPoolRemove(no);
-			response.sendRedirect("goDrFoolPool?page="+curPage+"&filter="+filter+"&sOption="+sOption+"&sValue="+sValue);
+			
+			if(sOption==null || sValue==null || sOption.equals("") || sValue.equals("")) {
+				response.sendRedirect("goDrFoolPool?page="+curPage+"&filter="+filter);
+			} else {
+				response.sendRedirect("goDrFoolPool?page="+curPage+"&filter="+filter+"&sOption="+sOption+"&sValue="+sValue);
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();

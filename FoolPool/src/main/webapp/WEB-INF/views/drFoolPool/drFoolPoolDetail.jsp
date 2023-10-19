@@ -13,6 +13,7 @@
                 
                 <%-- 게시글 상세 --%>
                 <div class="drFP-detailArea">
+                	<div class="drFP-detail-hiddenrow" data-no='${drFoolPool.no}' data-prevpage='${prevpage}' data-filter='${filter}' data-sOption='${sOption}' data-sValue='${sValue}'></div>
 			    	<div class="drFP-detail-1row">
 			    		<label>
 				    		<c:choose>
@@ -34,7 +35,7 @@
 			    	<div class="drFP-detail-4row">${drFoolPool.content}</div>
 			    	<div class="drFP-detail-5row">
 			    		<c:if test="${member ne Empty && member.id eq drFoolPool.writerId}">
-				    		<button onclick="drFPedit(${drFoolPool.no})">수정</button>
+				    		<button onclick="drFPedit()">수정</button>
 				    		<button id="drFPdelBtn" data-no='${drFoolPool.no}' data-prevpage='${prevpage}' data-filter='${filter}' data-sOption='${sOption}' data-sValue='${sValue}' onclick="drFPdelBtnfunction();">삭제</button>
 			    		</c:if>
 			    		<button onclick="drFPbackToList(${drFoolPool.no})">목록</button>
@@ -66,13 +67,21 @@
 				    			</c:forEach>
 				    		</table>
 				    	<c:if test="${member ne Empty}">
-				    		<div id="drFP-commentForm">
-					    		<form action="addDrFoolPoolComment" method="post">
+				    		<div id="drFP-commentWriteArea">
+					    		<form action="addDrFoolPoolComment" method="post" id="drFP-commentForm">
 					    			<input type="hidden" name="postNo" value="${drFoolPool.no}"/>
-					    			<span>${member.nickname}</span>
-					    			<input type="text" maxlength="300" id="drFP-commentValue" onkeyup="drFPcommentValidation()" name="commentContent" class="drFP-text"/>
-					    			<div id="drFP-commentValidationMsg"></div>
-					    			<input type="submit" value="등록"/>
+					    			
+					    			<div id="drFP-commentWriter">
+					    				${member.nickname}<img alt="펜" src="./static/img/pen.png" id="drFP-pen">
+					    			</div>
+					    			<div>
+					    				<textarea maxlength="300" id="drFP-commentValue" onkeyup="drFPcommentValidation()" name="commentContent" required="required" placeholder="댓글을 입력해주세요"></textarea>
+					    				<div id="drFP-commentValidationMsg"></div>
+					    				<p id="drFP-commentFormBtns">
+						    				<input type="submit" value="댓글 등록"/>
+						    				<input type="reset" value="입력 취소" id="drFP-resetCommentbtn" disabled/>
+					    				</p>
+					    			</div>
 					    		</form>
 				    		</div>
 				    	</c:if>

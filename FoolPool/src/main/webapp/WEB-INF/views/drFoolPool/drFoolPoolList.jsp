@@ -3,6 +3,16 @@
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/include/menubar.jsp" %>
 
+<%-- 검색값 유무에 따라 &page=${}&filter=${} 전까지의 url을 생성한 뒤 페이징영역의 a태그의 href 등록 --%>
+<c:choose>
+	<c:when test="${sOption ne null && sValue ne null}">
+		<c:set value="goDrFoolPool?sOption=${sOption}&sValue=${sValue}&" var="goDrFoolPoolUrl"/>
+	</c:when>
+	<c:otherwise>
+		<c:set value="goDrFoolPool?" var="goDrFoolPoolUrl"/>
+	</c:otherwise>
+</c:choose>
+
             <div class="drFP-Label">풀풀박사</div>
             
             <div class="drFP-DivLine">
@@ -108,17 +118,11 @@
                 <%-- 페이징 영역 --%>
                 <div class="drFP-paging">
 			      <c:choose>
+			      	 <%-- 이전페이지 이동 꺽쇠 --%>
 			         <c:when test="${resMap.pageInfo.curPage>1 }">
-			         	<c:url var="urlprevpagenumber" value="goDrFoolPool">
-						    <c:param name="page" value="${resMap.pageInfo.curPage-1}" />
-						    <c:param name="filter" value="${filter}" />
-						    <c:if test="${sOption ne null && sValue ne null}">
-						        <c:param name="sOption" value="${sOption}" />
-						        <c:param name="sValue" value="${sValue}" />
-						    </c:if>
-						</c:url>
-			            <a href="${urlprevpagenumber}">&lt;</a>
+			            <a href="${goDrFoolPoolUrl}page=${resMap.pageInfo.curPage-1}&filter=${filter}">&lt;</a>
 			         </c:when>
+			         <%-- 검색결과 없을때 --%>
 			         <c:when test="${resMap['drFoolPoolList'].size()==0}">
 			            <b></b>
 			         </c:when>
@@ -129,43 +133,21 @@
 			      
 			      <c:forEach begin="${resMap.pageInfo.startPage}" end="${resMap.pageInfo.endPage}" var="i">
 			         <c:choose>
+			         	<%-- 현재선택된 페이지번호 --%>
 			            <c:when test="${resMap.pageInfo.curPage==i}">
-			               <%-- c:url태그로 sOption과 sValue 유무에 따라 동적으로 get요청 url을 생성하여 a태그의 href에 등록 --%>
-			               <c:url var="urlcurpagenumber" value="goDrFoolPool">
-							    <c:param name="page" value="${i}" />
-							    <c:param name="filter" value="${filter}" />
-							    <c:if test="${sOption ne null && sValue ne null}">
-							        <c:param name="sOption" value="${sOption}" />
-							        <c:param name="sValue" value="${sValue}" />
-							    </c:if>
-							</c:url>
-							<a href="${urlcurpagenumber}" id="drFP-selectedPage">${i}</a>
+					        <a href="${goDrFoolPoolUrl}page=${i}&filter=${filter}" id="drFP-selectedPage">${i}</a>
 			            </c:when>
+			            <%-- 다른 페이지 번호들 --%>
 			            <c:otherwise>
-			            	<c:url var="urlpagenumberschange" value="goDrFoolPool">
-							    <c:param name="page" value="${i}" />
-							    <c:param name="filter" value="${filter}" />
-							    <c:if test="${sOption ne null && sValue ne null}">
-							        <c:param name="sOption" value="${sOption}" />
-							        <c:param name="sValue" value="${sValue}" />
-							    </c:if>
-							</c:url>
-							<a href="${urlpagenumberschange}" class="drFP-unselectedPage">${i}</a>
+					        <a href="${goDrFoolPoolUrl}page=${i}&filter=${filter}" class="drFP-unselectedPage">${i}</a>
 			            </c:otherwise>
 			         </c:choose>
 			      </c:forEach>
 
 			      <c:choose>
+			      	 <%-- 다음페이지 이동 꺽쇠 --%>
 			         <c:when test="${resMap.pageInfo.curPage<resMap.pageInfo.allPage }">
-			         	<c:url var="urlnextpagenumber" value="goDrFoolPool">
-						    <c:param name="page" value="${resMap.pageInfo.curPage+1}" />
-						    <c:param name="filter" value="${filter}" />
-						    <c:if test="${sOption ne null && sValue ne null}">
-						        <c:param name="sOption" value="${sOption}" />
-						        <c:param name="sValue" value="${sValue}" />
-						    </c:if>
-						</c:url>
-			            <a href="${urlnextpagenumber}">&gt;</a>
+			            <a href="${goDrFoolPoolUrl}page=${resMap.pageInfo.curPage+1}&filter=${filter}">&gt;</a>
 			         </c:when>
 			         <c:when test="${resMap['drFoolPoolList'].size()==0}">
 			            <b></b>

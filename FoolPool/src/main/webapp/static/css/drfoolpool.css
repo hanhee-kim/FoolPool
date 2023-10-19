@@ -64,7 +64,7 @@
 	z-index: 9;
 }
 
-/* 후손선택자 작성시 주의할것 */
+/* 여러 선택자를 이용하며 컴마 쓸때 주의할것(각각이 자식/후손임을 명시)*/
 .drFP-searchBar select, .drFP-searchBar option, .drFP-searchBar input {
 	font-family: 'Cafe24SsurroundAir';
 	font-size: 20px;
@@ -311,7 +311,6 @@
 	text-align: right;
 	margin-top: 10px;
 	margin-left: 40px;
-	/* background: skyblue; */
 }
 .drFP-detail-5row button{
 	margin-left: 8px; 
@@ -408,33 +407,67 @@
 	font-weight: bold;
 }
 
+
+
 #drFP-commentValidationMsg {
-	font-size: 12px;
+	font-size: 15px;
 	color: orange;
+	padding-left: 16px;
+}
+/* 댓글란 */
+#drFP-commentWriteArea {
+    margin-top: 24px;
 }
 /* 댓글 작성폼 */
 #drFP-commentForm {
-	background: orange;
 	position: relative; 
     z-index: 10; 
     width: 95%;
-    /* padding-top: 10px; */
     
     display: grid;
     grid-template-rows: repeat(1, 1fr); /* 1행 */
-    grid-template-columns: repeat(3, 1fr); /* 3열 */
-    gap: 5px; /* 그리드 아이템 간 간격 */
-    justify-items: center; /* 그리드 아이템 가로 중앙 정렬 */
-    align-items: center; /* 그리드 아이템 세로 중앙 정렬 */
+    grid-template-columns: 130px 1fr auto auto; /* 4열 */
+    
+    font-size: 16px;
 }
-#drFP-commentForm span {
-	/* margin-left: 10px;
-    margin-right: 55px; */
+#drFP-commentWriter {
+    height: 100%;
+    padding: 10px 0 0 10px; /* 위, 왼 */
 }
-#drFP-commentForm input[type=text] {
-	/* margin-left: 10px;
-    margin-right: 55px; */
-    height: 30px;
+#drFP-pen {
+	width: 30px;
+}
+
+/* 댓글 입력란 */
+#drFP-commentValue {
+    height: 120px;
+    resize: none; /* textarea 크기 고정 */
+	width: 880px;
+	grid-column: 2 / span 2; /* 2번째 열에서 시작하여 2열 다 차지하게함 */
+	margin: 10px 0 0 10px;
+	
+	font-size: 17px;
+	font-family: 'Cafe24SsurroundAir';
+	padding: 10px;
+	
+	outline-color: orange; /* focus된 입력창의 테두리색 변경 */
+}
+/* 댓글 등록, 취소 버튼 */
+#drFP-commentFormBtns {
+    grid-column: 4; /* 4열에 위치하게 함 */
+    text-align: right;
+    margin-right: 10px;
+    margin-top: 0px;
+    margin-right: 0px;
+}
+#drFP-commentFormBtns input {
+	background: #e0f4de !important;
+	border: none;
+	padding: 10px 17px 8px;
+    border-radius: 5px;
+	font-size: 16px;
+	font-family: 'Cafe24SsurroundAir';
+	margin-left: 8px;
 }
 
 
@@ -486,6 +519,7 @@
     background: #F2F9EF;
     border: 0.5px dashed #466b55;
 	margin-top: 5px;
+	outline-color: orange;
 }
 .drFP-formTitle  {
 	font-size: 18px;
