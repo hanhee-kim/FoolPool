@@ -3,12 +3,14 @@
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/include/menubar.jsp" %>
 
-<%-- 검색값 유무에 따라 &page=${}&filter=${} 전까지의 url을 생성한 뒤 페이징영역의 a태그의 href 등록 --%>
+<%-- 검색값 유무에 따라 &page=${}&filter=${} 전까지의 url을 생성한 뒤 (1)필터링, (2)페이징영역의 a태그의 href 등록 --%>
 <c:choose>
 	<c:when test="${sOption ne null && sValue ne null}">
+		<c:set value="drFoolPoolDetail?sOption=${sOption}&sValue=${sValue}&" var="drFoolPoolDetailUrl"/>
 		<c:set value="goDrFoolPool?sOption=${sOption}&sValue=${sValue}&" var="goDrFoolPoolUrl"/>
 	</c:when>
 	<c:otherwise>
+		<c:set value="drFoolPoolDetail?" var="drFoolPoolDetailUrl"/>
 		<c:set value="goDrFoolPool?" var="goDrFoolPoolUrl"/>
 	</c:otherwise>
 </c:choose>
@@ -22,35 +24,9 @@
             	<%-- 필터링 + 글쓰기 버튼 --%>
             	<div class="drFP-FilteringAndWriteBtn">
 	                <div class="drFP-Filtering">
-		                <c:url var="urlfilterall" value="goDrFoolPool">
-						    <c:param name="page" value="1" />
-						    <c:param name="filter" value="all" />
-						    <c:if test="${sOption ne null && sValue ne null}">
-						        <c:param name="sOption" value="${sOption}" />
-						        <c:param name="sValue" value="${sValue}" />
-						    </c:if>
-						</c:url>
-						<a href="${urlfilterall}" class="${filter eq 'all' ? 'drFP-FilterBtn drFP-FilterBtnSelected' : 'drFP-FilterBtn'}">전체</a>
-						
-		                <c:url var="urlfilterunsolved" value="goDrFoolPool">
-						    <c:param name="page" value="1" />
-						    <c:param name="filter" value="unsolved" />
-						    <c:if test="${sOption ne null && sValue ne null}">
-						        <c:param name="sOption" value="${sOption}" />
-						        <c:param name="sValue" value="${sValue}" />
-						    </c:if>
-						</c:url>
-						<a href="${urlfilterunsolved}" class="${filter eq 'unsolved' ? 'drFP-FilterBtn drFP-FilterBtnSelected' : 'drFP-FilterBtn'}">미해결</a>
-						
-		                <c:url var="urlfiltersolved" value="goDrFoolPool">
-						    <c:param name="page" value="1" />
-						    <c:param name="filter" value="solved" />
-						    <c:if test="${sOption ne null && sValue ne null}">
-						        <c:param name="sOption" value="${sOption}" />
-						        <c:param name="sValue" value="${sValue}" />
-						    </c:if>
-						</c:url>
-						<a href="${urlfiltersolved}" class="${filter eq 'solved' ? 'drFP-FilterBtn drFP-FilterBtnSelected' : 'drFP-FilterBtn'}">해결</a>
+						<a href="${goDrFoolPoolUrl}page=1&filter=all" class="${filter eq 'all' ? 'drFP-FilterBtn drFP-FilterBtnSelected' : 'drFP-FilterBtn'}">전체</a>
+						<a href="${goDrFoolPoolUrl}page=1&filter=unsolved" class="${filter eq 'unsolved' ? 'drFP-FilterBtn drFP-FilterBtnSelected' : 'drFP-FilterBtn'}">미해결</a>
+						<a href="${goDrFoolPoolUrl}page=1&filter=solved" class="${filter eq 'solved' ? 'drFP-FilterBtn drFP-FilterBtnSelected' : 'drFP-FilterBtn'}">해결</a>
 					</div>
 					
 	                <c:if test="${member ne Empty}">
@@ -69,16 +45,7 @@
 		    	<c:if test="${resMap['drFoolPoolList'].size()>0}">
 				    <div class="drFP-CardGrid">
 						<c:forEach items="${resMap['drFoolPoolList']}" var="drfoolpool">
-							<c:url var="urldetail" value="drFoolPoolDetail">
-							    <c:param name="no" value="${drfoolpool.no}" />
-							    <c:param name="prevpage" value="${resMap.pageInfo.curPage}" />
-							    <c:param name="filter" value="${filter}" />
-							    <c:if test="${sOption ne null && sValue ne null}">
-							        <c:param name="sOption" value="${sOption}" />
-							        <c:param name="sValue" value="${sValue}" />
-							    </c:if>
-							</c:url>
-					        <a href="${urldetail}"> 
+					        <a href="${drFoolPoolDetailUrl}no=${drfoolpool.no}&prevpage=${resMap.pageInfo.curPage}&filter=${filter}" id="drFP-selectedPage">
 						        <div class="drFP-Card">
 						        	<div class="drFP-CardTitleArea">
 						        		<c:choose>
