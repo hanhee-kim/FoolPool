@@ -41,11 +41,6 @@ public class DrFoolPoolForm extends HttpServlet {
 		if(session.getAttribute("member")==null) request.getRequestDispatcher("login.jsp").forward(request, response);
 		
 		request.setCharacterEncoding("utf-8");
-		
-		
-		
-		
-		
 		request.setAttribute("jspName", "drFoolPool");
 		request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolForm.jsp").forward(request, response);
 	}
@@ -87,7 +82,8 @@ public class DrFoolPoolForm extends HttpServlet {
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
 			drFoolPoolService.drFoolPoolWrite(drFoolPool);
-			response.sendRedirect("drFoolPoolDetail?no=" + drFoolPool.getNo());
+			response.sendRedirect("drFoolPoolDetail?no=" + drFoolPool.getNo()); 
+			// 작성완료 후 상세페이지로 넘어갈때는 filter, page, sOption, sValue값을 가지고 가지 않으므로 이후 목록으로 이동할때 첫목록페이지로 가게된다
 			
 		} catch (Exception e) {
 			e.printStackTrace();

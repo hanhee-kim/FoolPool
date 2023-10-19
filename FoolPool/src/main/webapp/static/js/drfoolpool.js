@@ -36,46 +36,32 @@ $(function(){
 	});
 });
 
-/* 풀풀박사 상세 - 목록 버튼 (페이지,필터,검색값 없이 목록으로 가게함) */
-function drFPbackToListAterWrite() {
-	console.log("drFPbackToListAterWrite 호출...");
-	window.location.href = "goDrFoolPool";
-}
-
-/* 풀풀박사 수정->상세 - 목록 버튼 */
+/* 풀풀박사 상세 - 목록 버튼 (글수정 후에는 이전목록으로, 글작성 후에는 초기목록으로 이동) */
 function drFPbackToList() {
-	/* console.log("drFPbackToList 호출...");
-	window.location.href = "goDrFoolPool"; */
-	
-	// var no = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-no"); // 제이쿼리문법으로 가져오면 null로 가져와지는 값이 있었음
 	var page = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-page");
 	var filter = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-filter");
 	var sOption = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-sOption");
 	var sValue = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-sValue");
 	
-	alert('no:'+no+",page:"+page+",filter:"+filter+",sOption:"+sOption+",sValue:"+sValue);
-	if(page==null || filter==null) {
-		location.href="goDrFoolPool";
-		
+	// alert("목록가기 page:"+page+",filter:"+filter+",sOption:"+sOption+",sValue:"+sValue);
+	if(sOption!=null && sValue!=null && sOption!='' && sValue!='') {
+		location.href="goDrFoolPool?page=" + page + "&filter=" + filter + "&sOption=" + sOption + "&sValue=" + sValue;
 	} else {
-		if(sOption!=null && sValue!=null && sOption!='' && sValue!='') {
-			location.href="goDrFoolPool?page=" + page + "&filter=" + filter + "&sOption=" + sOption + "&sValue=" + sValue;
-		} else {
-			location.href="goDrFoolPool?page=" + page + "&filter=" + filter;
-		}
+		location.href="goDrFoolPool?page=" + page + "&filter=" + filter;
 	}
 }
 
 /* 풀풀박사 상세 - 삭제 버튼 */
 function drFPdelBtnfunction() {
-	 var no = document.getElementById("drFPdelBtn").getAttribute("data-no"); // 제이쿼리문법으로 가져오면 null로 가져와지는 값이 있었음
-	 var page = document.getElementById("drFPdelBtn").getAttribute("data-page");
-	 var filter = document.getElementById("drFPdelBtn").getAttribute("data-filter");
-	 var sOption = document.getElementById("drFPdelBtn").getAttribute("data-sOption");
-	 var sValue = document.getElementById("drFPdelBtn").getAttribute("data-sValue");
+	var no = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-no");
+	var page = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-page");
+	var filter = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-filter");
+	var sOption = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-sOption");
+	var sValue = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-sValue");
+	// alert("no:"+no+",page:"+page+",filter:"+filter+",sOption:"+sOption+",sValue:"+sValue);
 	Swal.fire({
 		title: '게시글을 삭제하시겠습니까?',
-		text: '삭제후엔 게시글의 복구가 불가능합니다.',
+		text: '삭제된 게시글은 복구가 불가능합니다.',
 		icon: 'warning',
 		showCancelButton: true,
 		confirmButtonColor: 'orange',
@@ -84,7 +70,7 @@ function drFPdelBtnfunction() {
 		cancelButtonText: '취소'
 	}).then((result) => {
 		if(result.isConfirmed) {
-			console.log('no:'+no+"page:"+page+",filter:"+filter+",sOption:"+sOption+",sValue:"+sValue);
+			// alert('no:'+no+",page:"+page+",filter:"+filter+",sOption:"+sOption+",sValue:"+sValue);
 			if(sOption!=null && sValue!=null && sOption!='' && sValue!='') {
 				location.href="drFoolPoolDelete?no=" + no + "&page=" + page + "&filter=" + filter + "&sOption=" + sOption + "&sValue=" + sValue;
 			} else {
@@ -97,54 +83,17 @@ function drFPdelBtnfunction() {
 
 /* 풀풀박사 상세 - 수정 버튼 */
 function drFPedit(no) {
-	/*console.log("drFPedit 호출...");
-	window.location.href = "editDrFoolPool?no=" + no;*/
+	var no = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-no");
+	var page = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-page");
+	var filter = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-filter");
+	var sOption = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-sOption");
+	var sValue = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-sValue");
 	
-	var no = document.getElementById("drFPdelBtn").getAttribute("data-no"); // 제이쿼리문법으로 가져오면 null로 가져와지는 값이 있었음
-	var page = document.getElementById("drFPdelBtn").getAttribute("data-page");
-	var filter = document.getElementById("drFPdelBtn").getAttribute("data-filter");
-	var sOption = document.getElementById("drFPdelBtn").getAttribute("data-sOption");
-	var sValue = document.getElementById("drFPdelBtn").getAttribute("data-sValue");
-	
-	alert('no:'+no+"page:"+page+",filter:"+filter+",sOption:"+sOption+",sValue:"+sValue);
-	
-	if(page==null) {
-		if(filter==null) {
-			if(sOption==null||sValue==null||sOption==''||sValue=='') {
-				alert('1번');
-				location.href="editDrFoolPool?no=" + no;
-			} else {
-				alert('2번');
-				location.href="editDrFoolPool?no=" + no + "&sOption=" + sOption + "&sValue=" + sValue;
-			}
-		} else {
-			if(sOption==null||sValue==null||sOption==''||sValue=='') {
-				alert('3번');
-				location.href="editDrFoolPool?no=" + no + "&filter=" + filter;
-			} else {
-				alert('4번'); // 필터x 페이지이동x 검색o   필터x 페이지이동o 검색o  필터o 페이지이동o 검색o
-				location.href="editDrFoolPool?no=" + no + "&filter=" + filter + "&sOption=" + sOption + "&sValue=" + sValue;
-			}
-		}
-		
+	// alert('no:'+no+", page:"+page+",filter:"+filter+",sOption:"+sOption+",sValue:"+sValue);
+	if(sOption!=null && sValue!=null && sOption!='' && sValue!='') {
+		location.href="editDrFoolPool?no=" + no + "&page=" + page + "&filter=" + filter + "&sOption=" + sOption + "&sValue=" + sValue;
 	} else {
-		if(filter==null) {
-			if(sOption==null||sValue==null||sOption==''||sValue=='') {
-				alert('5번');
-				location.href="editDrFoolPool?no=" + no + "&page=" + page;
-			} else {
-				alert('6번');
-				location.href="editDrFoolPool?no=" + no + "&page=" + page + "&sOption=" + sOption + "&sValue=" + sValue;
-			}
-		} else {
-			if(sOption==null||sValue==null||sOption==''||sValue=='') {
-				alert('7번');
-				location.href="editDrFoolPool?no=" + no + "&page=" + page + "&filter=" + filter;
-			} else {
-				alert('8번');
-				location.href="editDrFoolPool?no=" + no + "&page=" + page + "&filter=" + filter + "&sOption=" + sOption + "&sValue=" + sValue;
-			}
-		}
+		location.href="editDrFoolPool?no=" + no + "&page=" + page + "&filter=" + filter;
 	}
 }
 
@@ -153,7 +102,7 @@ function drFPCommDelete(commentNo, postNo) {
 	console.log("dfFPCommdelete 호출...");
 	if (confirm("댓글을 삭제하시겠습니까?") == true){ 
 		window.location.href = "deldrfoolpoolcomment?commentNo=" + commentNo + "&postNo=" + postNo;
-	 }
+	}
 }
 /* 풀풀박사 댓글 채택 버튼 */
 function drFPCommPick(commentNo, postNo) {
