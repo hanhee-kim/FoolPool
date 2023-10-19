@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/include/menubar.jsp" %>
-<%@ page import="bean.DrFoolPool" %>
-<% 
-DrFoolPool drFoolPool = (DrFoolPool) request.getAttribute("drFoolPool");
-System.out.println("edit.jsp에서 출력" + drFoolPool.getNo() + ", " + drFoolPool.getFileName()); 
-%>
+
 
             <div class="drFP-Label">풀풀박사</div>
             
@@ -19,10 +15,14 @@ System.out.println("edit.jsp에서 출력" + drFoolPool.getNo() + ", " + drFoolP
                 	<h2>질문글 수정</h2>
 					<form action="editDrFoolPool" method="post" enctype="multipart/form-data" name="drFoolPoolForm" id="drFP-editform">
 						<input type="hidden" name="no" value="${drFoolPool.no}"/>
+						<input type="hidden" name="page" value="${page}"/>
+						<input type="hidden" name="filter" value="${filter}"/>
+						<input type="hidden" name="sOption" value="${sOption}"/>
+						<input type="hidden" name="sValue" value="${sValue}"/>
 						<div class="drFP-inputArea">
 							<ul>
 								<li>
-				                    <label>제목 <b>*</b></label><br>
+				                    <label>제목//${page},${filter},${sOption},${sValue}<b>*</b></label><br>
 				                    <input class="drFP-formTitle drFP-text" name="title" type="text" maxlength="100" value="${drFoolPool.title}">
 				                    <div class="drFP-titleValidationMsg">유효성검사메시지란</div>
 				                </li>

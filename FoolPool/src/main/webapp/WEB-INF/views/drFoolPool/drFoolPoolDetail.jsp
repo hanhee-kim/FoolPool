@@ -13,7 +13,7 @@
                 
                 <%-- 게시글 상세 --%>
                 <div class="drFP-detailArea">
-                	<div class="drFP-detail-hiddenrow" data-no='${drFoolPool.no}' data-prevpage='${prevpage}' data-filter='${filter}' data-sOption='${sOption}' data-sValue='${sValue}'></div>
+                	<div class="drFP-detail-hiddenrow" data-no='${drFoolPool.no}' data-page='${page}' data-filter='${filter}' data-sOption='${sOption}' data-sValue='${sValue}'></div>
 			    	<div class="drFP-detail-1row">
 			    		<label>
 				    		<c:choose>
@@ -36,9 +36,9 @@
 			    	<div class="drFP-detail-5row">
 			    		<c:if test="${member ne Empty && member.id eq drFoolPool.writerId}">
 				    		<button onclick="drFPedit()">수정</button>
-				    		<button id="drFPdelBtn" data-no='${drFoolPool.no}' data-prevpage='${prevpage}' data-filter='${filter}' data-sOption='${sOption}' data-sValue='${sValue}' onclick="drFPdelBtnfunction();">삭제</button>
+				    		<button id="drFPdelBtn" data-no='${drFoolPool.no}' data-page='${page}' data-filter='${filter}' data-sOption='${sOption}' data-sValue='${sValue}' onclick="drFPdelBtnfunction();">삭제</button>
 			    		</c:if>
-			    		<button onclick="drFPbackToList(${drFoolPool.no})">목록</button>
+			    		<button onclick="drFPbackToListAterWrite()">목록</button>
 			    	</div>
 			    	
 			    	<div class="drFP-commentArea">

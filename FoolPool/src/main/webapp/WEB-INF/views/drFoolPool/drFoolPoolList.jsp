@@ -30,7 +30,7 @@
 					</div>
 					
 	                <c:if test="${member ne Empty}">
-                		<a href="drFoolpoolForm?num"><button class="drFP-writeBtn">질문하기</button></a>
+                		<a href="drFoolpoolForm"><button class="drFP-writeBtn">질문하기</button></a>
                 	</c:if>
                 </div>
                 
@@ -45,7 +45,7 @@
 		    	<c:if test="${resMap['drFoolPoolList'].size()>0}">
 				    <div class="drFP-CardGrid">
 						<c:forEach items="${resMap['drFoolPoolList']}" var="drfoolpool">
-					        <a href="${drFoolPoolDetailUrl}no=${drfoolpool.no}&prevpage=${resMap.pageInfo.curPage}&filter=${filter}" id="drFP-selectedPage">
+					        <a href="${drFoolPoolDetailUrl}no=${drfoolpool.no}&page=${resMap.pageInfo.curPage}&filter=${filter}" id="drFP-selectedPage">
 						        <div class="drFP-Card">
 						        	<div class="drFP-CardTitleArea">
 						        		<c:choose>

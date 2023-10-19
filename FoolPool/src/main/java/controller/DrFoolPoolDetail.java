@@ -42,13 +42,15 @@ public class DrFoolPoolDetail extends HttpServlet {
 		request.setAttribute("jspName", "drFoolPool");
 		
 		Integer no = Integer.parseInt(request.getParameter("no"));
-		String prevpage = request.getParameter("prevpage");
-		int curPage = 1;
-		if(prevpage!=null) curPage = Integer.parseInt(prevpage);
-		String filter = request.getParameter("filter");
+		String prevpage = request.getParameter("page");
+		String prevfilter = request.getParameter("filter");
+		int page = 1;
+		if(prevpage!=null) page = Integer.parseInt(prevpage);
+		String filter = "all";
+		if(prevfilter!=null) filter = prevfilter;
 		String sOption = request.getParameter("sOption");
 		String sValue = request.getParameter("sValue");
-		System.out.println("no:" + no + ",prevpage" + prevpage + ",filter:" + filter + ",sOption:" + sOption + ",sValue:" + sValue);
+		System.out.println("no:" + no + ",page: " + page + ",filter:" + filter + ",sOption:" + sOption + ",sValue:" + sValue);
 
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
@@ -62,7 +64,7 @@ public class DrFoolPoolDetail extends HttpServlet {
 				System.out.println(iter.next().toString());
 			}
 			
-			request.setAttribute("prevpage", prevpage);
+			request.setAttribute("page", page);
 			request.setAttribute("filter", filter);
 			request.setAttribute("sOption", sOption);
 			request.setAttribute("sValue", sValue);
