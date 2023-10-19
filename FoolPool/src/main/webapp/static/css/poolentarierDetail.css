@@ -270,3 +270,10 @@
 	font-family: 'Cafe24SsurroundAir';
 	margin-left: 8px;
 }
+.pd_comm_btn{
+	width: 90px;
+    font-size: 17px;
+    border-radius: 10px;
+    border: 2px solid #466b55;
+	
+}
