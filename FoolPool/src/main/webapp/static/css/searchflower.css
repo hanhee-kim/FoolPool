@@ -241,17 +241,30 @@
 	display: none; 크롬, 사파리, 오페라, 엣지
 } */
 /* 꽃 카드의 scrollbar */
-.flowerCardsection::-webkit-scrollbar {
+
+.flowerCardsection::-webkit-scrollbar ,
+.pfInputArea::-webkit-scrollbar ,
+.drFP-detailArea::-webkit-scrollbar ,
+.drFP-inputArea::-webkit-scrollbar 
+{
     width: 8px;  /* 스크롤바의 너비 */
 }
 
-.flowerCardsection::-webkit-scrollbar-thumb {
+.flowerCardsection::-webkit-scrollbar-thumb ,
+.pfInputArea::-webkit-scrollbar-thumb ,
+.drFP-detailArea::-webkit-scrollbar-thumb ,
+.drFP-inputArea::-webkit-scrollbar-thumb 
+{
     height: 30%; /* 스크롤바의 길이 */
     background: #466b55; /* 스크롤바의 색상 */
     border-radius: 70px;
 }
 
-.flowerCardsection::-webkit-scrollbar-track {
+.flowerCardsection::-webkit-scrollbar-track ,
+.pfInputArea::-webkit-scrollbar-track ,
+.drFP-detailArea::-webkit-scrollbar-track ,
+.drFP-inputArea::-webkit-scrollbar-track 
+{
     background: #466b5577;  /*스크롤바 뒷 배경 색상*/
     border-radius: 70px;
 }
