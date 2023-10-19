@@ -66,6 +66,7 @@ public class SearchFlower extends HttpServlet {
 				Integer startDay = Integer.parseInt(request.getParameter("startDay"));
 				Integer endMonth = Integer.parseInt(request.getParameter("endMonth"));
 				Integer endDay = Integer.parseInt(request.getParameter("endDay"));
+			
 				res.put("startMonth", startMonth);
 				res.put("startDay", startDay);
 				res.put("endMonth", endMonth);
@@ -79,7 +80,7 @@ public class SearchFlower extends HttpServlet {
 			} else if (option.equals("flowerName")) {
 				type = "flow_Nm";
 				String flowerName = (String) request.getParameter("byName");
-				System.out.println("flowerName : "+flowerName);
+//				System.out.println("flowerName : "+flowerName);
 				res.put("flowerName", flowerName);
 				try {
 					flowers = f_service.searchFlowerByWord(type, flowerName);
@@ -90,7 +91,7 @@ public class SearchFlower extends HttpServlet {
 			} else if (option.equals("flowerLang")) {
 				type = "flow_Lang";
 				String flowerLang = request.getParameter("byLang");
-				System.out.println("Lang : "+flowerLang);
+//				System.out.println("Lang : "+flowerLang);
 				res.put("flowerLang", flowerLang);
 				try {
 					flowers = f_service.searchFlowerByWord(type, flowerLang);

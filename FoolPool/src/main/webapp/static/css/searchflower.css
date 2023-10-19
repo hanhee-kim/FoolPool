@@ -140,9 +140,6 @@
 .flowerCardNameLangSection{
 	margin-bottom: 10px
 }
-.flowerCardDateSection {
-	margin-left: -90px;
-}
 
 .flowerCardName {
 	margin-left: 30px;
@@ -243,7 +240,7 @@
 /* .flowerCardsection::-webkit-scrollbar {
 	display: none; 크롬, 사파리, 오페라, 엣지
 } */
-/* scrollbar */
+/* 꽃 카드의 scrollbar */
 .flowerCardsection::-webkit-scrollbar {
     width: 8px;  /* 스크롤바의 너비 */
 }
@@ -263,4 +260,19 @@
     scrollbar-face-color:#466b55;
     scrollbar-shadow-color:#dddddd;
     scrollbar-track-color: #466b5577;
-   }
+}
+/* 셀렉트박스 스크롤바 */
+#searchFlowerStartDay::-webkit-scrollbar,
+#searchFlowerEndDay::-webkit-scrollbar{
+	width:4px;
+}
+#searchFlowerStartDay::-webkit-scrollbar-thumb,
+#searchFlowerEndDay::-webkit-scrollbar-thumb{
+    height: 30%; /* 스크롤바의 길이 */
+    background: #466b55; /* 스크롤바의 색상 */
+}
+#searchFlowerStartDay::-webkit-scrollbar-track,
+#searchFlowerEndDay::-webkit-scrollbar-track{
+    background: #466b5577;  /*스크롤바 뒷 배경 색상*/
+}
+

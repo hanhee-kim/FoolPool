@@ -45,7 +45,6 @@ public class Join extends HttpServlet {
 		String nickname = request.getParameter("joinMemberNickname");
 		String password = request.getParameter("joinMemberPassword");
 		Member member = new Member(id, nickname, password);
-		System.out.println(id);
 		MemberService m_service = new MemberServiceImpl();
 		try {
 			m_service.joinMember(member);
