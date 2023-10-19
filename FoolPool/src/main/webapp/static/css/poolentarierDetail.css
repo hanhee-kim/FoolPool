@@ -207,7 +207,7 @@
     margin-top: 24px;
 }
 
-.pdCommentWriter{
+#pdCommentWriter{
 	height: 100%;
     padding: 10px 0 0 10px; /* 위, 왼 */
 }
@@ -230,7 +230,7 @@
 	outline-color: orange; /* focus된 입력창의 테두리색 변경 */
 }
 
-.pdCommentForm {
+#pdCommentForm {
 	position: relative; 
     z-index: 10; 
     width: 95%;
@@ -242,15 +242,26 @@
     font-size: 16px;
 }
 
-#pdCommentFormBtns{
-	grid-column: 4; /* 4열에 위치하게 함 */
+/* 댓글 등록, 취소 버튼 */
+#pdCommentFormBtns {
+    grid-column: 4; /* 4열에 위치하게 함 */
     text-align: right;
     margin-right: 10px;
     margin-top: 0px;
     margin-right: 0px;
 }
 
-.pdResetCommentbtn{
+#pdCommentFormBtns input {
+	background: #e0f4de !important;
+	border: none;
+	padding: 10px 17px 8px;
+    border-radius: 5px;
+	font-size: 16px;
+	font-family: 'Cafe24SsurroundAir';
+	margin-left: 8px;
+}
+
+#pdResetCommentbtn{
 	background: #e0f4de !important;
 	border: none;
 	padding: 10px 17px 8px;

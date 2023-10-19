@@ -18,9 +18,7 @@
 				                </li>
 				                <li>
 				                    <label>내용 <b>*</b></label><br>
-				                    <textarea class="pfFormContent" name="content" rows="20" cols="42" required="required" maxlength="2000">
-				                    	${poolentarier.content}
-				                    </textarea>
+				                    <textarea class="pfFormContent" name="content" rows="20" cols="42" required="required" maxlength="2000">${poolentarier.content}</textarea>
 				                    <div class="pfContentValidationMsg">유효성검사메시지란</div>
 				                </li>
 				                <li>
