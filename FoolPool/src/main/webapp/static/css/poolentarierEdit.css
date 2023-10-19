@@ -98,3 +98,14 @@
 	color: red;
 	margin-right: 20px;
 }
+
+#keywordList {
+	display: flex;
+	padding: 0;
+}
+
+#pfKeyword {
+	height: 35px;
+	border-radius: 12px;
+	font-family: 'Cafe24SsurroundAir';
+}

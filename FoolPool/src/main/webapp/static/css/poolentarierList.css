@@ -239,9 +239,8 @@
 }
 
 #plPagingArea a {
-
 	margin: 0 5px;
-	color: #D9D9D9 !important;
+	color: #D9D9D9;
 }
 
 #plSelectedPage {

@@ -146,20 +146,28 @@ public class PoolentarierServiceImpl implements PoolentarierService {
 		return map;
 	}
 	
+	// 댓글 작성
 	@Override
 	public void poolentarierWriteComment(PoolentarierComment poolentarierComment) throws Exception {
 		poolentarierDAO.insertPoolentarierComment(poolentarierComment);
 		
 	}
 
+	// 댓글 삭제
 	@Override
 	public void poolentarierDeleteComment(Integer commentNo) throws Exception {
 		poolentarierDAO.deletePoolentarierComment(commentNo);
 	}
 	
+	// 댓글 조회
 	@Override
 	public List<PoolentarierComment> poolentarierCommentList(Integer postNo) throws Exception {
 		return poolentarierDAO.selectPoolentarierCommentList(postNo);
 	}
 	
+	// 게시글 수정
+	@Override
+	public void poolentarierEdit(Poolentarier poolentarier) throws Exception {
+		poolentarierDAO.updatePoolentarierDetail(poolentarier);
+	}
 }

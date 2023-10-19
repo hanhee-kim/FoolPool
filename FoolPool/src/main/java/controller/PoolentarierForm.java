@@ -47,6 +47,7 @@ public class PoolentarierForm extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		Poolentarier poolentarier= new Poolentarier();
 		
 		// 파일 업로드 시작
 //		String uploadPath = request.getServletContext().getRealPath("static/img");
@@ -57,9 +58,7 @@ public class PoolentarierForm extends HttpServlet {
 		
 		String title = multi.getParameter("title");
 		String content = multi.getParameter("content");
-//		String[] keyword = multi.getParameterValues("keyword");
 		String fileName = multi.getOriginalFileName("fileName");
-		System.out.println("파일명: " + fileName);
 		String plantsName = multi.getParameter("plantsName");
 		HttpSession session = request.getSession();
 		Member member = (Member) session.getAttribute("member");
@@ -69,18 +68,17 @@ public class PoolentarierForm extends HttpServlet {
 		// 키워드 값 설정
 		// checkbox 타입의 input 중, name="keywordForSubmit" 값을 모두 가져옴
 		String[] keywords = multi.getParameterValues("keywordForSubmit");
-
-		String keyword = keywords[0];
-		if (keywords != null) {
+		String keyword = null;
+		if(keywords != null) {
+			keyword = keywords[0];
 			for(int i = 1;i < keywords.length;i++) {
 				if(keywords[i] != null) {
 					keyword += "," + keywords[i];
 				}
 			}
-        }
+		}
 		
 		// no, date, view는 mapper에서 설정
-		Poolentarier poolentarier= new Poolentarier();
 		poolentarier.setTitle(title);
 		poolentarier.setContent(content);
 		poolentarier.setKeyword(keyword);

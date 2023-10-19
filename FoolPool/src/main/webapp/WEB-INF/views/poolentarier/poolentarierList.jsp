@@ -41,11 +41,13 @@
 	            			</c:if>
 	            		</div>
 	            	</div>
+	            	
 				    
+	            	
 	            	<%-- 카드그리드 2x2 --%>
 	            	<div class="plCardGrid">
 	            		<c:if test="${res.poolentarierList eq Empty}">
-	            			<div class="plEmptyList">...</div>
+	            			<div class="plEmptyList">게시물이 존재하지 않습니다.</div>
 	            		</c:if>
 	            		<c:if test="${res.poolentarierList ne Empty}">
 	            			<c:forEach items="${res.poolentarierList }" var="poolentarier">
@@ -124,7 +126,7 @@
 										<c:param name="searchText" value="${searchText }" />
 									</c:if>
 								</c:url>
-								<a href="${urlpagenumberschange}" id="plUnSelectedPage">${i}</a>
+								<a href="${urlpagenumberschange}" class="plUnSelectedPage">${i}</a>
 				         	</c:otherwise>
 						</c:choose>
 					</c:forEach>
