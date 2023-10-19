@@ -31,7 +31,7 @@ public class DrFoolPoolDelete extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("-----/drFoolPoolDelete doGet 호출-----");
+		// System.out.println("-----/drFoolPoolDelete doGet 호출-----");
 		
 		// 뷰의 버튼이 아니라 사용자가 직접 url로 요청하여 들어왔을때도 비로그인 상태일때는 로그인페이지로 이동하게함
 		HttpSession session = request.getSession();
@@ -49,7 +49,7 @@ public class DrFoolPoolDelete extends HttpServlet {
 		if(prevfilter!=null) filter = prevfilter;
 		String sOption = request.getParameter("sOption");
 		String sValue = request.getParameter("sValue");
-		System.out.println("no:" + no + ",prevpage: " + page + ",filter:" + filter + ",sOption:" + sOption + ",sValue:" + sValue);
+		// System.out.println("no:" + no + ",prevpage: " + page + ",filter:" + filter + ",sOption:" + sOption + ",sValue:" + sValue);
 		
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();

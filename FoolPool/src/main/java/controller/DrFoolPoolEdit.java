@@ -36,7 +36,7 @@ public class DrFoolPoolEdit extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		System.out.println("/editDrFoolPool doGet 호출");
+		// System.out.println("/editDrFoolPool doGet 호출");
 
 		// 뷰의 버튼이 아니라 사용자가 직접 url로 요청하여 들어왔을때도 비로그인 상태일때는 로그인페이지로 이동하게함
 		HttpSession session = request.getSession();
@@ -54,7 +54,7 @@ public class DrFoolPoolEdit extends HttpServlet {
 		if(prevfilter!=null) filter = prevfilter;
 		String sOption = request.getParameter("sOption");
 		String sValue = request.getParameter("sValue");
-		System.out.println("no:" + no + ",prevpage: " + page + ",filter:" + filter + ",sOption:" + sOption + ",sValue:" + sValue);
+		// System.out.println("no:" + no + ",prevpage: " + page + ",filter:" + filter + ",sOption:" + sOption + ",sValue:" + sValue);
 		
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
@@ -78,7 +78,7 @@ public class DrFoolPoolEdit extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("-----/editDrFoolPool doPost호출------");
+		// System.out.println("-----/editDrFoolPool doPost호출------");
 		request.setCharacterEncoding("utf-8");
 		request.setAttribute("jspName", "drFoolPool");
 		
@@ -98,7 +98,7 @@ public class DrFoolPoolEdit extends HttpServlet {
 		String title = multi.getParameter("title");
 		String content = multi.getParameter("content");
 		Integer no = Integer.parseInt(multi.getParameter("no"));
-		System.out.println("fileName: " + fileName + ", title: " + title + ", content: " + content + ", no: " + no);
+		// System.out.println("fileName: " + fileName + ", title: " + title + ", content: " + content + ", no: " + no);
 		
 		// DrFoolPool객체 생성
 		DrFoolPool drFoolPool = new DrFoolPool();
@@ -118,7 +118,7 @@ public class DrFoolPoolEdit extends HttpServlet {
 		if(prevfilter!=null && prevfilter.equals("")==false) filter = prevfilter;
 		String sOption = multi.getParameter("sOption");
 		String sValue = multi.getParameter("sValue");
-		System.out.println("page: " + page + ", prevpage: " + page + ", prevfilter: " + prevfilter + ", filter: " + filter + "\nsOption: " + sOption + ", sValue: " + sValue);
+		// System.out.println("page: " + page + ", prevpage: " + page + ", prevfilter: " + prevfilter + ", filter: " + filter + "\nsOption: " + sOption + ", sValue: " + sValue);
 		
 		
 		try {
@@ -126,10 +126,8 @@ public class DrFoolPoolEdit extends HttpServlet {
 			drFoolPoolService.drFoolPoolEdit(drFoolPool);
 			
 			if(sOption==null || sValue==null) {
-				System.out.println("@@@@");
 				response.sendRedirect("drFoolPoolDetail?no=" + drFoolPool.getNo() + "&page=" + page + "&filter=" + filter);
 			} else {
-				System.out.println("####");
 				response.sendRedirect("drFoolPoolDetail?no=" + drFoolPool.getNo() + "&page=" + page + "&filter=" + filter + "&sOption=" + sOption + "&sValue=" + sValue);
 			}
 			

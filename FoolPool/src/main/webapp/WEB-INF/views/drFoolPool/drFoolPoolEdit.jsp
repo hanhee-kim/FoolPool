@@ -22,7 +22,7 @@
 						<div class="drFP-inputArea">
 							<ul>
 								<li>
-				                    <label>제목//${page},${filter},${sOption},${sValue}<b>*</b></label><br>
+				                    <label>제목<b>*</b></label><br>
 				                    <input class="drFP-formTitle drFP-text" name="title" type="text" maxlength="100" value="${drFoolPool.title}">
 				                    <div class="drFP-titleValidationMsg">유효성검사메시지란</div>
 				                </li>

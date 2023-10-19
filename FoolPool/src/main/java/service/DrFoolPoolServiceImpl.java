@@ -35,7 +35,7 @@ public class DrFoolPoolServiceImpl implements DrFoolPoolService {
 		paramMapforCnt.put("sOption", sOption);
 		paramMapforCnt.put("sValue", sValue);
 		int drFoolPoolCount = drFoolPoolDAO.selectDrFoolPoolCount(paramMapforCnt);
-		System.out.println("#drFoolPoolCount: " + drFoolPoolCount);
+		// System.out.println("#drFoolPoolCount: " + drFoolPoolCount);
 		int itemsPerPage = 6; // 페이지당 표시할 카드 수
 		int pagesPerGroup = 10; // 페이지그룹당 페이지번호 수
 		int maxPage = (int)Math.ceil((double)drFoolPoolCount/itemsPerPage);

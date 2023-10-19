@@ -49,7 +49,7 @@ public class DrFoolPoolForm extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("-----/drFoolpoolForm doPost호출------");
+		// System.out.println("-----/drFoolpoolForm doPost호출------");
 		
 		request.setCharacterEncoding("utf-8");
 		request.setAttribute("jspName", "drFoolPool");
@@ -69,7 +69,7 @@ public class DrFoolPoolForm extends HttpServlet {
 		String fileName = multi.getOriginalFileName("file"); // null로 받아지는 문제는 uploadPath설정부터 문제있었기 때문(업로드가 되지 않아 뽑아지지 않음)
 		String title = multi.getParameter("title");
 		String content = multi.getParameter("content");
-		System.out.println("fileName: " + fileName + ", title: " + title + ", content: " + content);
+		// System.out.println("fileName: " + fileName + ", title: " + title + ", content: " + content);
 		
 		// DrFoolPool객체 생성
 		DrFoolPool drFoolPool = new DrFoolPool();

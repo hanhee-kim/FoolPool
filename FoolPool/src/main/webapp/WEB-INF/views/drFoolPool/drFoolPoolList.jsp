@@ -71,11 +71,10 @@
                 <h5 class="drFP-searchBar">
                 	<form action="goDrFoolPool" method="get" id="drFP-searchForm">
 	                	<select name="sOption" id="drFP-sOption" value="${sOption}">
-	                		<option value="unselected" ${sOption eq 'unselected' ? 'selected' : ''}>선택</option>
-						    <option value="writer_nickname" ${sOption eq 'writer_nickname' ? 'selected' : ''}>작성자</option>
 						    <option value="all" ${sOption eq 'all' ? 'selected' : ''}>제목+내용</option>
 						    <option value="title" ${sOption eq 'title' ? 'selected' : ''}>제목</option>
 						    <option value="content" ${sOption eq 'content' ? 'selected' : ''}>내용</option>
+						    <option value="writer_nickname" ${sOption eq 'writer_nickname' ? 'selected' : ''}>작성자</option>
 	                	</select>
 	                	<input type="text" maxlength="100" name="sValue" id="drFP-sValue" class="drFP-text" value="${sValue}"/>
 						<input type="submit" value="검색"/>
@@ -100,11 +99,9 @@
 			      
 			      <c:forEach begin="${resMap.pageInfo.startPage}" end="${resMap.pageInfo.endPage}" var="i">
 			         <c:choose>
-			         	<%-- 현재선택된 페이지번호 --%>
 			            <c:when test="${resMap.pageInfo.curPage==i}">
-					        <a href="${goDrFoolPoolUrl}page=${i}&filter=${filter}" id="drFP-selectedPage">${i}</a>
+					        <a id="drFP-selectedPage">${i}</a>
 			            </c:when>
-			            <%-- 다른 페이지 번호들 --%>
 			            <c:otherwise>
 					        <a href="${goDrFoolPoolUrl}page=${i}&filter=${filter}" class="drFP-unselectedPage">${i}</a>
 			            </c:otherwise>

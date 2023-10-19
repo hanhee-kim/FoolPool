@@ -17,8 +17,8 @@
 			    	<div class="drFP-detail-1row">
 			    		<label>
 				    		<c:choose>
-						        <c:when test="${drFoolPool.isSolved}">[해결]</c:when>
-						        <c:otherwise>[미해결]</c:otherwise>
+						        <c:when test="${drFoolPool.isSolved}">[해결]&nbsp;</c:when>
+						        <c:otherwise>[미해결]&nbsp;</c:otherwise>
 						    </c:choose>
 			    		</label>
 			    		<label class="drFP-detailTitle">${drFoolPool.title}</label>
@@ -76,11 +76,11 @@
 					    			</div>
 					    			<div>
 					    				<textarea maxlength="300" id="drFP-commentValue" onkeyup="drFPcommentValidation()" name="commentContent" required="required" placeholder="댓글을 입력해주세요"></textarea>
-					    				<div id="drFP-commentValidationMsg"></div>
-					    				<p id="drFP-commentFormBtns">
+					    				<span id="drFP-commentValidationMsg"></span>
+					    				<span id="drFP-commentFormBtns">
 						    				<input type="submit" value="댓글 등록"/>
 						    				<input type="reset" value="입력 취소" id="drFP-resetCommentbtn" disabled/>
-					    				</p>
+					    				</span>
 					    			</div>
 					    		</form>
 				    		</div>

@@ -73,10 +73,12 @@
 	border-radius: 12px;
 	border: 0.5px solid gray;
 }
+.drFP-searchBar select, .drFP-searchBar input[type=submit] {
+	cursor: pointer;
+}
 .drFP-searchBar select {
 	background: #e0f4de;
 	border: 1px solid #e0f4de;
-	
 }
 #drFP-sValue {
 	padding-left: 15px;
@@ -114,7 +116,6 @@
 .drFP-FilteringAndWriteBtn {
 	width: 95%;
 	margin-top: -30px;
-	
     display: flex; /* 요소를 가로로 나란히 배치하기 위해 flex 사용 */
     justify-content: space-between; /* 요소 간 간격을 최대로 확보하여 좌우 정렬 */
     align-items: center; /* 요소를 수직 가운데로 정렬 */
@@ -125,7 +126,7 @@
 }
 .drFP-writeBtn {
 	margin-left: 10px; /* 글쓰기 버튼과 필터링 요소 사이에 마진 추가 */
-
+	cursor: pointer;
 	height: 40px;
 	width: 110px;
 	text-align: center;
@@ -152,7 +153,11 @@
 .drFP-FilterBtnSelected {
 	background: #e0f4de;
 }
-
+.drFP-writeBtn:hover, .drFP-FilterBtn:hover {
+	/* box-shadow: 0 0 0 3px #466b55 inset; */
+	transition: ease-in-out .2s;
+	transform: translateY(-7px);
+}
 #drFP-emptyList {
 	width: 1200px;
     height: 575px;
@@ -326,6 +331,13 @@
 	padding: 9px;
 	cursor: pointer;
 }
+
+.drFP-detail-5row button:hover
+, #drFP-commentFormBtns input[type=submit]:hover
+, .drFP-resetBtnEnable:hover {
+	box-shadow: 0 0 0 2px #466b55 inset;
+}
+
 .drFP-commentArea {
 	margin: 45px 20px 10px 60px; /* 위 오른 아래 왼 */
 	
@@ -388,7 +400,21 @@
 .drFP-commentPickBtn {
 	background: #F2F9EF !important;
 	border: 0.5px solid #466B55 !important;
-	padding: 4px 5px 3px 5px;
+	padding: 4px 9px;
+	cursor: pointer;
+}
+.drFP-commentPickBtn:hover {
+	  /* border: 3px solid orange !important; */
+	  
+	  /* box-shadow: 0 0 0 3px orange inset;
+	  border: 0.5px solid #F2F9EF !important; */
+	  
+	  /* border: none !important;
+	  background: #466B55 !important;
+	  color: white; */
+	  
+	  border: none !important;
+	  background: orange !important;
 }
 .drFP-commentDelBtn {
 	font-size: 30px;
@@ -413,6 +439,7 @@
 	font-size: 15px;
 	color: orange;
 	padding-left: 16px;
+	/* vertical-align: top; */
 }
 /* 댓글란 */
 #drFP-commentWriteArea {
@@ -455,10 +482,12 @@
 /* 댓글 등록, 취소 버튼 */
 #drFP-commentFormBtns {
     grid-column: 4; /* 4열에 위치하게 함 */
-    text-align: right;
-    margin-right: 10px;
+    /* margin-right: 2px; */
     margin-top: 0px;
-    margin-right: 0px;
+    float: right;
+}
+#drFP-commentFormBtns input {
+	cursor: pointer;
 }
 #drFP-commentFormBtns input {
 	background: #e0f4de !important;
@@ -469,7 +498,6 @@
 	font-family: 'Cafe24SsurroundAir';
 	margin-left: 8px;
 }
-
 
 .drFP-detailBottomBorder {
 	/* 원하는 위치에 배치하기 위해 절대값으로 지정 */
@@ -494,6 +522,12 @@
 .drFP-formSection>h2 {
 	margin-left: 40px;
 	margin-top: 35px;
+}
+
+.drFP-inputArea input[type=submit]:hover,  
+.drFP-inputArea input[type=button]:hover,
+.drFP-customFileBtn:hover {
+	box-shadow: 0 0 0 3px orange inset;
 }
 .drFP-inputArea {
 	margin-top: -15px;
@@ -520,16 +554,15 @@
     border: 0.5px dashed #466b55;
 	margin-top: 5px;
 	outline-color: orange;
+	width: 704px;
 }
 .drFP-formTitle  {
 	font-size: 18px;
-	width: 97%;
 	height: 30px;
 	padding: 0 10px;
 	font-family: 'Cafe24SsurroundAir';
 }
 .drFP-formContent {
-	width: 722px;
     height: 300px;
     resize: none; /* textarea 크기 고정 */
 	font-size: 18px;
@@ -584,10 +617,11 @@
 	background: #F2F9EF;
     border: 0.5px dashed #466b55;
     height: 30px;
-    width: 600px;
+    width: 593px;
     font-size: 18px;
     font-family: 'Cafe24SsurroundAir';
     padding-left: 10px;
+    outline-color: orange;
 }
 
 .drFP-formImgPreview, #drFP-formImgExisting {

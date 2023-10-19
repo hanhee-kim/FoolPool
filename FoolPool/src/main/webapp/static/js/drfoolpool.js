@@ -83,13 +83,22 @@ function drFPdelBtnfunction() {
 
 /* 풀풀박사 상세 - 수정 버튼 */
 function drFPedit(no) {
+	// 1) var가 아닌 let으로 선언시 에러
+	// 2) 순수JS문법으로는 검색값이 undefined가 아니지만 제이쿼리로는 undefined가 변수에 저장됨
 	var no = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-no");
 	var page = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-page");
 	var filter = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-filter");
 	var sOption = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-sOption");
 	var sValue = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-sValue");
+	/*
+	var no = $(".drFP-detail-hiddenrow").eq(0).data("no");
+	var page = $(".drFP-detail-hiddenrow").eq(0).data("page");
+	var filter = $(".drFP-detail-hiddenrow").eq(0).data("filter");
+	var sOption = $(".drFP-detail-hiddenrow").eq(0).data("sOption");
+	var sValue = $(".drFP-detail-hiddenrow").eq(0).data("sValue");
+	*/
 	
-	// alert('no:'+no+", page:"+page+",filter:"+filter+",sOption:"+sOption+",sValue:"+sValue);
+	 // alert('no:'+no+", page:"+page+",filter:"+filter+",sOption:"+sOption+",sValue:"+sValue);
 	if(sOption!=null && sValue!=null && sOption!='' && sValue!='') {
 		location.href="editDrFoolPool?no=" + no + "&page=" + page + "&filter=" + filter + "&sOption=" + sOption + "&sValue=" + sValue;
 	} else {
@@ -99,17 +108,35 @@ function drFPedit(no) {
 
 /* 풀풀박사 댓글 삭제 버튼 */
 function drFPCommDelete(commentNo, postNo) {
-	console.log("dfFPCommdelete 호출...");
-	if (confirm("댓글을 삭제하시겠습니까?") == true){ 
-		window.location.href = "deldrfoolpoolcomment?commentNo=" + commentNo + "&postNo=" + postNo;
-	}
+	Swal.fire({
+		title: '댓글을 삭제하시겠습니까?',
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: 'orange',
+		cancelButtonColor: '#466b55',
+		confirmButtonText: '삭제',
+		cancelButtonText: '취소'
+	}).then((result) => {
+		if(result.isConfirmed) {
+			location.href = "deldrfoolpoolcomment?commentNo=" + commentNo + "&postNo=" + postNo;
+		}
+	});
 }
 /* 풀풀박사 댓글 채택 버튼 */
 function drFPCommPick(commentNo, postNo) {
-	console.log("drFPCommPick 호출...");
-	if (confirm("이 댓글을 채택하시겠습니까?") == true){ 
-		window.location.href = "pickdrfoolpoolcomment?commentNo=" + commentNo + "&postNo=" + postNo;
-	 }
+	Swal.fire({
+		title: '댓글을 채택하시겠습니까?',
+		icon: 'warning',
+		showCancelButton: true,
+		confirmButtonColor: 'orange',
+		cancelButtonColor: '#466b55',
+		confirmButtonText: '채택',
+		cancelButtonText: '취소'
+	}).then((result) => {
+		if(result.isConfirmed) {
+			location.href = "pickdrfoolpoolcomment?commentNo=" + commentNo + "&postNo=" + postNo;
+		}
+	});
 }
 
 /* 풀풀박사 댓글 유효성 검사 메시지 추가 */
@@ -121,8 +148,10 @@ function drFPcommentValidation() {
 	// 입력값이 생기면 input[type=reset] 버튼의 비활성화속성을 제거
 	if(commentValue.length>0) {
 		resetCommentbtn.disabled = false;
+		resetCommentbtn.classList.add('drFP-resetBtnEnable'); // css 적용을 위해 클래스속성을 동적으로 추가
 	} else {
 		resetCommentbtn.disabled = true;
+		resetCommentbtn.classList.remove('drFP-resetBtnEnable');
 	}
 	
 	if(commentValue.includes('나쁜말')) {
@@ -139,21 +168,36 @@ function drFPcommentValidation() {
 
 $(document).ready(function() {
 	
-	// input[type=reset]을 눌렀을때 기본동작으로는 입력값을 제거하면서 reset버튼을 다시 비활성화상태로 바꿔주지 않으므로 명시적으로 수행하게함
+	// 댓글 입력취소 버튼(input[type=reset])을 눌렀을때 기본동작으로는 입력값을 제거하면서 reset버튼을 다시 비활성화상태로 바꿔주지 않으므로 명시적으로 수행하게함
 	$('#drFP-resetCommentbtn').click(function() {
-    	$('#drFP-commentValue').val('');
-    	this.disabled = true;
+    	$('#drFP-commentValue').val(''); // 입력값 지우기
+    	$('#drFP-commentValidationMsg').text(''); // 유효성검사 메시지가 있었다면 지우기
+    	this.disabled = true; // 리셋버튼 비활성화
+    	$('#drFP-resetCommentbtn')[0].classList.remove('drFP-resetBtnEnable'); // css를 위한 클래스속성 또한 지운다
 	});
+	
+	// 댓글등록 버튼(input[type=submit])을 눌렀을때 
+	$('#drFP-commentForm').submit(function(event) {
+		let valueAfterTrim = $('#drFP-commentValue').val().trim();
+		// 공백값만 댓글로 등록되지 않게 기본동작을 막고 안내해준다
+		if(valueAfterTrim === "") {
+            Swal.fire({
+				title:'댓글 입력값을 확인해주세요.',
+				icon:'warning',
+				confirmButtonColor: 'orange'
+			});
+			event.preventDefault();
+		}
+	})
 	
 	/* 풀풀박사 목록 - 검색바 유효성 검사 */
     $('#drFP-searchForm').submit(function(event) {
-        let sOption = $("#drFP-sOption").val();
         let sValue = $("#drFP-sValue").val().trim();
         // 수행1. trim된 값을 검색어input태그에 value로 넣어줌
         $("#drFP-sValue").val(sValue); 
         // 수행2. null값 검색제출을 막음 - 404에러 방지
-        if (sOption === "unselected" || sValue === "") {
-            console.log("검색옵션 혹은 검색어가 없으므로 기본제출이 막아짐");
+        if (sValue === "") {
+            // console.log("검색옵션 혹은 검색어가 없으므로 기본제출이 막아짐");
             event.preventDefault();
         }
     });
@@ -189,7 +233,7 @@ $(document).ready(function() {
         let validationMsg = $('.drFP-titleValidationMsg');
 
         if(titleValue.length > 98) {
-            console.log('제목 유효성검사에 걸림...');
+            // console.log('제목 유효성검사에 걸림...');
             validationMsg.text('제목은 100자를 초과할 수 없습니다');
         }
         if(titleValue.length <= 98) {
@@ -204,7 +248,7 @@ $(document).ready(function() {
         let validationMsg = $('.drFP-contentValidationMsg');
 
         if(contentValue.length > 1998) {
-            console.log('내용 유효성검사에 걸림...');
+            // console.log('내용 유효성검사에 걸림...');
             validationMsg.text('내용은 최대 2000자까지 작성하실 수 있습니다');
         }
         if(contentValue.length <= 1998) {
@@ -214,9 +258,9 @@ $(document).ready(function() {
     
     
     
-    // 풀풀박사 작성폼, 수정폼 - 업로드이미지 미리보기(파일을 읽어서 img태그에 표시)
+    // 풀풀박사 (1)작성폼, (2)수정폼 - 업로드이미지 미리보기(파일을 읽어서 img태그에 표시)
     $('#drFP-fileforwrite').change(function () {
-		console.log('이미지input값 변경됨...');
+		// console.log('이미지input값 변경됨...');
 		
         let uploadImg = this;
         let uploadImgPreview = $('.drFP-formImgPreview');
@@ -236,7 +280,7 @@ $(document).ready(function() {
             };
         }
     });
-    // 수정폼
+    // (2)수정폼
     $('#drFP-fileforedit').change(function () {
 		// 기존 이미지를 표시하는 img태그가 보여지지 않도록 속성 추가
 		$('#drFP-formImgExisting').attr("style", "display: none"); 
@@ -260,7 +304,6 @@ $(document).ready(function() {
         }
     });
     
-    // 댓글 
 });
 
 

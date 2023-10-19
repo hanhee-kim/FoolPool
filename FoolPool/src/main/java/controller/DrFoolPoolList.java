@@ -47,8 +47,8 @@ public class DrFoolPoolList extends HttpServlet {
 		String sOption = request.getParameter("sOption");
 		String sValue = request.getParameter("sValue");
 
-		System.out.println("-----/goDrFoolPool doGet호출----");
-		System.out.println("page: " + page + ", prevpage: " + page + ", prevfilter: " + prevfilter + ", filter: " + filter + "\nsOption: " + sOption + ", sValue: " + sValue);
+		// System.out.println("-----/goDrFoolPool doGet호출----");
+		// System.out.println("page: " + page + ", prevpage: " + page + ", prevfilter: " + prevfilter + ", filter: " + filter + "\nsOption: " + sOption + ", sValue: " + sValue);
 		
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();

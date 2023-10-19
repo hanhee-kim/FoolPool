@@ -45,7 +45,7 @@ public class DrFoolPoolCommentWrite extends HttpServlet {
 		// form 입력값 가져오기
 		String commentContent = request.getParameter("commentContent");
 		Integer postNo = Integer.parseInt(request.getParameter("postNo"));
-		System.out.println("commentContent: " + commentContent + ", postNo: " + postNo);
+		// System.out.println("commentContent: " + commentContent + ", postNo: " + postNo);
 		
 		// DrFoolPoolComment 객체 생성
 		DrFoolPoolComment comment = new DrFoolPoolComment();
