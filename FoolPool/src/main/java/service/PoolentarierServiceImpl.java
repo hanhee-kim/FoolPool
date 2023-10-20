@@ -21,12 +21,12 @@ public class PoolentarierServiceImpl implements PoolentarierService {
 
 	// 전체 게시글 개수 조회 + 전체 게시글 조회
 	@Override
-	public Map<String, Object> poolentarierListByPage(Integer page, String sortOption, String searchOption, String searchText) throws Exception {
+	public Map<String, Object> poolentarierListByPage(Integer curPage, String sortOption, String searchOption, String searchText) throws Exception {
 		PageInfo pageInfo = new PageInfo();
-		Map<String,Object> paramForCount = new HashMap<>();
 		
-//		System.out.println("검색옵션(서비스): " + searchOption);
-//		System.out.println("검색내용(서비스): " + searchText);
+		// 게시글 수를 통한 전체 페이지 수 계산 
+		Map<String,Object> paramForCount = new HashMap<>();
+		paramForCount.put("sortOption", sortOption);
 		paramForCount.put("searchOption", searchOption);
 		paramForCount.put("searchText", searchText);
 		int poolentarierCount = poolentarierDAO.selectPoolentarierCount(paramForCount);
@@ -37,36 +37,36 @@ public class PoolentarierServiceImpl implements PoolentarierService {
 		// ex: 39개의 게시글이 있으면, maxPage는 10 (39 / 4 = 9.xxx...이므로 10으로 올림)
 		int maxPage = (int) Math.ceil((double) poolentarierCount / 4);
 		
-		
 		// 현재 페이지인 page를 기반한 시작 페이지
 		// 예를 들어, 11~20 사이의 페이지라면 시작 페이지가 11
 		// -1을 해주는 이유는 1의 자리 숫자가 0인 페이지가 경계에 걸치는 것을 방지하기 위해 (ex: 11~20까지이므로, 10은 포함 안되도록)
-		int startPage = (page - 1) / 10 * 10 + 1;
-		
+		int startPage = (curPage - 1) / 10 * 10 + 1;
 		// 끝 페이지
 		int endPage = startPage + 10 - 1;
 		// 만일 끝 페이지가 마지막 페이지 수를 초과한다면, 마지막 페이지를 끝 페이지로 설정ㅊ
 		if(endPage > maxPage)
 			endPage = maxPage;
 		
+		// poolentarierCount==0일 때 예외처리 (게시글 삭제 예외처리로 인해 curPage가 0이 되는 경우, row 계산 시 음수가 되어 sql 예외 발생하게 됨)
+		if(maxPage==0) {
+			maxPage = 1;
+		}
+		
 		// 만일 모종의 이유로 요청한 페이지가 전체 페이지를 초과하는 경우
 		// ex: 현재 페이지가 마지막 페이지이면서 남은 게시글 1개를 삭제하고 게시판를 불러온다면
 		// 마지막 페이지를 현재 페이지로서 보여줌
-		// 일종의 예외처리
-		System.out.println("페이지: " + page);
-		System.out.println("맥스페이지: " + maxPage);
-		if(page > maxPage)
-			page = maxPage;
+		if(curPage > maxPage) {
+			curPage = maxPage;
+		}
 		
 		pageInfo.setAllPage(maxPage);
-		pageInfo.setCurPage(page);
+		pageInfo.setCurPage(curPage);
 		pageInfo.setStartPage(startPage);
 		pageInfo.setEndPage(endPage);
 		
 		// 현재 페이지 시작 row
 		// ex: 3페이지면, row는 9번 (9번부터 시작)
-		int row = (page - 1) * 4 + 1;
-		System.out.println(row);
+		int row = (curPage - 1) * 4 + 1;
 		
 		// DAO의 메서드를 호출하여 리스트를 반환받음
 		Map<String,Object> paramForList = new HashMap<>();
@@ -146,20 +146,28 @@ public class PoolentarierServiceImpl implements PoolentarierService {
 		return map;
 	}
 	
+	// 댓글 작성
 	@Override
 	public void poolentarierWriteComment(PoolentarierComment poolentarierComment) throws Exception {
 		poolentarierDAO.insertPoolentarierComment(poolentarierComment);
 		
 	}
 
+	// 댓글 삭제
 	@Override
 	public void poolentarierDeleteComment(Integer commentNo) throws Exception {
 		poolentarierDAO.deletePoolentarierComment(commentNo);
 	}
 	
+	// 댓글 조회
 	@Override
 	public List<PoolentarierComment> poolentarierCommentList(Integer postNo) throws Exception {
 		return poolentarierDAO.selectPoolentarierCommentList(postNo);
 	}
 	
+	// 게시글 수정
+	@Override
+	public void poolentarierEdit(Poolentarier poolentarier) throws Exception {
+		poolentarierDAO.updatePoolentarierDetail(poolentarier);
+	}
 }

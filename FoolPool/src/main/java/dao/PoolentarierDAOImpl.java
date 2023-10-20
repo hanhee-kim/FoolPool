@@ -71,4 +71,11 @@ public class PoolentarierDAOImpl implements PoolentarierDAO {
 	public List<PoolentarierComment> selectPoolentarierCommentList(Integer postNo) throws Exception {
 		return sqlSession.selectList("mapper.poolentarier.selectPoolentarierCommentList", postNo);
 	}
+	
+	// 게시글 수정
+	@Override
+	public void updatePoolentarierDetail(Poolentarier poolentarier) throws Exception {
+		sqlSession.update("mapper.poolentarier.updatePoolentarierDetail", poolentarier);
+		sqlSession.commit();
+	}
 }

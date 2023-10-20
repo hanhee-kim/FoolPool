@@ -16,4 +16,5 @@ public interface PoolentarierDAO {
 	void insertPoolentarierComment(PoolentarierComment poolentarierComment) throws Exception;
 	void deletePoolentarierComment(Integer commentNo) throws Exception;
 	List<PoolentarierComment> selectPoolentarierCommentList(Integer postNo) throws Exception;
+	void updatePoolentarierDetail(Poolentarier poolentarier) throws Exception;
 }

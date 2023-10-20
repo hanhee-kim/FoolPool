@@ -42,11 +42,7 @@ public class NoticeSearch extends HttpServlet {
 		String type = request.getParameter("type");
 		String keyword = request.getParameter("keyword");
 		String page = request.getParameter("page");
-		
-		System.out.println("--------NoticeSearch서블릿-------");
-		System.out.println("keyword: " + keyword + "\ntype: " + type + "\npage: " + page);
-		
-		
+				
 		int curpage = 1;
 		if(page!=null) curpage = Integer.parseInt(page);
 		
@@ -63,7 +59,7 @@ public class NoticeSearch extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			//request.setAttribute("err", e.getMessage());
-			request.getRequestDispatcher("WEB-INF/views/notice/error.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
 		}
 		
 		

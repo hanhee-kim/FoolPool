@@ -20,45 +20,52 @@ import service.PoolentarierServiceImpl;
 @WebServlet("/poolentarierCommentAdd")
 public class PoolentarierCommentAdd extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public PoolentarierCommentAdd() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public PoolentarierCommentAdd() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		request.setAttribute("jspName", "poolentarier");
-		
+
 		HttpSession session = request.getSession();
 		Member member = (Member) session.getAttribute("member");
-		String writerId = member.getId();
-		String writerNickname = member.getNickname();
-		Integer postNo = Integer.parseInt(request.getParameter("postNo"));
-		
-		String commentContent = request.getParameter("commentContent");
-		PoolentarierComment poolentarierCommnet = new PoolentarierComment();
-		poolentarierCommnet.setCommentContent(commentContent);
-		poolentarierCommnet.setWriterId(writerId);
-		poolentarierCommnet.setWriterNickname(writerNickname);
-		poolentarierCommnet.setPostNo(postNo);
-		
-		try {
-			PoolentarierService poolentarierService = new PoolentarierServiceImpl();
-			poolentarierService.poolentarierWriteComment(poolentarierCommnet);
-			response.sendRedirect("poolentarierDetail?no=" + postNo);
-		} catch(Exception e) {
-			e.printStackTrace();
-			request.setAttribute("err", e.getMessage());
-			request.getRequestDispatcher("error.jsp").forward(request, response);
+		if (member == null) { // 멤버없을때 댓글등록 에러페이지로
+			request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
+		} else {
+
+			String writerId = member.getId();
+			String writerNickname = member.getNickname();
+			Integer postNo = Integer.parseInt(request.getParameter("postNo"));
+
+			String commentContent = request.getParameter("commentContent");
+			PoolentarierComment poolentarierCommnet = new PoolentarierComment();
+			poolentarierCommnet.setCommentContent(commentContent);
+			poolentarierCommnet.setWriterId(writerId);
+			poolentarierCommnet.setWriterNickname(writerNickname);
+			poolentarierCommnet.setPostNo(postNo);
+
+			try {
+				PoolentarierService poolentarierService = new PoolentarierServiceImpl();
+				poolentarierService.poolentarierWriteComment(poolentarierCommnet);
+				response.sendRedirect("poolentarierDetail?no=" + postNo);
+			} catch (Exception e) {
+				e.printStackTrace();
+				request.setAttribute("err", e.getMessage());
+				request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
+			}
+
 		}
-	
 	}
 
 }

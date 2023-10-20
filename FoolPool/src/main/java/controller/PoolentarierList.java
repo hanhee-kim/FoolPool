@@ -51,84 +51,34 @@ public class PoolentarierList extends HttpServlet {
 			sortOption = paramSortOption;
 		}
 		
-		// null 값의 searchOption, searchText
-		String searchOption = null;
-		String searchText = null;
-//		System.out.println("검색옵션(서블렛): " + searchOption);
-//		System.out.println("검색내용(서블렛): " + searchText);
+		String searchOption = request.getParameter("searchOption");
+		String searchText = request.getParameter("searchText");
+
 		// 검색 옵션이 선택되지 않거나, 검색 입력값이 입력되어있지 않은 경우 (두 경우 중 하나라도)
-		// 전부 null로 초기화
-		// null값은 mapper에서 분기를 통해 처리
- 		if(searchOption == null || searchText == null) {
-			searchOption = null;
-			searchText = null;
-		}
+		// 전부 null 초기화
+		// null 값은 mapper에서 분기를 통해 처리
+// 		if(searchOption == null || searchText == null) {
+//			searchOption = null;
+//			searchText = null;
+//		}
 
 		try {
 			// 서비스 객체 생성
 			PoolentarierService poolentarierService = new PoolentarierServiceImpl();
 			// 서비스 객체에서 게시판 리스트업 메서드 호출하여 res로 받아옴
-
 			Map<String, Object> res = poolentarierService.poolentarierListByPage(curPage, sortOption, searchOption, searchText);
 			// res 세팅
-			request.setAttribute("res", res);
 			request.setAttribute("sortOption", sortOption);
+			request.setAttribute("res", res);
 			request.setAttribute("searchOption", searchOption);
 			request.setAttribute("searchText", searchText);
-
 			request.getRequestDispatcher("WEB-INF/views/poolentarier/poolentarierList.jsp").forward(request, response);
 		} catch(Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", e.getMessage());
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
-		
+	
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		request.setCharacterEncoding("utf-8");
-//		request.setAttribute("jspName", "poolentarier");
-//		String page = request.getParameter("page");
-//		String paramSortOption = request.getParameter("sortOption");
-//		
-//		// 검색 폼 제출시 기존 정렬 및 페이징 값은 new / 1로 초기화 (해제) 
-//		String sortOption = "new";
-//		if(paramSortOption!=null) {
-//			sortOption = paramSortOption;
-//		}
-//		
-//		int curPage = 1;
-//		
-//		String searchOption = request.getParameter("SearchOption");
-//		String searchText = request.getParameter("SearchText");
-//
-//		// 만일, 페이지 값이 존재한다면
-//		if(page!=null) {
-//			curPage = Integer.parseInt(page);
-//		}
-//	
-//		try {
-//			// 서비스 객체 생성
-//			PoolentarierService poolentarierService = new PoolentarierServiceImpl();
-//			// 서비스 객체에서 게시판 리스트업 메서드 호출하여 res로 받아옴
-//			Map<String, Object> res = poolentarierService.poolentarierListByPage(curPage, sortOption, searchOption, searchText);
-//			
-//			// request 세팅
-//			request.setAttribute("res", res);
-//			request.setAttribute("sortOption", sortOption);
-//			request.setAttribute("searchOption", searchOption);
-//			request.setAttribute("searchText", searchText);
-//			request.setAttribute("jspname", "poolentarier");
-//			
-//			request.getRequestDispatcher("WEB-INF/views/poolentarier/poolentarierList.jsp").forward(request, response);
-//		} catch(Exception e) {
-//			e.printStackTrace();
-//			request.setAttribute("err", e.getMessage());
-//			request.getRequestDispatcher("error.jsp").forward(request, response);
-//		}
-//	}
 
 }

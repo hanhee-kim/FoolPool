@@ -15,4 +15,5 @@ public interface PoolentarierService {
 	void poolentarierWriteComment(PoolentarierComment poolentarierComment) throws Exception;
 	void poolentarierDeleteComment(Integer commentNo) throws Exception;
 	List<PoolentarierComment> poolentarierCommentList(Integer postNo) throws Exception;
+	void poolentarierEdit(Poolentarier poolentarier) throws Exception;
 }
