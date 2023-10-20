@@ -157,10 +157,10 @@ function drFPcommentValidation() {
 	if(commentValue.includes('나쁜말')) {
 		validationMsg.text('댓글에 비속어 사용을 자제해주세요');
 	}
-	if(commentValue.length>298) {
-		validationMsg.text('댓글은 최대 300자까지 작성하실 수 있습니다');
+	if(commentValue.length>198) {
+		validationMsg.text('댓글은 최대 200자까지 작성하실 수 있습니다');
 	}
-	if(commentValue.length<=298) {
+	if(commentValue.length<=198) {
 		validationMsg.text('');
 	}
 }

@@ -75,7 +75,7 @@
 					    				${member.nickname}<img alt="펜" src="./static/img/pen.png" id="drFP-pen">
 					    			</div>
 					    			<div>
-					    				<textarea maxlength="300" id="drFP-commentValue" onkeyup="drFPcommentValidation()" name="commentContent" required="required" placeholder="댓글을 입력해주세요"></textarea>
+					    				<textarea maxlength="200" id="drFP-commentValue" onkeyup="drFPcommentValidation()" name="commentContent" required="required" placeholder="댓글을 입력해주세요"></textarea>
 					    				<span id="drFP-commentValidationMsg"></span>
 					    				<span id="drFP-commentFormBtns">
 						    				<input type="submit" value="댓글 등록"/>

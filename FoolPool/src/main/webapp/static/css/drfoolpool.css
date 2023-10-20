@@ -335,7 +335,8 @@
 .drFP-detail-5row button:hover
 , #drFP-commentFormBtns input[type=submit]:hover
 , .drFP-resetBtnEnable:hover {
-	box-shadow: 0 0 0 2px #466b55 inset;
+	/* box-shadow: 0 0 0 2px #466b55 inset; */
+	box-shadow: 0 0 0 2px orange inset;
 }
 
 .drFP-commentArea {
@@ -398,23 +399,25 @@
 	border: none;
 }
 .drFP-commentPickBtn {
-	background: #F2F9EF !important;
-	border: 0.5px solid #466B55 !important;
+	/* background: #F2F9EF !important;
+	border: 0.5px solid #466B55 !important; */
+	background: #e0f4de !important;
+    border: none !important;
 	padding: 4px 9px;
 	cursor: pointer;
 }
 .drFP-commentPickBtn:hover {
 	  /* border: 3px solid orange !important; */
 	  
-	  /* box-shadow: 0 0 0 3px orange inset;
-	  border: 0.5px solid #F2F9EF !important; */
+	  box-shadow: 0 0 0 2px orange inset;
+	  /* border: 0.5px solid #F2F9EF !important; */
 	  
 	  /* border: none !important;
 	  background: #466B55 !important;
 	  color: white; */
 	  
-	  border: none !important;
-	  background: orange !important;
+	  /* border: none !important;
+	  background: orange !important; */
 }
 .drFP-commentDelBtn {
 	font-size: 30px;
@@ -478,6 +481,7 @@
 	padding: 10px;
 	
 	outline-color: orange; /* focus된 입력창의 테두리색 변경 */
+	overflow-y: auto; 
 }
 /* 댓글 등록, 취소 버튼 */
 #drFP-commentFormBtns {
@@ -524,10 +528,14 @@
 	margin-top: 35px;
 }
 
-.drFP-inputArea input[type=submit]:hover,  
-.drFP-inputArea input[type=button]:hover,
-.drFP-customFileBtn:hover {
+/* .drFP-customFileBtn:hover {
 	box-shadow: 0 0 0 3px orange inset;
+} */
+.drFP-customFileBtn:hover,
+.drFP-inputArea input[type=submit]:hover,  
+.drFP-inputArea input[type=button]:hover {
+	border: none !important;
+	background: orange !important;
 }
 .drFP-inputArea {
 	margin-top: -15px;
