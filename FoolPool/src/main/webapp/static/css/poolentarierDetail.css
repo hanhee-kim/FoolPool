@@ -228,6 +228,7 @@
 	padding: 10px;
 	
 	outline-color: orange; /* focus된 입력창의 테두리색 변경 */
+	overflow-y: auto;
 }
 
 #pdCommentForm {

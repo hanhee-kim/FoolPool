@@ -70,7 +70,7 @@
 										${member.nickname}<img alt="펜" src="./static/img/pen.png" id="pdPen">
 									</div>
 									<div>
-										<textarea maxlength="300" id="pdCommentValue" onkeyup="pdCommentValidation()" name="commentContent" required="required" placeholder="댓글을 입력해주세요"></textarea>
+										<textarea maxlength="200" id="pdCommentValue" onkeyup="pdCommentValidation()" name="commentContent" required="required" placeholder="댓글을 입력해주세요"></textarea>
 					    				<div id="pdCommentValidationMsg"></div>
 					    				<p id="pdCommentFormBtns">
 						    				<input class="pd_comm_btn" type="submit" value="댓글 등록"/>
