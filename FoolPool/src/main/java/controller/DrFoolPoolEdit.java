@@ -40,7 +40,14 @@ public class DrFoolPoolEdit extends HttpServlet {
 
 		// 뷰의 버튼이 아니라 사용자가 직접 url로 요청하여 들어왔을때도 비로그인 상태일때는 로그인페이지로 이동하게함
 		HttpSession session = request.getSession();
-		if(session.getAttribute("member")==null) request.getRequestDispatcher("login.jsp").forward(request, response);
+		if(session.getAttribute("member")==null) {
+			// request.getRequestDispatcher("WEB-INF/views/login/login.jsp").forward(request, response);
+			response.sendRedirect("login");
+		} else {
+			request.setCharacterEncoding("utf-8");
+			request.setAttribute("jspName", "drFoolPool");
+			request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolEdit.jsp").forward(request, response);
+		}
 			
 		request.setCharacterEncoding("utf-8");
 		Integer no = Integer.parseInt(request.getParameter("no"));
