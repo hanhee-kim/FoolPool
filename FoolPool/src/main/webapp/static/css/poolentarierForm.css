@@ -63,11 +63,30 @@
 	color: orange;
 }
 
+#pfKeyword {
+	background: #F2F9EF;
+    border: 0.5px dashed #466b55;
+	margin-top: 5px;
+    width: 150px;
+    height: 30px;
+    font-size: 18px;
+    padding-left: 10px; 
+}
+
 .pfFormTitle,
-.pfFormContent {
+.pfFormContent,
+.pfPlantsName {
     background: #F2F9EF;
     border: 0.5px dashed #466b55;
 	margin-top: 5px;
+}
+
+.pfPlantsName {
+	height: 30px;
+    width: 150px;
+    font-size: 18px;
+    font-family: 'Cafe24SsurroundAir';
+    padding-left: 10px;
 }
 
 .pfFormTitle  {
@@ -101,8 +120,7 @@
 
 
 .pfContentValidationMsg {
-	margin-top: 3px;
-	
+	margin-top: 3px;	
 }
 
 .pfFileSection {
@@ -157,6 +175,7 @@
 	margin-top: -40px;
 	text-align: center;
 }
+
 .pfFormBtn input {
 	/* z값을 주기 위해 position:relative로 지정 */
     position: relative;
@@ -183,27 +202,20 @@
 	margin-top: 15px;
 }
 
-.pfPlantsName {
-	height: 35px;
-	border-radius: 12px;
-	font-family: 'Cafe24SsurroundAir';
-}
-
 #keywordList {
 	display: flex;
 	padding: 0;
 }
 
-#pfKeyword {
-	height: 35px;
-	border-radius: 12px;
-	font-family: 'Cafe24SsurroundAir';
-}
-
 .pfKeywordAddBtn {
+	width: 100px;
+	border: none;
+    border-radius: 5px;
+    background-color: #e0f4de;
 	height: 35px;
-	border-radius: 12px;
 	font-family: 'Cafe24SsurroundAir';
+	font-size: 18px;
+	padding: 8px;
 	cursor: pointer;
 }
 
@@ -215,4 +227,11 @@
 
 .pfCheckboxKeyword {
 	display: none;
+}
+
+.pfKeywordAddBtn:hover,
+.pfCustomFileBtn:hover,
+.pfFormBtn input:hover {
+	border: none !important;
+	background: orange !important;
 }

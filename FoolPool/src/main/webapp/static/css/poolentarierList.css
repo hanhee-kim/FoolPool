@@ -40,6 +40,7 @@
 
 .plTopMenuDiv {
 	display: flex;
+	height: 50px;
 }
 
 .plWriteFormDiv {
@@ -52,13 +53,11 @@
 }
 
 .plWriteBtn {
-    color: #466b55;
     font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
+	text-align: center;
     cursor: pointer;
+    margin-top: 10px;
+    background: #e0f4de;
 }
 
 .plSortDiv {
@@ -104,7 +103,7 @@
 }
 
 .plSortBtn {
-    color: #466b55;
+    color: black;
     font-weight: bold;
     display: flex;
     align-items: center;
@@ -114,22 +113,12 @@
 }
 
 .plOption {
-    border-radius: 8px;
-    background-color: #fff;
-    border: 1px solid #e1e1e1;
-    box-sizing: border-box;
-    width: 70px;
-    height: 30px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: row-reverse;
-    padding: 1px 0px 0 0;
-    align-items: center;
-    justify-content: center;
-    transition: all .9s, color .3s;
-    font-size:18px;
-    color:#466b55;
     float: right;
+    margin-left: 10px;
+    height: 40px;
+    width: 110px;
+    font-size: larger;
+    border-radius: 10px 50px;
 }
 
 #plEmptyList {
@@ -199,20 +188,8 @@
 }
 
 .plOption:hover {
-    cursor: pointer;
-    background-color: #b2d1be;
-    box-shadow: 0 80px 0 0 #466b55 inset, 0 -80px 0 0 #466b55 inset;
-}
-
-
-.plWriteBtn:hover {
-	color: white;
-	transition: all .9s, color .3s;
-}
-
-.plSortBtn:hover {
-	color: white;
-    transition: all .9s, color .3s;
+    	transition: ease-in-out .2s;
+	transform: translateY(-7px);
 }
 
 .plFace {
@@ -268,12 +245,16 @@
 	color: #466b55 !important;
 }
 
+.plSortBtnSelected {
+	background: #e0f4de;
+}
+
 .plSearchOptionDiv {
     width: 1200px;
     display: flex;
     justify-content: center;
     position: absolute;
-    top: 835px;
+    top: 830px;
 }
 
 #plPage {
@@ -291,10 +272,11 @@
     font-size: 20px;
     font-weight: bold;
     padding: 5px;
-    border-radius: 5px;
-    border: 0.5px solid gray;
+    border-radius: 12px;
     height: 40px;
     cursor: pointer;
+    background: #e0f4de;
+    border: 1px solid #e0f4de;
 }
 
 #plSearchText {
@@ -302,7 +284,7 @@
     font-size: 20px;
     font-weight: bold;
     padding: 7px;
-    border-radius: 5px;
+    border-radius: 12px;
     border: 0.5px solid gray;
     height: 24px;
 }
@@ -312,7 +294,9 @@
     font-size: 20px;
     font-weight: bold;
     padding: 7px;
-    border-radius: 5px;
-    border: 0.5px solid gray;
     cursor: pointer;
+    background: #e0f4de;
+    width: 100px;
+    border-radius: 12px;
+    border: 1px solid #e0f4de;
 }
