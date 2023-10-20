@@ -80,24 +80,38 @@ public class SearchFlower extends HttpServlet {
 			} else if (option.equals("flowerName")) {
 				type = "flow_Nm";
 				String flowerName = (String) request.getParameter("byName");
-//				System.out.println("flowerName : "+flowerName);
+				System.out.println("flowerName : "+flowerName);
 				res.put("flowerName", flowerName);
+				if(flowerName.length() == 0) {
+					res.put("word", "no_data");
+				} else {
 				try {
 					flowers = f_service.searchFlowerByWord(type, flowerName);
+//					if(flowers.size() == 0) {
+//						res.put("word", "no_data");
+//					}
 				} catch (Exception e) {
 					e.printStackTrace();
 					request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
+				 }
 				}
 			} else if (option.equals("flowerLang")) {
 				type = "flow_Lang";
 				String flowerLang = request.getParameter("byLang");
 //				System.out.println("Lang : "+flowerLang);
 				res.put("flowerLang", flowerLang);
+				if(flowerLang.length() == 0) {
+					res.put("word", "no_data");
+				} else {
 				try {
 					flowers = f_service.searchFlowerByWord(type, flowerLang);
+//					if(flowers.size() == 0) {
+//						res.put("word", "no_data");
+//					}
 				} catch (Exception e) {
 					e.printStackTrace();
 					request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
+				 }
 				}
 			}
 			res.put("option", option);
