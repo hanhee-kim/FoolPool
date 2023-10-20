@@ -80,7 +80,7 @@ public class SearchFlower extends HttpServlet {
 			} else if (option.equals("flowerName")) {
 				type = "flow_Nm";
 				String flowerName = (String) request.getParameter("byName");
-				System.out.println("flowerName : "+flowerName);
+//				System.out.println("flowerName : "+flowerName);
 				res.put("flowerName", flowerName);
 				if(flowerName.length() == 0) {
 					res.put("word", "no_data");
