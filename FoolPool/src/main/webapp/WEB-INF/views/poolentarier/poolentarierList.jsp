@@ -44,25 +44,29 @@
 	            	
 				    
 	            	
-	            	<%-- 카드그리드 2x2 --%>
-	            	<div class="plCardGrid">
-	            		<c:if test="${res.poolentarierList eq Empty}">
-	            			<div class="plEmptyList">게시물이 존재하지 않습니다.</div>
-	            		</c:if>
-	            		<c:if test="${res.poolentarierList ne Empty}">
-	            			<c:forEach items="${res.poolentarierList }" var="poolentarier">
-			            		<a href="poolentarierDetail?no=${poolentarier.no}">
-			            			<div class="plCard">
-			            				<img alt="풀랜테리어 사진" class="plFace plFront" src="image?file=${poolentarier.fileName}">
+				     <%-- 카드그리드 2x2 --%>
+					<c:if test="${res['poolentarierList'].size()==0}">
+						<div id="plEmptyList">
+							<p>게시물이 존재하지 않습니다.</p>
+							<img alt="예외처리이파리" src="./static/img/leaf-exception.png" id="plLeafException">
+						</div>
+					</c:if>
+					<c:if test="${res['poolentarierList'].size()>0}">
+						<div class="plCardGrid">
+							<c:forEach items="${res.poolentarierList }" var="poolentarier">
+								<a href="poolentarierDetail?no=${poolentarier.no}">
+									<div class="plCard">
+										<img alt="풀랜테리어 사진" class="plFace plFront"
+											src="image?file=${poolentarier.fileName}">
 										<div class="plFace plBack">
 											<h1>${poolentarier.plantsName}</h1>
 										</div>
-			            			</div>
-			            		</a>
-	            			</c:forEach>
-	            		</c:if>
-	            	</div>
-					
+									</div>
+								</a>
+							</c:forEach>
+						</div>
+					</c:if>
+			
 					<%-- 검색창 --%>
 					<div class=plSearchOptionDiv>
 						<form action="goPoolentarier" method="get" id="plSearchform">
