@@ -1,12 +1,14 @@
 @charset "UTF-8";
 .showFlowerImg1{
-  height: 570px;
+  height: 564px;
   width: 770px;
+  border-radius: 20px;
 }
 .showFlowerImg2,
 .showFlowerImg3{
-  width: 570px;
-  height: 285px;
+	width: 570px;
+    height: 280px;
+    border-radius: 20px;
 } 
 .flowerImgWrap {
   width: 1350px;
@@ -18,9 +20,15 @@
   margin-top: 20px;
   justify-content: center;
 }
+.flowerImgDiv1{
+	display: flex;
+    height: 570px;
+    align-items: center;
+}
 .flowerImgDiv2{
-  display: grid;
-  grid-template-rows: 1fr 1fr;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    align-items: center;
 }
 .mainFlowerContentWrap{
   display: flex;

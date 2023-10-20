@@ -36,17 +36,34 @@ public class DrFoolPoolEdit extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		// System.out.println("/editDrFoolPool doGet 호출");
+
 		// 뷰의 버튼이 아니라 사용자가 직접 url로 요청하여 들어왔을때도 비로그인 상태일때는 로그인페이지로 이동하게함
 		HttpSession session = request.getSession();
 		if(session.getAttribute("member")==null) request.getRequestDispatcher("login.jsp").forward(request, response);
 			
 		request.setCharacterEncoding("utf-8");
 		Integer no = Integer.parseInt(request.getParameter("no"));
+		
+		// 이전 목록페이지의 값
+		String prevpage = request.getParameter("page");
+		String prevfilter = request.getParameter("filter");
+		int page = 1;
+		if(prevpage!=null) page = Integer.parseInt(prevpage);
+		String filter = "all";
+		if(prevfilter!=null) filter = prevfilter;
+		String sOption = request.getParameter("sOption");
+		String sValue = request.getParameter("sValue");
+		// System.out.println("no:" + no + ",prevpage: " + page + ",filter:" + filter + ",sOption:" + sOption + ",sValue:" + sValue);
+		
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
 			DrFoolPool drFoolPool = drFoolPoolService.drFoolPoolDetail(no);
-			System.out.println("-----/editDrFoolPool doGet 호출-----\n" + drFoolPool.toString());
 			request.setAttribute("drFoolPool", drFoolPool);
+			request.setAttribute("page", page);
+			request.setAttribute("filter", filter);
+			request.setAttribute("sOption", sOption);
+			request.setAttribute("sValue", sValue);
 			request.setAttribute("jspName", "drFoolPool");
 			request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolEdit.jsp").forward(request, response);
 			
@@ -55,16 +72,13 @@ public class DrFoolPoolEdit extends HttpServlet {
 			request.setAttribute("err", "풀풀박사 게시글 수정 실패");
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
-		
-		request.setAttribute("jspName", "drFoolPool");
-		request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolEdit.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("-----/editDrFoolPool doPost호출------");
+		// System.out.println("-----/editDrFoolPool doPost호출------");
 		request.setCharacterEncoding("utf-8");
 		request.setAttribute("jspName", "drFoolPool");
 		
@@ -84,7 +98,7 @@ public class DrFoolPoolEdit extends HttpServlet {
 		String title = multi.getParameter("title");
 		String content = multi.getParameter("content");
 		Integer no = Integer.parseInt(multi.getParameter("no"));
-		System.out.println("fileName: " + fileName + ", title: " + title + ", content: " + content + ", no: " + no);
+		// System.out.println("fileName: " + fileName + ", title: " + title + ", content: " + content + ", no: " + no);
 		
 		// DrFoolPool객체 생성
 		DrFoolPool drFoolPool = new DrFoolPool();
@@ -95,10 +109,27 @@ public class DrFoolPoolEdit extends HttpServlet {
 		drFoolPool.setWriterId(writerId);
 		drFoolPool.setWriterNickname(writerNickname);
 		
+		// 이전 목록페이지의 값
+		String prevpage = multi.getParameter("page");
+		String prevfilter = multi.getParameter("filter");
+		int page = 1; 
+		if(prevpage!=null && prevpage.equals("")==false) page = Integer.parseInt(prevpage);
+		String filter = "all";
+		if(prevfilter!=null && prevfilter.equals("")==false) filter = prevfilter;
+		String sOption = multi.getParameter("sOption");
+		String sValue = multi.getParameter("sValue");
+		// System.out.println("page: " + page + ", prevpage: " + page + ", prevfilter: " + prevfilter + ", filter: " + filter + "\nsOption: " + sOption + ", sValue: " + sValue);
+		
+		
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
 			drFoolPoolService.drFoolPoolEdit(drFoolPool);
-			response.sendRedirect("drFoolPoolDetail?no=" + drFoolPool.getNo());
+			
+			if(sOption==null || sValue==null) {
+				response.sendRedirect("drFoolPoolDetail?no=" + drFoolPool.getNo() + "&page=" + page + "&filter=" + filter);
+			} else {
+				response.sendRedirect("drFoolPoolDetail?no=" + drFoolPool.getNo() + "&page=" + page + "&filter=" + filter + "&sOption=" + sOption + "&sValue=" + sValue);
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();

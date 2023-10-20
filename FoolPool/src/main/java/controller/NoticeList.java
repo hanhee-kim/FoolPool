@@ -37,6 +37,7 @@ public class NoticeList extends HttpServlet {
 		
 		int curpage = 1;
 		if(page!=null)curpage = Integer.parseInt(page);
+
 		
 		try {
 			NoticeService noticeService = new NoticeServiceImpl();
@@ -47,14 +48,8 @@ public class NoticeList extends HttpServlet {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("err", e.getMessage());
-			request.getRequestDispatcher("WEB-INF/views/notice/noticeError.jsp").forward(request, response);
-		}
-		
-		
+			//request.setAttribute("err", "공지사항 조회에 에러가 발생했습니다");
+			request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
+		}		
 	}
-
-	
-	
-
 }

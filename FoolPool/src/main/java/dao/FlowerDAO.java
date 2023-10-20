@@ -11,5 +11,5 @@ public interface FlowerDAO {
 	Flower selectFlowerByNo(Integer dataNo) throws Exception;
 	List<Flower> selectFlowerPeriod(Map<String,Integer> param) throws Exception;
 	List<Flower> selectFlowerByWord(Map<String,String> param) throws Exception;
-	
+	List<Flower> selectFlowerPeriodReverse(Map<String, Integer> param) throws Exception;
 }

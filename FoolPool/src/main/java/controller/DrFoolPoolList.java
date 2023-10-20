@@ -38,30 +38,27 @@ public class DrFoolPoolList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		request.setAttribute("jspName", "drFoolPool"); // 해당 메뉴에 들어와있다면 인클루드되는 menubar.jsp의 해당 메뉴 버튼색을 짙게 바꾸어두기 위해 뷰로 넘기는 문자열
-		String page = request.getParameter("page");
-		String paramFilter = request.getParameter("filter");
-		
-		int curPage = 1; 
-		if(page!=null) curPage = Integer.parseInt(page);
+		String prevpage = request.getParameter("page");
+		String prevfilter = request.getParameter("filter");
+		int page = 1; 
+		if(prevpage!=null) page = Integer.parseInt(prevpage);
 		String filter = "all";
-		if(paramFilter!=null) filter = paramFilter;
-		
-		System.out.println("-----/goDrFoolPool doGet호출----");
-		System.out.println("page: " + page + ", curPage: " + curPage + ", paramFilter: " + paramFilter + ", filter: " + filter);
-		
-		String sOption = null;
-		String sValue = null;
-			
+		if(prevfilter!=null) filter = prevfilter;
+		String sOption = request.getParameter("sOption");
+		String sValue = request.getParameter("sValue");
+
+		// System.out.println("-----/goDrFoolPool doGet호출----");
+		// System.out.println("page: " + page + ", prevpage: " + page + ", prevfilter: " + prevfilter + ", filter: " + filter + "\nsOption: " + sOption + ", sValue: " + sValue);
 		
 		try {
-			HttpSession session = request.getSession();
-			Member member = (Member) session.getAttribute("member");
-			if(member != null) System.out.println("로그인 정보: " + member.getId() + ", " + member.getNickname());
-			
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
-			Map<String,Object> resMap = drFoolPoolService.drFoolPoolListByPage(curPage, filter, sOption, sValue); // PageInfo와 List<DrFoolPool>가 담긴 맵을 서비스로부터 반환받음
+			Map<String,Object> resMap = drFoolPoolService.drFoolPoolListByPage(page, filter, sOption, sValue);
+			
+			request.setAttribute("page", page);
 			request.setAttribute("filter", filter);
-			request.setAttribute("resMap", resMap);
+			request.setAttribute("resMap", resMap); // 맵에 담긴 벨류: PageInfo, List<DrFoolPool>
+			request.setAttribute("sOption", sOption);
+			request.setAttribute("sValue", sValue);
 			request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolList.jsp").forward(request, response);
 			
 		} catch (Exception e) {
@@ -71,50 +68,5 @@ public class DrFoolPoolList extends HttpServlet {
 		}
 	}
 	
-	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		String page = request.getParameter("page");
-		String paramFilter = request.getParameter("filter");
-		
-		String filter = "all";
-		if(paramFilter!=null) filter = paramFilter;
-		int curPage = 1; 
-//		if(page!=null) curPage = Integer.parseInt(page);
-		
-		System.out.println("-----/goDrFoolPool doPost호출----");
-		System.out.println("page: " + page + ", curPage: " + curPage + ", filter: " + filter);
-		
-		String sOption = request.getParameter("sOption");
-		String sValue = request.getParameter("sValue");
-		
-		System.out.println("sOption: " + sOption + ", sValue: " + sValue);
-
-		try {
-			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
-			Map<String,Object> resMap = drFoolPoolService.drFoolPoolListByPage(curPage, filter, sOption, sValue);
-			
-			System.out.println("----검색된 게시글 출력-----");
-			List<DrFoolPool> resList = (List<DrFoolPool>) resMap.get("drFoolPoolList");
-			Iterator<DrFoolPool> iter = resList.iterator();
-			while(iter.hasNext()){
-				System.out.println(iter.next().toString());
-			}
-			System.out.println("검색결과 수 : " + resList.size());
-			
-			request.setAttribute("filter", filter);
-			request.setAttribute("resMap", resMap);
-			request.setAttribute("sOption", sOption);
-			request.setAttribute("sValue", sValue);
-			request.setAttribute("jspName", "drFoolPool");
-			request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolList.jsp").forward(request, response);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			request.setAttribute("err", e.getMessage());
-			request.getRequestDispatcher("error.jsp").forward(request, response);
-		}
-		
-	}
 
 }

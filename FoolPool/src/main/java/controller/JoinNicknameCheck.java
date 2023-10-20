@@ -38,7 +38,7 @@ public class JoinNicknameCheck extends HttpServlet {
 			response.getWriter().print(res);
 		} catch (Exception e) {
 			e.printStackTrace();
-			response.getWriter().print("nickname duplicate check ajax response  error!!");
+			request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
 		}
 	}
 

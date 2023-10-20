@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="mapper.poolentarier">
+ 
  	<!-- 이렇게 맞춰 놓으면 밑에서 AS 안 써도 됨 -->
 	<resultMap type="Poolentarier" id="PoolentarierRM">
 		<result property="fileName" column="file_Name"/>
@@ -9,42 +10,116 @@
 		<result property="writerId" column="writer_Id"/>
 		<result property="writerNickname" column="writer_Nickname"/>
 	</resultMap>
+	
+	<resultMap type="PoolentarierComment" id="PoolentarierCommentRM">
+		<result property="commentNo" column="comment_No"/>
+		<result property="commentDate" column="comment_Date"/>
+		<result property="commentContent" column="comment_Content"/>
+		<result property="writerId" column="writer_Id"/>
+		<result property="writerNickname" column="writer_Nickname"/>
+		<result property="postNo" column="post_No"/>
+	</resultMap>
+	
+	<!-- 전체 게시글 수 조회 -->
+	<select id="selectPoolentarierCount" parameterType="hashmap" resultType="Integer">
+		select count(no) from poolentarier
+		<where>
+			<choose>
+				<when test="searchOption != null and searchOption == 'all'">
+					(title like '%${searchText}%' or content like '%${searchText}%')
+				</when>
+				<otherwise>
+					<choose>
+			        	<when test="searchOption != null and searchText != null">
+			            	and ${searchOption} like '%${searchText}%'
+			        	</when>
+			        	<otherwise></otherwise>
+					</choose>
+				</otherwise>
+			</choose>
+		</where>
+	</select>
+	
+	<!-- 전체 게시글 목록 조회 -->
+	<select id="selectPoolentarierList" parameterType="hashmap" resultType="Poolentarier" resultMap="PoolentarierRM">
+		select * from poolentarier
+		<where>
+			<choose>
+				<when test="searchOption != null and searchOption == 'all'">
+					(title like '%${searchText}%' or content like '%${searchText}%')
+				</when>
+				<otherwise>
+					<choose>
+			        	<when test="searchOption != null and searchText != null">
+			            	and ${searchOption} like '%${searchText}%'
+			        	</when>
+			        	<otherwise></otherwise>
+					</choose>
 
-<!-- 	<insert id="insertPoolentarier" parameterType="Poolentarier">
-		<![CDATA[
-			insert into Poolentarier() values(#{})
-		]]>
-	</insert> -->
-	
-	<select id="selectPoolentarierCount" resultType="Integer">
-		<![CDATA[
-			select count(no) from poolentarier
-		]]>
+				</otherwise>
+			</choose>
+		</where>
+		<choose>
+			<when test="sortOption.equals('new')">order by no desc</when>
+			<when test="sortOption.equals('view')">order by view desc</when>
+		</choose>
+		limit #{row}, 4
 	</select>
 	
-	<select id="selectPoolentarierList" parameterType="Integer" resultType="Poolentarier" resultMap="PoolentarierRM">
-		<![CDATA[
-			select * from poolentarier order by no desc
-			limit #{row}, 4
-		]]>
-	</select>
-	
+	<!-- 게시글 조회 -->
 	<select id="selectPoolentarierDetail" parameterType="Integer" resultType="Poolentarier" resultMap="PoolentarierRM">
 		<![CDATA[
 			select * from poolentarier where no = #{no}
 		]]>
 	</select>
 	
+	<!-- 게시글 작성 -->
 	<insert id="insertPoolentarierDetail" parameterType="Poolentarier">
 		<![CDATA[
-			insert into poolentarier values (null, #{title}, curdate(), 0, #{content}, #{keyword}, #{fileName}, #{plantsName}, #{writerId}, #{writerNickname})
+			insert into poolentarier values (null, #{title}, now(), 0, #{content}, #{keyword}, #{fileName}, #{plantsName}, #{writerId}, #{writerNickname})
 		]]>
 	</insert>
 	
+	<!-- 게시글 수정 -->
+	<update id="updatePoolentarierDetail" parameterType="Poolentarier">
+		<![CDATA[
+			update poolentarier set title = #{title}, content = #{content}, keyword = #{keyword}, file_Name = #{fileName}, plants_Name = #{plantsName} where no = #{no}
+		]]>
+	</update>
+	
+	<!-- 게시글 삭제 -->
 	<delete id="deletePoolentarier" parameterType="Integer">
 		<![CDATA[
 			delete from poolentarier where no = #{no}
 		]]>
 	</delete>
 	
+	<!-- 게시글 조회수 증가 -->
+	<update id="updatePoolentarierView" parameterType="Integer">
+ 		<![CDATA[
+ 			update poolentarier set view = view+1 where no = #{no}
+ 		]]>
+ 	</update>
+ 	
+ 	<!-- 댓글 작성 -->
+ 	<insert id="insertPoolentarierComment" parameterType="PoolentarierComment">
+ 		<![CDATA[
+ 			insert into poolentarier_comment values (null, now(), #{commentContent}, #{writerId}, #{writerNickname}, #{postNo})
+ 		]]>
+ 	</insert>
+ 	
+ 	<!-- 댓글 삭제 -->
+ 	<delete id="deletePoolentarierComment" parameterType="Integer">
+ 	 	<![CDATA[
+ 			delete from poolentarier_comment where comment_no = #{commentNo}
+ 		]]>
+ 	</delete>
+ 	
+ 	<!-- 댓글 조회 -->
+ 	<select id="selectPoolentarierCommentList" parameterType="Integer" resultType="PoolentarierComment" resultMap="PoolentarierCommentRM">
+ 		<![CDATA[
+ 			select * from poolentarier_comment where post_no = #{postNo}
+ 			order by comment_date
+ 		]]>
+ 	</select>
  </mapper>

@@ -71,9 +71,6 @@ public class NoticeFormEdit extends HttpServlet {
 		notice.setNo(no);
 		notice.setTitle(title);
 		notice.setContent(content);
-		System.out.println(notice.getNo());
-		System.out.println(notice.getTitle());
-		System.out.println(notice.getContent());
 		try {
 			NoticeService noticeService = new NoticeServiceImpl();
 			noticeService.noticeModify(notice);
@@ -81,8 +78,8 @@ public class NoticeFormEdit extends HttpServlet {
 			response.sendRedirect("noticedetail?no="+notice.getNo());
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("err", "게시글 수정 오류");
-			request.getRequestDispatcher("WEB-INF/views/notice/noticeError.jsp").forward(request, response);
+			//request.setAttribute("err", "게시글 수정 오류");
+			request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
 		}
 		
 	}

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/include/menubar.jsp"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 
 <div class="notice-Label">공지사항</div>
 
@@ -20,7 +20,7 @@
        readonly="readonly" value="admin" />
 	<h2 class="noticetitle">제목</h2>
 	<input name="title" type="text" id="noticetitlewrite", class="noticeFormTitle"
-        maxlength="50" ,required="required", placeholder="your title*" />
+        maxlength="30" ,required="required", placeholder="your title*" />
 	<h2 class="titlewrite">작성 내용</h2>
 	<textarea name="content" id="revised" placeholder="your text*" required="required" class="noticeFormText" ></textarea>
 	<input type="submit" value="등록" class="noticeFormBtn"/>&nbsp;&nbsp; 

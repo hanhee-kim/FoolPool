@@ -29,7 +29,7 @@
                     
                     <div class="joinBtnDiv">
                         <input type="submit" class="boxBtn joinSubmitBtn" value="가입">
-                        <input type="reset" class="boxBtn joinResetBtn" value="취소">
+                        <input type="reset" class="boxBtn joinResetBtn" id="joinReset" value="취소">
                     </div>
                 </form>
                 

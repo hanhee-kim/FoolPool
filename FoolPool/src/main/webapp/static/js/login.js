@@ -12,7 +12,7 @@ $(function(){
 			type:"post",
 			data:{"id":$("#loginMemberId").val(),"password":$("#loginMemberPassword").val()},
 			success:function(res){
-				console.log("res: "+res+"res_type: "+typeof res);
+//				console.log("res: "+res+"res_type: "+typeof res);
 				if(res == "noId"){
 					Swal.fire({
 						title:'ID가 일치하지 않습니다.',

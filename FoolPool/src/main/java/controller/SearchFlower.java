@@ -40,7 +40,6 @@ public class SearchFlower extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 
 		String option = request.getParameter("option");
-		System.out.println(request.getParameter("option"));
 		FlowerService f_service = new FlowerServiceImpl();
 		Flower flower = new Flower();
 		List<Flower> flowers = new ArrayList<>();
@@ -59,6 +58,7 @@ public class SearchFlower extends HttpServlet {
 					flowers.add(flower);
 				} catch (Exception e) {
 					e.printStackTrace();
+					request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
 				}
 
 			} else if (option.equals("periodDate")) {
@@ -66,6 +66,7 @@ public class SearchFlower extends HttpServlet {
 				Integer startDay = Integer.parseInt(request.getParameter("startDay"));
 				Integer endMonth = Integer.parseInt(request.getParameter("endMonth"));
 				Integer endDay = Integer.parseInt(request.getParameter("endDay"));
+			
 				res.put("startMonth", startMonth);
 				res.put("startDay", startDay);
 				res.put("endMonth", endMonth);
@@ -74,26 +75,29 @@ public class SearchFlower extends HttpServlet {
 					flowers = f_service.searchFlowerByPeriod(startMonth, startDay, endMonth, endDay);
 				} catch (Exception e) {
 					e.printStackTrace();
+					request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
 				}
 			} else if (option.equals("flowerName")) {
 				type = "flow_Nm";
 				String flowerName = (String) request.getParameter("byName");
-				System.out.println("flowerName : "+flowerName);
+//				System.out.println("flowerName : "+flowerName);
 				res.put("flowerName", flowerName);
 				try {
 					flowers = f_service.searchFlowerByWord(type, flowerName);
 				} catch (Exception e) {
 					e.printStackTrace();
+					request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
 				}
 			} else if (option.equals("flowerLang")) {
 				type = "flow_Lang";
 				String flowerLang = request.getParameter("byLang");
-				System.out.println("Lang : "+flowerLang);
+//				System.out.println("Lang : "+flowerLang);
 				res.put("flowerLang", flowerLang);
 				try {
 					flowers = f_service.searchFlowerByWord(type, flowerLang);
 				} catch (Exception e) {
 					e.printStackTrace();
+					request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
 				}
 			}
 			res.put("option", option);
@@ -103,15 +107,6 @@ public class SearchFlower extends HttpServlet {
 			request.setAttribute("res", res);
 			request.setAttribute("jspName", "searchFlower");
 			request.getRequestDispatcher("WEB-INF/views/searchFlower/searchflower.jsp").forward(request, response);
-
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
 
 	}
 

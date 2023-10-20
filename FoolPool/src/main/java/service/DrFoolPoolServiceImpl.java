@@ -23,8 +23,8 @@ public class DrFoolPoolServiceImpl implements DrFoolPoolService {
 	@Override
 	public Map<String, Object> drFoolPoolListByPage(int curPage, String filter, String sOption, String sValue)
 			throws Exception {
-		// 검색 전에는 sOption과 sValue를 null로 받아 호출됨
-		System.out.println("===========service\n curPage: " + curPage + ", filter: " + filter + ", sOption: " + sOption + ", sValue: " + sValue);
+		// 검색 전에는 sOption과 sValue를 null로 받아서 호출됨
+//		System.out.println("===========service\n curPage: " + curPage + ", filter: " + filter + ", sOption: " + sOption + ", sValue: " + sValue);
 		
 		Map<String, Object> resMap = new HashMap<>();
 		PageInfo pageInfo = new PageInfo();
@@ -35,8 +35,8 @@ public class DrFoolPoolServiceImpl implements DrFoolPoolService {
 		paramMapforCnt.put("sOption", sOption);
 		paramMapforCnt.put("sValue", sValue);
 		int drFoolPoolCount = drFoolPoolDAO.selectDrFoolPoolCount(paramMapforCnt);
-		System.out.println("####drFoolPoolCount: " + drFoolPoolCount);
-		int itemsPerPage = 6; // 페이지당 카드 6개 표시 *** xml의 limit절과 일치시킬것
+		// System.out.println("#drFoolPoolCount: " + drFoolPoolCount);
+		int itemsPerPage = 6; // 페이지당 표시할 카드 수
 		int pagesPerGroup = 10; // 페이지그룹당 페이지번호 수
 		int maxPage = (int)Math.ceil((double)drFoolPoolCount/itemsPerPage);
 		
@@ -45,7 +45,7 @@ public class DrFoolPoolServiceImpl implements DrFoolPoolService {
 		int endPage = startPage+pagesPerGroup-1;
 		if(endPage>maxPage) endPage=maxPage;
 		
-		// drFoolPoolCount==0일때의 예외처리: 아래 코드로 인해 curPage가 0이 되면 자연히 row가 음수가 되어 sql예외 발생하게됨
+		// drFoolPoolCount==0일때의 예외처리: 아래의 게시글 삭제 예외처리 코드로 인해 curPage가 0이 되면 row 계산시 음수가 되어 sql예외 발생하게됨
 		if(maxPage==0) maxPage = 1;
 
 		// 게시글 삭제 예외처리
@@ -59,7 +59,6 @@ public class DrFoolPoolServiceImpl implements DrFoolPoolService {
 		
 		// 현재 페이지의 시작 행 (SELECT문의 limit절에서 사용)
 		int row = (curPage-1)*itemsPerPage+1; 
-		System.out.println("maxPage: " + maxPage + ", curPage: " + curPage + ", row: " + row);
 		
 		// DAO의 메서드를 호출하여 리스트를 반환받음
 		Map<String,Object> paramMap = new HashMap<>();
@@ -67,7 +66,7 @@ public class DrFoolPoolServiceImpl implements DrFoolPoolService {
 		paramMap.put("filter", filter);
 		paramMap.put("sOption", sOption);
 		paramMap.put("sValue", sValue);
-		System.out.println("###DAO호출시의 인자\nrow: " + (row-1) + ", filter" + filter + ", sOption: " + sOption + ", sValue: " + sValue);
+//		System.out.println("DAO호출시의 row: " + (row-1));
 		List<DrFoolPool> drFoolPoolList = drFoolPoolDAO.selectDrFoolPoolList(paramMap);
 		
 		// 페이지정보 객체와 리스트를 맵에 담아 호출부로 리턴

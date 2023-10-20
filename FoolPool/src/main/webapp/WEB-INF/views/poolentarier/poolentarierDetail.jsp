@@ -12,9 +12,9 @@
 						<label class="plDetailTitle">${poolentarier.title}</label>
 					</div>
 					<div class="pdDetail-2row">
+						<span class="pdDetail-writer">작성자: ${poolentarier.writerNickname}</span>
 						<span>작성일: ${poolentarier.date}</span>
 						<span>조회수: ${poolentarier.view}</span>
-						<span class="pdDetail-writer">작성자: ${poolentarier.writerNickname}</span>
 					</div>
 			
 					<%-- #1 이미지 크기를 통일 or max크기(영역)만 지정 --%>
@@ -28,55 +28,58 @@
 						${poolentarier.content}
 					</div>
 					<div class="pdDetail-6row">
-						<span>#${poolentarier.keyword}</span>
+						<c:forEach items="${keywords}" var="keyword" >
+							<span>${keyword}</span>&nbsp;
+						</c:forEach>
 					</div>
 					<div class="pdDetail-7row">
-						<a href="poolentarierEdit?no=${poolentarier.no}"><button>수정</button></a>
-						<a href="poolentarierDelete?no=${poolentarier.no}"><button>삭제</button></a>
+						<c:if test="${member ne Empty && member.id eq poolentarier.writerId}">
+							<a href="poolentarierEdit?no=${poolentarier.no}"><button>수정</button></a>
+							<button onclick="pdRemovePoolentarier(${poolentarier.no})">삭제</button></a>
+						</c:if>
 						<a href="goPoolentarier"><button>목록</button></a>
 					</div>
 			
 					<div class="pdCommentArea">
-						<h4>댓글 [5]</h4>
+						<h4>댓글 [${commentCount}]</h4>
 						<table>
-							<tr>
-								<td>닉네임1</td>
-								<td>댓글내용1댓글내용1댓글내용1댓글내용1댓글내용1</td>
-								<td>
-									<button class="pdCommentDelBtn"></button>
-								</td>
-							</tr>
-							<tr>
-								<td>닉네임2</td>
-								<td>댓글내용2댓글내용2댓글내용2</td>
-								<td>
-			
-									<button class="pdCommentDelBtn"></button>
-								</td>
-							</tr>
-							<tr>
-								<td>닉네임3</td>
-								<td>줄바꿈되는긴댓글내용3줄바꿈되는긴댓글내용3줄바꿈되는긴댓글내용3줄바꿈되는긴댓글내용3줄바꿈되는긴댓글내용3줄바꿈되는긴댓글내용3줄바꿈되는긴댓글내용3줄바꿈되는긴댓글내용3줄바꿈되는긴댓글내용3줄바꿈되는긴댓글내용3</td>
-								<td>
-									<button class="pdCommentDelBtn"></button>
-			
-								</td>
-							</tr>
-							<tr>
-								<td>닉네임4</td>
-								<td>댓글내용4댓글내용4댓글내용4댓글내용4댓글내용4</td>
-								<td>
-									<button class="pdCommentDelBtn"></button>
-								</td>
-							</tr>
-							<tr>
-								<td>닉네임5</td>
-								<td>댓글내용5댓글내용5댓글내용5댓글내용5댓글내용5</td>
-								<td>
-									<button class="pdCommentDelBtn"></button>
-								</td>
-							</tr>
+							<c:forEach items="${poolentarierCommentList }" var="comment">
+								<tr>
+									<fmt:formatDate value="${comment.commentDate}" pattern="yyyy.MM.dd. HH:mm" var="formattedCommentDate" />
+					    			<td>${comment.writerNickname}</td>
+									<td>
+										<label>${comment.commentContent}</label></br>
+					    				<small>${formattedCommentDate}</small>
+									</td>
+									<td>
+											<td>
+					    				<c:if test="${member ne Empty && member.id eq comment.writerId}">
+												<button class="pdCommentDelBtn" onclick="pdRemoveComment(${comment.commentNo}, ${comment.postNo})">X</button>
+										</c:if>
+											</td>
+					    			</td>
+								</tr>
+							</c:forEach>
 						</table>
+						
+						<c:if test="${member ne Empty }">
+							<div class="pdCommentWriteArea">
+								<form action="poolentarierCommentAdd" method="post" id="pdCommentForm">
+									<input type="hidden" name="postNo" value="${poolentarier.no }"/>
+									<div id="pdCommentWriter">
+										${member.nickname}<img alt="펜" src="./static/img/pen.png" id="pdPen">
+									</div>
+									<div>
+										<textarea maxlength="200" id="pdCommentValue" onkeyup="pdCommentValidation()" name="commentContent" required="required" placeholder="댓글을 입력해주세요"></textarea>
+					    				<div id="pdCommentValidationMsg"></div>
+					    				<p id="pdCommentFormBtns">
+						    				<input class="pd_comm_btn" type="submit" value="댓글 등록"/>
+						    				<input type="reset" class="pd_comm_btn" value="입력 취소" id="pdResetCommentbtn" disabled/>
+					    				</p>
+									</div>
+								</form>
+							</div>
+						</c:if>
 					</div>
 					
 				</div>
