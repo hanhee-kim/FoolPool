@@ -38,10 +38,7 @@ public class DrFoolPoolForm extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 뷰의 버튼이 아니라 사용자가 직접 url로 요청하여 들어왔을때도 비로그인 상태일때는 로그인페이지로 이동하게함
 		HttpSession session = request.getSession();
-		if(session.getAttribute("member")==null) { 
-			System.out.println("***********************************************");
-			request.getRequestDispatcher("login.jsp").forward(request, response);
-		}
+		if(session.getAttribute("member")==null) request.getRequestDispatcher("login.jsp").forward(request, response);
 		
 		request.setCharacterEncoding("utf-8");
 		request.setAttribute("jspName", "drFoolPool");
@@ -52,7 +49,7 @@ public class DrFoolPoolForm extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("-----/drFoolpoolForm doPost호출------");
+		// System.out.println("-----/drFoolpoolForm doPost호출------");
 		
 		request.setCharacterEncoding("utf-8");
 		request.setAttribute("jspName", "drFoolPool");
@@ -72,7 +69,7 @@ public class DrFoolPoolForm extends HttpServlet {
 		String fileName = multi.getOriginalFileName("file"); // null로 받아지는 문제는 uploadPath설정부터 문제있었기 때문(업로드가 되지 않아 뽑아지지 않음)
 		String title = multi.getParameter("title");
 		String content = multi.getParameter("content");
-		System.out.println("fileName: " + fileName + ", title: " + title + ", content: " + content);
+		// System.out.println("fileName: " + fileName + ", title: " + title + ", content: " + content);
 		
 		// DrFoolPool객체 생성
 		DrFoolPool drFoolPool = new DrFoolPool();
@@ -85,7 +82,8 @@ public class DrFoolPoolForm extends HttpServlet {
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
 			drFoolPoolService.drFoolPoolWrite(drFoolPool);
-			response.sendRedirect("drFoolPoolDetail?no=" + drFoolPool.getNo());
+			response.sendRedirect("drFoolPoolDetail?no=" + drFoolPool.getNo()); 
+			// 작성완료 후 상세페이지로 넘어갈때는 filter, page, sOption, sValue값을 가지고 가지 않으므로 이후 목록으로 이동할때 첫목록페이지로 가게된다
 			
 		} catch (Exception e) {
 			e.printStackTrace();

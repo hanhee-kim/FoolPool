@@ -37,6 +37,22 @@
 	
 	margin-top: -30px;
 }
+
+/* 브라우저에 저장된 자동완성 백그라운드 스타일 제거 */
+.drFP-text:-webkit-autofill, 
+.drFP-text:-webkit-autofill:hover, 
+.drFP-text:-webkit-autofill:focus, 
+.drFP-text:-webkit-autofill:active,
+.drFP-text:autofill, 
+.drFP-text:autofill:hover, 
+.drFP-text:autofill:focus, 
+.drFP-text:autofill:active {
+	/* -webkit-text-fill-color: black; */
+    -webkit-box-shadow: 0 0 0px 1000px gray inset;
+    box-shadow: 0 0 0px 1000px white inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
 /* 1. 풀풀박사 게시글 목록 */
 .drFP-searchBar {
 	text-align: center;
@@ -48,14 +64,29 @@
 	z-index: 9;
 }
 
-/* 후손선택자 작성시 주의할것 */
+/* 여러 선택자를 이용하며 컴마 쓸때 주의할것(각각이 자식/후손임을 명시)*/
 .drFP-searchBar select, .drFP-searchBar option, .drFP-searchBar input {
 	font-family: 'Cafe24SsurroundAir';
 	font-size: 20px;
 	font-weight: bold;
 	padding: 5px;
-	border-radius: 5px;
+	border-radius: 12px;
 	border: 0.5px solid gray;
+}
+.drFP-searchBar select, .drFP-searchBar input[type=submit] {
+	cursor: pointer;
+}
+.drFP-searchBar select {
+	background: #e0f4de;
+	border: 1px solid #e0f4de;
+}
+#drFP-sValue {
+	padding-left: 15px;
+}
+.drFP-searchBar input[type=submit] {
+	background: #e0f4de;
+	width: 100px;
+	border: 1px solid #e0f4de;
 }
 
 .drFP-searchBar>:last-child {
@@ -85,7 +116,6 @@
 .drFP-FilteringAndWriteBtn {
 	width: 95%;
 	margin-top: -30px;
-	
     display: flex; /* 요소를 가로로 나란히 배치하기 위해 flex 사용 */
     justify-content: space-between; /* 요소 간 간격을 최대로 확보하여 좌우 정렬 */
     align-items: center; /* 요소를 수직 가운데로 정렬 */
@@ -96,11 +126,11 @@
 }
 .drFP-writeBtn {
 	margin-left: 10px; /* 글쓰기 버튼과 필터링 요소 사이에 마진 추가 */
-
+	cursor: pointer;
 	height: 40px;
 	width: 110px;
 	text-align: center;
-	background: #D9D9D9;
+	background: #e0f4de;
 	font-family: 'Cafe24SsurroundAir';
 	font-size: larger;
 	font-weight: bold;
@@ -121,8 +151,32 @@
 	line-height: 33px;
 }
 .drFP-FilterBtnSelected {
-	background: #D9D9D9; /* #선택된 필터만 배경색 적용되도록 할것 */
+	background: #e0f4de;
 }
+.drFP-writeBtn:hover, .drFP-FilterBtn:hover {
+	/* box-shadow: 0 0 0 3px #466b55 inset; */
+	transition: ease-in-out .2s;
+	transform: translateY(-7px);
+}
+#drFP-emptyList {
+	width: 1200px;
+    height: 575px;
+    margin-top: 120px;
+    
+    /* 자식요소 수직, 수평 정렬*/
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+}
+#drFP-emptyList p {
+	font-size: 25px;
+}
+#drFP-leafException {
+	/* 원본: 너비 341px */
+	width: 250px;
+	height: auto;
+}
+
 .drFP-CardGrid {
     width: 1200px;
     height: 575px;
@@ -139,9 +193,11 @@
     text-decoration: none;
 }
 .drFP-Card {
+    background-color: #F2F9EF;
+    /* offset-x | offset-y | blur-radius흐린정도 | spread-radius크기 | color */
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     width: 351px;
     height: 255px;
-    background-color: #e9e9e9;
     border: none;
     border-radius: 10px 50px;
    
@@ -149,6 +205,10 @@
 	grid-template-rows: 1fr 4fr;
 	justify-items: center; /* 그리드 아이템 가로 중앙 정렬 */
     align-items: center; /* 그리드 아이템 세로 중앙 정렬 */
+}
+.drFP-Card:hover {
+	/* border: 3px solid #466b55; */
+	box-shadow: 0 0 0 3px #466b55 inset;
 }
 
 .drFP-CardTitleArea {
@@ -191,10 +251,6 @@
 .drFP-CardTitleArea>img {
 	width: 38px;
 	height: 34px;
-}
-
-#drFP-emptyList {
-	background: pink;
 }
 
 
@@ -260,21 +316,29 @@
 	text-align: right;
 	margin-top: 10px;
 	margin-left: 40px;
-	/* background: skyblue; */
 }
 .drFP-detail-5row button{
 	margin-left: 8px; 
-	
+	width: 100px;
+	height: 40px;
 	text-align: center;
-	background: #D9D9D9;
+	background: #e0f4de;
 	font-family: 'Cafe24SsurroundAir';
-	font-size: 17px;
+	font-size: 19px;
 	font-weight: border;
-	border: 0;
+	border: none;
 	border-radius: 5px;
-	padding: 5px 15px;
+	padding: 9px;
 	cursor: pointer;
 }
+
+.drFP-detail-5row button:hover
+, #drFP-commentFormBtns input[type=submit]:hover
+, .drFP-resetBtnEnable:hover {
+	/* box-shadow: 0 0 0 2px #466b55 inset; */
+	box-shadow: 0 0 0 2px orange inset;
+}
+
 .drFP-commentArea {
 	margin: 45px 20px 10px 60px; /* 위 오른 아래 왼 */
 	
@@ -282,9 +346,8 @@
     position: relative; 
     z-index: 5; 
 }
-#dfFP-commentForm {
-	position: relative; 
-    z-index: 10; 
+.drFP-commentArea h4 {
+	font-size: larger;
 }
 .drFP-commentArea table {
 	width: 95%;
@@ -336,9 +399,25 @@
 	border: none;
 }
 .drFP-commentPickBtn {
-	background: #F2F9EF !important;
-	border: 0.5px solid #466B55 !important;
-	padding: 4px 5px 3px 5px;
+	/* background: #F2F9EF !important;
+	border: 0.5px solid #466B55 !important; */
+	background: #e0f4de !important;
+    border: none !important;
+	padding: 4px 9px;
+	cursor: pointer;
+}
+.drFP-commentPickBtn:hover {
+	  /* border: 3px solid orange !important; */
+	  
+	  box-shadow: 0 0 0 2px orange inset;
+	  /* border: 0.5px solid #F2F9EF !important; */
+	  
+	  /* border: none !important;
+	  background: #466B55 !important;
+	  color: white; */
+	  
+	  /* border: none !important;
+	  background: orange !important; */
 }
 .drFP-commentDelBtn {
 	font-size: 30px;
@@ -357,9 +436,71 @@
 	font-weight: bold;
 }
 
+
+
 #drFP-commentValidationMsg {
-	font-size: 12px;
+	font-size: 15px;
 	color: orange;
+	padding-left: 16px;
+	/* vertical-align: top; */
+}
+/* 댓글란 */
+#drFP-commentWriteArea {
+    margin-top: 24px;
+}
+/* 댓글 작성폼 */
+#drFP-commentForm {
+	position: relative; 
+    z-index: 10; 
+    width: 95%;
+    
+    display: grid;
+    grid-template-rows: repeat(1, 1fr); /* 1행 */
+    grid-template-columns: 130px 1fr auto auto; /* 4열 */
+    
+    font-size: 16px;
+}
+#drFP-commentWriter {
+    height: 100%;
+    padding: 10px 0 0 10px; /* 위, 왼 */
+}
+#drFP-pen {
+	width: 30px;
+}
+
+/* 댓글 입력란 */
+#drFP-commentValue {
+    height: 120px;
+    resize: none; /* textarea 크기 고정 */
+	width: 880px;
+	grid-column: 2 / span 2; /* 2번째 열에서 시작하여 2열 다 차지하게함 */
+	margin: 10px 0 0 10px;
+	
+	font-size: 17px;
+	font-family: 'Cafe24SsurroundAir';
+	padding: 10px;
+	
+	outline-color: orange; /* focus된 입력창의 테두리색 변경 */
+	overflow-y: auto; 
+}
+/* 댓글 등록, 취소 버튼 */
+#drFP-commentFormBtns {
+    grid-column: 4; /* 4열에 위치하게 함 */
+    /* margin-right: 2px; */
+    margin-top: 0px;
+    float: right;
+}
+#drFP-commentFormBtns input {
+	cursor: pointer;
+}
+#drFP-commentFormBtns input {
+	background: #e0f4de !important;
+	border: none;
+	padding: 10px 17px 8px;
+    border-radius: 5px;
+	font-size: 16px;
+	font-family: 'Cafe24SsurroundAir';
+	margin-left: 8px;
 }
 
 .drFP-detailBottomBorder {
@@ -376,7 +517,6 @@
 	top: 890px; 
 	width: 1246.67px;
 }
-
 .drFP-formSection {
 	width: 70%;
 	height: 600px;
@@ -386,6 +526,16 @@
 .drFP-formSection>h2 {
 	margin-left: 40px;
 	margin-top: 35px;
+}
+
+/* .drFP-customFileBtn:hover {
+	box-shadow: 0 0 0 3px orange inset;
+} */
+.drFP-customFileBtn:hover,
+.drFP-inputArea input[type=submit]:hover,  
+.drFP-inputArea input[type=button]:hover {
+	border: none !important;
+	background: orange !important;
 }
 .drFP-inputArea {
 	margin-top: -15px;
@@ -411,16 +561,16 @@
     background: #F2F9EF;
     border: 0.5px dashed #466b55;
 	margin-top: 5px;
+	outline-color: orange;
+	width: 704px;
 }
 .drFP-formTitle  {
 	font-size: 18px;
-	width: 97%;
 	height: 30px;
 	padding: 0 10px;
 	font-family: 'Cafe24SsurroundAir';
 }
 .drFP-formContent {
-	width: 722px;
     height: 300px;
     resize: none; /* textarea 크기 고정 */
 	font-size: 18px;
@@ -442,12 +592,9 @@
 	margin-top: 3px;
 	
 }
-
-
 .drFP-fileSection {
 	width:744px;
 }
-
 /*
 .drFP-formImgInput {
 	width: 90%;
@@ -478,10 +625,11 @@
 	background: #F2F9EF;
     border: 0.5px dashed #466b55;
     height: 30px;
-    width: 600px;
+    width: 593px;
     font-size: 18px;
     font-family: 'Cafe24SsurroundAir';
     padding-left: 10px;
+    outline-color: orange;
 }
 
 .drFP-formImgPreview, #drFP-formImgExisting {

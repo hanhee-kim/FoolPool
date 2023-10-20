@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/include/menubar.jsp" %>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
             <div class="drFP-Label">풀풀박사</div>
             
@@ -11,11 +13,12 @@
                 
                 <%-- 게시글 상세 --%>
                 <div class="drFP-detailArea">
+                	<div class="drFP-detail-hiddenrow" data-no='${drFoolPool.no}' data-page='${page}' data-filter='${filter}' data-sOption='${sOption}' data-sValue='${sValue}'></div>
 			    	<div class="drFP-detail-1row">
 			    		<label>
 				    		<c:choose>
-						        <c:when test="${drFoolPool.isSolved}">[해결]</c:when>
-						        <c:otherwise>[미해결]</c:otherwise>
+						        <c:when test="${drFoolPool.isSolved}">[해결]&nbsp;</c:when>
+						        <c:otherwise>[미해결]&nbsp;</c:otherwise>
 						    </c:choose>
 			    		</label>
 			    		<label class="drFP-detailTitle">${drFoolPool.title}</label>
@@ -32,10 +35,10 @@
 			    	<div class="drFP-detail-4row">${drFoolPool.content}</div>
 			    	<div class="drFP-detail-5row">
 			    		<c:if test="${member ne Empty && member.id eq drFoolPool.writerId}">
-				    		<button onclick="drFPedit(${drFoolPool.no})">수정</button>
-				    		<button onclick="drFPdelete(${drFoolPool.no})">삭제</button>
+				    		<button onclick="drFPedit()">수정</button>
+				    		<button id="drFPdelBtn" onclick="drFPdelBtnfunction()">삭제</button>
 			    		</c:if>
-			    		<button onclick="drFPbackToList(${drFoolPool.no})">목록</button>
+			    		<button onclick="drFPbackToList()">목록</button>
 			    	</div>
 			    	
 			    	<div class="drFP-commentArea">
@@ -64,13 +67,21 @@
 				    			</c:forEach>
 				    		</table>
 				    	<c:if test="${member ne Empty}">
-				    		<div id="dfFP-commentForm">
-					    		<form action="addDrFoolPoolComment" method="post">
+				    		<div id="drFP-commentWriteArea">
+					    		<form action="addDrFoolPoolComment" method="post" id="drFP-commentForm">
 					    			<input type="hidden" name="postNo" value="${drFoolPool.no}"/>
-					    			<span>${member.nickname}</span>
-					    			<input type="text" maxlength="300" id="drFP-commentValue" onkeyup="drFPcommentValidation()" name="commentContent"/>
-					    			<div id="drFP-commentValidationMsg"></div>
-					    			<input type="submit" value="등록"/>
+					    			
+					    			<div id="drFP-commentWriter">
+					    				${member.nickname}<img alt="펜" src="./static/img/pen.png" id="drFP-pen">
+					    			</div>
+					    			<div>
+					    				<textarea maxlength="200" id="drFP-commentValue" onkeyup="drFPcommentValidation()" name="commentContent" required="required" placeholder="댓글을 입력해주세요"></textarea>
+					    				<span id="drFP-commentValidationMsg"></span>
+					    				<span id="drFP-commentFormBtns">
+						    				<input type="submit" value="댓글 등록"/>
+						    				<input type="reset" value="입력 취소" id="drFP-resetCommentbtn" disabled/>
+					    				</span>
+					    			</div>
 					    		</form>
 				    		</div>
 				    	</c:if>

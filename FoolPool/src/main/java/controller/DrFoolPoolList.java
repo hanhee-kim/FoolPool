@@ -38,23 +38,23 @@ public class DrFoolPoolList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		request.setAttribute("jspName", "drFoolPool"); // 해당 메뉴에 들어와있다면 인클루드되는 menubar.jsp의 해당 메뉴 버튼색을 짙게 바꾸어두기 위해 뷰로 넘기는 문자열
-		String page = request.getParameter("page");
-		String paramFilter = request.getParameter("filter");
-		
-		int curPage = 1; 
-		if(page!=null) curPage = Integer.parseInt(page);
+		String prevpage = request.getParameter("page");
+		String prevfilter = request.getParameter("filter");
+		int page = 1; 
+		if(prevpage!=null) page = Integer.parseInt(prevpage);
 		String filter = "all";
-		if(paramFilter!=null) filter = paramFilter;
+		if(prevfilter!=null) filter = prevfilter;
 		String sOption = request.getParameter("sOption");
 		String sValue = request.getParameter("sValue");
-		
-		System.out.println("-----/goDrFoolPool doGet호출----");
-		System.out.println("page: " + page + ", curPage: " + curPage + ", paramFilter: " + paramFilter + ", filter: " + filter + "\nsOption: " + sOption + ", sValue: " + sValue);
+
+		// System.out.println("-----/goDrFoolPool doGet호출----");
+		// System.out.println("page: " + page + ", prevpage: " + page + ", prevfilter: " + prevfilter + ", filter: " + filter + "\nsOption: " + sOption + ", sValue: " + sValue);
 		
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
-			Map<String,Object> resMap = drFoolPoolService.drFoolPoolListByPage(curPage, filter, sOption, sValue);
+			Map<String,Object> resMap = drFoolPoolService.drFoolPoolListByPage(page, filter, sOption, sValue);
 			
+			request.setAttribute("page", page);
 			request.setAttribute("filter", filter);
 			request.setAttribute("resMap", resMap); // 맵에 담긴 벨류: PageInfo, List<DrFoolPool>
 			request.setAttribute("sOption", sOption);

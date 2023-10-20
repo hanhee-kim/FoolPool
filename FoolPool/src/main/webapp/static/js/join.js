@@ -135,15 +135,13 @@ $(function() {
 		}
 	});//join폼누를시
 	
-	//join_reset누를시 (div에 띄운 validation MSG삭제)
-	var elementId = document.getElementById('idEffecMessage');
-	var elementNick = document.getElementById('nicknameEffecMessage');
-	var elementPass = document.getElementById('passwordMatchMessage');
-	document.getElementById('joinReset').addEventListener('click',function() {
-  		elementId.innerHTML = '';
-  		elementNick.innerHTML = '';
-  		elementPass.innerHTML = '';
-		})
+//	join_reset누를시 (div에 띄운 validation MSG삭제)
+	$('#joinReset').click(function(){
+	  		document.getElementById('idEffecMessage').innerHTML = '';
+	  		document.getElementById('nicknameEffecMessage').innerHTML = '';
+	  		document.getElementById('passwordMatchMessage').innerHTML = '';
+	})
+
 
 });//document.ready(function)
 //비밀번호 확인

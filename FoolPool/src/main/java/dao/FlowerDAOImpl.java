@@ -37,6 +37,12 @@ public class FlowerDAOImpl implements FlowerDAO{
 		List<Flower> flowers = sqlSession.selectList("mapper.flower.selectFlowerByPeriod",param);
 		return flowers;
 	}
+	
+	@Override
+	public List<Flower> selectFlowerPeriodReverse(Map<String, Integer> param) throws Exception {
+		List<Flower> flowers = sqlSession.selectList("mapper.flower.selectFlowerByPeriodReverse",param);
+		return flowers;
+	}
 
 	@Override
 	public List<Flower> selectFlowerByWord(Map<String, String> param) throws Exception {
