@@ -149,6 +149,18 @@ function drFPcommentValidation() {
 	if(commentValue.length>0) {
 		resetCommentbtn.disabled = false;
 		resetCommentbtn.classList.add('drFP-resetBtnEnable'); // css 적용을 위해 클래스속성을 동적으로 추가
+		
+		/*
+		let resetBtn = document.querySelector('.drFP-resetBtnEnable');
+		resetBtn.addEventListener('mouseover', function() {
+		  resetBtn.style.backgroundColor = 'orange';
+		  resetBtn.style.border = 'none';
+		});
+		resetBtn.addEventListener('mouseout', function() {
+		  resetBtn.style.backgroundColor = '#e0f4de';
+		});
+		*/
+		
 	} else {
 		resetCommentbtn.disabled = true;
 		resetCommentbtn.classList.remove('drFP-resetBtnEnable');

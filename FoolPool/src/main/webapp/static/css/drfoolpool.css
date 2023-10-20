@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+/* 드래그 스타일 */
+::selection {
+	background: #FFF361;
+	color: #466b55;
+}
+
 /* 0. 풀풀박사 페이지 공통 */
 
 .drFP-Label {
@@ -332,11 +338,24 @@
 	cursor: pointer;
 }
 
-.drFP-detail-5row button:hover
-, #drFP-commentFormBtns input[type=submit]:hover
-, .drFP-resetBtnEnable:hover {
+.drFP-detail-5row button:hover,
+#drFP-commentFormBtns input[type=submit]:hover  {
 	/* box-shadow: 0 0 0 2px #466b55 inset; */
 	box-shadow: 0 0 0 2px orange inset;
+	
+	/* border: none !important;
+	background: orange !important; */
+}
+.drFP-resetBtnEnable:hover {
+	
+	/* 입력취소버튼이 활성화되었을때 추가되는 클래스 
+	테두리스타일은 먹고 배경스타일은 안먹음
+	*/
+	
+	box-shadow: 0 0 0 2px orange inset;
+	
+ 	/* border: none !important;
+	background: orange !important; */
 }
 
 .drFP-commentArea {
@@ -486,7 +505,7 @@
 /* 댓글 등록, 취소 버튼 */
 #drFP-commentFormBtns {
     grid-column: 4; /* 4열에 위치하게 함 */
-    /* margin-right: 2px; */
+    margin-right: 15px;
     margin-top: 0px;
     float: right;
 }
@@ -534,8 +553,10 @@
 .drFP-customFileBtn:hover,
 .drFP-inputArea input[type=submit]:hover,  
 .drFP-inputArea input[type=button]:hover {
-	border: none !important;
-	background: orange !important;
+	/* border: none !important;
+	background: orange !important; */
+	
+	box-shadow: 0 0 0 2px orange inset;
 }
 .drFP-inputArea {
 	margin-top: -15px;
