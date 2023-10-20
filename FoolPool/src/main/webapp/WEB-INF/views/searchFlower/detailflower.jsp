@@ -21,7 +21,7 @@
                         <div class="searchFlowerDetailImgDiv">
                             <div class="searchFlowerShowFlowerBigImg">
                                 <img class="searchFlowerShowFlowerImg" id="searchFlower_bigImg"
-                                    src="${flower.imgUrl1 }"></img>
+                                    src="${flower.imgUrl1 }"  data-bs-toggle="modal" data-bs-target="#flower_d_Modal"></img>
                             </div>
                             <div class="searchFlowerShowFlowerSmallImg">
                                 <img class="searchFlowerShowFlowerImg1 searchFlowerDetailSmallImg" id="searchFlower_d_img1"
@@ -57,6 +57,11 @@
                 </div>
                 <div class="searchFlowerBottomBorder"></div>
             </div>
+             <div class="modal" id="flower_d_Modal">
+        		<span class="closeModal" id="closeModal">&times;</span>
+        		<img class="flowerModal-content" id="flowerModalImage">
+        	</div>
+    		
         </div>
     </div>
 </body>

@@ -74,8 +74,8 @@ public class NoticeForm extends HttpServlet {
 			response.sendRedirect("noticedetail?no="+notice.getNo());
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("err", e.getMessage());
-			request.getRequestDispatcher("WEB-INF/views/notice/noticeError.jsp").forward(request, response);
+			//request.setAttribute("err", e.getMessage());
+			request.getRequestDispatcher("WEB-INF/views/notice/error.jsp").forward(request, response);
 
 			
 			

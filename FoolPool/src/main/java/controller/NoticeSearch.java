@@ -62,8 +62,8 @@ public class NoticeSearch extends HttpServlet {
 			request.getRequestDispatcher("WEB-INF/views/notice/noticeList.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("err", e.getMessage());
-			request.getRequestDispatcher("NoticeError.jsp").forward(request, response);
+			//request.setAttribute("err", e.getMessage());
+			request.getRequestDispatcher("WEB-INF/views/notice/error.jsp").forward(request, response);
 		}
 		
 		

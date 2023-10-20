@@ -40,17 +40,10 @@ public class RandomMain extends HttpServlet {
 			flower = f_service.searchFlowerByNo(randomNum);
 		} catch (Exception e) {
 			e.printStackTrace();
+			request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
 		}
 		request.setAttribute("flower", flower);
 		request.getRequestDispatcher("WEB-INF/views/main.jsp").forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

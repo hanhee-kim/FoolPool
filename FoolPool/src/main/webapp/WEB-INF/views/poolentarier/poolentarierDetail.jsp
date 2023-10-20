@@ -28,55 +28,48 @@
 						${poolentarier.content}
 					</div>
 					<div class="pdDetail-6row">
-						<span>#${poolentarier.keyword}</span>
+						<c:forEach items="${keywords}" var="keyword" >
+							<span>${keyword}</span>&nbsp;
+						</c:forEach>
 					</div>
 					<div class="pdDetail-7row">
-						<a href="poolentarierEdit?no=${poolentarier.no}"><button>수정</button></a>
-						<a href="poolentarierDelete?no=${poolentarier.no}"><button>삭제</button></a>
+						<c:if test="${member ne Empty && member.id eq poolentarier.writerId}">
+							<a href="poolentarierEdit?no=${poolentarier.no}"><button>수정</button></a>
+							<a href="poolentarierDelete?no=${poolentarier.no}"><button>삭제</button></a>
+						</c:if>
 						<a href="goPoolentarier"><button>목록</button></a>
 					</div>
 			
 					<div class="pdCommentArea">
-						<h4>댓글 [5]</h4>
+						<h4>댓글 [${commentCount}]</h4>
 						<table>
-							<tr>
-								<td>닉네임1</td>
-								<td>댓글내용1댓글내용1댓글내용1댓글내용1댓글내용1</td>
-								<td>
-									<button class="pdCommentDelBtn"></button>
-								</td>
-							</tr>
-							<tr>
-								<td>닉네임2</td>
-								<td>댓글내용2댓글내용2댓글내용2</td>
-								<td>
-			
-									<button class="pdCommentDelBtn"></button>
-								</td>
-							</tr>
-							<tr>
-								<td>닉네임3</td>
-								<td>줄바꿈되는긴댓글내용3줄바꿈되는긴댓글내용3줄바꿈되는긴댓글내용3줄바꿈되는긴댓글내용3줄바꿈되는긴댓글내용3줄바꿈되는긴댓글내용3줄바꿈되는긴댓글내용3줄바꿈되는긴댓글내용3줄바꿈되는긴댓글내용3줄바꿈되는긴댓글내용3</td>
-								<td>
-									<button class="pdCommentDelBtn"></button>
-			
-								</td>
-							</tr>
-							<tr>
-								<td>닉네임4</td>
-								<td>댓글내용4댓글내용4댓글내용4댓글내용4댓글내용4</td>
-								<td>
-									<button class="pdCommentDelBtn"></button>
-								</td>
-							</tr>
-							<tr>
-								<td>닉네임5</td>
-								<td>댓글내용5댓글내용5댓글내용5댓글내용5댓글내용5</td>
-								<td>
-									<button class="pdCommentDelBtn"></button>
-								</td>
-							</tr>
+							<c:if test="${poolentarierCommentList ne Empty }">
+								<c:forEach items="${poolentarierCommentList }" var="comment">
+									<tr>
+										<td>${comment.writerNickname }</td>
+										<td>
+											${comment.commentContent }
+											<small>${comment.commentDate }</small>
+										</td>
+										<c:if test="${member ne Empty && member.id eq comment.writerId}">
+											<td>
+												<button class="pdCommentDelBtn" onclick="pdRemoveComment(${comment.commentNo}, ${comment.postNo})">X</button>
+											</td>
+										</c:if>
+									</tr>
+								</c:forEach>
+							</c:if>
 						</table>
+						<c:if test="${member ne Empty }">
+							<div class="pdCommentWriteArea">
+								<form action="poolentarierCommentAdd" method="post">
+									<input type="hidden" name="postNo" value="${poolentarier.no }"/>
+									<span>${member.nickname}</span>
+					    			<input type="text" name="commentContent"/>
+					    			<input type="submit" value="등록"/>
+								</form>
+							</div>
+						</c:if>
 					</div>
 					
 				</div>
