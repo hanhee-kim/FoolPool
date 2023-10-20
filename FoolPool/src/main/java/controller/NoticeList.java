@@ -49,7 +49,7 @@ public class NoticeList extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			//request.setAttribute("err", "공지사항 조회에 에러가 발생했습니다");
-			request.getRequestDispatcher("WEB-INF/views/notice/error.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
 		}		
 	}
 }
