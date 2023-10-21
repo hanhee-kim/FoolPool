@@ -22,7 +22,7 @@
 						<div class="drFP-inputArea">
 							<ul>
 								<li>
-				                    <label>제목<b>*</b></label><br>
+				                    <label>제목 <b>*</b></label><br>
 				                    <input class="drFP-formTitle drFP-text" name="title" type="text" maxlength="100" value="${drFoolPool.title}">
 				                    <div class="drFP-titleValidationMsg">유효성검사메시지란</div>
 				                </li>
@@ -35,7 +35,7 @@
 				                    <label>이미지 첨부 <b>*</b></label><br>
 				                    <div class="drFP-fileSection">
 					                    <%-- 선택된 파일명 표시하며 이 값을 통해 null로 제출되면 안되는 파일선택여부를 체크함 --%>
-					                    <input class="drFP-selectedFileName" placeholder="첨부파일명" value="첨부파일 미선택" readonly="readonly" required="required"/>
+					                    <input class="drFP-selectedFileName" placeholder="첨부파일명" value="${drFoolPool.fileName}" readonly="readonly" required="required"/>
 					                    <%-- input type="file"(파일선택 버튼)를 숨기고 커스텀한 label을 사용 --%>
 					                    <input type="file" class="drFP-formImgInput" name="file" id="drFP-fileforedit" accept="image/*" style="display: none;"/>
 					                    <label for="drFP-fileforedit" class="drFP-customFileBtn">파일 선택</label><br>

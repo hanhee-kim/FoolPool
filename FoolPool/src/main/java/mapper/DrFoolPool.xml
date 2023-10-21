@@ -69,7 +69,6 @@
 		          <when test="sOption != null and sValue != null">
 		            AND ${sOption} like '%${sValue}%'
 		          </when>
-		          <otherwise></otherwise>
 		        </choose>
 		      </otherwise>
 		    </choose>
@@ -122,7 +121,7 @@
 	<select id="selectDrFoolPoolComment" parameterType="Integer" resultType="DrFoolPoolComment" resultMap="DrFoolPoolCommentResultMap">
 	 	<![CDATA[
 	 		SELECT * from drfoolpool_comment WHERE POST_NO=#{postNo}
-	 		order by comment_date;
+	 		order by is_picked desc, comment_date asc
 	 	]]>
  	</select>
  	

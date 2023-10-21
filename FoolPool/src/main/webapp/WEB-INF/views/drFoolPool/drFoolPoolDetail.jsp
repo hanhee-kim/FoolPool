@@ -44,11 +44,10 @@
 			    	<div class="drFP-commentArea">
 			    		<h4>댓글 [${commentCnt}]</h4>
 				    		<table id="drFP-commentTable">
-					    		<c:forEach items="${commentList}" var="comment" varStatus="loop">
-					    			<%-- tr마다 고유id 부여한뒤 각 tr의 채택여부에 따라 정렬 수행 --%>
-					    			<tr id="drFP-commentRow${loop.index}" data-isPicked='${comment.isPicked}'>
+					    		<c:forEach items="${commentList}" var="comment">
+					    			<tr>
 					    				<fmt:formatDate value="${comment.commentDate}" pattern="yyyy.MM.dd. HH:mm" var="formattedCommentDate" />
-					    				<td>${comment.writerNickname}</td>
+					    				<td class="${comment.isPicked eq true ? 'drFP-picked' : ''}">${comment.writerNickname}</td>
 					    				<td>
 						    				<c:if test="${comment.isPicked==true}">
 						    					<img alt="채택왕관" src="./static/img/crown.png" class="drFP-crown">&nbsp;

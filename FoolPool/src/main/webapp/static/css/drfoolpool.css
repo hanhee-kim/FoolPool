@@ -388,7 +388,7 @@
 
 /* tr의 첫번째, 마지막 td의 너비 고정하고 중간 td는 남는 영역 전부 차지하게함 */
 .drFP-commentArea table tr td:first-child {
-    width: 110px;
+    width: 150px;
     
     /* 긴댓글줄바꿈으로 인해 댓글영역의 높이가 커졌을때 자식요소인 (텍스트)닉네임은 수직중앙정렬이 아닌 위쪽 정렬하게 함 */
     vertical-align : top;
@@ -482,6 +482,7 @@
 #drFP-commentWriter {
     height: 100%;
     padding: 10px 0 0 10px; /* 위, 왼 */
+    width: 160px;
 }
 #drFP-pen {
 	width: 30px;
@@ -491,9 +492,10 @@
 #drFP-commentValue {
     height: 120px;
     resize: none; /* textarea 크기 고정 */
-	width: 880px;
+	/* width: 880px; */
+	width: 837px;
 	grid-column: 2 / span 2; /* 2번째 열에서 시작하여 2열 다 차지하게함 */
-	margin: 10px 0 0 10px;
+	margin: 10px 0 0 50px;
 	
 	font-size: 17px;
 	font-family: 'Cafe24SsurroundAir';
