@@ -167,9 +167,11 @@ function pdCommentValidation() {
 // 작성
 $(document).ready(function() {
 	// input[type=reset]을 눌렀을때 기본동작으로는 입력값을 제거하면서 reset버튼을 다시 비활성화상태로 바꿔주지 않으므로 명시적으로 수행하게함
-	$('pdResetCommentbtn').click(function() {
-    	$('#pdCommentValue').val('');
-    	this.disabled = true;
+	$('#pdResetCommentbtn').click(function() {
+    	$('#pdCommentValue').val(''); // 입력값 지우기
+    	$('#pdCommentValidationMsg').text(''); // 유효성 검사
+    	this.disabled = true; // 리셋버튼 비활성화
+    	$('#pdResetCommentbtn')[0].classList.remove('pdResetBtnEnable'); // css를 위한 클래스 속성 또한 지움
 	});
 	
 	/* 풀랜테리어 목록 - 검색바 유효성 검사 */

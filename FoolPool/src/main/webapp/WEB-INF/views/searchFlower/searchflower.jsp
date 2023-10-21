@@ -39,7 +39,8 @@
 				class="searchFlowerEndDay searchFlower_pd_r_22 searchFlower_OptionDate searchFlower_disabled">
 			</select> 
 			<input type='text' class='searchFlowerByName searchFlower_disabled'
-				name='searchFlowerByName' id='searchFlowerByName' /> <input
+				name='searchFlowerByName' id='searchFlowerByName' /> 
+			<input
 				type='text' class='searchFlowerByLang searchFlower_disabled'
 				name='searchFlowerByLang' id='searchFlowerByLang' />
 		</div>
@@ -47,9 +48,17 @@
 			onclick="go_searchFlower()">검색</button>
 	</div>
 	<div class="flowerCardsection">
-		<c:if test="${res.size <= 0}">
+		<c:if test="${res.size == 0}">
+		<c:choose>
+			<c:when test="${res.word == 'no_data'}">
+			<p class="searchFlowerNodataMSG">검색된 결과가 없습니다.</p>
+			<img alt="예외처리이파리" src="./static/img/leaf-exception.png" id="searchFlowerLeafException">
+			</c:when>
+			<c:otherwise>
 			<div class="searchFlowerMSG" id="searchFlowerMSG1">검색 옵션에 맞춰 꽃을
 				검색해주세요!!!</div>
+			</c:otherwise>
+		</c:choose>
 		</c:if>
 		<div class="flowerCardsection_line" id="flowerCardsection_line">
 			<c:if test="${res.size > 0}">

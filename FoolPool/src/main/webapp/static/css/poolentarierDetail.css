@@ -109,20 +109,28 @@
 	margin-left: 40px;
 	/* background: skyblue; */
 }
+
 .pdDetail-7row button{
-	margin-left: 8px; 
-	text-align: center;
-	background: #D9D9D9;
-	font-family: 'Cafe24SsurroundAir';
-	font-size: 17px;
-	font-weight: border;
-	border: 0;
-	border-radius: 5px;
-	padding: 5px 15px;
-	cursor: pointer;
+margin-left: 8px;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    background: #e0f4de;
+    font-family: 'Cafe24SsurroundAir';
+    font-size: 19px;
+    font-weight: border;
+    border: none;
+    border-radius: 5px;
+    padding: 9px;
+    cursor: pointer;
 }
 
-
+.pdDetail-7row button:hover
+, #pdCommentFormBtns input[type=submit]:hover
+, #pdResetCommentbtn:hover {
+	/* box-shadow: 0 0 0 2px #466b55 inset; */
+	box-shadow: 0 0 0 2px orange inset;
+}
 
 .pdCommentArea {
 	margin: 45px 20px 10px 60px;
@@ -246,10 +254,13 @@
 /* 댓글 등록, 취소 버튼 */
 #pdCommentFormBtns {
     grid-column: 4; /* 4열에 위치하게 함 */
-    text-align: right;
-    margin-right: 10px;
+    /* margin-right: 2px; */
     margin-top: 0px;
-    margin-right: 0px;
+    float: right;
+}
+
+#pdCommentFormBtns input {
+	cursor: pointer;
 }
 
 #pdCommentFormBtns input {
@@ -262,19 +273,6 @@
 	margin-left: 8px;
 }
 
-#pdResetCommentbtn{
-	background: #e0f4de !important;
-	border: none;
-	padding: 10px 17px 8px;
-    border-radius: 5px;
-	font-size: 16px;
-	font-family: 'Cafe24SsurroundAir';
-	margin-left: 8px;
-}
-.pd_comm_btn{
-	width: 90px;
-    font-size: 17px;
-    border-radius: 10px;
-    border: 2px solid #466b55;
-	
+#pdPen {
+	width: 30px;
 }

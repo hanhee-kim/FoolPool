@@ -8,7 +8,7 @@
 				<%-- 게시글 작성 --%>
                 <section class="pfFormSection">
                 	<h2>풀랜테리어 글 수정</h2>
-					<form action="poolentarierForm" method="post" enctype="multipart/form-data" name="poolentarierForm" class="pfForm">
+					<form action="poolentarierEdit" method="post" enctype="multipart/form-data" name="poolentarierForm" class="pfForm">
 						<div class="pfInputArea">
 							<ul>
 								<li>

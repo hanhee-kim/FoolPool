@@ -22,7 +22,7 @@
 	<table class="noticeDetailView">
             <tr>
                <td class="td_left"><label for="subject">제목</label></td>
-               <td class="td_right"><input name="title" type="text" id="title"  maxlength="30" value="${notice.title }"  class="noticeFormEditTitle" /></td>
+               <td class="td_right"><input name="title" type="text" id="title"  maxlength="30" value="${notice.title }"  class="noticeFormEditTitle"  required="required"/></td>
             </tr>
             <tr>
                <td class="td_left"><label for="date">등록일</label></td>
@@ -30,7 +30,7 @@
             </tr>
 			<tr>
                <td class="td_left"><label for="content">내용</label></td>
-               <td><textarea id="content" name="content" cols="40" rows="15"  class="noticeFormEditTextarea" >${notice.content }</textarea></td>
+               <td><textarea id="content" name="content" cols="40" rows="15"  class="noticeFormEditTextarea"  required="required">${notice.content }</textarea></td>
             </tr>
 		</table>
      
