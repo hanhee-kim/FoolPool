@@ -29,7 +29,6 @@
 	border-top: 0;
 	border-radius: 0px 0px 20px 20px;
 }
-
 .searchFlowerSelectOptionDiv {
 	margin: 20px 0;
 	width: 70%;
@@ -220,6 +219,18 @@
     padding-left: 10px;
     width: 180px;
 }
+
+.searchFlowerNodataMSG{
+	font-size: 25px;
+    color: #466b55;
+    text-align: center;
+}
+#searchFlowerLeafException{
+	width: 250px;
+    height: auto;
+    margin: 0 auto;
+}
+
 .searchFlowerMSG{
     display: grid;
     width: 700px;
@@ -243,6 +254,7 @@
 /* 꽃 카드의 scrollbar */
 
 .flowerCardsection::-webkit-scrollbar ,
+.pdDetailArea::-webkit-scrollbar ,
 .pfInputArea::-webkit-scrollbar ,
 .drFP-detailArea::-webkit-scrollbar ,
 .drFP-inputArea::-webkit-scrollbar 
@@ -251,6 +263,7 @@
 }
 
 .flowerCardsection::-webkit-scrollbar-thumb ,
+.pdDetailArea::-webkit-scrollbar-thumb ,
 .pfInputArea::-webkit-scrollbar-thumb ,
 .drFP-detailArea::-webkit-scrollbar-thumb ,
 .drFP-inputArea::-webkit-scrollbar-thumb 
@@ -261,6 +274,7 @@
 }
 
 .flowerCardsection::-webkit-scrollbar-track ,
+.pdDetailArea::-webkit-scrollbar-track ,
 .pfInputArea::-webkit-scrollbar-track ,
 .drFP-detailArea::-webkit-scrollbar-track ,
 .drFP-inputArea::-webkit-scrollbar-track 
@@ -269,7 +283,12 @@
     border-radius: 70px;
 }
 /* 익스프롤러 10이하 스크롤바 CSS  */
-.flowerCardsection {
+.flowerCardsection ,
+.pdDetailArea ,
+.pfInputArea ,
+.drFP-detailArea ,
+.drFP-inputArea 
+{
     scrollbar-face-color:#466b55;
     scrollbar-shadow-color:#dddddd;
     scrollbar-track-color: #466b5577;
