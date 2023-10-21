@@ -12,8 +12,9 @@
 						<label class="plDetailTitle">${poolentarier.title}</label>
 					</div>
 					<div class="pdDetail-2row">
+						<fmt:formatDate value="${poolentarier.date}" pattern="yyyy.MM.dd. HH:mm" var="formattedDate" />
 						<span class="pdDetail-writer">작성자: ${poolentarier.writerNickname}</span>
-						<span>작성일: ${poolentarier.date}</span>
+						<span>작성일: ${formattedDate}</span>
 						<span>조회수: ${poolentarier.view}</span>
 					</div>
 			
@@ -54,7 +55,7 @@
 									<td>
 											<td>
 					    				<c:if test="${member ne Empty && member.id eq comment.writerId}">
-												<button class="pdCommentDelBtn" onclick="pdRemoveComment(${comment.commentNo}, ${comment.postNo})">X</button>
+												<button class="pdCommentDelBtn" onclick="pdRemoveComment(${comment.commentNo}, ${comment.postNo})">x</button>
 										</c:if>
 											</td>
 					    			</td>
@@ -73,8 +74,8 @@
 										<textarea maxlength="200" id="pdCommentValue" onkeyup="pdCommentValidation()" name="commentContent" required="required" placeholder="댓글을 입력해주세요"></textarea>
 					    				<div id="pdCommentValidationMsg"></div>
 					    				<p id="pdCommentFormBtns">
-						    				<input class="pd_comm_btn" type="submit" value="댓글 등록"/>
-						    				<input type="reset" class="pd_comm_btn" value="입력 취소" id="pdResetCommentbtn" disabled/>
+						    				<input type="submit" value="댓글 등록"/>
+						    				<input type="reset" value="입력 취소" id="pdResetCommentbtn" disabled/>
 					    				</p>
 									</div>
 								</form>
