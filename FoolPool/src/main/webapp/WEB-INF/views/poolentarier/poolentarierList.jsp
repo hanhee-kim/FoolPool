@@ -100,6 +100,9 @@
 							</c:url>
 				            <a href="${urlprevpagenumber}">&lt;</a>
 						</c:when>
+						<c:when test="${res['poolentarierList'].size()==0}">
+							<b></b>
+						</c:when>
 						<c:otherwise>
 			               <a>&lt;</a>
 			            </c:otherwise>
@@ -146,6 +149,9 @@
 							    </c:if>
 							</c:url>
 							<a href="${urlnextpagenumber}">&gt;</a>
+						</c:when>
+						<c:when test="${res['poolentarierList'].size()==0}">
+							<b></b>
 						</c:when>
 						<c:otherwise>
 			               <a>&gt;</a>
