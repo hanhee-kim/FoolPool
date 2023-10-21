@@ -62,6 +62,7 @@
 						</c:forEach>
 					</c:if>
 				</div><%--notice_list --%>
+			
 
 
 
@@ -93,6 +94,10 @@
 							<a href="notice?page=${res.pageInfo.curPage-1}"
 								onclick="return callBtn(${res.pageInfo.curPage-1})">&lt;</a>
 						</c:when>
+						  <%-- 검색결과 없을때 --%>
+			         <c:when test="${res['noticeList'].size()==0}">
+			            <b></b>
+			         </c:when>
 						<c:otherwise>
 							<a>&lt;</a>
 						</c:otherwise>
@@ -104,11 +109,11 @@
 						<c:choose>
 							<c:when test="${res.pageInfo.curPage==i}">
 								<a href="notice?page=${i}" id="notice-selectedPage"
-									onclick="return callBtn(${i})">${i}</a>&nbsp;&nbsp;
+									onclick="return callBtn(${i})">${i}</a>
                			</c:when>
 							<c:otherwise>
 								<a href="notice?page=${i}" class="notice-unselectedPage"
-									onclick="return callBtn(${i})">${i}</a>&nbsp;&nbsp;
+									onclick="return callBtn(${i})">${i}</a>
                		</c:otherwise>
 						</c:choose>
 					</c:forEach>
