@@ -243,14 +243,9 @@
 .searchFlower_disabled {
 	display: none;
 }
-/* .searchFlower_abled{ */
-/* 	display:flex; */
-/* 	justify-content: center; */
-/*     align-items: center; */
-/* } */
-/* .flowerCardsection::-webkit-scrollbar {
-	display: none; 크롬, 사파리, 오페라, 엣지
-} */
+.flowerCardLang{
+    width: 250px;
+}
 /* 꽃 카드의 scrollbar */
 
 .flowerCardsection::-webkit-scrollbar ,
