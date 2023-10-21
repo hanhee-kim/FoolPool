@@ -225,53 +225,32 @@ $(document).ready(function() {
     
     
     
-    /* 풀풀박사 작성폼 - 커스텀한 파일선택 버튼에 선택된 파일명 표시(input태그의 value값 넣기) */
+    /* 풀풀박사 작성폼 - 선택파일을 바꿀때마다 호출 */
 	$("#drFP-fileforwrite").on('change', function () {
+		// 파일 선택 취소시 미리보기 이미지 안보이게함 
+		let fileName = $("#drFP-fileforwrite").val();
+		if(fileName == '첨부파일 미선택' || fileName == "") {
+			$('.drFP-formImgPreview').attr("style", "display: none");
+		}
+		// 선택된 파일명 표시용 input태그의 value로 넣어줌 
 	    let selectedFileName = $(this).val();
 	    $(".drFP-selectedFileName").val(selectedFileName);
 	});
 	$("#drFP-fileforedit").on('change', function () {
+		// 선택된 파일명 표시용 input태그의 value로 넣어줌 
 	    let selectedFileName = $(this).val();
 	    $(".drFP-selectedFileName").val(selectedFileName);
 	});
 	
-	
-	
-	
-	
-	//-----------------------------------------------------------------
-	
-	// 파일 선택 상태 변화 감지
-    $(".drFP-selectedFileName").on('change', handleFileNameChange);
     
-    // 이미지 초기화 함수
-    function clearImagePreview() {
-        let uploadImgPreview = $('.drFP-formImgPreview');
-        uploadImgPreview.attr("style", "display: none"); 
-    }
-    
-    // 파일 이름 변경 이벤트 핸들러
-    function handleFileNameChange() {
-        let fileName = $(".drFP-selectedFileName").val();
-        if (fileName == '첨부파일 미선택' || fileName == "") {
-            clearImagePreview();
-        }
-    }
-	//------------------------------------------------------------------
-	
-	
     
 	/* 풀풀박사 작성폼 - 파일선택 유효성 검사 (커스텀버튼을 사용하기 위해 파일input에 display=none스타일이 적용했기때문에 required속성 사용하여 체크하지 못함) */
     $('#drFP-writeform').submit(function(event) {
-        let fileName = $(".drFP-selectedFileName").val();
-		// let uploadImgPreview = $('.drFP-formImgPreview');
+		//let fileName = $(".drFP-selectedFileName").val(); // 선택된 파일명 표시용 input태그
+        let fileName = $("#drFP-fileforwrite").val(); // display:none인 input[type=file]태그
 		
-        if (fileName=='첨부파일 미선택' || fileName=="") {
-			
-			// 미리보기 이미지 src 제거
-	  		// uploadImgPreview.attr("style", "display: none"); 
-			clearImagePreview(); 
-			
+        // if (fileName=='첨부파일 미선택' || fileName=="") {
+        if (fileName==null || fileName=="") {
 			Swal.fire({
 				title:'글을 등록하기 위해서 첨부파일을 선택해주세요.',
 				icon:'warning',

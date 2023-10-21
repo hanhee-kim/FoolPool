@@ -33,7 +33,7 @@
             <property name="driver" value="org.mariadb.jdbc.Driver"/>
             <property name="url" value="jdbc:mariadb://localhost:3306/foolpool"/>
             <property name="username" value="root"/>
-            <property name="password" value="sweet720!!"/>
+            <property name="password" value="1234"/>
          </dataSource>
          </environment>
    </environments>
