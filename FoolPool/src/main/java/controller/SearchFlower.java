@@ -87,9 +87,6 @@ public class SearchFlower extends HttpServlet {
 				} else {
 				try {
 					flowers = f_service.searchFlowerByWord(type, flowerName);
-//					if(flowers.size() == 0) {
-//						res.put("word", "no_data");
-//					}
 				} catch (Exception e) {
 					e.printStackTrace();
 					request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
@@ -105,9 +102,6 @@ public class SearchFlower extends HttpServlet {
 				} else {
 				try {
 					flowers = f_service.searchFlowerByWord(type, flowerLang);
-//					if(flowers.size() == 0) {
-//						res.put("word", "no_data");
-//					}
 				} catch (Exception e) {
 					e.printStackTrace();
 					request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
@@ -116,11 +110,11 @@ public class SearchFlower extends HttpServlet {
 			}
 			res.put("option", option);
 		}	
-			res.put("size", flowers.size());
-			res.put("flowers", flowers);
-			request.setAttribute("res", res);
-			request.setAttribute("jspName", "searchFlower");
-			request.getRequestDispatcher("WEB-INF/views/searchFlower/searchflower.jsp").forward(request, response);
+		res.put("size", flowers.size());
+		res.put("flowers", flowers);
+		request.setAttribute("res", res);
+		request.setAttribute("jspName", "searchFlower");
+		request.getRequestDispatcher("WEB-INF/views/searchFlower/searchflower.jsp").forward(request, response);
 
 	}
 
