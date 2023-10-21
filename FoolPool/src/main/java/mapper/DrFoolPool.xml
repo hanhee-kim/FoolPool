@@ -43,7 +43,6 @@
 		          <when test="sOption != null and sValue != null">
 		            AND ${sOption} like '%${sValue}%'
 		          </when>
-		          <otherwise></otherwise>
 		        </choose>
 		      </otherwise>
 		    </choose>

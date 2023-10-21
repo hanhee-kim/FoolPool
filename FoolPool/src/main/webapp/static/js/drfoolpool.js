@@ -178,6 +178,7 @@ function drFPcommentValidation() {
 }
 
 
+
 $(document).ready(function() {
 	
 	// 댓글 입력취소 버튼(input[type=reset])을 눌렀을때 기본동작으로는 입력값을 제거하면서 reset버튼을 다시 비활성화상태로 바꿔주지 않으므로 명시적으로 수행하게함
@@ -205,14 +206,24 @@ $(document).ready(function() {
 	/* 풀풀박사 목록 - 검색바 유효성 검사 */
     $('#drFP-searchForm').submit(function(event) {
         let sValue = $("#drFP-sValue").val().trim();
+        
         // 수행1. trim된 값을 검색어input태그에 value로 넣어줌
         $("#drFP-sValue").val(sValue); 
+        
         // 수행2. null값 검색제출을 막음 - 404에러 방지
         if (sValue === "") {
+			Swal.fire({
+				title:'검색어를 입력해주세요.',
+				icon:'warning',
+				confirmButtonColor: 'orange'
+			});
+			
             // console.log("검색옵션 혹은 검색어가 없으므로 기본제출이 막아짐");
             event.preventDefault();
         }
     });
+    
+    
     
     /* 풀풀박사 작성폼 - 커스텀한 파일선택 버튼에 선택된 파일명 표시(input태그의 value값 넣기) */
 	$("#drFP-fileforwrite").on('change', function () {
@@ -223,11 +234,44 @@ $(document).ready(function() {
 	    let selectedFileName = $(this).val();
 	    $(".drFP-selectedFileName").val(selectedFileName);
 	});
+	
+	
+	
+	
+	
+	//-----------------------------------------------------------------
+	
+	// 파일 선택 상태 변화 감지
+    $(".drFP-selectedFileName").on('change', handleFileNameChange);
+    
+    // 이미지 초기화 함수
+    function clearImagePreview() {
+        let uploadImgPreview = $('.drFP-formImgPreview');
+        uploadImgPreview.attr("style", "display: none"); 
+    }
+    
+    // 파일 이름 변경 이벤트 핸들러
+    function handleFileNameChange() {
+        let fileName = $(".drFP-selectedFileName").val();
+        if (fileName == '첨부파일 미선택' || fileName == "") {
+            clearImagePreview();
+        }
+    }
+	//------------------------------------------------------------------
+	
+	
     
 	/* 풀풀박사 작성폼 - 파일선택 유효성 검사 (커스텀버튼을 사용하기 위해 파일input에 display=none스타일이 적용했기때문에 required속성 사용하여 체크하지 못함) */
     $('#drFP-writeform').submit(function(event) {
         let fileName = $(".drFP-selectedFileName").val();
-        if (fileName=='첨부파일 미선택') {
+		// let uploadImgPreview = $('.drFP-formImgPreview');
+		
+        if (fileName=='첨부파일 미선택' || fileName=="") {
+			
+			// 미리보기 이미지 src 제거
+	  		// uploadImgPreview.attr("style", "display: none"); 
+			clearImagePreview(); 
+			
 			Swal.fire({
 				title:'글을 등록하기 위해서 첨부파일을 선택해주세요.',
 				icon:'warning',
@@ -316,7 +360,9 @@ $(document).ready(function() {
         }
     });
     
-});
+    
+    
+}); //$(document).ready()
 
 
 

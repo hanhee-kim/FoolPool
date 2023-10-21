@@ -595,6 +595,7 @@
     height: 300px;
     resize: none; /* textarea 크기 고정 */
 	font-size: 18px;
+	font-family: 'Cafe24SsurroundAir';
 	padding: 10px;
 }
 .drFP-formContent::placeholder {
