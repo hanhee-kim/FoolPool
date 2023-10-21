@@ -45,40 +45,37 @@ public class DrFoolPoolEdit extends HttpServlet {
 			response.sendRedirect("login");
 		} else {
 			request.setCharacterEncoding("utf-8");
-			request.setAttribute("jspName", "drFoolPool");
-			request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolEdit.jsp").forward(request, response);
+			Integer no = Integer.parseInt(request.getParameter("no"));
+			
+			// 이전 목록페이지의 값
+			String prevpage = request.getParameter("page");
+			String prevfilter = request.getParameter("filter");
+			int page = 1;
+			if(prevpage!=null) page = Integer.parseInt(prevpage);
+			String filter = "all";
+			if(prevfilter!=null) filter = prevfilter;
+			String sOption = request.getParameter("sOption");
+			String sValue = request.getParameter("sValue");
+			// System.out.println("no:" + no + ",prevpage: " + page + ",filter:" + filter + ",sOption:" + sOption + ",sValue:" + sValue);
+			
+			try {
+				DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
+				DrFoolPool drFoolPool = drFoolPoolService.drFoolPoolDetail(no);
+				request.setAttribute("drFoolPool", drFoolPool);
+				request.setAttribute("page", page);
+				request.setAttribute("filter", filter);
+				request.setAttribute("sOption", sOption);
+				request.setAttribute("sValue", sValue);
+				request.setAttribute("jspName", "drFoolPool");
+				request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolEdit.jsp").forward(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				request.setAttribute("err", "풀풀박사 게시글 수정 실패");
+				request.getRequestDispatcher("error.jsp").forward(request, response);
+			}
 		}
 			
-		request.setCharacterEncoding("utf-8");
-		Integer no = Integer.parseInt(request.getParameter("no"));
-		
-		// 이전 목록페이지의 값
-		String prevpage = request.getParameter("page");
-		String prevfilter = request.getParameter("filter");
-		int page = 1;
-		if(prevpage!=null) page = Integer.parseInt(prevpage);
-		String filter = "all";
-		if(prevfilter!=null) filter = prevfilter;
-		String sOption = request.getParameter("sOption");
-		String sValue = request.getParameter("sValue");
-		// System.out.println("no:" + no + ",prevpage: " + page + ",filter:" + filter + ",sOption:" + sOption + ",sValue:" + sValue);
-		
-		try {
-			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
-			DrFoolPool drFoolPool = drFoolPoolService.drFoolPoolDetail(no);
-			request.setAttribute("drFoolPool", drFoolPool);
-			request.setAttribute("page", page);
-			request.setAttribute("filter", filter);
-			request.setAttribute("sOption", sOption);
-			request.setAttribute("sValue", sValue);
-			request.setAttribute("jspName", "drFoolPool");
-			request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolEdit.jsp").forward(request, response);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			request.setAttribute("err", "풀풀박사 게시글 수정 실패");
-			request.getRequestDispatcher("error.jsp").forward(request, response);
-		}
 	}
 
 	/**
