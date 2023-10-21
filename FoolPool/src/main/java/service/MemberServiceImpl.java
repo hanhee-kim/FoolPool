@@ -30,9 +30,10 @@ public class MemberServiceImpl implements MemberService {
 		String result = "";
 		if(member==null) { //아이디 다르면
 			result = "noId";
-		}
-		if(!member.getPassword().equals(password)) { //pw 다르면
-			result = "noPW";
+		}else {
+			if(!member.getPassword().equals(password)) { //pw 다르면
+				result = "noPW";
+			}
 		}
 		return result;
 	}
