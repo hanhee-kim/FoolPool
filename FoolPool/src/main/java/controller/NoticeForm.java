@@ -34,10 +34,18 @@ public class NoticeForm extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("member")==null) {
+			response.sendRedirect("login");
+//			request.getRequestDispatcher("login.jsp").forward(request, response);
+		} else {
+			
 		
+		request.setCharacterEncoding("utf-8");
 		request.setAttribute("jspName", "notice");
 		request.getRequestDispatcher("WEB-INF/views/notice/noticeForm.jsp").forward(request, response);
 		
+		}
 	}
 
 	
