@@ -14,7 +14,7 @@
 				<div class="notice_title">
 					<h1>
 						공지사항
-						<c:if test="${member.role == 'ADMIN' }">
+						<c:if test="${member.role == 'ADMIN'  }">
 							<a href="noticeform" id="noticeformbtn"
 								>작성하기</a>
 						</c:if>
