@@ -6,6 +6,33 @@
 	color: #466b55;
 }
 
+
+/* 스크롤바 작성폼의 textarea, 댓글창 textarea */
+#drFP-commentValue::-webkit-scrollbar,
+.drFP-formContent::-webkit-scrollbar {
+	width: 8px;  /* 스크롤바의 너비 */
+}
+#drFP-commentValue::-webkit-scrollbar-thumb,
+.drFP-formContent::-webkit-scrollbar-thumb {
+	height: 30%; /* 스크롤바의 길이 */
+    background: #466b55; /* 스크롤바의 색상 */
+    border-radius: 70px;
+}
+#drFP-commentValue::-webkit-scrollbar-track ,
+.drFP-formContent::-webkit-scrollbar-track {
+    background: #466b5577;  /*스크롤바 뒷 배경 색상*/
+    border-radius: 70px;
+}
+/* 익스프롤러 10이하 스크롤바 CSS  */
+#drFP-commentValue ,
+.drFP-formContent {
+    scrollbar-face-color:#466b55;
+    scrollbar-shadow-color:#dddddd;
+    scrollbar-track-color: #466b5577;
+}
+
+
+
 /* 0. 풀풀박사 페이지 공통 */
 
 .drFP-Label {
@@ -531,6 +558,27 @@
 	width: 1246.67px;
 }
 
+
+.drFP-movePageDiv {
+	display: flex;
+	flex-direction: column; 
+    align-items: center; 
+}
+.drFP-move {
+	/* z값을 주기 위해 position:relative로 지정 */
+    position: relative;
+    z-index: 15; 
+}
+#drFP-movepagetop,
+#drFP-movecommenttop {
+	width: 35px;
+	height: 12px;
+}
+#drFP-movepagetop {
+	margin-top: 15px;
+}
+
+
 /* 3. 풀풀박사 게시글 작성폼, 수정폼 */
 .drFP-formBottomBorder {
 	/* 원하는 위치에 배치하기 위해 절대값으로 지정 */
@@ -599,6 +647,8 @@
 	font-size: 18px;
 	font-family: 'Cafe24SsurroundAir';
 	padding: 10px;
+	
+	overflow-y: auto;
 }
 .drFP-formContent::placeholder {
 	font-family: 'Cafe24SsurroundAir';

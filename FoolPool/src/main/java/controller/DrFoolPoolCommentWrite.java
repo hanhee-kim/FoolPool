@@ -42,10 +42,19 @@ public class DrFoolPoolCommentWrite extends HttpServlet {
 		String writerId = member.getId();
 		String writerNickname = member.getNickname();
 		
-		// form 입력값 가져오기
+		// form 입력값 가져오기 (이전 목록페이지의 값 포함)
 		String commentContent = request.getParameter("commentContent");
 		Integer postNo = Integer.parseInt(request.getParameter("postNo"));
 		// System.out.println("commentContent: " + commentContent + ", postNo: " + postNo);
+		String prevpage = request.getParameter("page");
+		String prevfilter = request.getParameter("filter");
+		int page = 1;
+		if(prevpage!=null) page = Integer.parseInt(prevpage);
+		String filter = "all";
+		if(prevfilter!=null) filter = prevfilter;
+		String sOption = request.getParameter("sOption");
+		String sValue = request.getParameter("sValue");
+		// System.out.println("no:" + postNo + ",prevpage: " + page + ",filter:" + filter + ",sOption:" + sOption + ",sValue:" + sValue);
 		
 		// DrFoolPoolComment 객체 생성
 		DrFoolPoolComment comment = new DrFoolPoolComment();
@@ -57,7 +66,12 @@ public class DrFoolPoolCommentWrite extends HttpServlet {
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
 			drFoolPoolService.drFoolPoolCommentWrite(comment);
-			response.sendRedirect("drFoolPoolDetail?no=" + postNo);
+			// response.sendRedirect("drFoolPoolDetail?no=" + postNo);
+			if(sOption==null || sValue==null) {
+				response.sendRedirect("drFoolPoolDetail?no=" + comment.getPostNo() + "&page=" + page + "&filter=" + filter);
+			} else {
+				response.sendRedirect("drFoolPoolDetail?no=" + comment.getPostNo() + "&page=" + page + "&filter=" + filter + "&sOption=" + sOption + "&sValue=" + sValue);
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();

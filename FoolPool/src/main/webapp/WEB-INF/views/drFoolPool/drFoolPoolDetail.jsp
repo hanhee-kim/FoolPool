@@ -14,7 +14,7 @@
                 <%-- 게시글 상세 --%>
                 <div class="drFP-detailArea">
                 	<div class="drFP-detail-hiddenrow" data-no='${drFoolPool.no}' data-page='${page}' data-filter='${filter}' data-sOption='${sOption}' data-sValue='${sValue}'></div>
-			    	<div class="drFP-detail-1row">
+			    	<div class="drFP-detail-1row" id="drFP-topOfPage">
 			    		<label>
 				    		<c:choose>
 						        <c:when test="${drFoolPool.isSolved}">[해결]&nbsp;</c:when>
@@ -28,6 +28,7 @@
 				    	<span>작성자: ${drFoolPool.writerNickname}</span>
 						<span>작성일: ${formattedDate}</span>
 				    	<span>조회수: ${drFoolPool.view}</span>
+				    	<span><a href="#drFP-moveToComment" class="drFP-move"><img alt="v" src="./static/img/movecommenttop.png" id="drFP-movecommenttop"></a></span>
 			    	</div>
 			    	<div class="drFP-detail-3row">
 			    		<img alt="풀풀박사게시글이미지" src="image?file=${drFoolPool.fileName}">
@@ -41,7 +42,7 @@
 			    		<button onclick="drFPbackToList()">목록</button>
 			    	</div>
 			    	
-			    	<div class="drFP-commentArea">
+			    	<div class="drFP-commentArea" id="drFP-moveToComment">
 			    		<h4>댓글 [${commentCnt}]</h4>
 				    		<table id="drFP-commentTable">
 					    		<c:forEach items="${commentList}" var="comment">
@@ -69,7 +70,11 @@
 				    	<c:if test="${member ne Empty}">
 				    		<div id="drFP-commentWriteArea">
 					    		<form action="addDrFoolPoolComment" method="post" id="drFP-commentForm">
-					    			<input type="hidden" name="postNo" value="${drFoolPool.no}"/>
+					    			<input type="hidden" name="postNo" value="${drFoolPool.no}"/> 
+					    			<input type="hidden" name="page" value="${page}"/>
+									<input type="hidden" name="filter" value="${filter}"/>
+									<input type="hidden" name="sOption" value="${sOption}"/>
+									<input type="hidden" name="sValue" value="${sValue}"/>
 					    			
 					    			<div id="drFP-commentWriter">
 					    				${member.nickname}<img alt="펜" src="./static/img/pen.png" id="drFP-pen">
@@ -87,6 +92,9 @@
 				    	</c:if>
 			    	</div>
 			    	
+			    	<div class="drFP-movePageDiv">
+				    	<a href="#drFP-topOfPage" class="drFP-move"><img alt="^" src="./static/img/movepagetop.png" id="drFP-movepagetop"></a>
+			    	</div>
 			    	
 			    </div> <%-- drFP-detailArea --%>
                 

@@ -8,6 +8,9 @@ function drFPback() {
 $(function(){
 	$('#drFP-writeform').submit(function(e){
 		
+		e.preventDefault();
+		// 기본제출 동작을 막고 (1)제목, 내용 입력값 유효성 검사, (2)파일첨부 유효성검사 후 (3)swal 띄운뒤 확인버튼 클릭시 제출되도록 함
+		
 		let titleValueAfterTrim = $('.drFP-formTitle').val().trim();
         let contentValueAfterTrim = $('.drFP-formContent').val().trim();
 		//let fileName = $(".drFP-selectedFileName").val(); // 선택된 파일명 표시용 input태그
@@ -37,8 +40,6 @@ $(function(){
 				
 	        } else {
 				
-				// 기본제출 동작을 막고 swal 띄운뒤 확인버튼 클릭시 제출되도록 함
-				// e.preventDefault();
 				Swal.fire({
 					title:'게시글 등록 완료',
 					icon:'success',
@@ -57,7 +58,7 @@ $(function(){
 $(function(){
 	$('#drFP-editform').submit(function(e){
 		// 기본제출 동작을 막고 제목, 내용 입력값 유효성 검사 후 swal 띄움
-		// e.preventDefault();
+		e.preventDefault();
 		
 		let titleValueAfterTrim = $('.drFP-formTitle').val().trim();
         let contentValueAfterTrim = $('.drFP-formContent').val().trim();
@@ -122,11 +123,20 @@ function drFPdelBtnfunction() {
 	}).then((result) => {
 		if(result.isConfirmed) {
 			// alert('no:'+no+",page:"+page+",filter:"+filter+",sOption:"+sOption+",sValue:"+sValue);
-			if(sOption!=null && sValue!=null && sOption!='' && sValue!='') {
-				location.href="drFoolPoolDelete?no=" + no + "&page=" + page + "&filter=" + filter + "&sOption=" + sOption + "&sValue=" + sValue;
-			} else {
-				location.href="drFoolPoolDelete?no=" + no + "&page=" + page + "&filter=" + filter;
-			}
+			
+			Swal.fire({
+				title:'게시글 삭제 완료',
+				icon:'success',
+				confirmButtonColor: 'orange'
+			}).then((result) => {
+				if(result.isConfirmed) {
+					if(sOption!=null && sValue!=null && sOption!='' && sValue!='') {
+						location.href="drFoolPoolDelete?no=" + no + "&page=" + page + "&filter=" + filter + "&sOption=" + sOption + "&sValue=" + sValue;
+					} else {
+						location.href="drFoolPoolDelete?no=" + no + "&page=" + page + "&filter=" + filter;
+					}
+				}
+			}); //Swal
 		}
 	});
 }
@@ -159,6 +169,14 @@ function drFPedit(no) {
 
 /* 풀풀박사 댓글 삭제 버튼 */
 function drFPCommDelete(commentNo, postNo) {
+	
+	// var no = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-no");
+	var page = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-page");
+	var filter = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-filter");
+	var sOption = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-sOption");
+	var sValue = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-sValue");
+	// alert('commentNo:' + commentNo + 'postNo:'+postNo+", page:"+page+",filter:"+filter+",sOption:"+sOption+",sValue:"+sValue);
+	
 	Swal.fire({
 		title: '댓글을 삭제하시겠습니까?',
 		icon: 'warning',
@@ -169,12 +187,34 @@ function drFPCommDelete(commentNo, postNo) {
 		cancelButtonText: '취소'
 	}).then((result) => {
 		if(result.isConfirmed) {
-			location.href = "deldrfoolpoolcomment?commentNo=" + commentNo + "&postNo=" + postNo;
+			// location.href = "deldrfoolpoolcomment?commentNo=" + commentNo + "&postNo=" + postNo;
+			
+			Swal.fire({
+				title:'댓글 삭제 완료',
+				icon:'success',
+				confirmButtonColor: 'orange'
+			}).then((result) => {
+				if(result.isConfirmed) {
+					if(sOption!=null && sValue!=null && sOption!='' && sValue!='') {
+						location.href="deldrfoolpoolcomment?commentNo=" + commentNo + "&postNo=" + postNo + "&page=" + page + "&filter=" + filter + "&sOption=" + sOption + "&sValue=" + sValue;
+					} else {
+						location.href="deldrfoolpoolcomment?commentNo=" + commentNo + "&postNo=" + postNo + "&page=" + page + "&filter=" + filter;
+					}	
+				}
+			}); //Swal
 		}
 	});
 }
 /* 풀풀박사 댓글 채택 버튼 */
 function drFPCommPick(commentNo, postNo) {
+	
+	// var no = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-no");
+	var page = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-page");
+	var filter = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-filter");
+	var sOption = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-sOption");
+	var sValue = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-sValue");
+	// alert('commentNo:' + commentNo + 'postNo:'+postNo+", page:"+page+",filter:"+filter+",sOption:"+sOption+",sValue:"+sValue);
+	
 	Swal.fire({
 		title: '댓글을 채택하시겠습니까?',
 		icon: 'warning',
@@ -184,9 +224,23 @@ function drFPCommPick(commentNo, postNo) {
 		confirmButtonText: '채택',
 		cancelButtonText: '취소'
 	}).then((result) => {
-		if(result.isConfirmed) {
+		/*if(result.isConfirmed) {
 			location.href = "pickdrfoolpoolcomment?commentNo=" + commentNo + "&postNo=" + postNo;
-		}
+		}*/
+		
+		Swal.fire({
+				title:'질문글이 해결되었습니다!',
+				icon:'success',
+				confirmButtonColor: 'orange'
+			}).then((result) => {
+				if(result.isConfirmed) {
+					if(sOption!=null && sValue!=null && sOption!='' && sValue!='') {
+						location.href="pickdrfoolpoolcomment?commentNo=" + commentNo + "&postNo=" + postNo + "&page=" + page + "&filter=" + filter + "&sOption=" + sOption + "&sValue=" + sValue;
+					} else {
+						location.href="pickdrfoolpoolcomment?commentNo=" + commentNo + "&postNo=" + postNo + "&page=" + page + "&filter=" + filter;
+					}	
+				}
+			}); //Swal
 	});
 }
 
@@ -232,6 +286,7 @@ $(document).ready(function() {
 	// 댓글등록 버튼(input[type=submit])을 눌렀을때 
 	$('#drFP-commentForm').submit(function(event) {
 		let valueAfterTrim = $('#drFP-commentValue').val().trim();
+		$('#drFP-commentValue').val(valueAfterTrim);
 		// 공백값만 댓글로 등록되지 않게 기본동작을 막고 안내해준다
 		if(valueAfterTrim === "") {
             Swal.fire({
@@ -240,6 +295,18 @@ $(document).ready(function() {
 				confirmButtonColor: 'orange'
 			});
 			event.preventDefault();
+			
+		} else {
+			event.preventDefault();
+			Swal.fire({
+				title:'댓글 등록 완료',
+				icon:'success',
+				confirmButtonColor: 'orange'
+			}).then((result) => {
+				if(result.isConfirmed) {
+					document.getElementById('drFP-commentForm').submit();
+				}
+			});
 		}
 	})
 	
@@ -403,7 +470,18 @@ $(document).ready(function() {
         }
     });
     
-    
+   /*
+    // 댓글 작성, 삭제, 채택 후 댓글란 시작점으로 스크롤 이동하게하는 함수 - 비동기와 함께 써볼것
+    function scrollToCommentSection() {
+		var commentSection = $("#drFP-moveToComment");
+	    if (commentSection.length > 0) {
+	        var scrollTo = commentSection.offset().top;
+	        $("html, body").animate({
+	            scrollTop: scrollTo
+	        }, 1000); // 1000ms(1초) 동안 스크롤 이동
+	    }
+    }
+    */
     
 }); //$(document).ready()
 
