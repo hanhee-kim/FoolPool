@@ -67,10 +67,10 @@ public class DrFoolPoolCommentWrite extends HttpServlet {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
 			drFoolPoolService.drFoolPoolCommentWrite(comment);
 			// response.sendRedirect("drFoolPoolDetail?no=" + postNo);
-			if(sOption==null || sValue==null) {
-				response.sendRedirect("drFoolPoolDetail?no=" + comment.getPostNo() + "&page=" + page + "&filter=" + filter);
+			if(sOption==null || sValue==null || sOption.equals("") || sValue.equals("")) {
+				response.sendRedirect("drFoolPoolDetail?no=" + comment.getPostNo() + "&page=" + page + "&filter=" + filter + "#drFP-commentWriteArea");
 			} else {
-				response.sendRedirect("drFoolPoolDetail?no=" + comment.getPostNo() + "&page=" + page + "&filter=" + filter + "&sOption=" + sOption + "&sValue=" + sValue);
+				response.sendRedirect("drFoolPoolDetail?no=" + comment.getPostNo() + "&page=" + page + "&filter=" + filter + "&sOption=" + sOption + "&sValue=" + sValue + "#drFP-commentWriteArea");
 			}
 			
 		} catch (Exception e) {

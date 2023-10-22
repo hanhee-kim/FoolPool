@@ -129,7 +129,7 @@ public class DrFoolPoolEdit extends HttpServlet {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
 			drFoolPoolService.drFoolPoolEdit(drFoolPool);
 			
-			if(sOption==null || sValue==null) {
+			if(sOption==null || sValue==null || sOption.equals("") || sValue.equals("")) {
 				response.sendRedirect("drFoolPoolDetail?no=" + drFoolPool.getNo() + "&page=" + page + "&filter=" + filter);
 			} else {
 				response.sendRedirect("drFoolPoolDetail?no=" + drFoolPool.getNo() + "&page=" + page + "&filter=" + filter + "&sOption=" + sOption + "&sValue=" + sValue);

@@ -28,7 +28,7 @@
 				    	<span>${drFoolPool.writerNickname}</span>
 						<span>${formattedDate}</span>
 				    	<span>조회: ${drFoolPool.view}</span>
-				    	<span><a href="#drFP-topOfComment"><img alt="댓글란바로가기" src="./static/img/comment.png" id="drFP-movecommenttopImg"><sup>${commentCnt}</sup></a></span>
+				    	<span><a href="#drFP-topOfComment"><img alt="댓글란바로가기" src="./static/img/comment.png" id="drFP-movecommenttopImg"><sup id="drFP-commentCnt1">${commentCnt}</sup></a></span>
 			    	</div>
 			    	<div class="drFP-detail-3row">
 			    		<img alt="풀풀박사게시글이미지" src="image?file=${drFoolPool.fileName}">
@@ -43,7 +43,7 @@
 			    	</div>
 			    	
 			    	<div class="drFP-commentArea" id="drFP-topOfComment">
-			    		<h4>댓글 [${commentCnt}]</h4>
+			    		<h4>댓글 [<label id="drFP-commentCnt2">${commentCnt}</label>]</h4>
 				    		<table id="drFP-commentTable">
 					    		<c:forEach items="${commentList}" var="comment">
 					    			<tr>
@@ -61,7 +61,10 @@
 						    					<button class="drFP-commentPickBtn" onclick="drFPCommPick(${comment.commentNo}, ${comment.postNo})">채택하기</button>
 					    					</c:if>
 					    					<c:if test="${member ne Empty && member.id eq comment.writerId && comment.isPicked eq false }">
-						    					<button class="drFP-commentDelBtn" onclick="drFPCommDelete(${comment.commentNo}, ${comment.postNo})">×</button>
+					    						<%-- 기존 요청 --%>
+					    						<%-- <button class="drFP-commentDelBtn" onclick="drFPCommDelete(${comment.commentNo}, ${comment.postNo})">×</button> --%>
+						    					<%-- 클릭시 동작하는 함수 안에서의 요청을 ajax요청으로 변경 --%>
+						    					<button class="drFP-commentDelBtn" data-commentNo='${comment.commentNo}'>×</button>
 					    					</c:if>
 					    				</td>
 					    			</tr>

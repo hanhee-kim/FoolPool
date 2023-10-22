@@ -50,9 +50,9 @@ public class DrFoolPoolCommentPick extends HttpServlet {
 			//response.sendRedirect("drFoolPoolDetail?no="+postNo);
 			
 			if(sOption==null || sValue==null || sOption.equals("") || sValue.equals("")) {
-				response.sendRedirect("drFoolPoolDetail?no=" + postNo + "&page="+page+"&filter="+filter);
+				response.sendRedirect("drFoolPoolDetail?no=" + postNo + "&page="+page+"&filter="+filter + "#drFP-topOfComment");
 			} else {
-				response.sendRedirect("drFoolPoolDetail?no=" + postNo + "&page="+page+"&filter="+filter+"&sOption="+sOption+"&sValue="+sValue);
+				response.sendRedirect("drFoolPoolDetail?no=" + postNo + "&page="+page+"&filter="+filter+"&sOption="+sOption+"&sValue="+sValue + "#drFP-topOfComment");
 			}
 			
 		} catch (Exception e) {
