@@ -36,34 +36,38 @@ public class PoolentarierEdit extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		Integer no = Integer.parseInt(request.getParameter("no"));
-		request.setAttribute("no", no);
 		request.setAttribute("jspName", "poolentarier");
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("member")==null) {
+		response.sendRedirect("login");
+		} else {
+			Integer no = Integer.parseInt(request.getParameter("no"));
+			request.setAttribute("no", no);
 
-		try {
-			// 게시글 조회
-			PoolentarierService poolentarierService = new PoolentarierServiceImpl();
-			Poolentarier poolentarier = poolentarierService.poolentarierDetail(no);
-			request.setAttribute("poolentarier", poolentarier);
+			try {
+				// 게시글 조회
+				PoolentarierService poolentarierService = new PoolentarierServiceImpl();
+				Poolentarier poolentarier = poolentarierService.poolentarierDetail(no);
+				request.setAttribute("poolentarier", poolentarier);
 
-			String keyword = poolentarier.getKeyword();
-			if (keyword != null) {
-				String[] keywords = keyword.split(",");
-				request.setAttribute("keywords", keywords);
-			} else {
-				request.setAttribute("keywords", null);
+				String keyword = poolentarier.getKeyword();
+				if (keyword != null) {
+					String[] keywords = keyword.split(",");
+					request.setAttribute("keywords", keywords);
+				} else {
+					request.setAttribute("keywords", null);
+				}
+
+				request.getRequestDispatcher("WEB-INF/views/poolentarier/poolentarierEdit.jsp").forward(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+				request.setAttribute("err", e.getMessage());
+				request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
 			}
-
-			request.getRequestDispatcher("WEB-INF/views/poolentarier/poolentarierEdit.jsp").forward(request, response);
-		} catch (Exception e) {
-			e.printStackTrace();
-			request.setAttribute("err", e.getMessage());
-			request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
 		}
-
 	}
 
 	/**
@@ -79,10 +83,9 @@ public class PoolentarierEdit extends HttpServlet {
 		// 파일 업로드 시작
 		String uploadPath = "C:\\upload";
 		int size = 10 * 1024 * 1024;
-		MultipartRequest multi = new MultipartRequest(request, uploadPath, size, "utf-8",
-				new DefaultFileRenamePolicy());
-		// 파일 업로드 끝
+		MultipartRequest multi = new MultipartRequest(request, uploadPath, size, "utf-8", new DefaultFileRenamePolicy());
 
+		// 작성폼 값 가져오기
 		Integer no = Integer.parseInt(multi.getParameter("no"));
 		String title = multi.getParameter("title");
 		String content = multi.getParameter("content");

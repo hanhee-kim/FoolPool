@@ -254,7 +254,7 @@ margin-left: 8px;
 /* 댓글 등록, 취소 버튼 */
 #pdCommentFormBtns {
     grid-column: 4; /* 4열에 위치하게 함 */
-    /* margin-right: 2px; */
+    margin-right: 5px;
     margin-top: 0px;
     float: right;
 }
@@ -275,4 +275,34 @@ margin-left: 8px;
 
 #pdPen {
 	width: 30px;
+}
+
+#pdMoveCommentTopImg {
+	width: 27px;
+	margin-top: -5px;
+}
+
+#pdMoveCommentTopImg+sup {
+	margin-left: 7px;
+	margin-top: 20px;
+	font-weight: bolder;
+	color: gray;
+	font-size: 14px;
+}
+
+.pdMoveTopOfPageDiv {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.pdMoveTopOfPageAnchor {
+	position: relative;
+	z-index: 15;
+}
+
+#pdMovePageTopImg {
+	width: 40px;
+	height: 12px;
+	margin-top: 15px;
 }

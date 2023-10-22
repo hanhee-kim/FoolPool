@@ -8,14 +8,20 @@
 			
 				<%-- 게시글 상세 --%>
 				<div class="pdDetailArea">
-					<div class="pdDetail-1row">
+					<div class="pdDetail-1row" id="pdTopOfPage">
 						<label class="plDetailTitle">${poolentarier.title}</label>
 					</div>
 					<div class="pdDetail-2row">
 						<fmt:formatDate value="${poolentarier.date}" pattern="yyyy.MM.dd. HH:mm" var="formattedDate" />
-						<span class="pdDetail-writer">작성자: ${poolentarier.writerNickname}</span>
-						<span>작성일: ${formattedDate}</span>
-						<span>조회수: ${poolentarier.view}</span>
+						<span class="pdDetail-writer">${poolentarier.writerNickname}</span>
+						<span>${formattedDate}</span>
+						<span>조회: ${poolentarier.view}</span>
+						<span>
+							<a href="#pdTopOfComment">
+								<img alt="댓글란바로가기" src="./static/img/comment.png" id="pdMoveCommentTopImg">
+									<sup>${commentCount}</sup>
+							</a>
+						</span>
 					</div>
 			
 					<%-- #1 이미지 크기를 통일 or max크기(영역)만 지정 --%>
@@ -41,7 +47,7 @@
 						<a href="goPoolentarier"><button>목록</button></a>
 					</div>
 			
-					<div class="pdCommentArea">
+					<div class="pdCommentArea" id="pdTopOfComment">
 						<h4>댓글 [${commentCount}]</h4>
 						<table>
 							<c:forEach items="${poolentarierCommentList }" var="comment">
@@ -85,8 +91,12 @@
 					
 				</div>
 				<div class="pdBottomBorder"></div>
-				<!-- pdDivLine -->
-			</div>
+				<div class="pdMoveTopOfPageDiv">
+					<a href="#pdTopOfPage" class="pdMoveTopOfPageAnchor">
+						<img alt="^" src="./static/img/movepagetop.png" id="pdMovePageTopImg">
+					</a>
+				</div>
+			</div> <!-- pdDivLine -->
 		</div>
 	</div>
 </body>

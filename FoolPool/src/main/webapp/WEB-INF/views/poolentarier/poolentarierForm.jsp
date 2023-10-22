@@ -9,7 +9,7 @@
                 <%-- 게시글 작성 --%>
                 <section class="pfFormSection">
                 	<h2>풀랜테리어 글 작성</h2>
-					<form action="poolentarierForm" method="post" enctype="multipart/form-data" name="poolentarierForm" class="pfForm">
+					<form action="poolentarierForm" method="post" enctype="multipart/form-data" name="poolentarierForm" id="pfForm">
 						<div class="pfInputArea">
 							<ul>
 								<li>
@@ -26,9 +26,9 @@
 				                	<input class="pfPlantsName" name="plantsName" type="text" placeholder="식물 이름" required="required" maxlength="50">
 				                </li>
 				                <li>
-				                	<input id="pfKeyword" type="text" placeholder="키워드 입력"
+				                	<input id="keywordId" type="text" placeholder="키워드 입력"
 											name="keywordInput" onkeyup="characterCheck(this)" onkeydown="characterCheck(this)">
-									<button class="pfKeywordAddBtn" onclick="pfAddKeywordBtn(event)">추가</button>
+									<button class="pfKeywordAddBtn" onclick="addKeywordBtn(event)">추가</button>
 				                </li>
 				                <li>
 				                	<ul id="keywordList">

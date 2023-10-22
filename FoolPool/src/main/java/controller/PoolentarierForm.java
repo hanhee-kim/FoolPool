@@ -36,17 +36,21 @@ public class PoolentarierForm extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		request.setAttribute("jspName", "poolentarier");
 		HttpSession session = request.getSession();
-		Member member = (Member) session.getAttribute("member");
-		if (member == null) { // 로그인을 안한상태로 작성폼 접근시 에러페이지로
-			request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
+		
+		if(session.getAttribute("member")==null) {
+			response.sendRedirect("login");
 		} else {
-			request.setAttribute("jspName", "poolentarier");
-			request.getRequestDispatcher("WEB-INF/views/poolentarier/poolentarierForm.jsp").forward(request, response);
-
+			try {
+				request.getRequestDispatcher("WEB-INF/views/poolentarier/poolentarierForm.jsp").forward(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+				request.setAttribute("err", e.getMessage());
+				request.getRequestDispatcher("error.jsp").forward(request, response);
+			}
 		}
 	}
 

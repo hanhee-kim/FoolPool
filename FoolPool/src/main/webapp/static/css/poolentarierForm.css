@@ -96,7 +96,7 @@
     padding-left: 10px;
 }
 
-#pfKeyword {
+#keywordId {
 	background: #F2F9EF;
     border: 0.5px dashed #466b55;
 	margin-top: 5px;
@@ -140,16 +140,6 @@
     color: gray;
     outline-color: orange;
 }
-
-/*
-.pfFormImgInput {
-	width: 90%;
-	border: none;
-	cursor: pointer;
-	margin-top: 5px;
-	font-size: 16px;
-}
-*/
 
 .pfCustomFileBtn {
 	display: inline-block;
@@ -221,16 +211,6 @@
 	font-size: 18px;
 	padding: 8px;
 	cursor: pointer;
-}
-
-.pfRemove-button {
-	cursor: pointer;
-	color: red;
-	margin-right: 20px;
-}
-
-.pfCheckboxKeyword {
-	display: none;
 }
 
 .pfKeywordAddBtn:hover,
