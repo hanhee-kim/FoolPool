@@ -25,10 +25,10 @@
 			    	</div>
 			    	<div class="drFP-detail-2row">
 				    	<fmt:formatDate value="${drFoolPool.date}" pattern="yyyy.MM.dd. HH:mm" var="formattedDate" />
-				    	<span>작성자: ${drFoolPool.writerNickname}</span>
-						<span>작성일: ${formattedDate}</span>
-				    	<span>조회수: ${drFoolPool.view}</span>
-				    	<span><a href="#drFP-moveToComment" class="drFP-move"><img alt="v" src="./static/img/movecommenttop.png" id="drFP-movecommenttop"></a></span>
+				    	<span>${drFoolPool.writerNickname}</span>
+						<span>${formattedDate}</span>
+				    	<span>조회: ${drFoolPool.view}</span>
+				    	<span><a href="#drFP-topOfComment"><img alt="댓글란바로가기" src="./static/img/comment.png" id="drFP-movecommenttopImg"><sup>${commentCnt}</sup></a></span>
 			    	</div>
 			    	<div class="drFP-detail-3row">
 			    		<img alt="풀풀박사게시글이미지" src="image?file=${drFoolPool.fileName}">
@@ -42,7 +42,7 @@
 			    		<button onclick="drFPbackToList()">목록</button>
 			    	</div>
 			    	
-			    	<div class="drFP-commentArea" id="drFP-moveToComment">
+			    	<div class="drFP-commentArea" id="drFP-topOfComment">
 			    		<h4>댓글 [${commentCnt}]</h4>
 				    		<table id="drFP-commentTable">
 					    		<c:forEach items="${commentList}" var="comment">
@@ -92,8 +92,8 @@
 				    	</c:if>
 			    	</div>
 			    	
-			    	<div class="drFP-movePageDiv">
-				    	<a href="#drFP-topOfPage" class="drFP-move"><img alt="^" src="./static/img/movepagetop.png" id="drFP-movepagetop"></a>
+			    	<div class="drFP-moveTopOfPageDiv">
+				    	<a href="#drFP-topOfPage" class="drFP-moveTopOfPageAnchor"><img alt="^" src="./static/img/movepagetop.png" id="drFP-movepagetopImg"></a>
 			    	</div>
 			    	
 			    </div> <%-- drFP-detailArea --%>

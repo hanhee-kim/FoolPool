@@ -374,11 +374,6 @@
 	background: orange !important; */
 }
 .drFP-resetBtnEnable:hover {
-	
-	/* 입력취소버튼이 활성화되었을때 추가되는 클래스 
-	테두리스타일은 먹고 배경스타일은 안먹음
-	*/
-	
 	box-shadow: 0 0 0 2px orange inset;
 	
  	/* border: none !important;
@@ -558,26 +553,34 @@
 	width: 1246.67px;
 }
 
-
-.drFP-movePageDiv {
+/* 게시글 최상단으로 점프 */
+.drFP-moveTopOfPageDiv {
 	display: flex;
 	flex-direction: column; 
     align-items: center; 
 }
-.drFP-move {
+.drFP-moveTopOfPageAnchor {
 	/* z값을 주기 위해 position:relative로 지정 */
     position: relative;
     z-index: 15; 
 }
-#drFP-movepagetop,
-#drFP-movecommenttop {
-	width: 35px;
+#drFP-movepagetopImg {
+	width: 40px;
 	height: 12px;
-}
-#drFP-movepagetop {
 	margin-top: 15px;
 }
-
+/* 댓글란으로 점프 */
+#drFP-movecommenttopImg {
+	width: 27px;
+    margin-top: -5px;
+}
+#drFP-movecommenttopImg+sup {
+    margin-left: 7px;
+    margin-top: 20px;
+    font-weight: bolder;
+    color: gray;
+    font-size: 14px;
+}
 
 /* 3. 풀풀박사 게시글 작성폼, 수정폼 */
 .drFP-formBottomBorder {
