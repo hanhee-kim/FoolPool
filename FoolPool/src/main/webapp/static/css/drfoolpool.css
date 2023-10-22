@@ -170,6 +170,7 @@
 	border: 0;
 	border-radius: 12px;
 	padding: 5px 15px;
+	transition: ease-in-out .2s;
 }
 .drFP-FilterBtn {
 	width: 80px;
@@ -182,6 +183,7 @@
 	/* 필터버튼의 텍스트를 수평 수직 가운데 정렬 */
 	text-align: center;
 	line-height: 33px;
+	transition: ease-in-out .2s;
 }
 .drFP-FilterBtnSelected {
 	background: #e0f4de;
