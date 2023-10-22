@@ -597,7 +597,12 @@
 	/* height: 575px; */
 	margin-top: -45px;
 }
-.drFP-formSection>h2 {
+/* 1022 추가 */
+.drFP-formSection>div{
+	margin: 0 auto;
+	margin-left: 16px;
+}
+.drFP-formSection h2 {
 	margin-left: 40px;
 	margin-top: 35px;
 }
