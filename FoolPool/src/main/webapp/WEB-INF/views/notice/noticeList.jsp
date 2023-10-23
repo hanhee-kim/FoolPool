@@ -78,7 +78,7 @@
 							<option value="content" ${res.type eq 'content'? 'selected':'' }>내용</option>
 						</select> 
 						<input type="text" name="keyword" id="keyword" value="${res.keyword}" />
-						<input type="submit" value="검색" />
+						<input id="notice_search_btn" type="submit" value="검색" />
 				</h5>
 				</form>
 				

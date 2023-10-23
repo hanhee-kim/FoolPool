@@ -23,7 +23,7 @@
         maxlength="30" required="required" placeholder="your title*" />
 	<h2 class="titlewrite">작성 내용</h2>
 	<textarea name="content" id="revised" placeholder="your text*" required="required" class="noticeFormText" ></textarea>
-	<input type="submit" value="등록" class="noticeFormBtn"/>&nbsp;&nbsp; 
+	<input id="notice_submit_btn" type="submit" value="등록" class="noticeFormBtn"/>&nbsp;&nbsp; 
 	</form>
 	</article>
 	</div>
