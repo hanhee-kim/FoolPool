@@ -271,6 +271,7 @@ function pdCommentValidation() {
 
 // 작성
 $(document).ready(function() {
+	// 풀랜테리어 댓글 입력 취소 버튼
 	// input[type=reset]을 눌렀을때 기본동작으로는 입력값을 제거하면서 reset버튼을 다시 비활성화상태로 바꿔주지 않으므로 명시적으로 수행하게함
 	$('#pdResetCommentbtn').click(function() {
     	$('#pdCommentValue').val(''); // 입력값 지우기
@@ -279,32 +280,50 @@ $(document).ready(function() {
     	$('#pdResetCommentbtn')[0].classList.remove('pdResetBtnEnable'); // css를 위한 클래스 속성 또한 지움
 	});
 	
-	// 풀랜테리어 목록 - 검색바 유효성 검사
+	// 풀랜테리어 게시글
+	// 댓글 유효성 검사
+	$('#pdCommentForm').submit(function(event) {
+		let commentValue = $("#pdCommentValue").val().trim();
+		$("#pdCommentValue").val(commentValue); 
+		if(commentValue === "") {
+			Swal.fire({
+				title:'댓글 입력값을 확인해주세요.',
+				icon:'warning',
+				confirmButtonColor: 'orange'
+			});
+			event.preventDefault();
+		}
+	});
+	
+	// 풀랜테리어 목록
+	// 검색바 유효성 검사
     $('#plSearchForm').submit(function(event) {
-        let sOption = $("#plSearchOption").val();
-        let sValue = $("#plSearchValue").val().trim();
-        // 수행1. trim된 값을 검색어input태그에 value로 넣어줌
-        $("#plSearchValue").val(sValue); 
-        // 수행2. null값 검색제출을 막음 - 404에러 방지
-        if (searchOption === "unselected" || searchValue === "") {
+        let searchText = $("#plSearchText").val().trim();
+        // 수행1. trim된 값을 검색어 input 태그에 value로 넣어줌
+        $("#plSearchText").val(searchText); 
+        // 수행2. null값 검색 제출을 막음 - 404에러 방지
+        if (searchText === "") {
             // console.log("검색옵션 혹은 검색어가 없으므로 기본제출이 막아짐");
             event.preventDefault();
         }
     });
     
-    // 풀랜테리어 작성폼 - 커스텀한 파일선택 버튼에 선택된 파일명 표시(input태그의 value값 넣기)
+    // 풀랜테리어 작성폼
+    // 커스텀한 파일선택 버튼에 선택된 파일명 표시(input태그의 value값 넣기)
 	$("#pfFileforwrite").on('change', function () {
 	    let selectedFileName = $(this).val();
 	    $(".pfSelectedFileName").val(selectedFileName);
 	});
     
-    // 풀랜테리어 수정폼 - 커스텀한 파일선택 버튼에 선택된 파일명 표시(input태그의 value값 넣기)
+    // 풀랜테리어 수정폼
+    // 커스텀한 파일선택 버튼에 선택된 파일명 표시(input태그의 value값 넣기)
     $("#peFileforedit").on('change', function () {
 	    let selectedFileName = $(this).val();
 	    $(".peSelectedFileName").val(selectedFileName);
 	});
     
-    // 풀랜테리어 작성폼 - 제목 유효성 검사
+    // 풀랜테리어 작성폼
+    // 제목 유효성 검사
     $('.pfTitleValidationMsg').text('');
     $('.pfFormTitle').keyup(function(e) {
         let titleValue = $(this).val(); // 현재 입력된 제목 가져오기
@@ -319,7 +338,8 @@ $(document).ready(function() {
 		}
     });
     
-    // 풀랜테리어 수정폼 - 제목 유효성 검사
+    // 풀랜테리어 수정폼
+    // 제목 유효성 검사
     $('.peTitleValidationMsg').text('');
     $('.peFormTitle').keyup(function(e) {
         let titleValue = $(this).val(); // 현재 입력된 제목 가져오기
@@ -334,7 +354,8 @@ $(document).ready(function() {
 		}
     });
     
-    // 풀랜테리어 작성 - 내용 유효성 검사
+    // 풀랜테리어 작성
+    // 내용 유효성 검사
     $('.pfContentValidationMsg').text('');
     $('.pfFormContent').keyup(function(e) {
         let contentValue = $(this).val(); // 현재 입력된 제목 가져오기
@@ -349,7 +370,8 @@ $(document).ready(function() {
 		}
     });
     
-    // 풀랜테리어 수정 - 내용 유효성 검사
+    // 풀랜테리어 수정
+    // 내용 유효성 검사
     $('.peContentValidationMsg').text('');
     $('.peFormContent').keyup(function(e) {
         let contentValue = $(this).val(); // 현재 입력된 제목 가져오기
@@ -364,7 +386,8 @@ $(document).ready(function() {
 		}
     });
     
-    // 풀풀박사 작성폼 - 업로드이미지 미리보기(파일을 읽어서 img태그에 표시)
+    // 풀풀박사 작성폼
+    // 업로드이미지 미리보기(파일을 읽어서 img태그에 표시)
     $('#pfFileforwrite').change(function () {
 		// console.log('이미지input값 변경됨...');
 		
@@ -387,7 +410,8 @@ $(document).ready(function() {
         }
     });
     
-    // 수정폼 - 업로드이미지 미리보기(파일을 읽어서 img태그에 표시)
+    // 수정폼
+    // 업로드이미지 미리보기(파일을 읽어서 img태그에 표시)
     $('#peFileforedit').change(function () {
 		// 기존 이미지를 표시하는 img태그가 보여지지 않도록 속성 추가
 		$('#peFormImgExisting').attr("style", "display: none"); 

@@ -84,7 +84,6 @@ public class PoolentarierEdit extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		request.setAttribute("jspName", "poolentarier");
 
 		HttpSession session = request.getSession();
 		Member member = (Member) session.getAttribute("member");

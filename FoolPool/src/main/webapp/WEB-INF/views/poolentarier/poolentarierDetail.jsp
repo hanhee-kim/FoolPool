@@ -50,7 +50,7 @@
 					<div class="pdCommentArea" id="pdTopOfComment">
 						<h4>댓글 [${commentCount}]</h4>
 						<table>
-							<c:forEach items="${poolentarierCommentList }" var="comment">
+							<c:forEach items="${poolentarierCommentList}" var="comment">
 								<tr>
 									<fmt:formatDate value="${comment.commentDate}" pattern="yyyy.MM.dd. HH:mm" var="formattedCommentDate" />
 					    			<td>${comment.writerNickname}</td>
@@ -78,11 +78,13 @@
 									</div>
 									<div>
 										<textarea maxlength="200" id="pdCommentValue" onkeyup="pdCommentValidation()" name="commentContent" required="required" placeholder="댓글을 입력해주세요"></textarea>
-					    				<div id="pdCommentValidationMsg"></div>
-					    				<p id="pdCommentFormBtns">
-						    				<input type="submit" value="댓글 등록"/>
-						    				<input type="reset" value="입력 취소" id="pdResetCommentbtn" disabled/>
-					    				</p>
+										<div>
+											<span id="pdCommentValidationMsg"></span>
+											<span id="pdCommentFormBtns">
+												<input type="submit" value="댓글 등록"/>
+							    				<input type="reset" value="입력 취소" id="pdResetCommentbtn" disabled/>
+											</span>
+										</div>
 									</div>
 								</form>
 							</div>
