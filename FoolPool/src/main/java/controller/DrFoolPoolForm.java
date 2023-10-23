@@ -72,6 +72,8 @@ public class DrFoolPoolForm extends HttpServlet {
 		String fileName = multi.getOriginalFileName("file"); // null로 받아지는 문제는 uploadPath설정부터 문제있었기 때문(업로드가 되지 않아 뽑아지지 않음)
 		String title = multi.getParameter("title");
 		String content = multi.getParameter("content");
+		// **content의 경우 textarea에 작성된 줄바꿈기호 \n을 <br>로 바꾸어 DB에 저장하고, 수정폼진입시에는 도로 <br>을 도로 \n으로 바꾼다.
+		content = content.replaceAll("\n", "<br>");
 		// System.out.println("fileName: " + fileName + ", title: " + title + ", content: " + content);
 		
 		// DrFoolPool객체 생성

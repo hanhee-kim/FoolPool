@@ -84,11 +84,13 @@
 					    			</div>
 					    			<div>
 					    				<textarea maxlength="200" id="drFP-commentValue" onkeyup="drFPcommentValidation()" name="commentContent" required="required" placeholder="댓글을 입력해주세요"></textarea>
-					    				<span id="drFP-commentValidationMsg"></span>
-					    				<span id="drFP-commentFormBtns">
-						    				<input type="submit" value="댓글 등록"/>
-						    				<input type="reset" value="입력 취소" id="drFP-resetCommentbtn" disabled/>
-					    				</span>
+					    				<div>
+						    				<span id="drFP-commentValidationMsg"></span>
+						    				<span id="drFP-commentFormBtns">
+							    				<input type="submit" value="댓글 등록"/>
+							    				<input type="reset" value="입력 취소" id="drFP-resetCommentbtn" disabled/>
+						    				</span>
+					    				</div>
 					    			</div>
 					    		</form>
 				    		</div>

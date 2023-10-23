@@ -481,12 +481,6 @@
 
 
 
-#drFP-commentValidationMsg {
-	font-size: 15px;
-	color: orange;
-	padding-left: 16px;
-	/* vertical-align: top; */
-}
 /* 댓글란 */
 #drFP-commentWriteArea {
     margin-top: 24px;
@@ -515,26 +509,31 @@
 /* 댓글 입력란 */
 #drFP-commentValue {
     height: 120px;
-    resize: none; /* textarea 크기 고정 */
-	/* width: 880px; */
+    resize: none; 
 	width: 837px;
-	grid-column: 2 / span 2; /* 2번째 열에서 시작하여 2열 다 차지하게함 */
+	grid-column: 2 / span 2;
 	margin: 10px 0 0 50px;
 	
 	font-size: 17px;
 	font-family: 'Cafe24SsurroundAir';
 	padding: 10px;
 	
-	outline-color: orange; /* focus된 입력창의 테두리색 변경 */
+	outline-color: orange;
 	overflow-y: auto; 
 }
-/* 댓글 등록, 취소 버튼 */
-#drFP-commentFormBtns {
-    grid-column: 4; /* 4열에 위치하게 함 */
-    margin-right: 15px;
-    margin-top: 0px;
-    float: right;
+#drFP-commentValidationMsg {
+	font-size: 15px;
+	color: orange;
 }
+#drFP-commentValue+div{
+	width: 857px;
+	margin-left: 51px;
+	
+	/* 자식요소를 부모요소의 양 끝에 위치하도록 함 */
+	display: flex;
+    justify-content: space-between;
+}
+
 #drFP-commentFormBtns input {
 	cursor: pointer;
 }

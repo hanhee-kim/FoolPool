@@ -61,6 +61,12 @@ public class DrFoolPoolEdit extends HttpServlet {
 			try {
 				DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
 				DrFoolPool drFoolPool = drFoolPoolService.drFoolPoolDetail(no);
+				
+				// content의 줄바꿈 <br>을 전부 \n으로 변경하여 수정폼 진입시 jsp에 뿌려준다
+				String content = drFoolPool.getContent();
+				content = content.replaceAll("<br>", "\n");
+				drFoolPool.setContent(content);
+				
 				request.setAttribute("drFoolPool", drFoolPool);
 				request.setAttribute("page", page);
 				request.setAttribute("filter", filter);
@@ -100,8 +106,10 @@ public class DrFoolPoolEdit extends HttpServlet {
 		// form입력값 가져오기
 		String fileName = multi.getOriginalFileName("file");
 		String title = multi.getParameter("title");
-		String content = multi.getParameter("content");
 		Integer no = Integer.parseInt(multi.getParameter("no"));
+		String content = multi.getParameter("content");
+		// **content의 경우 textarea에 작성된 줄바꿈기호 \n을 <br>로 바꾸어 DB에 저장하고, 글상세, 수정폼진입시에는 도로 <br>을 도로 \n으로 바꾼다.
+		content = content.replaceAll("\n", "<br>");
 		// System.out.println("fileName: " + fileName + ", title: " + title + ", content: " + content + ", no: " + no);
 		
 		// DrFoolPool객체 생성

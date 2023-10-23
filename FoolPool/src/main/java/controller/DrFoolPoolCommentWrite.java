@@ -44,6 +44,8 @@ public class DrFoolPoolCommentWrite extends HttpServlet {
 		
 		// form 입력값 가져오기 (이전 목록페이지의 값 포함)
 		String commentContent = request.getParameter("commentContent");
+		// **content의 경우 textarea에 작성된 줄바꿈기호 \n을 <br>로 바꾸어 DB에 저장한다.
+		commentContent = commentContent.replaceAll("\n", "<br>");
 		Integer postNo = Integer.parseInt(request.getParameter("postNo"));
 		// System.out.println("commentContent: " + commentContent + ", postNo: " + postNo);
 		String prevpage = request.getParameter("page");
