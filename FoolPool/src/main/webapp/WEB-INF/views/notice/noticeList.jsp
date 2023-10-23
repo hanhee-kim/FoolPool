@@ -80,7 +80,7 @@
 							value="${res.keyword}" /> <input type="submit" value="검색" />
 				</h5>
 				</form>
-				</h5>
+				
 
 
 
