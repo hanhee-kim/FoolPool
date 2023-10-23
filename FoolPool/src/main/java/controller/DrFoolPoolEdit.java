@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -56,7 +58,8 @@ public class DrFoolPoolEdit extends HttpServlet {
 			if(prevfilter!=null) filter = prevfilter;
 			String sOption = request.getParameter("sOption");
 			String sValue = request.getParameter("sValue");
-			// System.out.println("no:" + no + ",prevpage: " + page + ",filter:" + filter + ",sOption:" + sOption + ",sValue:" + sValue);
+			// url에 한글이 될 수 있는 값인 검색값만 인코딩
+			sValue = URLEncoder.encode(sValue, "UTF-8"); // java.net.URLEncoder;
 			
 			try {
 				DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
@@ -130,8 +133,8 @@ public class DrFoolPoolEdit extends HttpServlet {
 		if(prevfilter!=null && prevfilter.equals("")==false) filter = prevfilter;
 		String sOption = multi.getParameter("sOption");
 		String sValue = multi.getParameter("sValue");
-		// System.out.println("page: " + page + ", prevpage: " + page + ", prevfilter: " + prevfilter + ", filter: " + filter + "\nsOption: " + sOption + ", sValue: " + sValue);
-		
+		// url에 한글이 될 수 있는 값인 '검색값'만 인코딩
+		sValue = URLEncoder.encode(sValue, "UTF-8"); // java.net.URLEncoder;
 		
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();

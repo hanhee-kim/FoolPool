@@ -1,7 +1,7 @@
 package controller;
 
 import java.io.IOException;
-import java.util.Iterator;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -9,11 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import bean.DrFoolPool;
 import bean.DrFoolPoolComment;
-import bean.Member;
 import service.DrFoolPoolService;
 import service.DrFoolPoolServiceImpl;
 
@@ -50,19 +48,11 @@ public class DrFoolPoolDetail extends HttpServlet {
 		if(prevfilter!=null) filter = prevfilter;
 		String sOption = request.getParameter("sOption");
 		String sValue = request.getParameter("sValue");
-		// System.out.println("no:" + no + ",page: " + page + ",filter:" + filter + ",sOption:" + sOption + ",sValue:" + sValue);
 
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
 			DrFoolPool drFoolPool = drFoolPoolService.drFoolPoolDetail(no);
 			List<DrFoolPoolComment> commentList = drFoolPoolService.drFoolPoolCommentList(no); 
-			
-//			System.out.println(drFoolPool.toString());
-//			System.out.println("댓글수: " + commentList.size() + "\n----댓글 목록 출력----");
-//			Iterator<DrFoolPoolComment> iter = commentList.iterator();
-//			while(iter!=null && iter.hasNext()){
-//				System.out.println(iter.next().toString());
-//			}
 			
 			request.setAttribute("page", page);
 			request.setAttribute("filter", filter);

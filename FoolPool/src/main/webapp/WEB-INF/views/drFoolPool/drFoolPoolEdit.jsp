@@ -14,12 +14,12 @@
                 <section class="drFP-formSection">
                 	<div>
 	                	<h2>질문글 수정</h2>
-						<form action="editDrFoolPool" method="post" enctype="multipart/form-data" name="drFoolPoolForm" id="drFP-editform">
+						<form accept-charset="UTF-8" action="editDrFoolPool" method="post" enctype="multipart/form-data" name="drFoolPoolForm" id="drFP-editform">
 							<input type="hidden" name="no" value="${drFoolPool.no}"/>
 							<input type="hidden" name="page" value="${page}"/>
 							<input type="hidden" name="filter" value="${filter}"/>
 							<input type="hidden" name="sOption" value="${sOption}"/>
-							<input type="hidden" name="sValue" value="${sValue}"/>
+							<input type="hidden" name="sValue" value="${sValue}" id="drFPsValue"/>
 							<div class="drFP-inputArea">
 								<ul>
 									<li>

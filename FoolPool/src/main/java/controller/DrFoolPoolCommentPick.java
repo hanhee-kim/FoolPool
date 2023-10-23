@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,6 +44,8 @@ public class DrFoolPoolCommentPick extends HttpServlet {
 		if(prevfilter!=null) filter = prevfilter;
 		String sOption = request.getParameter("sOption");
 		String sValue = request.getParameter("sValue");
+		// url에 한글이 될 수 있는 값인 검색값만 인코딩
+		sValue = URLEncoder.encode(sValue, "UTF-8"); // java.net.URLEncoder;
 		// System.out.println("postNo:" + postNo + ", commentNo:" + commentNo + ",prevpage: " + page + ",filter:" + filter + ",sOption:" + sOption + ",sValue:" + sValue);
 		
 		try {
