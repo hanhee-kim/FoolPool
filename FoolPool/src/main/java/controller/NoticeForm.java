@@ -65,6 +65,8 @@ public class NoticeForm extends HttpServlet {
 		
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
+		//하위 코드 추가
+		//content = content.replaceAll("\n", "<br>");
 		
 	
 		//객체에 값 세팅 
