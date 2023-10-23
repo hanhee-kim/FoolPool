@@ -34,10 +34,18 @@ public class NoticeForm extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		if(session.getAttribute("member")==null) {
+			response.sendRedirect("login");
+//			request.getRequestDispatcher("login.jsp").forward(request, response);
+		} else {
+			
 		
+		request.setCharacterEncoding("utf-8");
 		request.setAttribute("jspName", "notice");
 		request.getRequestDispatcher("WEB-INF/views/notice/noticeForm.jsp").forward(request, response);
 		
+		}
 	}
 
 	
@@ -57,6 +65,8 @@ public class NoticeForm extends HttpServlet {
 		
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
+		//하위 코드 추가
+		//content = content.replaceAll("\n", "<br>");
 		
 	
 		//객체에 값 세팅 

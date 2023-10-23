@@ -30,9 +30,16 @@ function go_searchFlower() {
 		data = 'option=periodDate&startMonth=' + startMonth + '&startDay=' + startDay + '&endMonth=' + endMonth + '&endDay=' + endDay;
 	} else if (selectedVal === "flowerName") {
 		var byName = $('#searchFlowerByName').val();
+//		console.log(byName+"name");
+		if(byName == '' ||byName == null){
+			byName == null;
+		}
 		data = 'option=flowerName&byName=' + byName;
 	} else if (selectedVal === "flowerLang") {
 		var byLang = $('#searchFlowerByLang').val();
+		if(byLang == '' ||byLang == null){
+			byLang == null;
+		}
 		data = 'option=flowerLang&byLang=' + byLang;
 	}
 	//버튼 클릭시 searchflower로 태그마다 변경된 데이터 들고 이동
@@ -73,7 +80,7 @@ $(document).ready(function() {
 	});//disabled function
 
 	//조회목록 조작(페이지 로드 후)
-	var fCardLen = $(".flowerCard").length;
+	var fCardLen = $(".flowerCard").length; 
 	$(".flowerCard").each(function(idx, obj) {
 		var cardId = obj.id;
 		if (idx >= 4) {

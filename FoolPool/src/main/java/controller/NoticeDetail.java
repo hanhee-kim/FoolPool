@@ -33,21 +33,32 @@ public class NoticeDetail extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		Integer no = Integer.parseInt(request.getParameter("no"));
-		
-		
-		try {
-			NoticeService noticeService = new NoticeServiceImpl();
-			Notice notice = noticeService.noticeDetail(no);
-			//noticeService.noticeViewCountPlus(no);
-			request.setAttribute("notice", notice);
-			request.setAttribute("jspName", "notice");
-			request.getRequestDispatcher("WEB-INF/views/notice/noticeDetail.jsp").forward(request, response);
-		} catch (Exception e) {
-			//request.setAttribute("err", "notice 상세페이지 조회 실패 ");
-			request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
+		HttpSession session = request.getSession();
+		if(session.getAttribute("member")==null) {
+			response.sendRedirect("login");
+		}else {
+			request.setCharacterEncoding("utf-8");
+			Integer no = Integer.parseInt(request.getParameter("no"));
+			
+			
+			try {
+				NoticeService noticeService = new NoticeServiceImpl();
+				Notice notice = noticeService.noticeDetail(no);
+				//noticeService.noticeViewCountPlus(no);
+				request.setAttribute("notice", notice);
+				request.setAttribute("jspName", "notice");
+				request.getRequestDispatcher("WEB-INF/views/notice/noticeDetail.jsp").forward(request, response);
+			} catch (Exception e) {
+				//request.setAttribute("err", "notice 상세페이지 조회 실패 ");
+				request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
+			}
+			
+			
+			
 		}
+		
+		
+		
 		
 
 	}

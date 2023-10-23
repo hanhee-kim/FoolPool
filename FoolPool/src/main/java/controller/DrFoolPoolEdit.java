@@ -40,38 +40,48 @@ public class DrFoolPoolEdit extends HttpServlet {
 
 		// 뷰의 버튼이 아니라 사용자가 직접 url로 요청하여 들어왔을때도 비로그인 상태일때는 로그인페이지로 이동하게함
 		HttpSession session = request.getSession();
-		if(session.getAttribute("member")==null) request.getRequestDispatcher("login.jsp").forward(request, response);
+		if(session.getAttribute("member")==null) {
+			// request.getRequestDispatcher("WEB-INF/views/login/login.jsp").forward(request, response);
+			response.sendRedirect("login");
+		} else {
+			request.setCharacterEncoding("utf-8");
+			Integer no = Integer.parseInt(request.getParameter("no"));
 			
-		request.setCharacterEncoding("utf-8");
-		Integer no = Integer.parseInt(request.getParameter("no"));
-		
-		// 이전 목록페이지의 값
-		String prevpage = request.getParameter("page");
-		String prevfilter = request.getParameter("filter");
-		int page = 1;
-		if(prevpage!=null) page = Integer.parseInt(prevpage);
-		String filter = "all";
-		if(prevfilter!=null) filter = prevfilter;
-		String sOption = request.getParameter("sOption");
-		String sValue = request.getParameter("sValue");
-		// System.out.println("no:" + no + ",prevpage: " + page + ",filter:" + filter + ",sOption:" + sOption + ",sValue:" + sValue);
-		
-		try {
-			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
-			DrFoolPool drFoolPool = drFoolPoolService.drFoolPoolDetail(no);
-			request.setAttribute("drFoolPool", drFoolPool);
-			request.setAttribute("page", page);
-			request.setAttribute("filter", filter);
-			request.setAttribute("sOption", sOption);
-			request.setAttribute("sValue", sValue);
-			request.setAttribute("jspName", "drFoolPool");
-			request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolEdit.jsp").forward(request, response);
+			// 이전 목록페이지의 값
+			String prevpage = request.getParameter("page");
+			String prevfilter = request.getParameter("filter");
+			int page = 1;
+			if(prevpage!=null) page = Integer.parseInt(prevpage);
+			String filter = "all";
+			if(prevfilter!=null) filter = prevfilter;
+			String sOption = request.getParameter("sOption");
+			String sValue = request.getParameter("sValue");
+			// System.out.println("no:" + no + ",prevpage: " + page + ",filter:" + filter + ",sOption:" + sOption + ",sValue:" + sValue);
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-			request.setAttribute("err", "풀풀박사 게시글 수정 실패");
-			request.getRequestDispatcher("error.jsp").forward(request, response);
+			try {
+				DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
+				DrFoolPool drFoolPool = drFoolPoolService.drFoolPoolDetail(no);
+				
+				// content의 줄바꿈 <br>을 전부 \n으로 변경하여 수정폼 진입시 jsp에 뿌려준다
+				String content = drFoolPool.getContent();
+				content = content.replaceAll("<br>", "\n");
+				drFoolPool.setContent(content);
+				
+				request.setAttribute("drFoolPool", drFoolPool);
+				request.setAttribute("page", page);
+				request.setAttribute("filter", filter);
+				request.setAttribute("sOption", sOption);
+				request.setAttribute("sValue", sValue);
+				request.setAttribute("jspName", "drFoolPool");
+				request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolEdit.jsp").forward(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				request.setAttribute("err", "풀풀박사 게시글 수정 실패");
+				request.getRequestDispatcher("error.jsp").forward(request, response);
+			}
 		}
+			
 	}
 
 	/**
@@ -96,8 +106,10 @@ public class DrFoolPoolEdit extends HttpServlet {
 		// form입력값 가져오기
 		String fileName = multi.getOriginalFileName("file");
 		String title = multi.getParameter("title");
-		String content = multi.getParameter("content");
 		Integer no = Integer.parseInt(multi.getParameter("no"));
+		String content = multi.getParameter("content");
+		// **content의 경우 textarea에 작성된 줄바꿈기호 \n을 <br>로 바꾸어 DB에 저장하고, 글상세, 수정폼진입시에는 도로 <br>을 도로 \n으로 바꾼다.
+		content = content.replaceAll("\n", "<br>");
 		// System.out.println("fileName: " + fileName + ", title: " + title + ", content: " + content + ", no: " + no);
 		
 		// DrFoolPool객체 생성
@@ -125,7 +137,7 @@ public class DrFoolPoolEdit extends HttpServlet {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
 			drFoolPoolService.drFoolPoolEdit(drFoolPool);
 			
-			if(sOption==null || sValue==null) {
+			if(sOption==null || sValue==null || sOption.equals("") || sValue.equals("")) {
 				response.sendRedirect("drFoolPoolDetail?no=" + drFoolPool.getNo() + "&page=" + page + "&filter=" + filter);
 			} else {
 				response.sendRedirect("drFoolPoolDetail?no=" + drFoolPool.getNo() + "&page=" + page + "&filter=" + filter + "&sOption=" + sOption + "&sValue=" + sValue);

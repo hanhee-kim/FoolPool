@@ -1,5 +1,38 @@
 @charset "UTF-8";
 
+/* 드래그 스타일 */
+::selection {
+	background: #FFF361;
+	color: #466b55;
+}
+
+
+/* 스크롤바 작성폼의 textarea, 댓글창 textarea */
+#drFP-commentValue::-webkit-scrollbar,
+.drFP-formContent::-webkit-scrollbar {
+	width: 8px;  /* 스크롤바의 너비 */
+}
+#drFP-commentValue::-webkit-scrollbar-thumb,
+.drFP-formContent::-webkit-scrollbar-thumb {
+	height: 30%; /* 스크롤바의 길이 */
+    background: #466b55; /* 스크롤바의 색상 */
+    border-radius: 70px;
+}
+#drFP-commentValue::-webkit-scrollbar-track ,
+.drFP-formContent::-webkit-scrollbar-track {
+    background: #466b5577;  /*스크롤바 뒷 배경 색상*/
+    border-radius: 70px;
+}
+/* 익스프롤러 10이하 스크롤바 CSS  */
+#drFP-commentValue ,
+.drFP-formContent {
+    scrollbar-face-color:#466b55;
+    scrollbar-shadow-color:#dddddd;
+    scrollbar-track-color: #466b5577;
+}
+
+
+
 /* 0. 풀풀박사 페이지 공통 */
 
 .drFP-Label {
@@ -137,6 +170,7 @@
 	border: 0;
 	border-radius: 12px;
 	padding: 5px 15px;
+	transition: ease-in-out .2s;
 }
 .drFP-FilterBtn {
 	width: 80px;
@@ -149,6 +183,7 @@
 	/* 필터버튼의 텍스트를 수평 수직 가운데 정렬 */
 	text-align: center;
 	line-height: 33px;
+	transition: ease-in-out .2s;
 }
 .drFP-FilterBtnSelected {
 	background: #e0f4de;
@@ -332,11 +367,19 @@
 	cursor: pointer;
 }
 
-.drFP-detail-5row button:hover
-, #drFP-commentFormBtns input[type=submit]:hover
-, .drFP-resetBtnEnable:hover {
+.drFP-detail-5row button:hover,
+#drFP-commentFormBtns input[type=submit]:hover  {
 	/* box-shadow: 0 0 0 2px #466b55 inset; */
 	box-shadow: 0 0 0 2px orange inset;
+	
+	/* border: none !important;
+	background: orange !important; */
+}
+.drFP-resetBtnEnable:hover {
+	box-shadow: 0 0 0 2px orange inset;
+	
+ 	/* border: none !important;
+	background: orange !important; */
 }
 
 .drFP-commentArea {
@@ -369,7 +412,7 @@
 
 /* tr의 첫번째, 마지막 td의 너비 고정하고 중간 td는 남는 영역 전부 차지하게함 */
 .drFP-commentArea table tr td:first-child {
-    width: 110px;
+    width: 150px;
     
     /* 긴댓글줄바꿈으로 인해 댓글영역의 높이가 커졌을때 자식요소인 (텍스트)닉네임은 수직중앙정렬이 아닌 위쪽 정렬하게 함 */
     vertical-align : top;
@@ -438,12 +481,6 @@
 
 
 
-#drFP-commentValidationMsg {
-	font-size: 15px;
-	color: orange;
-	padding-left: 16px;
-	/* vertical-align: top; */
-}
 /* 댓글란 */
 #drFP-commentWriteArea {
     margin-top: 24px;
@@ -463,6 +500,7 @@
 #drFP-commentWriter {
     height: 100%;
     padding: 10px 0 0 10px; /* 위, 왼 */
+    width: 160px;
 }
 #drFP-pen {
 	width: 30px;
@@ -471,25 +509,31 @@
 /* 댓글 입력란 */
 #drFP-commentValue {
     height: 120px;
-    resize: none; /* textarea 크기 고정 */
-	width: 880px;
-	grid-column: 2 / span 2; /* 2번째 열에서 시작하여 2열 다 차지하게함 */
-	margin: 10px 0 0 10px;
+    resize: none; 
+	width: 837px;
+	grid-column: 2 / span 2;
+	margin: 10px 0 0 50px;
 	
 	font-size: 17px;
 	font-family: 'Cafe24SsurroundAir';
 	padding: 10px;
 	
-	outline-color: orange; /* focus된 입력창의 테두리색 변경 */
+	outline-color: orange;
 	overflow-y: auto; 
 }
-/* 댓글 등록, 취소 버튼 */
-#drFP-commentFormBtns {
-    grid-column: 4; /* 4열에 위치하게 함 */
-    /* margin-right: 2px; */
-    margin-top: 0px;
-    float: right;
+#drFP-commentValidationMsg {
+	font-size: 15px;
+	color: orange;
 }
+#drFP-commentValue+div{
+	width: 857px;
+	margin-left: 51px;
+	
+	/* 자식요소를 부모요소의 양 끝에 위치하도록 함 */
+	display: flex;
+    justify-content: space-between;
+}
+
 #drFP-commentFormBtns input {
 	cursor: pointer;
 }
@@ -510,6 +554,35 @@
 	width: 1246.67px;
 }
 
+/* 게시글 최상단으로 점프 */
+.drFP-moveTopOfPageDiv {
+	display: flex;
+	flex-direction: column; 
+    align-items: center; 
+}
+.drFP-moveTopOfPageAnchor {
+	/* z값을 주기 위해 position:relative로 지정 */
+    position: relative;
+    z-index: 15; 
+}
+#drFP-movepagetopImg {
+	width: 40px;
+	height: 12px;
+	margin-top: 15px;
+}
+/* 댓글란으로 점프 */
+#drFP-movecommenttopImg {
+	width: 27px;
+    margin-top: -5px;
+}
+#drFP-movecommenttopImg+sup {
+    margin-left: 7px;
+    margin-top: 20px;
+    font-weight: bolder;
+    color: gray;
+    font-size: 14px;
+}
+
 /* 3. 풀풀박사 게시글 작성폼, 수정폼 */
 .drFP-formBottomBorder {
 	/* 원하는 위치에 배치하기 위해 절대값으로 지정 */
@@ -523,7 +596,12 @@
 	/* height: 575px; */
 	margin-top: -45px;
 }
-.drFP-formSection>h2 {
+/* 1022 추가 */
+.drFP-formSection>div{
+	margin: 0 auto;
+	margin-left: 16px;
+}
+.drFP-formSection h2 {
 	margin-left: 40px;
 	margin-top: 35px;
 }
@@ -534,8 +612,10 @@
 .drFP-customFileBtn:hover,
 .drFP-inputArea input[type=submit]:hover,  
 .drFP-inputArea input[type=button]:hover {
-	border: none !important;
-	background: orange !important;
+	/* border: none !important;
+	background: orange !important; */
+	
+	box-shadow: 0 0 0 2px orange inset;
 }
 .drFP-inputArea {
 	margin-top: -15px;
@@ -574,7 +654,10 @@
     height: 300px;
     resize: none; /* textarea 크기 고정 */
 	font-size: 18px;
+	font-family: 'Cafe24SsurroundAir';
 	padding: 10px;
+	
+	overflow-y: auto;
 }
 .drFP-formContent::placeholder {
 	font-family: 'Cafe24SsurroundAir';

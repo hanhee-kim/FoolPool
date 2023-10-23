@@ -1,38 +1,90 @@
-/* 풀풀박사 작성, 수정 - 취소 버튼 */
+/* 풀풀박사 작성폼, 수정폼 - 취소 버튼 */
 function drFPback() {
 	// history.go(-1);
     history.back();
 }
 
-/* 풀풀박사 작성, 수정 - 등록 버튼(input[type=submit]) 클릭시 동작 */
+/* 풀풀박사 작성폼 제출시 호출 */
 $(function(){
 	$('#drFP-writeform').submit(function(e){
-		// 기본제출 동작을 막고 swal 띄운뒤 확인버튼 클릭시 제출되도록 함
+		
 		e.preventDefault();
-		Swal.fire({
-			title:'게시글 등록 완료',
-			icon:'success',
-			confirmButtonColor: 'orange'
-		}).then((result) => {
-			if(result.isConfirmed) {
-				document.getElementById('drFP-writeform').submit();
+		// 기본제출 동작을 막고 (1)제목, 내용 입력값 유효성 검사, (2)파일첨부 유효성검사 후 (3)swal 띄운뒤 확인버튼 클릭시 제출되도록 함
+		
+		let titleValueAfterTrim = $('.drFP-formTitle').val().trim();
+        let contentValueAfterTrim = $('.drFP-formContent').val().trim();
+		//let fileName = $(".drFP-selectedFileName").val(); // 선택된 파일명 표시용 input태그
+        let fileName = $("#drFP-fileforwrite").val(); // display:none인 input[type=file]태그
+
+		// 요소의 value에 앞뒤공백 제거된 값을 세팅하여 trim된 값이 제출되도록 함
+        $('.drFP-formTitle').val(titleValueAfterTrim);
+        $('.drFP-formContent').val(contentValueAfterTrim);
+
+		if(titleValueAfterTrim=="" || contentValueAfterTrim=="") {
+            Swal.fire({
+				title:'입력란을 다시 확인해주세요.',
+				icon:'warning',
+				confirmButtonColor: 'orange'
+			});
+			e.preventDefault();
+			
+		} else {
+	        if (fileName==null || fileName=="") {
+				Swal.fire({
+					title:'글을 등록하기 위해서 첨부파일을 선택해주세요.',
+					icon:'warning',
+					confirmButtonColor: 'orange'
+				});
+				e.preventDefault();
+				// 파일미선택시 기본제출을 막아 404에러 방지
+				
+	        } else {
+				
+				Swal.fire({
+					title:'게시글 등록 완료',
+					icon:'success',
+					confirmButtonColor: 'orange'
+				}).then((result) => {
+					if(result.isConfirmed) {
+						document.getElementById('drFP-writeform').submit();
+					}
+				});
 			}
-		});
+		}
 	});
 });
+
+/* 풀풀박사 수정폼 제출시 호출 */
 $(function(){
 	$('#drFP-editform').submit(function(e){
-		// 기본제출 동작을 막고 swal 띄운뒤 확인버튼 클릭시 제출되도록 함
+		// 기본제출 동작을 막고 제목, 내용 입력값 유효성 검사 후 swal 띄움
 		e.preventDefault();
-		Swal.fire({
-			title:'게시글 수정 완료',
-			icon:'success',
-			confirmButtonColor: 'orange'
-		}).then((result) => {
-			if(result.isConfirmed) {
-				document.getElementById('drFP-editform').submit();
-			}
-		});
+		
+		let titleValueAfterTrim = $('.drFP-formTitle').val().trim();
+        let contentValueAfterTrim = $('.drFP-formContent').val().trim();
+		// 요소의 value에 앞뒤공백 제거된 값을 세팅하여 trim된 값이 제출되도록 함
+        $('.drFP-formTitle').val(titleValueAfterTrim);
+        $('.drFP-formContent').val(contentValueAfterTrim);
+
+		if(titleValueAfterTrim=="" || contentValueAfterTrim=="") {
+            Swal.fire({
+				title:'입력란을 다시 확인해주세요.',
+				icon:'warning',
+				confirmButtonColor: 'orange'
+			});
+			e.preventDefault();
+			
+		} else {
+			Swal.fire({
+				title:'게시글 수정 완료',
+				icon:'success',
+				confirmButtonColor: 'orange'
+			}).then((result) => {
+				if(result.isConfirmed) {
+					document.getElementById('drFP-editform').submit();
+				}
+			});
+		}
 	});
 });
 
@@ -71,11 +123,20 @@ function drFPdelBtnfunction() {
 	}).then((result) => {
 		if(result.isConfirmed) {
 			// alert('no:'+no+",page:"+page+",filter:"+filter+",sOption:"+sOption+",sValue:"+sValue);
-			if(sOption!=null && sValue!=null && sOption!='' && sValue!='') {
-				location.href="drFoolPoolDelete?no=" + no + "&page=" + page + "&filter=" + filter + "&sOption=" + sOption + "&sValue=" + sValue;
-			} else {
-				location.href="drFoolPoolDelete?no=" + no + "&page=" + page + "&filter=" + filter;
-			}
+			
+			Swal.fire({
+				title:'게시글 삭제 완료',
+				icon:'success',
+				confirmButtonColor: 'orange'
+			}).then((result) => {
+				if(result.isConfirmed) {
+					if(sOption!=null && sValue!=null && sOption!='' && sValue!='') {
+						location.href="drFoolPoolDelete?no=" + no + "&page=" + page + "&filter=" + filter + "&sOption=" + sOption + "&sValue=" + sValue;
+					} else {
+						location.href="drFoolPoolDelete?no=" + no + "&page=" + page + "&filter=" + filter;
+					}
+				}
+			}); //Swal
 		}
 	});
 }
@@ -106,8 +167,71 @@ function drFPedit(no) {
 	}
 }
 
-/* 풀풀박사 댓글 삭제 버튼 */
-function drFPCommDelete(commentNo, postNo) {
+/* 풀풀박사 댓글 삭제 버튼 - 비동기 요청 */
+$(function() {
+    $('.drFP-commentDelBtn').click(function() {
+		
+		// 요청 성공 후(서버에서 댓글 삭제 후) 뷰에서 숨김처리할 댓글 선택
+        var button = $(this);
+        var commentNo = button.data("commentno");
+        var sendData = "commentNo=" + commentNo;
+        var tr = button.closest("tr");
+        
+        // sup 텍스트(댓글수)를 선택 후 정수로 변환한뒤 0보다 클 때에만 -1하고 다시 text에 넣어줌
+        var commentCnt1 = parseInt($('#drFP-commentCnt1').text(), 10);
+        var commentCnt2 = parseInt($('#drFP-commentCnt2').text(), 10);
+
+		Swal.fire({
+			title: '댓글을 삭제하시겠습니까?',
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: 'orange',
+			cancelButtonColor: '#466b55',
+			confirmButtonText: '삭제',
+			cancelButtonText: '취소'
+		}).then((result) => {
+			if(result.isConfirmed) {
+				// location.href = "deldrfoolpoolcomment?commentNo=" + commentNo + "&postNo=" + postNo;
+				
+				$.ajax({
+		            url: 'deldrfoolpoolcomment',
+		            type: 'get',
+		            data: sendData,
+		            success: function(res) {
+		                // alert(res);
+		                // 1. 삭제된 댓글을 뷰에서도 숨김처리
+		                tr.hide(); 
+		                // 2. 뷰에 표시되는 댓글수 처리
+		                if (commentCnt1 > 0) commentCnt1 -= 1;
+		                if (commentCnt2 > 0) commentCnt2 -= 1;
+						$('#drFP-commentCnt1').text(commentCnt1);
+						$('#drFP-commentCnt2').text(commentCnt2);
+		                // 3. 알림창
+		                Swal.fire({
+							title:'댓글 삭제 완료',
+							icon:'success',
+							confirmButtonColor: 'orange'
+						});
+		            },
+		            error: function(err) {
+		                console.log(err);
+		            }
+		        });
+			}
+		}); // .then((result)
+    });
+});
+/* 댓글 삭제 버튼 - 기존 동기방식 요청 */
+/*
+function drFPCommDelete(event, commentNo, postNo) {
+	
+	// var no = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-no");
+	var page = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-page");
+	var filter = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-filter");
+	var sOption = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-sOption");
+	var sValue = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-sValue");
+	// alert('commentNo:' + commentNo + 'postNo:'+postNo+", page:"+page+",filter:"+filter+",sOption:"+sOption+",sValue:"+sValue);
+	
 	Swal.fire({
 		title: '댓글을 삭제하시겠습니까?',
 		icon: 'warning',
@@ -118,12 +242,36 @@ function drFPCommDelete(commentNo, postNo) {
 		cancelButtonText: '취소'
 	}).then((result) => {
 		if(result.isConfirmed) {
-			location.href = "deldrfoolpoolcomment?commentNo=" + commentNo + "&postNo=" + postNo;
+			// location.href = "deldrfoolpoolcomment?commentNo=" + commentNo + "&postNo=" + postNo;
+			
+			Swal.fire({
+				title:'댓글 삭제 완료',
+				icon:'success',
+				confirmButtonColor: 'orange'
+			}).then((result) => {
+				if(result.isConfirmed) {
+					if(sOption!=null && sValue!=null && sOption!='' && sValue!='') {
+						location.href="deldrfoolpoolcomment?commentNo=" + commentNo + "&postNo=" + postNo + "&page=" + page + "&filter=" + filter + "&sOption=" + sOption + "&sValue=" + sValue;
+					} else {
+						location.href="deldrfoolpoolcomment?commentNo=" + commentNo + "&postNo=" + postNo + "&page=" + page + "&filter=" + filter;
+					}	
+				}
+			}); //Swal
 		}
 	});
 }
+*/
+
 /* 풀풀박사 댓글 채택 버튼 */
 function drFPCommPick(commentNo, postNo) {
+	
+	// var no = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-no");
+	var page = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-page");
+	var filter = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-filter");
+	var sOption = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-sOption");
+	var sValue = document.getElementsByClassName("drFP-detail-hiddenrow")[0].getAttribute("data-sValue");
+	// alert('commentNo:' + commentNo + 'postNo:'+postNo+", page:"+page+",filter:"+filter+",sOption:"+sOption+",sValue:"+sValue);
+	
 	Swal.fire({
 		title: '댓글을 채택하시겠습니까?',
 		icon: 'warning',
@@ -134,7 +282,21 @@ function drFPCommPick(commentNo, postNo) {
 		cancelButtonText: '취소'
 	}).then((result) => {
 		if(result.isConfirmed) {
-			location.href = "pickdrfoolpoolcomment?commentNo=" + commentNo + "&postNo=" + postNo;
+			/* location.href = "pickdrfoolpoolcomment?commentNo=" + commentNo + "&postNo=" + postNo; */
+			
+			Swal.fire({
+				title:'질문글이 해결되었습니다!',
+				icon:'success',
+				confirmButtonColor: 'orange'
+			}).then((result) => {
+				if(result.isConfirmed) {
+					if(sOption!=null && sValue!=null && sOption!='' && sValue!='') {
+						location.href="pickdrfoolpoolcomment?commentNo=" + commentNo + "&postNo=" + postNo + "&page=" + page + "&filter=" + filter + "&sOption=" + sOption + "&sValue=" + sValue;
+					} else {
+						location.href="pickdrfoolpoolcomment?commentNo=" + commentNo + "&postNo=" + postNo + "&page=" + page + "&filter=" + filter;
+					}	
+				}
+			}); //Swal
 		}
 	});
 }
@@ -149,6 +311,7 @@ function drFPcommentValidation() {
 	if(commentValue.length>0) {
 		resetCommentbtn.disabled = false;
 		resetCommentbtn.classList.add('drFP-resetBtnEnable'); // css 적용을 위해 클래스속성을 동적으로 추가
+
 	} else {
 		resetCommentbtn.disabled = true;
 		resetCommentbtn.classList.remove('drFP-resetBtnEnable');
@@ -166,6 +329,7 @@ function drFPcommentValidation() {
 }
 
 
+
 $(document).ready(function() {
 	
 	// 댓글 입력취소 버튼(input[type=reset])을 눌렀을때 기본동작으로는 입력값을 제거하면서 reset버튼을 다시 비활성화상태로 바꿔주지 않으므로 명시적으로 수행하게함
@@ -179,6 +343,7 @@ $(document).ready(function() {
 	// 댓글등록 버튼(input[type=submit])을 눌렀을때 
 	$('#drFP-commentForm').submit(function(event) {
 		let valueAfterTrim = $('#drFP-commentValue').val().trim();
+		$('#drFP-commentValue').val(valueAfterTrim);
 		// 공백값만 댓글로 등록되지 않게 기본동작을 막고 안내해준다
 		if(valueAfterTrim === "") {
             Swal.fire({
@@ -187,51 +352,70 @@ $(document).ready(function() {
 				confirmButtonColor: 'orange'
 			});
 			event.preventDefault();
+			
+		} else {
+			event.preventDefault();
+			Swal.fire({
+				title:'댓글 등록 완료',
+				icon:'success',
+				confirmButtonColor: 'orange'
+			}).then((result) => {
+				if(result.isConfirmed) {
+					document.getElementById('drFP-commentForm').submit();
+				}
+			});
 		}
 	})
 	
 	/* 풀풀박사 목록 - 검색바 유효성 검사 */
     $('#drFP-searchForm').submit(function(event) {
         let sValue = $("#drFP-sValue").val().trim();
+        
         // 수행1. trim된 값을 검색어input태그에 value로 넣어줌
         $("#drFP-sValue").val(sValue); 
+        
         // 수행2. null값 검색제출을 막음 - 404에러 방지
         if (sValue === "") {
+			Swal.fire({
+				title:'검색어를 입력해주세요.',
+				icon:'warning',
+				confirmButtonColor: 'orange'
+			});
+			
             // console.log("검색옵션 혹은 검색어가 없으므로 기본제출이 막아짐");
             event.preventDefault();
         }
     });
     
-    /* 풀풀박사 작성폼 - 커스텀한 파일선택 버튼에 선택된 파일명 표시(input태그의 value값 넣기) */
+    
+    /* 풀풀박사 작성폼 - 선택파일을 바꿀때마다 호출 */
 	$("#drFP-fileforwrite").on('change', function () {
+		// 파일 선택 취소시 미리보기 이미지 안보이게함 
+		let fileName = $("#drFP-fileforwrite").val();
+		if(fileName == '첨부파일 미선택' || fileName == "") {
+			$('.drFP-formImgPreview').attr("style", "display: none");
+		}
+		// 선택된 파일명 표시용 input태그의 value로 넣어줌 
 	    let selectedFileName = $(this).val();
 	    $(".drFP-selectedFileName").val(selectedFileName);
 	});
 	$("#drFP-fileforedit").on('change', function () {
+		// 선택된 파일명 표시용 input태그의 value로 넣어줌 
 	    let selectedFileName = $(this).val();
 	    $(".drFP-selectedFileName").val(selectedFileName);
 	});
+	
     
-	/* 풀풀박사 작성폼 - 파일선택 유효성 검사 (커스텀버튼을 사용하기 위해 파일input에 display=none스타일이 적용했기때문에 required속성 사용하여 체크하지 못함) */
-    $('#drFP-writeform').submit(function(event) {
-        let fileName = $(".drFP-selectedFileName").val();
-        if (fileName=='첨부파일 미선택') {
-			Swal.fire({
-				title:'글을 등록하기 위해서 첨부파일을 선택해주세요.',
-				icon:'warning',
-				confirmButtonColor: 'orange'
-			});
-			event.preventDefault();
-			// 파일미선택시 기본제출을 막아 404에러 방지
-        }
-    });
     
-    /* 풀풀박사 작성폼 - 제목 유효성 검사 */
+    /* 풀풀박사 작성폼 - 제목 유효성 검사 (길이) */
     $('.drFP-titleValidationMsg').text('');
     $('.drFP-formTitle').keyup(function(e) {
         let titleValue = $(this).val(); // 현재 입력된 제목 가져오기
         let validationMsg = $('.drFP-titleValidationMsg');
-
+        
+		if(titleValue==="") {
+            validationMsg.text('입력값을 확인해주세요');
+		}		
         if(titleValue.length > 98) {
             // console.log('제목 유효성검사에 걸림...');
             validationMsg.text('제목은 100자를 초과할 수 없습니다');
@@ -241,10 +425,10 @@ $(document).ready(function() {
 		}
     });
     
-    /* 풀풀박사 작성 - 내용 유효성 검사 */
+    /* 풀풀박사 작성 - 내용 유효성 검사 (길이) */
     $('.drFP-contentValidationMsg').text('');
     $('.drFP-formContent').keyup(function(e) {
-        let contentValue = $(this).val(); // 현재 입력된 제목 가져오기
+        let contentValue = $(this).val(); // 현재 입력된 내용 가져오기
         let validationMsg = $('.drFP-contentValidationMsg');
 
         if(contentValue.length > 1998) {
@@ -258,7 +442,8 @@ $(document).ready(function() {
     
     
     
-    // 풀풀박사 (1)작성폼, (2)수정폼 - 업로드이미지 미리보기(파일을 읽어서 img태그에 표시)
+    // 풀풀박사 업로드이미지 미리보기(파일을 읽어서 img태그에 표시)
+    // (1)작성폼
     $('#drFP-fileforwrite').change(function () {
 		// console.log('이미지input값 변경됨...');
 		
@@ -304,7 +489,7 @@ $(document).ready(function() {
         }
     });
     
-});
+}); //$(document).ready()
 
 
 

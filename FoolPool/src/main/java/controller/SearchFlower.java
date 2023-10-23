@@ -82,31 +82,39 @@ public class SearchFlower extends HttpServlet {
 				String flowerName = (String) request.getParameter("byName");
 //				System.out.println("flowerName : "+flowerName);
 				res.put("flowerName", flowerName);
+				if(flowerName.length() == 0) {
+					res.put("word", "no_data");
+				} else {
 				try {
 					flowers = f_service.searchFlowerByWord(type, flowerName);
 				} catch (Exception e) {
 					e.printStackTrace();
 					request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
+				 }
 				}
 			} else if (option.equals("flowerLang")) {
 				type = "flow_Lang";
 				String flowerLang = request.getParameter("byLang");
 //				System.out.println("Lang : "+flowerLang);
 				res.put("flowerLang", flowerLang);
+				if(flowerLang.length() == 0) {
+					res.put("word", "no_data");
+				} else {
 				try {
 					flowers = f_service.searchFlowerByWord(type, flowerLang);
 				} catch (Exception e) {
 					e.printStackTrace();
 					request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
+				 }
 				}
 			}
 			res.put("option", option);
 		}	
-			res.put("size", flowers.size());
-			res.put("flowers", flowers);
-			request.setAttribute("res", res);
-			request.setAttribute("jspName", "searchFlower");
-			request.getRequestDispatcher("WEB-INF/views/searchFlower/searchflower.jsp").forward(request, response);
+		res.put("size", flowers.size());
+		res.put("flowers", flowers);
+		request.setAttribute("res", res);
+		request.setAttribute("jspName", "searchFlower");
+		request.getRequestDispatcher("WEB-INF/views/searchFlower/searchflower.jsp").forward(request, response);
 
 	}
 

@@ -37,7 +37,7 @@ public class NoticeSearch extends HttpServlet {
 		 * 검색바 
 		 * 서비스의 메소드를 호출 할때 전달 인자, 검색옵션 type, 사용자가 입력한keyword, 현재 페이지 번호page가 담겨있어야함.
 		 */
-		
+			
 		request.setCharacterEncoding("utf-8");
 		String type = request.getParameter("type");
 		String keyword = request.getParameter("keyword");

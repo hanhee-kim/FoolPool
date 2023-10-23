@@ -38,11 +38,14 @@ public class DrFoolPoolForm extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 뷰의 버튼이 아니라 사용자가 직접 url로 요청하여 들어왔을때도 비로그인 상태일때는 로그인페이지로 이동하게함
 		HttpSession session = request.getSession();
-		if(session.getAttribute("member")==null) request.getRequestDispatcher("login.jsp").forward(request, response);
-		
-		request.setCharacterEncoding("utf-8");
-		request.setAttribute("jspName", "drFoolPool");
-		request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolForm.jsp").forward(request, response);
+		if(session.getAttribute("member")==null) {
+			// request.getRequestDispatcher("WEB-INF/views/login/login.jsp").forward(request, response);
+			response.sendRedirect("login");
+		} else {
+			request.setCharacterEncoding("utf-8");
+			request.setAttribute("jspName", "drFoolPool");
+			request.getRequestDispatcher("WEB-INF/views/drFoolPool/drFoolPoolForm.jsp").forward(request, response);
+		}
 	}
 
 	/**
@@ -69,6 +72,8 @@ public class DrFoolPoolForm extends HttpServlet {
 		String fileName = multi.getOriginalFileName("file"); // null로 받아지는 문제는 uploadPath설정부터 문제있었기 때문(업로드가 되지 않아 뽑아지지 않음)
 		String title = multi.getParameter("title");
 		String content = multi.getParameter("content");
+		// **content의 경우 textarea에 작성된 줄바꿈기호 \n을 <br>로 바꾸어 DB에 저장하고, 수정폼진입시에는 도로 <br>을 도로 \n으로 바꾼다.
+		content = content.replaceAll("\n", "<br>");
 		// System.out.println("fileName: " + fileName + ", title: " + title + ", content: " + content);
 		
 		// DrFoolPool객체 생성

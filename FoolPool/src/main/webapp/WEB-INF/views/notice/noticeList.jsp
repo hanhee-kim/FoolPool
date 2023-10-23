@@ -14,7 +14,7 @@
 				<div class="notice_title">
 					<h1>
 						공지사항
-						<c:if test="${member.role == 'ADMIN' }">
+						<c:if test="${member.role == 'ADMIN'  }">
 							<a href="noticeform" id="noticeformbtn"
 								>작성하기</a>
 						</c:if>
@@ -62,6 +62,7 @@
 						</c:forEach>
 					</c:if>
 				</div><%--notice_list --%>
+			
 
 
 
@@ -75,11 +76,12 @@
 							<option value="all">선택</option>
 							<option value="title" ${res.type eq 'title'? 'selected':'' }>제목</option>
 							<option value="content" ${res.type eq 'content'? 'selected':'' }>내용</option>
-						</select> <input type="text" name="keyword" id="keyword"
-							value="${res.keyword}" /> <input type="submit" value="검색" />
+						</select> 
+						<input type="text" name="keyword" id="keyword" value="${res.keyword}" />
+						<input type="submit" value="검색" />
 				</h5>
 				</form>
-				</h5>
+				
 
 
 
@@ -87,12 +89,17 @@
 		
 		<%-- notice-DivLine --%>
 		<%-- 페이징 영역 --%>
+		<c:if test="${res['noticeList'].size()>0}">
 				<div class="noticePaging">
 					<c:choose>
 						<c:when test="${res.pageInfo.curPage>1 }">
 							<a href="notice?page=${res.pageInfo.curPage-1}"
 								onclick="return callBtn(${res.pageInfo.curPage-1})">&lt;</a>
 						</c:when>
+						  <%-- 검색결과 없을때 --%>
+			         
+			           
+			        
 						<c:otherwise>
 							<a>&lt;</a>
 						</c:otherwise>
@@ -104,11 +111,11 @@
 						<c:choose>
 							<c:when test="${res.pageInfo.curPage==i}">
 								<a href="notice?page=${i}" id="notice-selectedPage"
-									onclick="return callBtn(${i})">${i}</a>&nbsp;&nbsp;
+									onclick="return callBtn(${i})">${i}</a>
                			</c:when>
 							<c:otherwise>
 								<a href="notice?page=${i}" class="notice-unselectedPage"
-									onclick="return callBtn(${i})">${i}</a>&nbsp;&nbsp;
+									onclick="return callBtn(${i})">${i}</a>
                		</c:otherwise>
 						</c:choose>
 					</c:forEach>
@@ -122,6 +129,7 @@
 							<a>&gt;</a>
 						</c:otherwise>
 					</c:choose>
+					 </c:if>
 				</div>
 				<%-- notice-paging --%>
 

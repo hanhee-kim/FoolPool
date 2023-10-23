@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bean.Notice;
 import service.NoticeService;
@@ -32,21 +33,31 @@ public class NoticeFormEdit extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/*
 		 * noticedetail.jsp 에서 수정버튼 눌렀을때 get요청 수정할 수 있게 noticeFormEdit.jsp로 가준다. 		 */
-		
-		
-		request.setAttribute("jspName", "notice");
-		request.setCharacterEncoding("utf-8");
-		Integer no = Integer.parseInt(request.getParameter("no"));
-		
-		try {
-			NoticeService noticeService = new NoticeServiceImpl();
-			Notice notice = noticeService.noticeDetail(no);
-			request.setAttribute("notice", notice);
-			request.getRequestDispatcher("WEB-INF/views/notice/noticeFormEdit.jsp").forward(request, response);
-		} catch (Exception e) {
-			request.setAttribute("err", "notice 상세페이지 조회 실패 ");
-			request.getRequestDispatcher("WEB-INF/views/notice/noticeEdit.jsp").forward(request, response);
+		HttpSession session = request.getSession();
+		if(session.getAttribute("member")==null) {
+			response.sendRedirect("login");
+		}else {
+			request.setAttribute("jspName", "notice");
+			request.setCharacterEncoding("utf-8");
+			Integer no = Integer.parseInt(request.getParameter("no"));
+			
+			try {
+				NoticeService noticeService = new NoticeServiceImpl();
+				Notice notice = noticeService.noticeDetail(no);
+				request.setAttribute("notice", notice);
+				request.getRequestDispatcher("WEB-INF/views/notice/noticeFormEdit.jsp").forward(request, response);
+			} catch (Exception e) {
+				request.setAttribute("err", "notice 상세페이지 조회 실패 ");
+				request.getRequestDispatcher("WEB-INF/views/notice/noticeEdit.jsp").forward(request, response);
+			}
+			
+			
+			
 		}
+		
+		
+		
+		
 		
 	}	
 
@@ -66,6 +77,8 @@ public class NoticeFormEdit extends HttpServlet {
 		Integer no = Integer.parseInt(request.getParameter("no"));
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
+		
+		
 			
 		Notice notice = new Notice();
 		notice.setNo(no);

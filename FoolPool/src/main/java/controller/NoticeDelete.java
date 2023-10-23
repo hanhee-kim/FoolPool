@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import service.NoticeService;
 import service.NoticeServiceImpl;
@@ -32,7 +33,10 @@ public class NoticeDelete extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//*boardlist.jsp에서는 <a href="boarddelete?num=${board.num}"삭제 </a>에 의한 get요청이였음.
-		request.setAttribute("jspName", "notice");
+		HttpSession session = request.getSession();
+		if(session.getAttribute("member")==null) {
+			response.sendRedirect("login");
+		}else {	request.setAttribute("jspName", "notice");
 		request.setCharacterEncoding("utf-8");
 		
 		
@@ -52,6 +56,11 @@ public class NoticeDelete extends HttpServlet {
 			//request.setAttribute("err", "게시글 삭제오류");
 			request.getRequestDispatcher("WEB-INF/views/error.jsp");
 		}
+			
+		}
+		
+		
+	
 	}
 
 }

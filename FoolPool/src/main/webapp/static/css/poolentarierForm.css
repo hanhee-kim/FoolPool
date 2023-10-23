@@ -64,10 +64,13 @@
 }
 
 .pfFormTitle,
-.pfFormContent {
+.pfFormContent,
+.pfPlantsName {
     background: #F2F9EF;
     border: 0.5px dashed #466b55;
 	margin-top: 5px;
+    font-family: 'Cafe24SsurroundAir';
+    outline-color: orange;
 }
 
 .pfFormTitle  {
@@ -75,7 +78,6 @@
 	width: 89%;
 	height: 30px;
 	padding: 0 10px;
-	font-family: 'Cafe24SsurroundAir';
 }
 
 .pfFormContent {
@@ -84,6 +86,26 @@
     resize: none; /* textarea 크기 고정 */
 	font-size: 18px;
 	padding: 10px;
+}
+
+.pfPlantsName {
+	height: 30px;
+    width: 150px;
+    font-size: 18px;
+    font-family: 'Cafe24SsurroundAir';
+    padding-left: 10px;
+}
+
+#keywordId {
+	background: #F2F9EF;
+    border: 0.5px dashed #466b55;
+	margin-top: 5px;
+    width: 150px;
+    height: 30px;
+    font-size: 18px;
+    padding-left: 10px; 
+	font-family: 'Cafe24SsurroundAir';
+	outline-color: orange;
 }
 
 .pfFormContent::placeholder {
@@ -99,10 +121,10 @@
 	margin-top: 8px;
 }
 
-
-.pfContentValidationMsg {
+.pfTitleValidationMsg,
+.pfContentValidationMsg{
 	margin-top: 3px;
-	
+	margin-left: -75px;	
 }
 
 .pfFileSection {
@@ -117,17 +139,9 @@
     font-size: 18px;
     font-family: 'Cafe24SsurroundAir';
     padding-left: 10px;
+    color: gray;
+    outline-color: orange;
 }
-
-/*
-.pfFormImgInput {
-	width: 90%;
-	border: none;
-	cursor: pointer;
-	margin-top: 5px;
-	font-size: 16px;
-}
-*/
 
 .pfCustomFileBtn {
 	display: inline-block;
@@ -157,6 +171,7 @@
 	margin-top: -40px;
 	text-align: center;
 }
+
 .pfFormBtn input {
 	/* z값을 주기 위해 position:relative로 지정 */
     position: relative;
@@ -183,36 +198,25 @@
 	margin-top: 15px;
 }
 
-.pfPlantsName {
-	height: 35px;
-	border-radius: 12px;
-	font-family: 'Cafe24SsurroundAir';
-}
-
 #keywordList {
 	display: flex;
 	padding: 0;
 }
 
-#pfKeyword {
-	height: 35px;
-	border-radius: 12px;
-	font-family: 'Cafe24SsurroundAir';
-}
-
 .pfKeywordAddBtn {
+	width: 100px;
+	border: none;
+    border-radius: 5px;
+    background-color: #e0f4de;
 	height: 35px;
-	border-radius: 12px;
 	font-family: 'Cafe24SsurroundAir';
+	font-size: 18px;
+	padding: 8px;
 	cursor: pointer;
 }
 
-.pfRemove-button {
-	cursor: pointer;
-	color: red;
-	margin-right: 20px;
-}
-
-.pfCheckboxKeyword {
-	display: none;
+.pfKeywordAddBtn:hover,
+.pfCustomFileBtn:hover,
+.pfFormBtn input:hover {
+	box-shadow: 0 0 0 2px orange inset;
 }
