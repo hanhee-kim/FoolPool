@@ -1,4 +1,29 @@
  /* noticeDetail  */
+ 
+ 	/* 공지사항 목록 - 검색바 유효성 검사 */
+ 	$(document).ready(function() {
+    	$('#searchform').submit(function(event) {
+        let sValue = $("#keyword").val().trim();
+        
+        // 수행1. trim된 값을 검색어input태그에 value로 넣어줌
+        $("#keyword").val(sValue); 
+        
+        // 수행2. null값 검색제출을 막음 - 404에러 방지
+        if (noticeType=='선택' || sValue === "") {
+			Swal.fire({
+				title:'검색어를 입력해주세요.',
+				icon:'warning',
+				confirmButtonColor: 'orange'
+			});
+			
+            // console.log("검색옵션 혹은 검색어가 없으므로 기본제출이 막아짐");
+            event.preventDefault();
+        }
+    });
+     });
+ 
+ 
+ 
  function callBtn(num) {
 		var keyword=$("#keyword").val();
 		if(keyword!=null && keyword.trim()!=''){
@@ -19,11 +44,10 @@
             text: '정말 삭제 하시겠습니까??',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: 'orange',
+            cancelButtonColor: '#466b55',
             confirmButtonText: '승인',
             cancelButtonText: '취소',
-            reverseButtons: true,
         }).then(result => {
             if (result.isConfirmed) {
                 // 서버로 삭제 요청 보내기 (AJAX)

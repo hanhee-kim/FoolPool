@@ -51,7 +51,7 @@ public class Main extends HttpServlet {
 		Integer fMonth = date.getMonth()+1;
 		Integer fDay = date.getDate();
 		try {
-			 flower =  f_service.searchFlowerByDate(fMonth, fDay);
+			flower =  f_service.searchFlowerByDate(fMonth, fDay);
 			request.setAttribute("flower", flower);
 		} catch (Exception e) {
 			e.printStackTrace();

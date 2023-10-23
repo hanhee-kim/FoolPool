@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import service.PoolentarierService;
 import service.PoolentarierServiceImpl;
@@ -31,12 +32,13 @@ public class PoolentarierDelete extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		request.setAttribute("jspName", "poolentarier");
+		
 		Integer no = Integer.parseInt(request.getParameter("no"));
 		String page = request.getParameter("page");
 		int curPage = 1; 
 		if(page!=null) curPage = Integer.parseInt(page);
 		
-		request.setAttribute("jspName", "poolentarier");
 		try {
 			PoolentarierService poolentarierService = new PoolentarierServiceImpl();
 			poolentarierService.poolentarierDelete(no);
@@ -47,7 +49,5 @@ public class PoolentarierDelete extends HttpServlet {
 			request.setAttribute("err", "풀풀박사 게시글 삭제 오류");
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
-		
 	}
-
 }

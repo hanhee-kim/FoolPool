@@ -48,6 +48,7 @@
     margin-left: 10px;
     height: 40px;
     width: 110px;
+    transition: ease-in-out .2s;
 }
 
 .plWriteFormDiv {

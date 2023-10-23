@@ -32,12 +32,6 @@ public class NoticeList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		if(session.getAttribute("member")==null) {
-			response.sendRedirect("login");
-		}else {
-			
-
 			request.setCharacterEncoding("utf-8");
 			String page = request.getParameter("page");
 			
@@ -61,4 +55,3 @@ public class NoticeList extends HttpServlet {
 		}	
 		
 	}
-}

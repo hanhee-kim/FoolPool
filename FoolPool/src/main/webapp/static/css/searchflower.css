@@ -68,6 +68,14 @@
 .searchFlowerOptionBox {
 	margin-right: 20px;
 }
+.searchFlowerOptionBox:hover ,
+#searchFlowerStartMonth:hover ,
+#searchFlowerStartDay:hover ,
+#searchFlowerEndMonth:hover ,
+#searchFlowerEndDay:hover 
+{
+	cursor: pointer;
+}
 
 .searchFlowerStartMonth, .searchFlowerStartDay, .searchFlowerEndMonth,
 	.searchFlowerEndDay {
@@ -251,8 +259,11 @@
 .flowerCardsection::-webkit-scrollbar ,
 .pdDetailArea::-webkit-scrollbar ,
 .pfInputArea::-webkit-scrollbar ,
+.peInputArea::-webkit-scrollbar ,
+.pfFormContent::-webkit-scrollbar ,
+#pdCommentValue::-webkit-scrollbar ,
 .drFP-detailArea::-webkit-scrollbar ,
-.drFP-inputArea::-webkit-scrollbar 
+.drFP-inputArea::-webkit-scrollbar
 {
     width: 8px;  /* 스크롤바의 너비 */
 }
@@ -260,6 +271,9 @@
 .flowerCardsection::-webkit-scrollbar-thumb ,
 .pdDetailArea::-webkit-scrollbar-thumb ,
 .pfInputArea::-webkit-scrollbar-thumb ,
+.peInputArea::-webkit-scrollbar-thumb ,
+.pfFormContent::-webkit-scrollbar-thumb ,
+#pdCommentValue::-webkit-scrollbar ,
 .drFP-detailArea::-webkit-scrollbar-thumb ,
 .drFP-inputArea::-webkit-scrollbar-thumb 
 {
@@ -271,6 +285,9 @@
 .flowerCardsection::-webkit-scrollbar-track ,
 .pdDetailArea::-webkit-scrollbar-track ,
 .pfInputArea::-webkit-scrollbar-track ,
+.peInputArea::-webkit-scrollbar-track ,
+.pfFormContent::-webkit-scrollbar-track ,
+#pdCommentValue::-webkit-scrollbar ,
 .drFP-detailArea::-webkit-scrollbar-track ,
 .drFP-inputArea::-webkit-scrollbar-track 
 {
@@ -281,6 +298,9 @@
 .flowerCardsection ,
 .pdDetailArea ,
 .pfInputArea ,
+.peInputArea,
+.pfFormContent,
+#pdCommentValue,
 .drFP-detailArea ,
 .drFP-inputArea 
 {

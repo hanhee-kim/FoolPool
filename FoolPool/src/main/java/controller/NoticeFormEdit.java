@@ -77,6 +77,8 @@ public class NoticeFormEdit extends HttpServlet {
 		Integer no = Integer.parseInt(request.getParameter("no"));
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
+		
+		
 			
 		Notice notice = new Notice();
 		notice.setNo(no);

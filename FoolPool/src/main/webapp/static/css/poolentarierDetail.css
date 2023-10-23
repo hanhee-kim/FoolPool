@@ -28,7 +28,6 @@
 	height: 60px;
 	border-top: 0;
 	border-radius: 0px 0px 20px 20px;
-	margin-top: -30px;
 	z-index: 1;
 }
 
@@ -224,7 +223,7 @@ margin-left: 8px;
 	width: 30px;
 }
 
-#pdCommentValue{
+#pdCommentValue {
 	height: 120px;
     resize: none; /* textarea 크기 고정 */
 	width: 880px;
@@ -237,6 +236,14 @@ margin-left: 8px;
 	
 	outline-color: orange; /* focus된 입력창의 테두리색 변경 */
 	overflow-y: auto;
+}
+
+#pdCommentValue+div {
+	width: 857px;
+	margin-left: 51px;
+	/* 자식요소를 부모요소의 양 끝에 위치하도록 함 */
+	display: flex;
+    justify-content: space-between;
 }
 
 #pdCommentForm {
@@ -252,12 +259,12 @@ margin-left: 8px;
 }
 
 /* 댓글 등록, 취소 버튼 */
-#pdCommentFormBtns {
-    grid-column: 4; /* 4열에 위치하게 함 */
-    /* margin-right: 2px; */
+/*#pdCommentFormBtns {
+    grid-column: 4;  4열에 위치하게 함 
+    margin-right: 5px;
     margin-top: 0px;
     float: right;
-}
+}*/
 
 #pdCommentFormBtns input {
 	cursor: pointer;
@@ -275,4 +282,42 @@ margin-left: 8px;
 
 #pdPen {
 	width: 30px;
+}
+
+#pdMoveCommentTopImg {
+	width: 27px;
+	margin-top: -5px;
+}
+
+#pdMoveCommentTopImg+sup {
+	margin-left: 7px;
+	margin-top: 20px;
+	font-weight: bolder;
+	color: gray;
+	font-size: 14px;
+}
+
+.pdMoveTopOfPageDiv {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.pdMoveTopOfPageAnchor {
+	position: relative;
+	z-index: 15;
+}
+
+#pdMovePageTopImg {
+	width: 40px;
+	height: 12px;
+	margin-top: 15px;
+}
+#pd_comm_label{
+word-break:break-all;
+}
+.pdMoveTopOfPageDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

@@ -33,8 +33,7 @@ public class PoolentarierCommentAdd extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		request.setAttribute("jspName", "poolentarier");
 
@@ -47,8 +46,11 @@ public class PoolentarierCommentAdd extends HttpServlet {
 			String writerId = member.getId();
 			String writerNickname = member.getNickname();
 			Integer postNo = Integer.parseInt(request.getParameter("postNo"));
-
+			
+			// textarea의 줄바꿈 \n을 전부 <br>로 변경
 			String commentContent = request.getParameter("commentContent");
+			commentContent = commentContent.replaceAll("\n", "<br>");
+			
 			PoolentarierComment poolentarierCommnet = new PoolentarierComment();
 			poolentarierCommnet.setCommentContent(commentContent);
 			poolentarierCommnet.setWriterId(writerId);

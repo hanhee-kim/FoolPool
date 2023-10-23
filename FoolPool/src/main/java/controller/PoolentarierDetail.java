@@ -34,9 +34,9 @@ public class PoolentarierDetail extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		request.setAttribute("jspName", "poolentarier");
 		Integer no = Integer.parseInt(request.getParameter("no"));
 		
-		request.setAttribute("jspName", "poolentarier");
 		try {
 			// 서비스 객체 생성
 			PoolentarierService poolentarierService = new PoolentarierServiceImpl();
@@ -55,6 +55,18 @@ public class PoolentarierDetail extends HttpServlet {
 			
 			// 전체 댓글 조회
 			List<PoolentarierComment> poolentarierCommentList = poolentarierService.poolentarierCommentList(no);
+			
+//			// List의 모든 객체들의 댓글 내용의 <br>을 \n 변경
+//			for(int i = 0;i < poolentarierCommentList.size();i++) {
+//				PoolentarierComment poolentarierCommentForReplace = poolentarierCommentList.get(i);
+//				String commentContent = poolentarierCommentForReplace.getCommentContent();
+//				System.out.println(commentContent);
+//				commentContent = commentContent.replaceAll("<br>", "\n");
+//				poolentarierCommentForReplace.setCommentContent(commentContent);
+//				System.out.println(commentContent);
+//				poolentarierCommentList.set(i, poolentarierCommentForReplace);
+//			}
+			
 			request.setAttribute("poolentarierCommentList", poolentarierCommentList);
 			// 댓글 개수 조회
 			request.setAttribute("commentCount", poolentarierCommentList.size());
