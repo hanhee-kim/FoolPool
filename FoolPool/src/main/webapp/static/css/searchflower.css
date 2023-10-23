@@ -251,6 +251,8 @@
 .flowerCardsection::-webkit-scrollbar ,
 .pdDetailArea::-webkit-scrollbar ,
 .pfInputArea::-webkit-scrollbar ,
+.pfFormContent::-webkit-scrollbar ,
+#pdCommentValue::-webkit-scrollbar ,
 .drFP-detailArea::-webkit-scrollbar ,
 .drFP-inputArea::-webkit-scrollbar 
 {
@@ -260,6 +262,8 @@
 .flowerCardsection::-webkit-scrollbar-thumb ,
 .pdDetailArea::-webkit-scrollbar-thumb ,
 .pfInputArea::-webkit-scrollbar-thumb ,
+.pfFormContent::-webkit-scrollbar-thumb ,
+#pdCommentValue::-webkit-scrollbar ,
 .drFP-detailArea::-webkit-scrollbar-thumb ,
 .drFP-inputArea::-webkit-scrollbar-thumb 
 {
@@ -271,6 +275,8 @@
 .flowerCardsection::-webkit-scrollbar-track ,
 .pdDetailArea::-webkit-scrollbar-track ,
 .pfInputArea::-webkit-scrollbar-track ,
+.pfFormContent::-webkit-scrollbar-track ,
+#pdCommentValue::-webkit-scrollbar ,
 .drFP-detailArea::-webkit-scrollbar-track ,
 .drFP-inputArea::-webkit-scrollbar-track 
 {

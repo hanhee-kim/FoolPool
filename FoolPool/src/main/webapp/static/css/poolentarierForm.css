@@ -121,8 +121,10 @@
 	margin-top: 8px;
 }
 
-.pfContentValidationMsg {
-	margin-top: 3px;	
+.pfTitleValidationMsg,
+.pfContentValidationMsg{
+	margin-top: 3px;
+	margin-left: -75px;	
 }
 
 .pfFileSection {
