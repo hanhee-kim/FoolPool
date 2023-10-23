@@ -44,11 +44,10 @@
             text: '정말 삭제 하시겠습니까??',
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: 'orange',
+            cancelButtonColor: '#466b55',
             confirmButtonText: '승인',
             cancelButtonText: '취소',
-            reverseButtons: true,
         }).then(result => {
             if (result.isConfirmed) {
                 // 서버로 삭제 요청 보내기 (AJAX)
