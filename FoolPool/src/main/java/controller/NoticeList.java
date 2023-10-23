@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import service.NoticeService;
 import service.NoticeServiceImpl;
@@ -31,25 +32,33 @@ public class NoticeList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.setCharacterEncoding("utf-8");
-		String page = request.getParameter("page");
-		
-		int curpage = 1;
-		if(page!=null)curpage = Integer.parseInt(page);
-
-		
-		try {
-			NoticeService noticeService = new NoticeServiceImpl();
-			Map<String, Object> res = noticeService.noticeListByPage(curpage);
-			request.setAttribute("res", res);
-			request.setAttribute("jspName", "notice");
-			request.getRequestDispatcher("WEB-INF/views/notice/noticeList.jsp").forward(request, response);
+		HttpSession session = request.getSession();
+		if(session.getAttribute("member")==null) {
+			response.sendRedirect("login");
+		}else {
 			
-		} catch (Exception e) {
-			e.printStackTrace();
-			//request.setAttribute("err", "공지사항 조회에 에러가 발생했습니다");
-			request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
-		}		
+
+			request.setCharacterEncoding("utf-8");
+			String page = request.getParameter("page");
+			
+			int curpage = 1;
+			if(page!=null)curpage = Integer.parseInt(page);
+
+			
+			try {
+				NoticeService noticeService = new NoticeServiceImpl();
+				Map<String, Object> res = noticeService.noticeListByPage(curpage);
+				request.setAttribute("res", res);
+				request.setAttribute("jspName", "notice");
+				request.getRequestDispatcher("WEB-INF/views/notice/noticeList.jsp").forward(request, response);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+				//request.setAttribute("err", "공지사항 조회에 에러가 발생했습니다");
+				request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
+			}		
+			
+		}	
+		
 	}
 }
