@@ -36,17 +36,21 @@ public class PoolentarierForm extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		request.setAttribute("jspName", "poolentarier");
 		HttpSession session = request.getSession();
-		Member member = (Member) session.getAttribute("member");
-		if (member == null) { // 로그인을 안한상태로 작성폼 접근시 에러페이지로
-			request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
+		
+		if(session.getAttribute("member")==null) {
+			response.sendRedirect("login");
 		} else {
-			request.setAttribute("jspName", "poolentarier");
-			request.getRequestDispatcher("WEB-INF/views/poolentarier/poolentarierForm.jsp").forward(request, response);
-
+			try {
+				request.getRequestDispatcher("WEB-INF/views/poolentarier/poolentarierForm.jsp").forward(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+				request.setAttribute("err", e.getMessage());
+				request.getRequestDispatcher("error.jsp").forward(request, response);
+			}
 		}
 	}
 
@@ -57,29 +61,30 @@ public class PoolentarierForm extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
-		Poolentarier poolentarier = new Poolentarier();
-
-		// 파일 업로드 시작
-//		String uploadPath = request.getServletContext().getRealPath("static/img");
-		String uploadPath = "C:\\upload";
-		int size = 10 * 1024 * 1024;
-		MultipartRequest multi = new MultipartRequest(request, uploadPath, size, "utf-8",
-				new DefaultFileRenamePolicy());
-		// 파일 업로드 끝
-
-		String title = multi.getParameter("title");
-		String content = multi.getParameter("content");
-		String fileName = multi.getOriginalFileName("fileName");
-		String plantsName = multi.getParameter("plantsName");
+		
 		HttpSession session = request.getSession();
 		Member member = (Member) session.getAttribute("member");
 		if (member == null) { // 로그인 안하고 작성페이지에서 등록버튼을 눌렀을때 에러페이지로
 			request.getRequestDispatcher("WEB-INF/views/error.jsp").forward(request, response);
 		} else {
+			Poolentarier poolentarier = new Poolentarier();
 
+			// 파일 업로드
+			String uploadPath = "C:\\upload";
+			int size = 10 * 1024 * 1024;
+			MultipartRequest multi = new MultipartRequest(request, uploadPath, size, "utf-8", new DefaultFileRenamePolicy());
+
+			// 작성폼 값 가져오기
+			String title = multi.getParameter("title");
+			String fileName = multi.getOriginalFileName("fileName");
+			String plantsName = multi.getParameter("plantsName");
 			String writerId = member.getId();
 			String writerNickname = member.getNickname();
 
+			// textarea의 줄바꿈 \n을 전부 <br>로 변경
+			String content = multi.getParameter("content");
+			content = content.replaceAll("\n", "<br>");
+			
 			// 키워드 값 설정
 			// checkbox 타입의 input 중, name="keywordForSubmit" 값을 모두 가져옴
 			String[] keywords = multi.getParameterValues("keywordForSubmit");

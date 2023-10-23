@@ -82,9 +82,15 @@
 	
 	<!-- 게시글 수정 -->
 	<update id="updatePoolentarierDetail" parameterType="Poolentarier">
-		<![CDATA[
-			update poolentarier set title = #{title}, content = #{content}, keyword = #{keyword}, file_Name = #{fileName}, plants_Name = #{plantsName} where no = #{no}
-		]]>
+		update poolentarier
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="title != null">title = #{title},</if>
+			<if test="content != null">content = #{content},</if>
+			<if test="keyword != null">keyword = #{keyword},</if>
+			<if test="fileName != null">file_Name = #{fileName},</if>
+			<if test="plantsName != null">plants_Name = #{plantsName},</if>
+		</trim>
+		where no = #{no}
 	</update>
 	
 	<!-- 게시글 삭제 -->

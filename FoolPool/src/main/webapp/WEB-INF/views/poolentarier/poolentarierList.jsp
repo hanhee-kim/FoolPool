@@ -69,10 +69,9 @@
 			
 					<%-- 검색창 --%>
 					<div class=plSearchOptionDiv>
-						<form action="goPoolentarier" method="get" id="plSearchform">
+						<form action="goPoolentarier" method="get" id="plSearchForm">
 							<h5>
 								<select name="searchOption" class="plSearchOption" value="${searchOption} }">
-									
 									<option value="all" ${searchOption eq 'all'? 'selected':''}>제목+내용</option>
 									<option value="writer_Nickname" ${searchOption eq 'writer_Nickname'? 'selected':''}>작성자</option>
 									<option value="keyword" ${searchOption eq 'keyword'? 'selected':''}>키워드</option>
