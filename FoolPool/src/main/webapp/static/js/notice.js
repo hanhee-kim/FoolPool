@@ -1,14 +1,15 @@
  /* noticeDetail  */
  
  	/* 공지사항 목록 - 검색바 유효성 검사 */
-    $('#searchform').submit(function(event) {
+ 	$(document).ready(function() {
+    	$('#searchform').submit(function(event) {
         let sValue = $("#keyword").val().trim();
         
         // 수행1. trim된 값을 검색어input태그에 value로 넣어줌
         $("#keyword").val(sValue); 
         
         // 수행2. null값 검색제출을 막음 - 404에러 방지
-        if (sValue === "") {
+        if (noticeType=='선택' || sValue === "") {
 			Swal.fire({
 				title:'검색어를 입력해주세요.',
 				icon:'warning',
@@ -19,7 +20,7 @@
             event.preventDefault();
         }
     });
-    
+     });
  
  
  

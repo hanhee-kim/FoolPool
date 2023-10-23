@@ -76,8 +76,9 @@
 							<option value="all">선택</option>
 							<option value="title" ${res.type eq 'title'? 'selected':'' }>제목</option>
 							<option value="content" ${res.type eq 'content'? 'selected':'' }>내용</option>
-						</select> <input type="text" name="keyword" id="keyword"
-							value="${res.keyword}" /> <input type="submit" value="검색" />
+						</select> 
+						<input type="text" name="keyword" id="keyword" value="${res.keyword}" />
+						<input type="submit" value="검색" />
 				</h5>
 				</form>
 				
@@ -88,6 +89,7 @@
 		
 		<%-- notice-DivLine --%>
 		<%-- 페이징 영역 --%>
+		<c:if test="${res['noticeList'].size()>0}">
 				<div class="noticePaging">
 					<c:choose>
 						<c:when test="${res.pageInfo.curPage>1 }">
@@ -95,9 +97,9 @@
 								onclick="return callBtn(${res.pageInfo.curPage-1})">&lt;</a>
 						</c:when>
 						  <%-- 검색결과 없을때 --%>
-			         <c:when test="${res['noticeList'].size()==0}">
-			            <b></b>
-			         </c:when>
+			         
+			           
+			        
 						<c:otherwise>
 							<a>&lt;</a>
 						</c:otherwise>
@@ -127,6 +129,7 @@
 							<a>&gt;</a>
 						</c:otherwise>
 					</c:choose>
+					 </c:if>
 				</div>
 				<%-- notice-paging --%>
 
