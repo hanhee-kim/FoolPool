@@ -52,7 +52,7 @@ public class DrFoolPoolDelete extends HttpServlet {
 			String sOption = request.getParameter("sOption");
 			String sValue = request.getParameter("sValue");
 			// url에 한글이 될 수 있는 값인 검색값만 인코딩
-			sValue = URLEncoder.encode(sValue, "UTF-8"); // java.net.URLEncoder;
+			if(sValue!=null) sValue = URLEncoder.encode(sValue, "UTF-8"); // java.net.URLEncoder;
 			// System.out.println("no:" + no + ",prevpage: " + page + ",filter:" + filter + ",sOption:" + sOption + ",sValue:" + sValue);
 			
 			try {

@@ -44,15 +44,13 @@ public class DrFoolPoolCommentPick extends HttpServlet {
 		if(prevfilter!=null) filter = prevfilter;
 		String sOption = request.getParameter("sOption");
 		String sValue = request.getParameter("sValue");
-		// url에 한글이 될 수 있는 값인 검색값만 인코딩
-		sValue = URLEncoder.encode(sValue, "UTF-8"); // java.net.URLEncoder;
+		// url에 한글이
+		if(sValue!=null) sValue = URLEncoder.encode(sValue, "UTF-8"); // java.net.URLEncoder;될 수 있는 값인 검색값만 인코딩
 		// System.out.println("postNo:" + postNo + ", commentNo:" + commentNo + ",prevpage: " + page + ",filter:" + filter + ",sOption:" + sOption + ",sValue:" + sValue);
 		
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
 			drFoolPoolService.drFoolPoolCommentPick(commentNo, postNo);
-			//response.sendRedirect("drFoolPoolDetail?no="+postNo);
-			
 			if(sOption==null || sValue==null || sOption.equals("") || sValue.equals("")) {
 				response.sendRedirect("drFoolPoolDetail?no=" + postNo + "&page="+page+"&filter="+filter + "#drFP-topOfComment");
 			} else {
