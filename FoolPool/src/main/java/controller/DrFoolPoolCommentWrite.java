@@ -58,7 +58,7 @@ public class DrFoolPoolCommentWrite extends HttpServlet {
 		String sOption = request.getParameter("sOption");
 		String sValue = request.getParameter("sValue");
 		// url에 한글이 될 수 있는 값인 검색값만 인코딩
-		sValue = URLEncoder.encode(sValue, "UTF-8"); // java.net.URLEncoder;
+		if(sValue!=null) sValue = URLEncoder.encode(sValue, "UTF-8"); // java.net.URLEncoder;
 		// System.out.println("no:" + postNo + ",prevpage: " + page + ",filter:" + filter + ",sOption:" + sOption + ",sValue:" + sValue);
 		
 		// DrFoolPoolComment 객체 생성
@@ -71,7 +71,6 @@ public class DrFoolPoolCommentWrite extends HttpServlet {
 		try {
 			DrFoolPoolService drFoolPoolService = new DrFoolPoolServiceImpl();
 			drFoolPoolService.drFoolPoolCommentWrite(comment);
-			// response.sendRedirect("drFoolPoolDetail?no=" + postNo);
 			if(sOption==null || sValue==null || sOption.equals("") || sValue.equals("")) {
 				response.sendRedirect("drFoolPoolDetail?no=" + comment.getPostNo() + "&page=" + page + "&filter=" + filter + "#drFP-commentWriteArea");
 			} else {
