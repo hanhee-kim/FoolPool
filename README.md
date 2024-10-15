@@ -45,13 +45,13 @@ FoolPool 사이트는 반려 식물을 기르는 사람들을 위한 커뮤니�
 <br>
 
 ## 💾 ERD
-
+![DB 테이블](https://github.com/user-attachments/assets/362ccec5-ce81-4237-b359-feadb81ed696)
 <br>
 <br>
 <br>
 
 ## 🔧 프로젝트 구조
-
+![구조](https://github.com/user-attachments/assets/8258e2a4-1262-42fe-9df8-29dff5bf6e2b)
 <br>
 <br>
 <br>
